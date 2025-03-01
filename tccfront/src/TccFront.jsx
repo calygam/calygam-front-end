@@ -7,7 +7,10 @@ import FooterAssesment from "./components/FooterAssessment/FooterAssesment"
 import ComponentToggleContext from "./context/ComponentToggleContext"
 import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx"
+import TrailPage from "./pages/TrailPage/TrailPage.jsx"
+
 import { useState } from "react"
+import Search from "./assets/img/searchIcon.png"
 
 
 
@@ -25,9 +28,7 @@ function TccFront() {
 
       <BrowserRouter>
       <ComponentToggleContext.Provider value={{toggleComponent,setToggleComponent}}>
-        <header>
-          <Header />
-        </header>
+
         <main >
          
           <Routes>
@@ -37,6 +38,7 @@ function TccFront() {
             <Route path="/FaleConosco" element={<div>Chama component de Fale Conosco</div>} />
             <Route path="/Login" element={<LoginPage/>} />
             <Route path="/Register" element={<RegisterPage/>} />
+            <Route path="/Trail" element={<TrailPage/>}/>
           </Routes>
           
         </main>

@@ -10,11 +10,17 @@ import SenaiRollCardsCourse from '../../components/SenaiRollCardsCourse/SenaiRol
 
 import ChooseTheSchool from '../../components/ChooseTheSchool/ChooseTheSchool.jsx'
 import FooterAssesment from '../../components/FooterAssessment/FooterAssesment.jsx'
+import Header from '../../components/Header/Header.jsx'
 
 export default function InitialPage() {
   return (
     <div>
+              <header>
+          <Header />
+                      
+        </header>
       <StudentWhichBook/>
+   
       <SchoolSenaiName/>
       <SenaiWarnings/>
       <SenaiViewCardsCourses/>
