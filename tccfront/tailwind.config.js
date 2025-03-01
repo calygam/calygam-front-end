@@ -15,6 +15,8 @@ export default {
       colors:{
         'red-clean-type':'#E62727',
         'red-button-send-feedback':'#C1121F',
+        "trail-info-action":"#657ED4",
+        
         "rank-achiviment-bronze-one-first":"#D58936",
         "rank-achiviment-bronze-one-second":"#A44200",
       },
