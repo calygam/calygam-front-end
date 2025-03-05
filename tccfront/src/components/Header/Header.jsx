@@ -15,12 +15,19 @@ export default function Header({withPhoto}) {
   return (
     <div className='flex flex-col items-center font-poppins text-[16px] text-nowrap'>
       <div className="transition-all flex justify-between md:justify-around     items-end pb-5 px-5   w-full h-[116px] bg-white md:bg-red-600">
-        <div className='flex w-full border-b-2 md:justify-around justify-between gap-x-5 pb-3 items-center  border-b-white'>
-          <div className='md:hidden'>
+        <div className='flex flex-col space-y-2 md:space-x-0 md:flex-row w-full border-b-2 md:justify-around justify-between gap-x-5 md:pb-3 items-center  border-b-white'>
+          <div className='flex items-center w-full justify-between  md:hidden'>
+          <div >
             <img src={MenuRed} alt="" />
           </div>
+          { withPhoto?
+          <div className="flex gap-x-2 md:gap-x-2 justify-center items-center  mr-0 md:mr-4   ">
+  <span className=" rounded-full "> <img src={engenheiro} alt="" className='w-[40px] h-[40px] md:w-[50px] md:h-[50px] rounded-full  object-cover' /></span>
+  <p className='text-xs md:text-base text-wrap md:text-white text-black '>jubisclaubus da silva</p>
+</div>:null}
+          </div>
           <div className='shadow-lg shadow-black/25'>
-            <Link to={"/"}><img className='md:w-[180px] w-[100px]' src={senaiLogo} alt="" /></Link>
+            <Link to={"/"}><img className='w-[145px] md:w-[180px] ' src={senaiLogo} alt="" /></Link>
           </div>
           <nav className='hidden transition-all md:flex  md:w-[75%] items-center   md:justify-between'>
             <ul className='flex gap-5 text-white'>
@@ -57,7 +64,7 @@ export default function Header({withPhoto}) {
             </Link>
           </div>
 :
-<div className="flex  md:gap-x-2 items-center  md:mr-4   ">
+<div className="hidden md:flex lg:flex gap-0 md:gap-x-2 justify-center items-center  mr-0 md:mr-4   ">
   <span className="w-full rounded-full "> <img src={engenheiro} alt="" className='w-[40px] h-[40px] md:w-[50px] md:h-[50px] rounded-full  object-cover' /></span>
   <p className='text-xs md:text-base text-wrap md:text-white text-black '>jubisclaubus da silva</p>
 </div>}

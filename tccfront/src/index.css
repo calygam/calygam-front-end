@@ -3,11 +3,38 @@
 @tailwind utilities;
 
 
+
 .scrollbar-hidden::-webkit-scrollbar {
     width: 0px;
     height: 0px;
   }
+  .scrollbar-calygam::-webkit-scrollbar {
+   width: 8px;
+   height: 8px;
   
-  .scrollbar-hidden {
-    scrollbar-width: none; 
+  }
+
+  
+  .scrollbar-calygam::-webkit-scrollbar-thumb {
+   
+    border-radius: 4px;
+   
+    background:  #1f2f63;
+  
+  }
+  .scrollbar-calygam::-webkit-scrollbar-track {
+   
+    border-radius: 4px;
+   
+    background:  #1834926c;
+  
+  }
+  
+ 
+
+  @-moz-document url-prefix() {
+    .scrollbar-hidden {
+      scrollbar-width: thin;
+      scrollbar-color: #1f2f63 #1834926c;
+    }
   }
