@@ -17,7 +17,7 @@ export default function ProgressBarAdapt({xpInMoment,xpToGet}) {
       </div>
       <div className='flex w-full justify-end '>
         <p className='text-white text-base'>{xpInMoment}/{xpToGet}</p>
-      </div>
+      </div> 
     </div>
   )
 }

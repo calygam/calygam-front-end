@@ -136,7 +136,7 @@ export default function TrailPage() {
                                 <h1>Título da Trílha [imagem]</h1>
                     
                    
-                            <LessonFeatures/>
+                            <LessonFeatures />
                     
                     </main>
                     <div className='flex flex-col md:hidden lg:flex order-2 md:order-3 '>
