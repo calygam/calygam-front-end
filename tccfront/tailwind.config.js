@@ -19,11 +19,14 @@ export default {
         
         "rank-achiviment-bronze-one-first":"#D58936",
         "rank-achiviment-bronze-one-second":"#A44200",
+        'pending-leasson':'#4DD070',
+         'second-pending-leasson':'#34A853'
       },
       backgroundImage:{
         'dec-angle':'url("./src/assets/img/decAngle.png")',
         'mobile-login-desert':'url("./src/assets/img/mobile-login-desert.jpg")',
-         'desktop-login-desert':'url("./src/assets/img/desktop-login-desert.jpg")'
+         'desktop-login-desert':'url("./src/assets/img/desktop-login-desert.jpg")',
+
       }
     },
   },

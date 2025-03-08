@@ -4,7 +4,8 @@
 
 
 
-.scrollbar-hidden::-webkit-scrollbar {
+
+/* .scrollbar-hidden::-webkit-scrollbar {
     width: 0px;
     height: 0px;
   }
@@ -37,4 +38,4 @@
       scrollbar-width: thin;
       scrollbar-color: #1f2f63 #1834926c;
     }
-  }
+  } */
