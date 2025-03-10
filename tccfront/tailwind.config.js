@@ -20,7 +20,9 @@ export default {
         "rank-achiviment-bronze-one-first":"#D58936",
         "rank-achiviment-bronze-one-second":"#A44200",
         'pending-leasson':'#4DD070',
-         'second-pending-leasson':'#34A853'
+         'second-pending-leasson':'#34A853',
+         'send-response-question-1':'#4DD070',
+         'send-response-question-2':'#34A853'
       },
       backgroundImage:{
         'dec-angle':'url("./src/assets/img/decAngle.png")',

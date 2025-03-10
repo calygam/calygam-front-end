@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../../components/Header/Header'
 import arrowToHereContext from '../../assets/img/arrow-my-task.svg'
 import manOld from '../../assets/img/man-grandpa.svg'
@@ -11,7 +11,9 @@ import TurmasIcon from '../../assets/img/turmas-icon.svg'
 import TodoIcon from '../../assets/img/todolist-icon.svg'
 import TopUsersPodium from '../../components/TopUsersPodium/TopUsersPodium.jsx'
 import ButtonSocialAreaLocation from '../../components/ButtonSocialAreaLocation/ButtonSocialAreaLocation.jsx'
+import SubHeaderArea from '../../components/SubHeaderArea/SubHeaderArea.jsx'
 import ShowUserState from '../../components/ShowUserState/ShowUserState.jsx'
+import MenuLocationLeasson from '../../components/MenuLocationLeasson/MenuLocationLeasson.jsx'
 import LessonFeatures from '../../components/LessonFeatures/LessonFeatures.jsx'
 import axios from 'axios'
 import jsIconMock from '../../assets/img/js-icon-mock.svg'
@@ -20,6 +22,7 @@ import lineRankingDecor from '../../assets/img/line-ranking-decor.svg'
 import userKing from '../../assets/img/king-of-leasson.svg'
 import comentChatIcon from '../../assets/img/coment-chat-icon.svg'
 import comunityIcon from '../../assets/img/comunity-icon.svg'
+import { MockUserDataContext } from '../../context/MockUserDataContext/MockUserDataContext.jsx'
 
 
 
@@ -31,7 +34,7 @@ export default function TrailPage() {
 
 
 
-    const [userDataMock, setUserDataMock] = useState([])
+    const {userPhoto} = useContext(MockUserDataContext)
 
 
     const numbers = [
@@ -89,18 +92,18 @@ export default function TrailPage() {
     ];
 
 
-    useEffect(() => {
-        const getUsersMock = async () => {
-            try {
-                const response = await axios.get("https://randomuser.me/api/")
-                console.log(response.data.results[0].picture)
-                setUserDataMock(response.data.results[0].picture)
-            } catch (e) {
-                console.log("erro tentando consumer a randuser " + e)
-            }
-        }
-        getUsersMock()
-    }, [])
+    // useEffect(() => {
+    //     const getUsersMock = async () => {
+    //         try {
+    //             const response = await axios.get("https://randomuser.me/api/")
+    //             console.log(response.data.results[0].picture)
+    //             setUserDataMock(response.data.results[0].picture)
+    //         } catch (e) {
+    //             console.log("erro tentando consumer a randuser " + e)
+    //         }
+    //     }
+    //     getUsersMock()
+    // }, [])
     return (
         <div className='flex flex-col w-full font-jersey font-bold text-base md:text-lg '>
             <header>
@@ -108,57 +111,10 @@ export default function TrailPage() {
 
             </header>
             <main>
+                                    <SubHeaderArea BackToOthersPages={arrowToHereContext} PageToBack={"/Home"} TextIndicatorPage={"Minha Trilha"} RepresentativeIcon={manOld} IconBadgeRank={BronzeAchiviment} NameRank={'Bronze'} FilterAdd={filterByDifficulty} TextFilter={'Filtros'} IconMoney={tpMoney} QtdMoney={300} lvlProgressLeasson={false} infoMonetaryOrFilter={true}/>
                 <section className='w-full transition-all grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-2  place-items-center  my-10 px-2 '>
-                    <div className='flex  gap-x-2  '>
-                        <div className='flex w-[14px]'>
-                            <img src={arrowToHereContext} alt="" className='w-full' />
-                        </div>
-                        <div className='flex flex-col '>
-                            <h3 className='text-base'>Minha Trilha</h3>
-                            <hr className='w-full rounded-full bg-red-600 h-[3px]' />
-                        </div>
-                        <div className='flex  w-[28px]'>
-                            <img src={manOld} alt="" className='w-full' />
-                        </div>
-                    </div>
-
-                    <div className='flex    '>
-                        <div className='flex flex-col  w-[250px] justify-center items-center rounded-[30px] p-3 bg-gradient-to-r from-rank-achiviment-bronze-one-first to-rank-achiviment-bronze-one-second/80'>
-                            <div className='flex items-center'>
-                                <span className='flex'>
-                                    <img src={BronzeAchiviment} alt="" className='w-[40px] h-[40px]' />
-                                </span>
-                                <div className='flex text-base text-white'>
-                                    <p className='text-xl'>Bronze</p>
-                                </div>
-                            </div>
-                            <div className='flex w-full items-center'>
-                                <ProgressBarAdapt xpInMoment={3} xpToGet={15} />
-                            </div>
-                        </div>
-                    </div>
 
 
-                    <div className='flex items-center gap-x-10'>
-                        <div className='flex flex-col items-center'>
-                            <div className='flex'>
-                                <img src={filterByDifficulty} alt="" className='w-[15px] h-[15px]' />
-                            </div>
-                            <div className='flex'>
-                                <p className='text-xs'>Filtros</p>
-                            </div>
-                        </div>
-                        <div className='flex items-center gap-x-2'>
-                            <div className='flex'>
-                                <p>0</p>
-
-                            </div>
-                            <div className='flex'>
-                                <img src={tpMoney} alt="" className='w-[40px] h-[40px]' />
-                            </div>
-
-                        </div>
-                    </div>
 
 
 
@@ -166,22 +122,8 @@ export default function TrailPage() {
                 {/*caio<- sessão destinada a visualização da trilha  */}
                 <section className='grid grid-cols-1  md:grid-cols-2 lg:gap-x-48 md:-ml-[50px] lg:-ml-0 -ml-0 font-jersey place-items-center  w-full lg:grid-cols-3'>
                     <div className='flex flex-col md:h-full'>
-                        <menu className='flex  w-[200px] p-4 py-6 rounded-3xl space-y-2 bg-red-clean-type'>
-                            <ul className='flex flex-col items-center space-y-4 text-white justify-center w-full'>
-                                <li className='flex items-center   w-full justify-between    '>
-                                    <p className='flex'>Tarefas do Aluno</p>
-                                    <img src={CheckMyTasks} alt="" className='w-[20px] h-[20px]' />
-                                </li>
-                                <li className='flex items-center w-full justify-between     '>
-                                    <p className='flex '>Turmas</p>
-                                    <img src={TurmasIcon} alt="" className='w-[20px] h-[20px]' />
-                                </li>
-                                <li className='flex items-center  w-full justify-between   '>
-                                    <p className='flex'>Todo List</p>
-                                    <img src={TodoIcon} alt="" className='w-[20px] h-[20px]' />
-                                </li>
-                            </ul>
-                        </menu>
+
+                        <MenuLocationLeasson FirstIcon={CheckMyTasks} FirstLocationText={"Tarefas Do Aluno"} SecondIcon={TurmasIcon} SecondLocationText={"Turmas"} ThirdIcon={TodoIcon} ThirdLocationText={"Todo-List"}/>
                         <div className='md:flex flex-col justify-center space-y-3 items-center hidden lg:hidden'>
                         <ButtonSocialAreaLocation imgArea={comentChatIcon} nameArea={"Chat"}/>
                         <ButtonSocialAreaLocation imgArea={comunityIcon} nameArea={"Comunidade"}/>
@@ -202,9 +144,9 @@ export default function TrailPage() {
                             </div>
 
                             <div className='flex flex-col items-center justify-center space-y-4 '>
-                                <TopUsersPodium userImage={userDataMock.medium} userPoints={100.34} userKing={userKing} userName={"Warren"} numberPodium={1}/>
-                                <TopUsersPodium userImage={userDataMock.medium} userPoints={100.34} userKing={null} userName={"Angel"} numberPodium={2}/>
-                                <TopUsersPodium userImage={userDataMock.medium} userPoints={100.34} userKing={null} userName={"Victoria"} numberPodium={3}/>
+                                <TopUsersPodium userImage={userPhoto.medium} userPoints={100.34} userKing={userKing} userName={"Warren"} numberPodium={1}/>
+                                <TopUsersPodium userImage={userPhoto.medium} userPoints={100.34} userKing={null} userName={"Angel"} numberPodium={2}/>
+                                <TopUsersPodium userImage={userPhoto.medium} userPoints={100.34} userKing={null} userName={"Victoria"} numberPodium={3}/>
                             </div>
 
                         </aside>
@@ -225,7 +167,7 @@ export default function TrailPage() {
 
                     </div>
                     <main className='flex h-full  items-center font-jersey w-full flex-col order-3 md:order-2'>
-                        <div className='flex gap-1 items-center mt-2 mb-8'>
+                        <div className='flex gap-1 items-center  md:mb-4 my-8 md:mt-0'>
                             <h1><span className='text-yellow-300'>JAVA</span>SCRIPT  </h1>
                             <img src={jsIconMock} alt="" className='w-12 h-12' />
                         </div>
