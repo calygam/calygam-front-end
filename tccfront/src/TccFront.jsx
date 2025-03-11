@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx"
 import TrailPage from "./pages/TrailPage/TrailPage.jsx"
 import QuizPage from './pages/QuizPage/QuizPage.jsx'
+import HomePage from './pages/HomePage/HomePage.jsx'
 import AboutLeassonPage from './pages/AboutLeassonPage/AboutLeassonPage.jsx'
 import { useState } from "react"
 import Search from "./assets/img/searchIcon.png"
@@ -23,6 +24,7 @@ import { MockUserDataContext } from "./context/MockUserDataContext/MockUserDataC
 function TccFront() {
   const {userPhoto} = usePhotoMockData()
   const [toggleComponent,setToggleComponent]=useState(false)
+  const [toggleUploadModal,setToggleUploadModal] = useState(false)
 
   return (
 
@@ -30,7 +32,7 @@ function TccFront() {
 
 
       <BrowserRouter>
-      <ComponentToggleContext.Provider value={{toggleComponent,setToggleComponent}}>
+      <ComponentToggleContext.Provider value={{toggleComponent,setToggleComponent,toggleUploadModal,setToggleUploadModal}}>
         <MockUserDataContext.Provider value={{userPhoto}}>
 
         <main >
@@ -45,6 +47,7 @@ function TccFront() {
             <Route path="/Trail" element={<TrailPage/>}/>
             <Route path="/Quiz" element={<QuizPage/>}/>
             <Route path="/AboutLeasson" element={<AboutLeassonPage/>}/>
+            <Route path="/home" element={<HomePage/>}/>
           </Routes>
           
         </main>

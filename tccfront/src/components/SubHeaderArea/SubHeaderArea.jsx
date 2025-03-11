@@ -5,11 +5,14 @@ import LeassonProgressStage from '../LeassonProgressStage/LeassonProgressStage.j
 import RankingViewProgress from '../RankingViewProgress/RankingViewProgress.jsx'
 import TeacherInfoInLeasson from '../TeacherInfoInLeasson/TeacherInfoInLeasson.jsx'
 import { MockUserDataContext } from '../../context/MockUserDataContext/MockUserDataContext.jsx'
-export default function SubHeaderArea({ BackToOthersPages, PageToBack, TextIndicatorPage, RepresentativeIcon, IconBadgeRank, NameRank, FilterAdd, TextFilter, IconMoney, QtdMoney, infoMonetaryOrFilter, lvlProgressLeasson,HaveCardTeacher }) {
+export default function SubHeaderArea({ BackToOthersPages, PageToBack, TextIndicatorPage, RepresentativeIcon, IconBadgeRank, NameRank, FilterAdd, TextFilter, IconMoney, QtdMoney, infoMonetaryOrFilter, lvlProgressLeasson,HaveCardTeacher,HaveLargeRate,imgBellSrc }) {
     const {userPhoto} = useContext(MockUserDataContext)
     return (
-        <div className={`flex items-center lg:justify-between transition-all delay-100 duration-300 px-12 mt-4 w-full gap-10 justify-center flex-wrap  `}>
+        
+        <div className={`flex items-center ${HaveLargeRate?"lg:justify-center":"lg:justify-between"} transition-all delay-100 duration-300 px-12 mt-4 w-full gap-10 justify-center flex-wrap  `}>
+            {BackToOthersPages?
             <div className='flex  gap-x-2  '>
+                
                 <Link className='flex w-[14px] ' to={PageToBack}>
                     {/* <img src={arrowToHereContext} alt="" className='w-full' /> */}
                     <img src={BackToOthersPages} alt="" className='w-full' />
@@ -25,11 +28,11 @@ export default function SubHeaderArea({ BackToOthersPages, PageToBack, TextIndic
                     {/* <img src={manOld} alt="" className='w-full' /> */}
                     <img src={RepresentativeIcon} alt="" className='w-full' />
                 </div>}
-            </div>
+            </div>:null}
             {!HaveCardTeacher?
             <>
-            <div className={`flex items-center ${lvlProgressLeasson?" gap-x-9 flex-wrap space-y-3 justify-center":"gap-x-0 space-y-0"}`}>
-                <div className='flex    '>
+            <div className={`flex items-center  ${lvlProgressLeasson?" gap-x-9 flex-wrap space-y-3 justify-center":"gap-x-0 space-y-0"}`}>
+                <div className=''>
                     {/* <div className='flex flex-col  w-[250px] justify-center items-center rounded-[30px] p-3 bg-gradient-to-r from-rank-achiviment-bronze-one-first to-rank-achiviment-bronze-one-second/80'>
                         <div className='flex items-center'>
                             <span className='flex'>
@@ -45,7 +48,18 @@ export default function SubHeaderArea({ BackToOthersPages, PageToBack, TextIndic
                             <ProgressBarAdapt xpInMoment={3} xpToGet={15} rangeBar={false} rangerBarRank={true} />
                         </div>
                     </div> */}
+                    {HaveLargeRate?  
+                    <div className='w-full flex md:justify-center items-center flex-wrap md:flex-nowrap gap-y-3  space-x-2'>
+                    <RankingViewProgress IconBadgeRank={IconBadgeRank} NameRank={'Bronze'} LargeRange={true} />
+                    <div className='w-fit'>
+                        <img src={imgBellSrc} alt="" className='w-6 h-6'/>
+
+                    </div>
+                    </div>
+                    :
+
                     <RankingViewProgress IconBadgeRank={IconBadgeRank} NameRank={'Bronze'} />
+                    }
                 </div>
                 {lvlProgressLeasson ?
                 <RankingViewProgress IconBadgeRank={null} NameRank={null} />:null}

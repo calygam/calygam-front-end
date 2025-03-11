@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from '../../components/Header/Header'
 import SubHeaderArea from '../../components/SubHeaderArea/SubHeaderArea.jsx'
 import BoxSendLeassonViaDocs from '../../components/BoxSendLeassonViaDocs/BoxSendLeassonViaDocs.jsx'
@@ -9,7 +9,10 @@ import MenuLocationLeasson from '../../components/MenuLocationLeasson/MenuLocati
 import CheckMyTasks from '../../assets/img/check-my-tasks.svg'
 import TurmasIcon from '../../assets/img/turmas-icon.svg'
 import TodoIcon from '../../assets/img/todolist-icon.svg'
+import ModalPlaceActivity from '../../components/ModalPlaceActivity/ModalPlaceActivity.jsx'
+import ComponentToggleContext from '../../context/ComponentToggleContext.jsx'
 export default function AboutLeassonPage() {
+  const {toggleUploadModal,setToggleUploadModal} = useContext(ComponentToggleContext)
   return (
     <div className='font-jersey transition-all'>
       <header>
@@ -17,6 +20,9 @@ export default function AboutLeassonPage() {
       </header>
       <main className='flex    flex-col '>
           <SubHeaderArea BackToOthersPages={arrowToHereContext} PageToBack={"/Trail"} TextIndicatorPage={"Sobre a lição"}     HaveCardTeacher={true}/>
+          {toggleUploadModal?
+          <ModalPlaceActivity/>
+          :null}
           {/* <div className='grid  grid-cols-1 my-10 md:grid-cols-2 place-items-center md:place-items-stretch justify-center lg:grid-cols-3'>
             <div className='flex ml-7'>
               <MenuLocationLeasson FirstIcon={CheckMyTasks} FirstLocationText={"Tarefas Do Aluno"} SecondIcon={TurmasIcon} SecondLocationText={"Turmas"} ThirdIcon={TodoIcon} ThirdLocationText={"Todo-List"} ColorDiferent={true} />
