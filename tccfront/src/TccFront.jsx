@@ -1,25 +1,19 @@
-import Header from "./components/Header/Header"
-
+import { useState } from "react"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import InitialPage from "./pages/InitialPage/InitialPage"
-import FooterAssesment from "./components/FooterAssessment/FooterAssesment"
-import ComponentToggleContext from "./context/ComponentToggleContext"
-import LoginPage from "./pages/LoginPage/LoginPage.jsx"
-import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx"
-import TrailPage from "./pages/TrailPage/TrailPage.jsx"
-import QuizPage from './pages/QuizPage/QuizPage.jsx'
-import HomePage from './pages/HomePage/HomePage.jsx'
-import AboutLeassonPage from './pages/AboutLeassonPage/AboutLeassonPage.jsx'
-import { useState } from "react"
-import Search from "./assets/img/searchIcon.png"
-import usePhotoMockData from "./hooks/UserMockHook/UserMockHook.js"
+import Header                  from "./components/Header/Header"
+import InitialPage             from "./pages/InitialPage/InitialPage"
+import FooterAssesment         from "./components/FooterAssessment/FooterAssesment"
+import ComponentToggleContext  from "./context/ComponentToggleContext"
+import LoginPage               from "./pages/LoginPage/LoginPage.jsx"
+import RegisterPage            from "./pages/RegisterPage/RegisterPage.jsx"
+import TrailPage               from "./pages/TrailPage/TrailPage.jsx"
+import QuizPage                from './pages/QuizPage/QuizPage.jsx'
+import HomePage                from './pages/HomePage/HomePage.jsx'
+import AboutLeassonPage        from './pages/AboutLeassonPage/AboutLeassonPage.jsx'
+import Search                  from "./assets/img/searchIcon.png"
+import usePhotoMockData        from "./hooks/UserMockHook/UserMockHook.js"
 import { MockUserDataContext } from "./context/MockUserDataContext/MockUserDataContext.jsx"
-
-
-
-
-
 
 function TccFront() {
   const {userPhoto} = usePhotoMockData()
@@ -27,9 +21,7 @@ function TccFront() {
   const [toggleUploadModal,setToggleUploadModal] = useState(false)
 
   return (
-
     <div>
-
 
       <BrowserRouter>
       <ComponentToggleContext.Provider value={{toggleComponent,setToggleComponent,toggleUploadModal,setToggleUploadModal}}>
@@ -53,14 +45,11 @@ function TccFront() {
         </main>
         </MockUserDataContext.Provider>
         </ComponentToggleContext.Provider>
-      </BrowserRouter>
-      
+      </BrowserRouter>      
     
-     {/*Caio:<- O Component Footer do projeto encontra-se em outros setores :)*/}
-      
+     {/*Caio:<- O Component Footer do projeto encontra-se em outros setores :)*/}      
 
     </div>
-
   )
 }
 

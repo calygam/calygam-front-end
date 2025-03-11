@@ -1,13 +1,12 @@
-import senaiLogo from '../../assets/img/senaiLogo.png'
-import MenuRed from '../../assets/img/MenuRed.svg'
-
-import SearchRed from '../../assets/img/SearchRed.svg'
-import Search from '../../assets/img/search-white.svg'
-import SearchBack from '../../assets/img/search-black.svg'
+import senaiLogo    from '../../assets/img/senaiLogo.png'
+import MenuRed      from '../../assets/img/MenuRed.svg'
+import SearchRed    from '../../assets/img/SearchRed.svg'
+import Search       from '../../assets/img/search-white.svg'
+import SearchBack   from '../../assets/img/search-black.svg'
 import alunoSupport from '../../assets/img/perfilPageIcon.png'
-import engenheiro from '../../assets/img/engenheiro.png'
+import engenheiro   from '../../assets/img/engenheiro.png'
 
-import { Link } from 'react-router-dom'
+import { Link }     from 'react-router-dom'
 import { useState } from 'react'
 
 export default function Header({withPhoto}) {

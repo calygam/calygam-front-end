@@ -24,7 +24,9 @@ export default function HomePage() {
           <MetricsAndAnalyticsSection bgActivitys={bgActivitys} bgAnalytics={bgAnalytics}/>
           <SectionOfTrails/>
           <ObtainPointsForAchiviments/>
-          {/* <TogheterInOurCommunity/> */}
+    
+          <TogheterInOurCommunity/>
+          
           
           </div>
         </main>
