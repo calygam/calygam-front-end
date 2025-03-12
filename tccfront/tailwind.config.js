@@ -23,7 +23,10 @@ export default {
          'second-pending-leasson':'#34A853',
          'send-response-question-1':'#4DD070',
          'send-response-question-2':'#34A853',
-         'home-clean-yellow':"#FBBC05"
+         'community-clean':'#FF0000',
+         'community-bold':'#E62727',
+         'home-clean-yellow':"#FBBC05",
+         'salmon-calygam-clean':"#FFDAB9"
       },
       backgroundImage:{
         'dec-angle':'url("./src/assets/img/decAngle.png")',
