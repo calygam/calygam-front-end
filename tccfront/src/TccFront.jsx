@@ -15,20 +15,19 @@ import Search                  from "./assets/img/searchIcon.png"
 import usePhotoMockData        from "./hooks/UserMockHook/UserMockHook.js"
 import { MockUserDataContext } from "./context/MockUserDataContext/MockUserDataContext.jsx"
 
+
+import CalygamProviders from "./providers/CalygamProviders/CalygamProviders.jsx"
+
 function TccFront() {
-  const {userPhoto} = usePhotoMockData()
-  const [toggleComponent,setToggleComponent]=useState(false)
-  const [toggleUploadModal,setToggleUploadModal] = useState(false)
+
 
   return (
     <div>
 
       <BrowserRouter>
-      <ComponentToggleContext.Provider value={{toggleComponent,setToggleComponent,toggleUploadModal,setToggleUploadModal}}>
-        <MockUserDataContext.Provider value={{userPhoto}}>
-
+      
         <main >
-         
+        <CalygamProviders>
           <Routes>
             <Route path="/" element={<InitialPage />} />
             <Route path="/cursos" element={<div>Chama component de curso</div>} />
@@ -41,10 +40,11 @@ function TccFront() {
             <Route path="/AboutLeasson" element={<AboutLeassonPage/>}/>
             <Route path="/home" element={<HomePage/>}/>
           </Routes>
-          
+          </CalygamProviders>
         </main>
-        </MockUserDataContext.Provider>
-        </ComponentToggleContext.Provider>
+      
+   
+
       </BrowserRouter>      
     
      {/*Caio:<- O Component Footer do projeto encontra-se em outros setores :)*/}      

@@ -1,42 +1,66 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import emailIcon from '../../assets/img/emailicon.svg'
 import passwordIcon from '../../assets/img/passwordicon.svg'
 import perfilNameIcon from '../../assets/img/perfil-name-icon.svg'
 import googleIcon from '../../assets/img/google-icon.svg'
 import facebookIcon from '../../assets/img/facebook-icon.svg'
 import { Link } from 'react-router-dom'
+import { CalygamAuthContext } from '../../context/CalygamAuthContext/CalygamAuthContext'
 
-export default function AuthFormComponent({ actionName,nameRequired,newUser,actionForm }) {
+export default function AuthFormComponent({ actionName,nameRequired,newUser,actionForm,handleSendFormAuth }) {
+
+    const { userName, setUserName,
+            userEmail,setUserEmail,
+            userPassword, setUserPassword,
+            userPhone, setUserPhone,
+            userCpf, setUserCpf} = useContext(CalygamAuthContext)
+
+
     return (
         <div className={` w-[250px] md:w-[300px] lg:w-[400px] font-poppins    lg flex flex-col bg-white/50 mx-auto min-h-[350px] h-full rounded-md `}>
             <h2 className='text-center font-semibold mt-5 text-3xl'>{actionName}</h2>
-            <form className='flex flex-col  w-full items-center h-full' action="">
+            <form className='flex flex-col  w-full items-center h-full' onSubmit={handleSendFormAuth}>
 
                 <div className='flex flex-col h-full w-10/12 space-y-8'>
                     {nameRequired?
                     <div className='flex flex-col   border-b bg-transparent border-black'>
-                        <label htmlFor="" className='font-light text-sm'>Nome:</label>
+                        <label htmlFor="register-user-name" className='font-light text-sm'>Nome:</label>
                         <div className='flex items-center gap-2'>
-                            <input type="email" className='bg-transparent w-full outline-none' />
+                            <input type="text" className='bg-transparent w-full outline-none' id='register-user-name' name='register-user-name' value={userName} onChange={(e)=>setUserName(e.target.value)}/>
                             <img src={perfilNameIcon} alt="" className='w-5 h-5' />
                         </div>
                     </div>:null}
 
                     <div className='flex flex-col   border-b bg-transparent border-black'>
-                        <label htmlFor="" className='font-light text-sm'>Email:</label>
+                        <label htmlFor="register-user-email" className='font-light text-sm'>Email:</label>
                         <div className='flex items-center gap-2'>
-                            <input type="email" className='bg-transparent w-full outline-none' />
+                            <input type="email" className='bg-transparent w-full outline-none' id='register-user-email' name='register-user-email' value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} />
                             <img src={emailIcon} alt="" className='w-5 h-5' />
                         </div>
                     </div>
 
                     <div className='flex flex-col  border-b bg-transparent border-black'>
-                        <label htmlFor="" className='font-light text-sm'>Senha:</label>
+                        <label htmlFor="register-user-password" className='font-light text-sm'>Senha:</label>
                         <div className='flex items-center gap-2'>
-                            <input type="email" className='bg-transparent w-full outline-none' />
+                            <input type="password" className='bg-transparent w-full outline-none' id='register-user-password' name='register-user-password' value={userPassword} onChange={(e)=>setUserPassword(e.target.value)} />
                             <img src={passwordIcon} alt="" className='w-5 h-5' />
                         </div>
+                    </div>
 
+                    <div className='flex flex-col  border-b bg-transparent border-black'>
+                        <label htmlFor="register-user-tel" className='font-light text-sm'>Telefone:</label>
+                        <div className='flex items-center gap-2'>
+                            <input type="tel" className='bg-transparent w-full outline-none' id='register-user-tel' name='register-user-tel' value={userPhone} onChange={(e)=>setUserPhone(e.target.value)} />
+                            <img src={passwordIcon} alt="" className='w-5 h-5' />
+                        </div>
+                    </div>
+
+                    <div className='flex flex-col  border-b bg-transparent border-black'>
+                        <label htmlFor="register-user-cpf" className='font-light text-sm'>CPF:</label>
+                        <div className='flex items-center gap-2'>
+                            <input type="password" className='bg-transparent w-full outline-none' id='register-user-cpf' name='register-user-cpf' value={userCpf} onChange={(e)=>setUserCpf(e.target.value)} />
+                            <img src={passwordIcon} alt="" className='w-5 h-5' />
+                        </div>
                     </div>
                 </div>
 
@@ -46,7 +70,7 @@ export default function AuthFormComponent({ actionName,nameRequired,newUser,acti
                 </div>
 
                 <div className='flex w-full justify-center mt-4'>
-                    <button className='w-[125px] px-4 py-2 text-white transition-all cursor-pointer hover:shadow-lg hover:shadow-red-clean-type/50 bg-red-clean-type md:w-[175px] lg:[225px] rounded-md'>
+                    <button type='submit' className='w-[125px] px-4 py-2 text-white transition-all cursor-pointer hover:shadow-lg hover:shadow-red-clean-type/50 bg-red-clean-type md:w-[175px] lg:[225px] rounded-md'>
                         {actionForm}
 
                     </button>

@@ -33,6 +33,18 @@ export default {
         'mobile-login-desert':'url("./src/assets/img/mobile-login-desert.jpg")',
          'desktop-login-desert':'url("./src/assets/img/desktop-login-desert.jpg")',
 
+      },
+      keyframes:{
+        spinningClean:{
+          '0%':{transform:'rotate(0deg)'},
+          '100%':{transform:'rotate(360deg)'}
+        }
+      },
+      animation:{
+        spinningClean: 'spinningClean 2s linear infinite',
+        spinningCleanRage: 'spinningClean 1s linear alternate infinite',
+        spinningCleanMediumRage: 'spinningClean 0.8s linear infinite',
+        spinningCleanSuperRage: 'spinningClean 0.6s linear infinite'
       }
     },
   },
