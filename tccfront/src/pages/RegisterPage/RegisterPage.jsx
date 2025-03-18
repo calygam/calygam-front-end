@@ -7,6 +7,8 @@ import { TargetBackgroundByWidth } from '../../utils/TargetBackgroundByWidth/Tar
 import api from '../../api/api'
 import { CalygamAuthContext } from '../../context/CalygamAuthContext/CalygamAuthContext'
 import LoadingCrazy from '../../components/LoadingCrazy/LoadingCrazy'
+import { getValidCPF } from '../../utils/ValidateCPF/ValidateCPF'
+import { useNavigate } from 'react-router-dom'
 
 export default function RegisterPage() {
   const { userName, setUserName,
@@ -16,6 +18,20 @@ export default function RegisterPage() {
     userCpf, setUserCpf } = useContext(CalygamAuthContext)
   const [TargetImagePerWidth, setTargetImagePerWidth] = useState("")
   const [loading,setLoading] = useState(false)
+  const [errorMessage,setErrorMessage]= useState('')
+  const [errorForFront,setErrorForFront] = useState('certo')
+  const navigate = useNavigate()
+  useEffect(()=>{
+    userCpf.length >8 && userCpf.length <=14?
+    setErrorForFront(getValidCPF(userCpf)):
+    null
+    
+  },[userCpf])
+  useEffect(()=>{
+    setErrorMessage(errorForFront ?'':"CPF inválido")
+  },[errorForFront])
+
+
 
   const handleSendFormRegisterAuth = async(e)=>{
     e.preventDefault();
@@ -25,12 +41,19 @@ export default function RegisterPage() {
       "userName": userName,
       'userEmail':userEmail,
       'userPassword':userPassword,
-      'userTelefone':userPhone,
+     
       'userCpf':userCpf
     })
-  }catch(e){
-    console.log("Deu ruim " + e)
+    setUserName("")
+    setUserEmail("")
+    setUserCpf("")
+    setUserPassword("")
+    navigate("/Login")
+   
   }
+  // catch(e){
+  //   e.response.data?setErrorForFront(true):setErrorForFront(false)
+  // }
   finally{
     setLoading(false)
   }
@@ -56,11 +79,11 @@ export default function RegisterPage() {
         <Header />
 
       </header>
-      <div className='mt-16'>
+      <div className=''>
         {loading?
           <LoadingCrazy/>
         :null}
-        <AuthFormComponent actionName={"Cadastre-se"} nameRequired={true} actionForm={"Login"} handleSendFormAuth={handleSendFormRegisterAuth} />
+        <AuthFormComponent actionName={"Cadastre-se"} nameRequired={true} actionForm={"Login"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
       </div>
     </div>
   )

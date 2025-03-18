@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function LoadingCrazy() {
   return (
-    <div className={`fixed z-10 flex flex-col font-Poppins justify-center space-y-5 bg-black items-center -inset-0`}>
+    <div className={`fixed z-10 flex flex-col font-Poppins justify-center space-y-5 bg-black/25 items-center -inset-0`}>
     <div className=' flex items-center animate-pulse gap-2 justify-center w-full'>
         <p className={` text-white`}>Carregando </p>
         <span className={`flex w-2 h-2 justify-center items-center rounded-tl rounded-br animate-spinningCleanMediumRage   bg-white`}> </span> 
@@ -34,7 +34,7 @@ export default function LoadingCrazy() {
         </span>
     </div>
     <div className=' flex items-center animate-pulse gap-2 justify-center w-full'>
-        <p className={`text-black`}>Espero que conquiste algo hoje :o </p>
+        <p className={`text-white`}>Espero que conquiste algo hoje :o </p>
         </div>
 </div>
   )

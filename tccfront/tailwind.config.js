@@ -14,6 +14,8 @@ export default {
       },
       colors:{
         'red-clean-type':'#E62727',
+        'red-bold-type':"#C1121F",
+        'red-grad-bold-type':'#801616',
         'red-button-send-feedback':'#C1121F',
         "trail-info-action":"#657ED4",
         
@@ -27,6 +29,7 @@ export default {
          'community-bold':'#E62727',
          'home-clean-yellow':"#FBBC05",
          'salmon-calygam-clean':"#FFDAB9"
+         
       },
       backgroundImage:{
         'dec-angle':'url("./src/assets/img/decAngle.png")',

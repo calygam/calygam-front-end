@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../components/Header/Header'
 import SubHeaderArea from '../../components/SubHeaderArea/SubHeaderArea.jsx'
 import FullControlOfUser from '../../components/FullControlOfUser/FullControlOfUser.jsx'
 import FooterAssesment from '../../components/FooterAssessment/FooterAssesment.jsx'
+import ViewAdventureOfUser from '../../components/ViewAdventureOfUser/ViewAdventureOfUser.jsx'
 import MetricsAndAnalyticsSection from '../../components/MetricsAndAnalyticsSection/MetricsAndAnalyticsSection.jsx'
 import SectionOfTrails from '../../components/SectionOfTrails/SectionOfTrails.jsx'
 import ObtainPointsForAchiviments from '../../components/ObtainPointsForAchiviments/ObtainPointsForAchiviments.jsx'
@@ -16,27 +17,56 @@ import imgShare from '../../assets/img/community-represent-group.png'
 import bgActivitys from '../../assets/img/bg-blur-recently-activity.png'
 import bgAnalytics from '../../assets/img/bg-blur-analytics.png'
 import imgBallFinalForm from '../../assets/img/blur-ball-final-form.png'
+import { useLocation } from 'react-router-dom'
+import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
 
 
 export default function HomePage() {
+
+
+  const location = useLocation();
+
+
+
+  
+  const { setToken } = useAuth();
+
+  // useEffect(() => {
+  //   const searchParams = new URLSearchParams(location.search);
+  //   const urlToken = searchParams.get("token");
+
+  //   if (urlToken) {
+  //     localStorage.setItem("token", urlToken);
+  //     setToken(urlToken);
+  //     navigate("/home");
+  //   }
+    
+  // }, [location.search]);
+
+
   return (
-    <div className='w-full font-poppins'>
+    <div className='w-full font-poppins transition-all delay-100 duration-200 ease-in-out'>
       <header>
         <Header withPhoto={true} />
       </header>
-      <main >
+      <main className='w-full'>
+
+          <div className='flex flex-col mt-2 space-y-14 mx-auto w-[85%]'>
           <SubHeaderArea HaveLargeRate={true} IconBadgeRank={IconBadgeRankGlitter} BackToOthersPages={false} imgBellSrc={bellImgSrc} />
-          <div className='flex flex-col mt-14 space-y-14 mx-auto w-[85%]'>
-          <FullControlOfUser/>
+          <ViewAdventureOfUser/>
+          </div>
+          {/* <div className='flex flex-col mt-14 space-y-14 mx-auto w-[85%]'> */}
+          
+          {/* <FullControlOfUser/>
           <MetricsAndAnalyticsSection bgActivitys={bgActivitys} bgAnalytics={bgAnalytics}/>
           <SectionOfTrails/>
           <ObtainPointsForAchiviments/>
           <TogheterInOurCommunity/>
           <InviteAnFriend imgExempleShare={imgShare}/>
           <YourGoals imgBallFinalForm={imgBallFinalForm}/>
-          <PersonPerfil />
+          <PersonPerfil /> */}
           
-          </div>
+          {/* </div> */}
         </main>
       <footer>
       <FooterAssesment/>

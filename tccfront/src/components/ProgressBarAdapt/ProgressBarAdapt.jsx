@@ -30,12 +30,12 @@ export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, ranger
 
         
        
-      <div className={`flex w-full ${rangeBar ? " w-full h-[4px]" : "w-full h-[10px]"} bg-white rounded-full`}>
+      <div className={`flex w-full ${rangeBar ? " w-full h-[4px]" : "w-full h-[5px]"} bg-white rounded-full`}>
         <span className={` transition-all delay-150 duration-500 flex h-full rounded-full w-0 bg-green-500`} style={{ width: `${barPercent + "%"}` }}></span>
       </div>
       {rangerBarRank ?
         <div className='flex w-full justify-end '>
-          <p className='text-white text-base'>{xpInMoment}/{xpToGet}</p>
+          <p className='text-white text-xs'>{xpInMoment}/{xpToGet}</p>
         </div>
         : null}
     </div>

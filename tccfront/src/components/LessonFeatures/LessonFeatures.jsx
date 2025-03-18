@@ -27,18 +27,13 @@ export default function LessonFeatures({numbers}) {
   }
 
   return (
-    <div className='flex flex-col items-center w-full h-[500px] transition-all mb-20 px-5 md:px-0'>
+    <div className='flex flex-col items-center w-full h-[500px] transition-all mb-20  md:px-0'>
 
-      <Swiper
-        direction={'vertical'}
-        slidesPerView={3}
-        spaceBetween={-20}
-        freeMode={true}
-        mousewheel={true}
-        modules={[FreeMode, Mousewheel]}
-        className='relative flex flex-col items-center w-[280px] md:px-4 py-10  ' >
+      <div
+   
+        className='relative flex flex-col items-center w-[280px]  py-10  ' >
         {filteredNumbers.map((iter, index) => (
-          <SwiperSlide
+          <div
             className=' w-full min-h-[150px] '
             key={iter.id}
           >
@@ -48,7 +43,7 @@ export default function LessonFeatures({numbers}) {
 
 
                   {
-                    index == filteredNumbers.length - 1 ? null : index % 2 === 0 ? <div className='absolute transition-all  -mb-[133px]  -ml-40 w-[220px] h-[2px] -z-20 -rotate-[43deg] rounded-full   bg-black/55'></div> : <div className='absolute -mb-[185px]   -mr-52 transition-all w-[220px] h-[2px] rotate-[43deg] rounded-full bg-black/55'></div>}
+                    index == filteredNumbers.length - 1 ? null : index % 2 === 0 ? <div className='absolute transition-all  -mb-[133px]  -ml-40 w-[220px] h-[2px] -z-20 -rotate-[43deg] rounded-full   bg-black/55'></div> : <div className='absolute -mb-[175px]   -mr-56 transition-all -z-20 w-[220px] h-[2px] rotate-[43deg] rounded-full bg-black/55'></div>}
 
                   <span className=' w-[100px] flex justify-center items-center h-[100px] bg-black text-white rounded-full' onMouseOver={() => setAnimationCard(iter.id, true)} onMouseEnter={() => setAnimationCard(iter.id, true)} onMouseOut={() => setAnimationCard(0, false)}>
                     <img src={LeassonLocked} className=' z-30 flex  w-5 h-5' alt="" />
@@ -120,10 +115,10 @@ index % 2 === 0 ?
               }
               
             </div>
-          </SwiperSlide>
+          </div>
 
         ))}
-      </Swiper>
+      </div>
 
 
 
