@@ -6,8 +6,9 @@ import RankingViewProgress from '../RankingViewProgress/RankingViewProgress.jsx'
 import TeacherInfoInLeasson from '../TeacherInfoInLeasson/TeacherInfoInLeasson.jsx'
 import { MockUserDataContext } from '../../context/MockUserDataContext/MockUserDataContext.jsx'
 import HelloUser from '../HelloUser/HelloUser.jsx'
+import LoadingCrazy from '../LoadingCrazy/LoadingCrazy.jsx'
 export default function SubHeaderArea({ BackToOthersPages, PageToBack, TextIndicatorPage, RepresentativeIcon, IconBadgeRank, NameRank, FilterAdd, TextFilter, IconMoney, QtdMoney, infoMonetaryOrFilter, lvlProgressLeasson,HaveCardTeacher,HaveLargeRate,imgBellSrc }) {
-    const {userPhoto} = useContext(MockUserDataContext)
+    const {userPhoto,loadingMock} = useContext(MockUserDataContext)
     return (
         
         <div className={`flex items-center ${HaveLargeRate?"lg:justify-center":"lg:justify-between"} transition-all delay-100 duration-300 ${HaveLargeRate?'px-0':'px-12'} mt-4 w-full gap-10 justify-center flex-wrap  `}>
@@ -51,6 +52,7 @@ export default function SubHeaderArea({ BackToOthersPages, PageToBack, TextIndic
                     </div> */}
                     {HaveLargeRate?  
                     <div className='w-full flex md:justify-center items-center flex-wrap md:flex-nowrap   '>
+                        {loadingMock? <LoadingCrazy/>:null}
                     <HelloUser IconBadgeRank={IconBadgeRank}/>
                    
 

@@ -11,6 +11,8 @@ import TogheterInOurCommunity from '../../components/TogheterInOurCommunity/Togh
 import InviteAnFriend from '../../components/InviteAnFriend/InviteAnFriend.jsx'
 import YourGoals from '../../components/YourGoals/YourGoals.jsx'
 import PersonPerfil from '../../components/PersonPerfil/PersonPerfil.jsx'
+import InviteToCommunity from '../../components/InviteToCommunity/InviteToCommunity.jsx'
+import DevelopBigProjects from '../../components/DevelopBigProjects/DevelopBigProjects.jsx'
 import IconBadgeRankGlitter from '../../assets/img/icon-badge-rank-glitter.svg'
 import bellImgSrc from '../../assets/img/bell-icon-simple.svg'
 import imgShare from '../../assets/img/community-represent-group.png'
@@ -28,7 +30,8 @@ export default function HomePage() {
 
 
 
-  
+
+  //DESCOMENTAR ESSA LINHA PARA VOLTAR O LOGIN
   const { setToken } = useAuth();
 
   // useEffect(() => {
@@ -40,36 +43,48 @@ export default function HomePage() {
   //     setToken(urlToken);
   //     navigate("/home");
   //   }
-    
+
   // }, [location.search]);
 
 
   return (
-    <div className='w-full font-poppins transition-all delay-100 duration-200 ease-in-out'>
+    <div className='w-full font-poppins  transition-all delay-100 duration-200 ease-in-out'>
+      
       <header>
         <Header withPhoto={true} />
       </header>
-      <main className='w-full'>
+      <main className='w-full space-y-14'>
 
-          <div className='flex flex-col mt-2 space-y-14 mx-auto w-[85%]'>
+        <div className='flex flex-col mt-2 space-y-14 mx-auto w-[85%]'>
           <SubHeaderArea HaveLargeRate={true} IconBadgeRank={IconBadgeRankGlitter} BackToOthersPages={false} imgBellSrc={bellImgSrc} />
-          <ViewAdventureOfUser/>
-          </div>
-          {/* <div className='flex flex-col mt-14 space-y-14 mx-auto w-[85%]'> */}
-          
-          {/* <FullControlOfUser/>
+          <ViewAdventureOfUser />
+        </div>
+        <div className='w-full flex flex-col space-y-14  mt-4'>
+          <ObtainPointsForAchiviments />
+          <InviteToCommunity />
+          <ObtainPointsForAchiviments isSakuraActive={true} />
+          <ObtainPointsForAchiviments isTrailsActive={true} />
+
+     
+        </div>
+        <div className='flex flex-col mt-2 space-y-14  w-full'>
+            <DevelopBigProjects/>
+        </div>
+        {/* <div className='flex flex-col mt-14 space-y-14 mx-auto w-[85%]'> */}
+
+        {/* <FullControlOfUser/>
           <MetricsAndAnalyticsSection bgActivitys={bgActivitys} bgAnalytics={bgAnalytics}/>
           <SectionOfTrails/>
-          <ObtainPointsForAchiviments/>
+          
           <TogheterInOurCommunity/>
           <InviteAnFriend imgExempleShare={imgShare}/>
           <YourGoals imgBallFinalForm={imgBallFinalForm}/>
           <PersonPerfil /> */}
-          
-          {/* </div> */}
-        </main>
+
+        {/* </div> */}
+      </main>
       <footer>
-      <FooterAssesment/>
+        <FooterAssesment />
       </footer>
     </div>
 

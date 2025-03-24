@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import backPage from '../../assets/img/back-page.svg'
 import mobileLoginDesert from '../../assets/img/mobile-login-desert.jpg'
 import desktopLoginDesert from '../../assets/img/desktop-login-desert.jpg'
-import ComponentToggleContext from '../../context/ComponentToggleContext.jsx'
+
 import AuthFormComponent from '../../components/AuthFormComponent/AuthFormComponent.jsx'
 import { Link, useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Header.jsx'

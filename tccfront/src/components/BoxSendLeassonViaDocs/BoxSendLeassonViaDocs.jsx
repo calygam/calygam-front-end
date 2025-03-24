@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import placeActivityIcon from '../../assets/img/place-activity-icon.svg'
 import sendActivityIcon from '../../assets/img/send-activity-icon.svg'
-import ComponentToggleContext from '../../context/ComponentToggleContext'
+import ComponentToggleContext from '../../context/ComponentToggleContext/ComponentToggleContext'
 
 export default function BoxSendLeassonViaDocs({ BoxTitleDoc, BoxPossiblePlaceLeasson, BoxIconFor, BoxInfoDataTime, BoxForSendActivity }) {
     const {toggleUploadModal,setToggleUploadModal} = useContext(ComponentToggleContext)

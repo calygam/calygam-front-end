@@ -11,7 +11,7 @@ export default function FooterAssesment() {
             <div className='flex flex-col w-full border-b border-white/50 min-h-36 h-full'>
                 <div className='flex flex-col justify-center text-white items-center px-10 space-y-24    py-10'>
                     <div className='w-full grid md:grid-cols-2 gap-x-72 transition-all grid-cols-1 space-y-3  place-items-center  '>
-                        <div className='grid grid-cols-1 space-y-3    md:grid-cols-1 lg:grid-cols-3  gap-x-48 lg:pl-52   '>
+                        <div className='grid grid-cols-1 space-y-3    md:grid-cols-1 lg:grid-cols-3  lg:gap-x-48  lg:pl-52   '>
                             <div className='flex flex-col justify-center items-center'>
                                 <p className='flex gap-2 items-center justify-center text-xl font-medium'>Comunidade </p>
                                 <p className='flex gap-2 items-center justify-center text-base font-light '>Blog <img src={accountsgroup} alt="conta grupo" className='w-5 h-5' /></p>
@@ -23,7 +23,7 @@ export default function FooterAssesment() {
                                 <p className='flex gap-2 items-center justify-center text-nowrap font-light  text-base '>WhatsApp: 33624-2826</p>
                             </div>
                         </div>
-                        <form className='flex flex-col pr-2' >
+                        <form className='flex flex-col lg:pr-2' >
                             <div>
                                 <label htmlFor='env-feedback' className='flex justify-center text-base font-light '>Mandar seu Feedback</label>
                                 <div className='flex mt-2'>

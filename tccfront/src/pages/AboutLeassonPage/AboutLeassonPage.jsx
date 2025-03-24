@@ -10,7 +10,7 @@ import CheckMyTasks from '../../assets/img/check-my-tasks.svg'
 import TurmasIcon from '../../assets/img/turmas-icon.svg'
 import TodoIcon from '../../assets/img/todolist-icon.svg'
 import ModalPlaceActivity from '../../components/ModalPlaceActivity/ModalPlaceActivity.jsx'
-import ComponentToggleContext from '../../context/ComponentToggleContext.jsx'
+import ComponentToggleContext from '../../context/ComponentToggleContext/ComponentToggleContext.jsx'
 export default function AboutLeassonPage() {
   const {toggleUploadModal,setToggleUploadModal} = useContext(ComponentToggleContext)
   return (

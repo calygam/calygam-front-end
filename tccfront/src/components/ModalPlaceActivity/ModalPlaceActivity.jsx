@@ -5,7 +5,7 @@ import ArchiveWordFile from '../../assets/img/archive-word-icon.svg'
 import ArchiveExelIcon from '../../assets/img/archive-exel-icon.svg'
 import closeModalPlace from '../../assets/img/close-modal-place.svg'
 import PasteFileHere from '../../assets/img/paste-file-here.svg'
-import ComponentToggleContext from '../../context/ComponentToggleContext'
+import ComponentToggleContext from '../../context/ComponentToggleContext/ComponentToggleContext'
 export default function ModalPlaceActivity() {
     const { toggleUploadModal, setToggleUploadModal } = useContext(ComponentToggleContext)
     return (

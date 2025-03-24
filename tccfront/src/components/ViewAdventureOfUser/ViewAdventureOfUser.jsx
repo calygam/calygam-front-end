@@ -20,10 +20,10 @@ export default function ViewAdventureOfUser() {
                 </div>
                 <div className='md:w-full w-fit mt-2 flex items-center space-x-2 flex-wrap justify-center md:justify-start'>
                     <div className='w-fit'>
-                        <button className='border-2 border-white rounded-md bg-gradient-to-tr from-red-clean-type/80 text-xs text-white to-red-grad-bold-type/80 py-1 px-2'>Veja nossa Loyja!</button>
+                        <button className='border-2 border-white rounded-md bg-gradient-to-tr from-red-clean-type/80 text-xs text-white to-red-grad-bold-type/80 py-2 px-2'>Veja nossa Loyja!</button>
                     </div>
                     <div className='w-fit'>
-                        <button className='border-2 border-white rounded-md bg-black/80 text-xs text-white  py-1 px-4'>Ver Trilhas!</button>
+                        <button className='border-2 border-white rounded-md bg-black/80 text-xs text-white  py-2 px-4'>Ver Trilhas!</button>
                     </div>
                 </div>
             </div>
