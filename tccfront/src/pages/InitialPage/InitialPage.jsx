@@ -4,7 +4,7 @@ import StudentWhichBook from '../../components/StudentWhitchBook/StudentWhichBoo
 import SchoolSenaiName from '../../components/SchoolSenaiName/SchoolSenaiName.jsx'
 import SenaiWarnings from '../../components/SenaiWarnings/SenaiWarnings.jsx'
 import SenaiViewCardsCourses from '../../components/SenaiViewCardsCourses/SenaiViewCardsCourses.jsx'
-import UniversityCertified from  '../../components/UniversityCertified/UniversityCertified.jsx'
+import UniversityCertified from '../../components/UniversityCertified/UniversityCertified.jsx'
 import BlogAnounciments from '../../components/BlogAnounciments/BlogAnounciments.jsx'
 import SenaiRollCardsCourse from '../../components/SenaiRollCardsCourse/SenaiRollCardsCourse.jsx'
 
@@ -13,23 +13,24 @@ import FooterAssesment from '../../components/FooterAssessment/FooterAssesment.j
 import Header from '../../components/Header/Header.jsx'
 
 export default function InitialPage() {
+
   return (
     <div>
-              <header>
-          <Header />
-                      
-        </header>
-      <StudentWhichBook/>
-   
-      <SchoolSenaiName/>
-      <SenaiWarnings/>
-      <SenaiViewCardsCourses/>
-      <UniversityCertified/>
-      <BlogAnounciments/>
-      <SenaiRollCardsCourse/>
-      <ChooseTheSchool/>
+      <header>
+        <Header />
+
+      </header>
+      <StudentWhichBook />
+
+      <SchoolSenaiName />
+      <SenaiWarnings />
+      <SenaiViewCardsCourses />
+      <UniversityCertified />
+      <BlogAnounciments />
+      <SenaiRollCardsCourse />
+      <ChooseTheSchool />
       <footer>
-      <FooterAssesment/>
+        <FooterAssesment />
       </footer>
     </div>
   )

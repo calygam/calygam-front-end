@@ -22,7 +22,7 @@ export default function Header({withPhoto}) {
           { withPhoto?
           <div className="flex gap-x-2 md:gap-x-2 justify-center items-center  mr-0 md:mr-4   ">
   <span className=" rounded-full "> <img src={engenheiro} alt="" className='w-[40px] h-[40px] md:w-[50px] md:h-[50px] rounded-full  object-cover' /></span>
-  <p className='text-xs md:text-base text-wrap md:text-white text-black '>jubisclaubus da silva</p>
+  <p className='text-xs md:text-base text-wrap md:text-white text-black '>Usuário</p>
 </div>:null}
           </div>
           <div className='shadow-lg shadow-black/25'>
@@ -65,7 +65,7 @@ export default function Header({withPhoto}) {
 :
 <div className="hidden md:flex lg:flex gap-0 md:gap-x-2 justify-center items-center  mr-0 md:mr-4   ">
   <span className="w-full rounded-full "> <img src={engenheiro} alt="" className='w-[40px] h-[40px] md:w-[50px] md:h-[50px] rounded-full  object-cover' /></span>
-  <p className='text-xs md:text-base text-wrap md:text-white text-black '>jubisclaubus da silva</p>
+  <p className='text-xs md:text-base text-wrap md:text-white text-black '>Usuário</p>
 </div>}
         </div>
       </div>

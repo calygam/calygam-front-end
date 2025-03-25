@@ -36,7 +36,9 @@ export default {
         
         'calygam-semi-strong-red':"#E74040",
 
-        'calygam-yellow-semi-strong':"#D58936"
+        'calygam-yellow-semi-strong':"#D58936",
+
+        'calygam-light-green':'#A5BE00'
 
          
       },

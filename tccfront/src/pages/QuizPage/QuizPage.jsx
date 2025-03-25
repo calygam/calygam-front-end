@@ -3,12 +3,14 @@ import Header from '../../components/Header/Header'
 import SubHeaderArea from '../../components/SubHeaderArea/SubHeaderArea.jsx'
 import QuestionCardBalloon from '../../components/QuestionCardBalloon/QuestionCardBalloon.jsx'
 import ResponseCardBalloon from '../../components/ResponseCardBalloon/ResponseCardBalloon.jsx'
+import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
 import arrowToHereContext from '../../assets/img/arrow-my-task.svg'
 import questionIcon from '../../assets/img/question-icon.svg'
 import BronzeAchiviment from '../../assets/img/bronze-achiviment.svg'
 import filterByDifficulty from '../../assets/img/filter-by-difficulty.svg'
 import tpMoney from '../../assets/img/tp-money.svg'
 export default function QuizPage() {
+    const { setToken } = useAuth();
     return (
         <div className='flex flex-col w-full font-jersey font-bold text-base md:text-lg '>
             <header>
