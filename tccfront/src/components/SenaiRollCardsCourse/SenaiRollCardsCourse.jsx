@@ -7,6 +7,8 @@ import course1 from '../../assets/img/engenheiro.png'
 import course2 from '../../assets/img/exelCourse.png'
 import course3 from '../../assets/img/pythonCourse.png'
 
+import decAngle from '../../assets/img/decAngle.png'
+
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 
@@ -30,7 +32,12 @@ export default function SenaiRollCardsCourse() {
       >
         <SwiperSlide className='rounded-lg w-full   '>
             <img  className="w-full max-w-full object-cover"src={course1} alt="" />
-            <div className='flex flex-col  items-center justify-center  w-full h-32 absolute -mt-32 bg-dec-angle bg-cover bg-no-repeat '>
+            <div className='flex flex-col  items-center justify-center  w-full h-32 absolute -mt-32   'style={{
+            backgroundImage: `url(${decAngle})`,
+    
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'
+          }}>
                 <p className='w-full pl-9  '>TI</p>
                 <div className='flex w-full justify-center gap-2  '>
                     <p>Data Inicio : 11/01/24</p>
@@ -43,7 +50,30 @@ export default function SenaiRollCardsCourse() {
 
             <SwiperSlide className='rounded-lg w-full   '>
             <img  className="w-full max-w-full object-cover"src={course2} alt="" />
-            <div className='flex flex-col  items-center justify-center  w-full h-32 absolute -mt-32 bg-dec-angle bg-cover bg-no-repeat '>
+            <div className='flex flex-col  items-center justify-center  w-full h-32 absolute -mt-32  bg-cover bg-no-repeat 'style={{
+            backgroundImage: `url(${decAngle})`,
+    
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'
+          }}>
+                <p className='w-full pl-9  '>TI</p>
+                <div className='flex w-full justify-center gap-2  '>
+                    <p>Data Inicio : 11/01/24</p>
+                    <p>Data Término : 12/03/24</p>
+                   
+                </div>
+                <hr className='w-full h-[2px] bg-gray-500'/>
+            </div>
+            </SwiperSlide>
+
+            <SwiperSlide className='rounded-lg w-full   '>
+            <img  className="w-full max-w-full object-cover"src={course3} alt="" />
+            <div className='flex flex-col  items-center justify-center  w-full h-32 absolute -mt-32  bg-cover bg-no-repeat 'style={{
+            backgroundImage: `url(${decAngle})`,
+    
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'
+          }}>
                 <p className='w-full pl-9  '>TI</p>
                 <div className='flex w-full justify-center gap-2  '>
                     <p>Data Inicio : 11/01/24</p>

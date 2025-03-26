@@ -32,7 +32,7 @@ export default function HomePage() {
 
 
   //DESCOMENTAR ESSA LINHA PARA VOLTAR O LOGIN
-  const { setToken } = useAuth();
+  // const { setToken } = useAuth();
 
   // useEffect(() => {
   //   const searchParams = new URLSearchParams(location.search);
@@ -51,11 +51,11 @@ export default function HomePage() {
     <div className='w-full font-poppins  transition-all delay-100 duration-200 ease-in-out'>
       
       <header>
-        <Header withPhoto={true} />
+        <Header withPhoto={false} />
       </header>
       <main className='w-full space-y-14'>
 
-        <div className='flex flex-col mt-2 space-y-14 mx-auto w-[85%]'>
+        <div className='flex flex-col mt-6 space-y-14 mx-auto w-[85%]'>
           <SubHeaderArea HaveLargeRate={true} IconBadgeRank={IconBadgeRankGlitter} BackToOthersPages={false} imgBellSrc={bellImgSrc} />
           <ViewAdventureOfUser />
         </div>

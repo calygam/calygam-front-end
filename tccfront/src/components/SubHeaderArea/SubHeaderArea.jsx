@@ -11,7 +11,7 @@ export default function SubHeaderArea({ BackToOthersPages, PageToBack, TextIndic
     const {userPhoto,loadingMock} = useContext(MockUserDataContext)
     return (
         
-        <div className={`flex items-center ${HaveLargeRate?"lg:justify-center":"lg:justify-between"} transition-all delay-100 duration-300 ${HaveLargeRate?'px-0':'px-12'} mt-4 w-full gap-10 justify-center flex-wrap  `}>
+        <div className={`flex items-center ${HaveLargeRate?"lg:justify-center":"lg:justify-between"} transition-all delay-100 duration-300 ${HaveLargeRate?'px-0':'px-12'}  w-full gap-10 justify-center flex-wrap  `}>
             {BackToOthersPages?
             <div className='flex  gap-x-2  '>
                 

@@ -30,10 +30,10 @@ export default function Header({withPhoto}) {
           </div>
           <nav className='hidden transition-all md:flex  md:w-[75%] items-center   md:justify-between'>
             <ul className='flex gap-5 text-white'>
-              <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/cursos"}>Cursos</Link></li>
+              <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/trail"}>Trilha</Link></li>
 
-              <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/processoSeletivo"}>Processo Seletivo</Link></li>
-              <li className='transition-colors border-b  pt-1 border-transparent  hover:border-white'><Link to={"/faleConosco"}>fale Conosco</Link></li>
+              <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/quiz"}>Quiz</Link></li>
+              <li className='transition-colors border-b  pt-1 border-transparent  hover:border-white'><Link to={"/AboutLeasson"}>Sobre a Lição</Link></li>
 
             </ul>
             <div className='hidden lg:flex items-center group  cursor-pointer w-[50%] justify-end' onMouseEnter={()=> setSearching(true)} onClick={()=> setSearching(true)}  onMouseMove={()=> setSearching(true)} onMouseOut={()=>setSearching(false)}  >

@@ -23,13 +23,11 @@ export default function CalygamTrailVillage({ trails }) {
               className={`w-fit flex items-center justify-center  text-white font-bold    transition-all duration-300 ${curve[index % 3]}`}
             >
        {trail.id ==0 ? <img src={bookGrass} alt="" className='w-16 animate-bounce' />:       <>
-                <img src={threeForest} alt="" className='w-16' />
-              <img src={sapato} alt="" className='-rotate-45 w-10 h-10'/>
-              <img src={grassOne} alt="" className='w-8' />
+             <span className='flex w-28 h-28 bg-gradient-to-br from-green-500 via-green-600 rounded-full text-white to-green-700 justify-center items-center  border-b-8 border-black/50 cursor-pointer hover:border-b-4'>{trail.id}</span>
 
-              {index % 3 === 2 && group % 2 === 0 && trail.id != trails.length &&(
+              {/* {index % 3 === 2 && group % 2 === 0 && trail.id != trails.length &&(
                 <img src={houseTrail} alt="" className="absolute -left-40 top-12 w-32 opacity-80" />
-              )}
+              )} */}
               </> }
 
             </div>
