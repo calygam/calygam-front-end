@@ -32,7 +32,7 @@ export default function HomePage() {
 
 
   //DESCOMENTAR ESSA LINHA PARA VOLTAR O LOGIN
-  // const { setToken } = useAuth();
+  const { setToken } = useAuth();
 
   // useEffect(() => {
   //   const searchParams = new URLSearchParams(location.search);

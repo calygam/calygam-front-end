@@ -17,10 +17,10 @@ export default function AboutLeassonPage() {
   const {toggleUploadModal,setToggleUploadModal} = useContext(ComponentToggleContext)
   return (
     <div className='font-jersey transition-all'>
-      <header>
+      <header className=''>
         <Header withPhoto={false}/>
       </header>
-      <main className='flex    flex-col '>
+      <main className='flex   my-4 flex-col '>
           <SubHeaderArea BackToOthersPages={arrowToHereContext} PageToBack={"/Trail"} TextIndicatorPage={"Sobre a lição"}     HaveCardTeacher={true}/>
           {toggleUploadModal?
           <ModalPlaceActivity/>

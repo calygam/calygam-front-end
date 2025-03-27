@@ -85,7 +85,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                             <label htmlFor="register-user-cpf" className='font-light text-sm'>CPF:</label>
                             <div className='flex items-center gap-2'>
                                 <input type="text" maxLength={14} className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-cpf' name='register-user-cpf' value={userCpf} onChange={(e) => setUserCpf(targetCPF(e.target.value))} autoComplete='off' placeholder='XXX.XXX.XXX-XX' />
-                                <img src={passwordIcon} alt="" className='w-5 h-5' />
+                                <p >C</p>
                             </div>
                         </div>
                         : null}
@@ -121,7 +121,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
 
 
                     {userPassword != "" && validPassword != "" ?
-                        <p className='text-xs text-orange-600'>! Senha Fraca</p>
+                        <p className='text-xs text-orange-600'>{RegexPassword(userPassword)}</p>
                         : null}
 
 
