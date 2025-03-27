@@ -16,7 +16,7 @@ export default function QuizPage() {
             <header>
                 <Header withPhoto={false} />
             </header>
-            <main className='flex flex-col mb-8 items-center '>
+            <main className='flex flex-col mb-8 my-2 items-center '>
                 <SubHeaderArea BackToOthersPages={arrowToHereContext} PageToBack={"/Home"} TextIndicatorPage={"Quiz"} RepresentativeIcon={questionIcon} IconBadgeRank={BronzeAchiviment} NameRank={'Bronze'} FilterAdd={filterByDifficulty} infoMonetaryOrFilter={false} TextFilter={'Filtros'} IconMoney={tpMoney} QtdMoney={300} lvlProgressLeasson={true} />
                 <div className='flex flex-col mt-5 w-[85%] items-center '>
                     <QuestionCardBalloon NumberQuestion={"1"} TextQuestion={"Qual é a forma correta da Sintax do For"} />
