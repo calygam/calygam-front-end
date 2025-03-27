@@ -83,7 +83,7 @@ export default function RegisterPage() {
         {loading?
           <LoadingCrazy/>
         :null}
-        <AuthFormComponent actionName={"Cadastre-se"} nameRequired={true} actionForm={"Login"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
+        <AuthFormComponent actionName={"Cadastre-se"} nameRequired={true} actionForm={"Cadastrar"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
       </div>
     </div>
   )

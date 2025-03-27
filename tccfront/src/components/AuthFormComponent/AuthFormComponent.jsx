@@ -21,6 +21,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
 
     const [validEmail, setValidEmail] = useState("false")
     const [validPassword, setValidPassword] = useState("false")
+    const [showPassword,setShowPassword] = useState(false)
 
     useEffect(() => {
         userEmail != '' ?
@@ -114,8 +115,8 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                     <div className='flex flex-col  border-b bg-transparent border-black'>
                         <label htmlFor="register-user-password" className='font-light text-sm'>Senha:</label>
                         <div className='flex items-center gap-2'>
-                            <input type="password" className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-password' name='register-user-password' value={userPassword} onChange={(e) => setUserPassword(e.target.value)} autoComplete='off' placeholder='Digite uma Senha Forte' />
-                            <img src={passwordIcon} alt="" className='w-5 h-5' />
+                            <input type={showPassword?"text":"password"} className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-password' name='register-user-password' value={userPassword} onChange={(e) => setUserPassword(e.target.value)} autoComplete='off' placeholder='Digite uma Senha Forte' />
+                            <img src={passwordIcon} alt="" className='w-5 h-5 cursor-pointer' onClick={()=>setShowPassword(!showPassword)} />
                         </div>
                     </div>
 
