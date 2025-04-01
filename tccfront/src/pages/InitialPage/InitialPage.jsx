@@ -27,7 +27,7 @@ export default function InitialPage() {
       <SenaiViewCardsCourses />
       <UniversityCertified />
       <BlogAnounciments />
-      <SenaiRollCardsCourse />
+      {/* <SenaiRollCardsCourse /> */}
       <ChooseTheSchool />
       <footer>
         <FooterAssesment />

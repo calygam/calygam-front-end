@@ -6,6 +6,7 @@ import { MockUserDataContext } from "../../context/MockUserDataContext/MockUserD
 import usePhotoMockData from "../../hooks/UserMockHook/UserMockHook";
 import { CalygamAuthContext } from "../../context/CalygamAuthContext/CalygamAuthContext";
 import { LoadingToggleContext } from "../../context/LoadingToggleContext/LoadingToggleContext";
+import  { DataProfileProvider } from "../../context/FetchDataProfileContext/FetchDataProfileContext";
 
 export const CalygamProvidersContext = createContext()
 
@@ -27,7 +28,7 @@ export default function CalygamProviders({ children }) {
             toggleUploadModal,
             setToggleUploadModal
         }}>
-           
+           <DataProfileProvider>
                 <MockUserDataContext.Provider value={{ userPhoto,loadingMock }}>
                     <CalygamAuthContext.Provider value={{
                         userName, setUserName,
@@ -36,13 +37,15 @@ export default function CalygamProviders({ children }) {
                         userPhone, setUserPhone,
                         userCpf, setUserCpf
                     }}>
+                        
 
                         {children}
+                       
 
                     </CalygamAuthContext.Provider>
 
                 </MockUserDataContext.Provider>
-           
+                </DataProfileProvider>
         </ComponentToggleContext.Provider>
        
     )

@@ -4,11 +4,11 @@ export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, ranger
   const [barPercent, setBarPercent] = useState(0)
   useEffect(() => {
     const getXpForFullBar = () => {
-      const calculumnForFullBar = (xpInMoment / xpToGet) * 100
+      const calculumnForFullBar = (xpToGet==0?1:xpInMoment / xpToGet) * 100
       setBarPercent(calculumnForFullBar)
     }
     getXpForFullBar();
-  }, [barPercent])
+  }, [barPercent,xpInMoment])
 
   return (
     <div className={`flex ${CountStartRow ? "flex-col-reverse " : "flex-col"} w-full  ${rangeBar ? "px-2" : "px-0"} font-jersey   items-center `}>
@@ -25,7 +25,7 @@ export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, ranger
           </div>
           </div>
           :
-          <p className={`text-white text-xs `}>{xpInMoment}/{xpToGet}</p>:null}
+          <p className={`text-white text-xs `}>{xpInMoment}/{xpToGet==0?"MAX":xpToGet}</p>:null}
           
 
         
@@ -35,7 +35,7 @@ export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, ranger
       </div>
       {rangerBarRank ?
         <div className='flex w-full justify-end '>
-          <p className='text-white text-xs'>{xpInMoment}/{xpToGet}</p>
+          <p className='text-white text-xs'>{xpInMoment}/{xpToGet==0?"MAX":xpToGet}</p>
         </div>
         : null}
     </div>

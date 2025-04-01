@@ -48,12 +48,25 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                 <div className='flex flex-col h-full w-10/12 space-y-2'>
                     {nameRequired ?
                         <div className='flex flex-col   border-b bg-transparent border-black'>
-                            <label htmlFor="register-user-name" className='font-light text-sm'>Nome:</label>
+                            <label htmlFor="register-user-name" className='font-light text-sm'>Seu Usuário:</label>
                             <div className='flex items-center gap-2'>
-                                <input type="text" className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-name' name='register-user-name' value={userName} onChange={(e) => setUserName(e.target.value)} autoComplete='off' placeholder='Digite seu nome' />
+                                <input type="text" maxLength={15} className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-name' name='register-user-name' value={userName} onChange={(e) => setUserName(e.target.value)} autoComplete='off' placeholder='Digite seu nome' />
                                 <img src={perfilNameIcon} alt="" className='w-5 h-5' />
                             </div>
                         </div> : null}
+
+                        {userName.length>15 ?
+                        <div className='flex w-full'>
+                            <p className='text-red-clean-type text-xs'>*usuário deve conter menos de 15 caracteres!</p>
+                        </div>
+                        : null
+                    }
+                          {userName.length==15 ?
+                        <div className='flex w-full'>
+                            <p className='text-orange-600 text-xs'>*Limite de caracteres atingido!</p>
+                        </div>
+                        : null
+                    }
 
                     <div className={`flex flex-col   border-b bg-transparent ${validEmail != "" && userEmail.length > 0 ? 'border-red-clean-type' : "border-black"}`}>
                         <label htmlFor="register-user-email" className='font-light text-sm'>Email:</label>
@@ -164,14 +177,14 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                         actionName == "Cadastre-se" ?
 
 
-                            <button type='submit' disabled={validEmail != '' || validPassword != '' || errorTarget != "" ? true : false} className={`w-[125px] px-4 py-2  text-white   border-b-4 ${validEmail != "" || validPassword != '' || userCpf.length > 14 || errorTarget != "" ? 'border-red-950/15 bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed' :
+                            <button type='submit' disabled={validEmail != '' || userName.length>15|| validPassword != '' || errorTarget != "" ? true : false} className={`w-[125px] px-4 py-2  text-white   border-b-4 ${validEmail != "" || validPassword != '' || userCpf.length > 14 || errorTarget != "" ? 'border-red-950/15 bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed' :
                                 'bg-red-clean-type border-b-4 border-red-800 hover:border-0 hover:bg-red-700 '}  md:w-[175px] lg:w-[225px] rounded-b-xl rounded-md`}>
                                 {actionForm}
 
                             </button> : actionName == "Login" ?
 
 
-                                <button type='submit' disabled={validEmail != '' || validPassword != '' || errorTarget != "" ? true : false} className={`w-[125px] px-4 py-2  text-white   border-b-4 ${validEmail != "" || validPassword != '' || errorTarget != "" ? 'border-red-950/15 bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed' :
+                                <button type='submit' disabled={validEmail != '' || userName.length>15|| validPassword != '' || errorTarget != "" ? true : false} className={`w-[125px] px-4 py-2  text-white   border-b-4 ${validEmail != "" || validPassword != '' || errorTarget != "" ? 'border-red-950/15 bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed' :
                                     'bg-red-clean-type border-b-4 border-red-800 hover:border-0 hover:bg-red-700 '}  md:w-[175px] lg:w-[225px] rounded-b-xl rounded-md`}>
                                     {actionForm}
 

@@ -27,12 +27,12 @@ export default function SenaiRollCardsCourse() {
         effect={'cards'}
         grabCursor={true}
         modules={[EffectCards]}
-        className="w-full max-w-[250px] md:max-w-[350px] h-fit  "
+        className="w-full max-w-[150px] md:max-w-[350px] h-fit  "
 
       >
         <SwiperSlide className='rounded-lg w-full   '>
             <img  className="w-full max-w-full object-cover"src={course1} alt="" />
-            <div className='flex flex-col  items-center justify-center  w-full h-32 absolute -mt-32   'style={{
+            <div className='flex flex-col  items-center justify-center  w-full h-32 absolute -mt-16   'style={{
             backgroundImage: `url(${decAngle})`,
     
             backgroundSize: 'cover',
@@ -50,7 +50,7 @@ export default function SenaiRollCardsCourse() {
 
             <SwiperSlide className='rounded-lg w-full   '>
             <img  className="w-full max-w-full object-cover"src={course2} alt="" />
-            <div className='flex flex-col  items-center justify-center  w-full h-32 absolute -mt-32  bg-cover bg-no-repeat 'style={{
+            <div className='flex flex-col  items-center justify-center  w-full h-32 absolute -mt-16  bg-cover bg-no-repeat 'style={{
             backgroundImage: `url(${decAngle})`,
     
             backgroundSize: 'cover',

@@ -52,7 +52,7 @@ export default function SubHeaderArea({ BackToOthersPages, PageToBack, TextIndic
                     </div> */}
                     {HaveLargeRate?  
                     <div className='w-full flex md:justify-center items-center flex-wrap md:flex-nowrap   '>
-                        {loadingMock? <LoadingCrazy/>:null}
+                        {/* {loadingMock? <LoadingCrazy/>:null} */}
                     <HelloUser IconBadgeRank={IconBadgeRank}/>
                    
 
