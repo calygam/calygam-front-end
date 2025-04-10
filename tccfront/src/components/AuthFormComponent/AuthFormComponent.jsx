@@ -211,7 +211,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                 <div className='flex flex-col w-full items-center mt-3  space-y-2'>
                     {newUser ?
                         <p className='font-light text-sm text-red-button-send-feedback'>primeira vez? <Link to={"/Register"}>Cadastre-se</Link></p>
-                        : null}
+                        :  <p className='font-light text-sm text-red-button-send-feedback'>Já tem uma conta? <Link to={"/Login"}>Logar</Link></p>}
                     <p>OU</p>
                     <hr className='w-[100px] md:w-[150px] lg:w-[200px] h-[2px] bg-black' />
                 </div>

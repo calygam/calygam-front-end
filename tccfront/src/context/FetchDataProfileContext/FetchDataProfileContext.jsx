@@ -11,7 +11,7 @@ export function DataProfileProvider({children}){
     const token = localStorage.getItem("token");
     useEffect(()=>{
         const searchDataProfile = async()=>{
-              // Ou onde você estiver salvando o token
+     
 
       if (!token) return;
             try{

@@ -62,10 +62,10 @@ export default function LoginPage() {
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat'
           }}>
-    <header>
+    {/* <header>
     <Header />
                 
-  </header>
+  </header> */}
         <div className=''>
           {loading?
             <LoadingCrazy/>

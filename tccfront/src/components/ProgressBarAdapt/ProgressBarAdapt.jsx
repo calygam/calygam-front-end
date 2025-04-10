@@ -31,7 +31,7 @@ export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, ranger
         
        
       <div className={`flex w-full ${rangeBar ? " w-full h-[4px]" : "w-full h-[5px]"} bg-white rounded-full`}>
-        <span className={` transition-all delay-150 duration-500 flex h-full rounded-full w-0 bg-green-500`} style={{ width: `${barPercent + "%"}` }}></span>
+        <span className={` transition-all delay-150 duration-[3000ms] flex h-full rounded-full w-0 bg-gradient-to-tr from-green-800 via-green-600 to-green-400`} style={{ width: `${barPercent + "%"}` }}></span>
       </div>
       {rangerBarRank ?
         <div className='flex w-full justify-end '>

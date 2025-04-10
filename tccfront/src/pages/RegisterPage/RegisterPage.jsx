@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import AuthFormComponent from '../../components/AuthFormComponent/AuthFormComponent'
 import Header from '../../components/Header/Header'
 import mobileLoginDesert from '../../assets/img/mobile-login-desert.jpg'
+import backPage from '../../assets/img/back-page.svg'
 import desktopLoginDesert from '../../assets/img/desktop-login-desert.jpg'
 import { TargetBackgroundByWidth } from '../../utils/TargetBackgroundByWidth/TargetBackgroundByWidth'
 import api from '../../api/api'
 import { CalygamAuthContext } from '../../context/CalygamAuthContext/CalygamAuthContext'
 import LoadingCrazy from '../../components/LoadingCrazy/LoadingCrazy'
 import { getValidCPF } from '../../utils/ValidateCPF/ValidateCPF'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function RegisterPage() {
   const { userName, setUserName,
@@ -30,6 +31,9 @@ export default function RegisterPage() {
   useEffect(()=>{
     setErrorMessage(errorForFront ?'':"CPF inválido")
   },[errorForFront])
+   useEffect(()=>{
+      localStorage.removeItem("token")
+    },[])
 
 
 
@@ -75,15 +79,21 @@ export default function RegisterPage() {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat'
       }}>
-      <header>
+      {/* <header>
         <Header />
 
-      </header>
+      </header> */}
       <div className=''>
         {loading?
           <LoadingCrazy/>
         :null}
+        <div className='w-full min-h-lvh flex flex-col h-full '  >
+            <Link className='w-full mt-1 pl-5' to={"/"}>
+        <img src={backPage} alt="" className='w-6 h-6'/>
+
+      </Link>
         <AuthFormComponent actionName={"Cadastre-se"} nameRequired={true} actionForm={"Cadastrar"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
+      </div>
       </div>
     </div>
   )

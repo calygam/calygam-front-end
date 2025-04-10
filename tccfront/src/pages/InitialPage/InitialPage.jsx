@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import StudentWhichBook from '../../components/StudentWhitchBook/StudentWhichBook'
 
 import SchoolSenaiName from '../../components/SchoolSenaiName/SchoolSenaiName.jsx'
@@ -13,7 +13,9 @@ import FooterAssesment from '../../components/FooterAssessment/FooterAssesment.j
 import Header from '../../components/Header/Header.jsx'
 
 export default function InitialPage() {
-
+ useEffect(()=>{
+    localStorage.removeItem("token")
+  },[])
   return (
     <div>
       <header>

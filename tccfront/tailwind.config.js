@@ -29,17 +29,18 @@ export default {
          'home-clean-yellow':"#FBBC05",
          'salmon-calygam-clean':"#FFDAB9",
         //  caio<- Agora com conjunto, visando ser mais semântico
-
+        //pink
         'calygam-semi-strong-pink':'#B23A48',
         'calygam-semi-light-pink':'#F4978E',
         'calygam-extra-light-pink':"#FFB8B8",
-        
+        //red
         'calygam-semi-strong-red':"#E74040",
-
+        //yellow
         'calygam-yellow-semi-strong':"#D58936",
-
-        'calygam-light-green':'#A5BE00'
-
+        //green
+        'calygam-light-green':'#A5BE00',
+        //brown
+        'calygam-brown-semi-light':'#ECE2D0'
          
       },
       backgroundImage:{
@@ -58,13 +59,21 @@ export default {
           '100%':{transform:'scale(1.03) translateY(0px)'}
         }
       },
+      // animation:{
+      //   spinningClean: 'spinningClean 2s linear infinite',
+      //   spinningCleanRage: 'spinningClean 1s linear alternate infinite',
+      //   spinningCleanMediumRage: 'spinningClean 0.8s linear infinite',
+      //   spinningCleanSuperRage: 'spinningClean 0.6s linear infinite',
+      //   calygamScaleClean: 'calygamScaleClean 2s alternate infinite ease-in-out'
+      // }
       animation:{
-        spinningClean: 'spinningClean 2s linear infinite',
-        spinningCleanRage: 'spinningClean 1s linear alternate infinite',
-        spinningCleanMediumRage: 'spinningClean 0.8s linear infinite',
-        spinningCleanSuperRage: 'spinningClean 0.6s linear infinite',
+        spinningClean: 'spinningClean 1s linear infinite',
+        spinningCleanRage: 'spinningClean 3s linear alternate infinite',
+        spinningCleanMediumRage: 'spinningClean 2.8s linear infinite',
+        spinningCleanSuperRage: 'spinningClean 3.6s linear infinite',
         calygamScaleClean: 'calygamScaleClean 2s alternate infinite ease-in-out'
       }
+
     },
   },
 

@@ -6,11 +6,14 @@ import SearchBack   from '../../assets/img/search-black.svg'
 import alunoSupport from '../../assets/img/perfilPageIcon.png'
 import engenheiro   from '../../assets/img/engenheiro.png'
 
-import { Link }     from 'react-router-dom'
-import { useState } from 'react'
+import { data, Link }     from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile'
 
 export default function Header({withPhoto}) {
   const [searching,setSearching] = useState(false)
+  const {dataProfile,loading} = UseDataProfile()
+  
   return (
     <div className='flex flex-col items-center font-poppins text-[16px] text-nowrap'>
       <div className="transition-all flex justify-between md:justify-around     items-end pb-5 px-5   w-full h-[116px] bg-white md:bg-red-600">
@@ -31,9 +34,13 @@ export default function Header({withPhoto}) {
           <nav className='hidden transition-all md:flex  md:w-[75%] items-center   md:justify-between'>
             <ul className='flex gap-5 text-white'>
               <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/trail"}>Trilha</Link></li>
-
-              <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/quiz"}>Quiz</Link></li>
-              <li className='transition-colors border-b  pt-1 border-transparent  hover:border-white'><Link to={"/AboutLeasson"}>Sobre a Lição</Link></li>
+              {["ADMIN", "INSTRUTOR","COORDENADOR"].includes(dataProfile.userRole) ?
+              <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/trail"}>Cadastro de Trilha</Link></li>
+            :null}
+              {/* <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/quiz"}>Quiz</Link></li> */}
+              {["ADMIN","COORDENADOR"].includes(dataProfile.userRole) ?
+              <li className='transition-colors border-b  pt-1 border-transparent  hover:border-white'><Link to={"/Coordenacao"}>Coordenação</Link></li>
+              :null}
 
             </ul>
             <div className='hidden lg:flex items-center group  cursor-pointer w-[50%] justify-end' onMouseEnter={()=> setSearching(true)} onClick={()=> setSearching(true)}  onMouseMove={()=> setSearching(true)} onMouseOut={()=>setSearching(false)}  >

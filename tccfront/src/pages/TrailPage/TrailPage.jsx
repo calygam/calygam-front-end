@@ -227,10 +227,10 @@ export default function TrailPage() {
       </header> */}
 
 
-      <div className='flex flex-col  md:left-[25%] bg-calygam-light-green lg:left-0 left-0 right-0 md:fixed sticky mx-auto z-20 py-5  items-center   space-y-14 w-[60%]  '>
+      <div className='flex flex-col  md:left-[25%] bg-calygam-light-green lg:left-0 left-0 right-0 fixed mx-auto z-20 py-5  items-center   space-y-14 md:w-[60%] w-full px-4 md:px-0  '>
         <SubHeaderArea HaveLargeRate={true} IconBadgeRank={IconBadgeRankGlitter} BackToOthersPages={false} />
       </div>
-      <div className='mt-5 md:mt-40 '>
+      <div className='mt-72 md:mt-40 '>
         <CalygamTrailVillage trails={trails} />
       </div>
 

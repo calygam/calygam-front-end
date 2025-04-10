@@ -10,6 +10,7 @@ import RegisterPage            from "./pages/RegisterPage/RegisterPage.jsx"
 import TrailPage               from "./pages/TrailPage/TrailPage.jsx"
 import QuizPage                from './pages/QuizPage/QuizPage.jsx'
 import HomePage                from './pages/HomePage/HomePage.jsx'
+import AssignTeacher           from './pages/AssignTeacher/AssignTeacher.jsx'
 import AboutLeassonPage        from './pages/AboutLeassonPage/AboutLeassonPage.jsx'
 import Search                  from "./assets/img/searchIcon.png"
 import usePhotoMockData        from "./hooks/UserMockHook/UserMockHook.js"
@@ -43,7 +44,8 @@ function TccFront() {
             <Route path="/Register" element={<RegisterPage/>} />
             <Route path="/Trail" element={<TrailPage/>} />
             <Route path="/Quiz" element={<QuizPage/>}/>
-            <Route path="/AboutLeasson" element={<AboutLeassonPage/>}/>
+            {/* <Route path="/AboutLeasson" element={<AboutLeassonPage/>}/> */}
+             <Route path="/Coordenacao" element={<AssignTeacher/>}/> 
             <Route path="/home" element={<HomePage/>}/>
           </Routes>
           </CalygamProviders>
