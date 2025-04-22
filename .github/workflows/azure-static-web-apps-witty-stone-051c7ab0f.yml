@@ -3,7 +3,7 @@ name: Deploy to Azure Static Web Apps
 on:
   push:
     branches:
-      caiobo
+      - caiobo  # Altere para o nome correto da sua branch de deploy, caso necessário
 
 jobs:
   build_and_deploy:
@@ -12,13 +12,13 @@ jobs:
       # Passo 1: Checkout do código
       - uses: actions/checkout@v2
 
-      # Passo 2: Configurar a versão do Node.js (atualize para a versão 17 ou superior)
+      # Passo 2: Configurar a versão do Node.js (atualize para a versão 20 ou superior)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      # Passo 3: Instalar dependências e rodar build
+      # Passo 3: Instalar dependências e rodar o build
       - name: Install dependencies and build
         run: |
           cd tccfront  # Se o front-end está no diretório tccfront
@@ -31,6 +31,6 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           action: "upload"  
-          app_location: './tccfront'  # Local do seu app (front-end)
+          app_location: './tccfront'  # Diretório do seu código-fonte
           output_location: './tccfront/dist'  # Onde a build do seu app vai
-          api_location: '/tccfront/src/api'  # Deixe em branco se não tiver uma API, ou defina o caminho da API se tiver
+          api_location: '/tccfront/src/api'  # Deixe em branco se não tiver uma API ou defina o caminho da API
