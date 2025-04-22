@@ -33,14 +33,23 @@ export default {
         'calygam-semi-strong-pink':'#B23A48',
         'calygam-semi-light-pink':'#F4978E',
         'calygam-extra-light-pink':"#FFB8B8",
+        'calygam-semi-light-pink':'#FFB7B7',
         //red
         'calygam-semi-strong-red':"#E74040",
+        'calygam-semi-light-red':'#B6465F',
         //yellow
         'calygam-yellow-semi-strong':"#D58936",
         //green
         'calygam-light-green':'#A5BE00',
         //brown
-        'calygam-brown-semi-light':'#ECE2D0'
+        'calygam-brown-semi-light':'#ECE2D0',
+
+        //gray
+        'calygam-gray-semi-light':'#D9D9D9',
+        'calygam-gray-semi-strong':'#ADADAD',
+        //black
+        'calygam-black-semi-strong':'#2F2E41'
+        //
          
       },
       backgroundImage:{

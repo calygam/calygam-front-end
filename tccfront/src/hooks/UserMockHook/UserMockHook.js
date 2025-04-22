@@ -10,7 +10,7 @@ const usePhotoMockData =()=>{
             try {
                 setLoadingMock(true)
                 const response = await axios.get("https://randomuser.me/api/")
-                console.log(response.data.results[0].picture)
+                // console.log(response.data.results[0].picture)
                 setUserPhoto(response.data.results[0].picture)
             } catch (e) {
                 console.log("erro tentando consumer a randuser " + e)

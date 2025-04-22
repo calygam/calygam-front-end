@@ -11,6 +11,7 @@ import TrailPage               from "./pages/TrailPage/TrailPage.jsx"
 import QuizPage                from './pages/QuizPage/QuizPage.jsx'
 import HomePage                from './pages/HomePage/HomePage.jsx'
 import AssignTeacher           from './pages/AssignTeacher/AssignTeacher.jsx'
+import MakeNewTrailPage        from './pages/MakeNewTrailPage/MakeNewTrailPage.jsx'
 import AboutLeassonPage        from './pages/AboutLeassonPage/AboutLeassonPage.jsx'
 import Search                  from "./assets/img/searchIcon.png"
 import usePhotoMockData        from "./hooks/UserMockHook/UserMockHook.js"
@@ -22,11 +23,7 @@ import { LoadingToggleContext } from "./context/LoadingToggleContext/LoadingTogg
 
 function TccFront() {
   const [loading,setLoading] = useState(false)
-  const mockFootprintsData = Array.from({ length: 10 }, (_, i) => ({
-    x: 200 + i * 30,
-    y: i * 100,
-    isLeft: i % 2 === 0
-  }));
+
   return (
     <div>
 
@@ -47,6 +44,7 @@ function TccFront() {
             {/* <Route path="/AboutLeasson" element={<AboutLeassonPage/>}/> */}
              <Route path="/Coordenacao" element={<AssignTeacher/>}/> 
             <Route path="/home" element={<HomePage/>}/>
+            <Route path="/Trail/Criar" element={<MakeNewTrailPage/>}/>
           </Routes>
           </CalygamProviders>
           </LoadingToggleContext.Provider>

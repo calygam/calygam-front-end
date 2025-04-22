@@ -4,8 +4,8 @@ export default function CalygamSidebar({isEnabled,setIsEnabled}) {
     
   return (
     <div>
-                    <div className='w-full lg:hidden flex justify-end pr-5 text-black py-4 font-black text-xl'>
-                    <button onClick={()=>setIsEnabled(!isEnabled)}> {isEnabled?"X":"/"}</button></div>
+                    {/* <div className='w-full lg:hidden flex justify-end pr-5 text-black py-4 pb-20 font-black text-xl'>
+                    <button onClick={()=>setIsEnabled(!isEnabled)}> {isEnabled?"X":null}</button></div> */}
       <MenuCalygamAdmin isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
     </div>
   )
