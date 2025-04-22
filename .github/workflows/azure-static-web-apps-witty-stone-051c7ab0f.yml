@@ -12,11 +12,11 @@ jobs:
       # Passo 1: Checkout do código
       - uses: actions/checkout@v2
 
-      # Passo 2: Configurar Node.js (caso use React, Vue, etc.)
+      # Passo 2: Configurar a versão do Node.js (atualize para a versão 17 ou superior)
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Ou a versão que você está usando
+          node-version: '17'  # ou '16', ou versão mais recente compatível
 
       # Passo 3: Instalar dependências e rodar build
       - name: Install dependencies and build
