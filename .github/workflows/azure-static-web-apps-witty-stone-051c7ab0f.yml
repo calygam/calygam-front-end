@@ -3,7 +3,7 @@ name: Deploy to Azure Static Web Apps
 on:
   push:
     branches:
-      - caiobo  # Altere para a branch correta, caso necessário
+      - caiobo  # Altere para a branch correta, se necessário
 
 jobs:
   build_and_deploy:
@@ -30,7 +30,7 @@ jobs:
       - name: Run build
         run: |
           cd tccfront  # Alterar para o diretório correto
-          npm run build  # Certifique-se de que o Vite esteja configurado corretamente
+          npm run build  # Certifique-se de que o Vite está configurado corretamente
 
       # Passo 5: Deploy no Azure Static Web Apps
       - name: Deploy to Azure Static Web Apps
@@ -38,7 +38,6 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           action: "upload"
-          app_location: './tccfront'  # Diretório do código fonte
-          output_location: './tccfront/dist'  # Diretório de saída da build
-          # Se você não tiver uma API, pode deixar o api_location vazio
-          api_location: '/tccfront/src/api'  
+          app_location: './tccfront'  # Localização do código fonte
+          output_location: './tccfront/dist'  # Local onde o build será gerado
+          api_location: '/tccfront/src/api'  # Caso não tenha uma API, deixe vazio
