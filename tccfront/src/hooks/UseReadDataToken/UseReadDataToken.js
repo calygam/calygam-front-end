@@ -1,0 +1,1 @@
+// Aqui vou definir a Query para pegar dados pertinentes ao usuário
