@@ -1,0 +1,47 @@
+este é um armazém onde jogo meu brainstorm de estudos
+E códigos n usados que podem ser uteis ;
+
+  // const goToNextStep = () => {
+    //   const activities = [...form.activities];
+    //   if (step > 0 && !activities[step - 1]) {
+    //     activities[step - 1] = { name: '', description: '' };
+    //     setForm({ ...form, activities });
+    //   }
+    //   setStep(step + 1);
+    // };
+  
+    // const goToPreviousForm = () => {
+    //   if (step > 0) setStep(step - 1);
+    // };
+
+
+      // const (e)=>handleInputModify(e) = (e) => {
+    //   const { name, value, files } = e.target;
+    //   if (name === 'image') {
+    //     const file = files[0];
+    //     setForm({ ...form, image: file });
+    //     setImagePreview(file ? URL.createObjectURL(file) : null);
+    //   } else if (step === 0) {
+    //     setForm({ ...form, [name]: value });
+    //   } else {
+    //     const activities = [...form.activities];
+    //     activities[step - 1] = { ...activities[step - 1] || {}, [name]: value };
+    //     setForm({ ...form, activities });
+    //   }
+    // };
+  
+  
+  
+    // const resetForm = () => {
+    //   setForm({
+    //     name: '',
+    //     description: '',
+    //     price: '',
+    //     password: '',
+    //     image: null,
+    //     activities: [],
+    //   });
+    //   setImagePreview(null);
+    //   setStep(0);
+    //   localStorage.removeItem('trailInProgress');
+    // };
