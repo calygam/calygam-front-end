@@ -14,6 +14,7 @@ import { FormClenup } from '../../utils/FormCleanup/FormClenup';
 import broomClenup from '../../assets/img/broom-clean.png'
 import toSend from '../../assets/img/to-send-trail.png'
 import toback from '../../assets/img/go-to-back.png'
+import api from '../../api/api.js';
 
 export default function CreateAndShowTrailManagement() {
   const [step, setStep] = useState(0);
@@ -22,9 +23,9 @@ export default function CreateAndShowTrailManagement() {
     name: '',
     description: '',
     points: '',
-  
+    vacancy:0,
     password: '',
-    image: null,
+    image: '',
     activities: [],
   });
 
@@ -59,7 +60,7 @@ export default function CreateAndShowTrailManagement() {
   useEffect(() => {
     const saved = localStorage.getItem('trailInProgress');
     if (saved) {
-      setForm({ ...JSON.parse(saved), image: null });
+      setForm({ ...JSON.parse(saved), image: '' });
     }
   }, []);
 
@@ -84,24 +85,28 @@ export default function CreateAndShowTrailManagement() {
 
 
   const submitForm = async (e) => {
+    setTimeout(() => {
+      console.log(form.image)
+    }, 20000);
     e.preventDefault();
     const formData = new FormData();
-    formData.append('name', form.name);
-    formData.append('description', form.description);
-    formData.append('points', form.points);
-    formData.append('password', form.password);
-    if (form.image) formData.append('image', form.image);
+    formData.append('trailName', form.name);
+    formData.append('trailDescription', form.description);
+    formData.append('trailPrice', form.points);
+    if (form.image) formData.append('trailFileImage', form.image);
+    formData.append('trailPassword', form.password);
+    formData.append('trailVacancies', form.vacancy);
+   
 
-    const adjustedActivities = form.activities.map(activity => ({
-      name: activity.name || '',
-      description: activity.description || '',
-      points: activity.points || 0,
-      difficulty: activity.difficulty || 'EASY',
-    }));
-    formData.append('activities', JSON.stringify(adjustedActivities));
+    form.activities.forEach((activity, index) => {
+      formData.append(`activities[${index}].activityName`, activity.name || '');
+      formData.append(`activities[${index}].activityDescription`, activity.description || '');
+      formData.append(`activities[${index}].activityPrice`, activity.points || 0);
+      formData.append(`activities[${index}].activityDifficulty`, activity.difficulty || 'EASY');
+    });
 
     try {
-      await axios.post('http://localhost:8080/api/trails', formData);
+      await api.post('trail/create', formData);
       alert('Trail created successfully!');
       FormClenup(setForm, setImagePreview, setStep);
     } catch (error) {
@@ -127,12 +132,16 @@ export default function CreateAndShowTrailManagement() {
             </div>
             <div >
               <label className='text-white font-bold' htmlFor="descriptionTrail">Descrição Da Trilha</label>
-              <input name="description" placeholder="Trail Description" value={form.description} onChange={(e) => handleInputModify(e, step, setForm, form, setImagePreview)} required className="w-full p-3 focus:outline-none rounded-lg   outline-none border-none" />
+              <input name="description" placeholder="Trail Description" id="descriptionTrail" value={form.description} onChange={(e) => handleInputModify(e, step, setForm, form, setImagePreview)} required className="w-full p-3 focus:outline-none rounded-lg   outline-none border-none" />
             </div>
             <div className='w-full  flex flex-wrap  gap-x-2 justify-between'>
               <div className=' flex flex-col'>
                 <label className='text-white font-bold' htmlFor="pointsTrail">Pontos da Trilha</label>
-                <input type="number" name="points" placeholder="points" value={form.points} onChange={(e) => handleInputModify(e, step, setForm, form, setImagePreview)} required className="lg:w-[150px] md:w-[125px] p-3 focus:outline-none rounded-lg   outline-none border-none" />
+                <input type="number" step="1" min="0" id="pointsTrail" name="points" placeholder="points" value={form.points} onChange={(e) => handleInputModify(e, step, setForm, form, setImagePreview)} required className="lg:w-[150px] md:w-[125px] p-3 focus:outline-none rounded-lg   outline-none border-none" />
+              </div>
+              <div className=' flex flex-col'>
+                <label className='text-white font-bold' htmlFor="vacancyTrail">vagas da Trilha</label>
+                <input type="number" step="1" min="0" name="vacancy" id="vacancyTrail" placeholder="points" value={form.vacancy} onChange={(e) => handleInputModify(e, step, setForm, form, setImagePreview)} required className="lg:w-[150px] md:w-[125px] p-3 focus:outline-none rounded-lg   outline-none border-none" />
               </div>
           
 
@@ -142,8 +151,8 @@ export default function CreateAndShowTrailManagement() {
               </div>
             </div>
             <div className='w-full '>
-            <label htmlFor="imageTrail" className={`${imagePreview?"w-fit":"w-full"} mx-auto border-2 transition-all ease-in-out duration-1000  border-dashed text-white/65 border-red-400/50 rounded-lg bg-calygam-semi-strong-red/50 flex justify-center items-center text-black text-xl text-center`}>{imagePreview?<img src={imagePreview} alt={imagePreview} className='w-[50px] h-[50px] p-2' />:"Nenhuma imagem anexada"}</label>
-            <input type="file" name="image" id='imageTrail' onChange={(e) => handleInputModify(e, step, setForm, form, setImagePreview)} accept="image/*" className=" p-3 hidden border rounded-lg" />
+            <label htmlFor="imageTrail" className={`${imagePreview?"w-fit":"w-full"} mx-auto border-2 transition-all ease-in-out duration-1000  border-dashed text-white/65 border-red-400/50 rounded-lg bg-calygam-semi-strong-red/50 flex justify-center items-center text-black text-xl text-center`}>{imagePreview?<img src={imagePreview} alt={imagePreview} className='w-[100px] h-[100px] object-cover rounded-lg' />:"Nenhuma imagem anexada"}</label>
+            <input type="file" name="image" id='imageTrail' onChange={(e) => handleInputModify(e, step, setForm, form, setImagePreview)} accept="image/*" className="  hidden border rounded-lg" />
             </div>
           </div>
           :
@@ -187,7 +196,8 @@ export default function CreateAndShowTrailManagement() {
             >
               Limpar
             </button>
-            {form.name!=""&& form.description!="" && form.image !=null? 
+            {/* && form.image !=null */}
+            {form.name!=""&& form.description!="" && form.vacancy>0 ? 
             <button type="button" onClick={() => goToNextForm(step, setStep, form,setForm)} className="px-6 h-[40px] bg-red-300 text-white rounded-lg border-b-4  border-gray-500/45 hover:border-b-0"
             >
               Next

@@ -35,7 +35,7 @@ export default function Header({withPhoto}) {
             <ul className='flex gap-5 text-white'>
               <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/trail"}>Trilha</Link></li>
               {["ADMIN", "INSTRUTOR","COORDENADOR"].includes(dataProfile.userRole) ?
-              <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/trail"}>Cadastro de Trilha</Link></li>
+              <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/Trail/Criar"}>Cadastro de Trilha</Link></li>
             :null}
               {/* <li className='transition-colors border-b pt-1 border-transparent  hover:border-white'><Link to={"/quiz"}>Quiz</Link></li> */}
               {["ADMIN","COORDENADOR"].includes(dataProfile.userRole) ?

@@ -19,7 +19,7 @@ import { MockUserDataContext } from "./context/MockUserDataContext/MockUserDataC
 
 
 import CalygamProviders from "./providers/CalygamProviders/CalygamProviders.jsx"
-import { LoadingToggleContext } from "./context/LoadingToggleContext/LoadingToggleContext.jsx"
+
 
 function TccFront() {
   const [loading,setLoading] = useState(false)
@@ -30,7 +30,7 @@ function TccFront() {
       <BrowserRouter>
       
         <main >
-        <LoadingToggleContext.Provider value={{loading,setLoading}}>
+      
         <CalygamProviders>
           <Routes>
             <Route path="/" element={<InitialPage />} />
@@ -47,7 +47,7 @@ function TccFront() {
             <Route path="/Trail/Criar" element={<MakeNewTrailPage/>}/>
           </Routes>
           </CalygamProviders>
-          </LoadingToggleContext.Provider>
+          
         </main>
       
    

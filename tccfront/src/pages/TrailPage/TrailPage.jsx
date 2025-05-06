@@ -36,7 +36,7 @@ import { MockUserDataContext } from '../../context/MockUserDataContext/MockUserD
 export default function TrailPage() {
 
 
-   const { setToken } = useAuth();
+  //  const { setToken } = useAuth();
   const { userPhoto } = useContext(MockUserDataContext)
   const [userDataMock, setUserDataMock] = useState([])
   useEffect(() => {

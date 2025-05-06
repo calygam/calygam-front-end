@@ -45,3 +45,233 @@ E códigos n usados que podem ser uteis ;
     //   setStep(0);
     //   localStorage.removeItem('trailInProgress');
     // };
+
+
+    //possivel trilha:   const trails = [
+    { id: 0, label: "olaaa", deleted: false, boss: false, locked: false },
+    { id: 1, label: "olaaa", deleted: false, boss: false, locked: false },
+    { id: 2, label: "olaaa", deleted: false, boss: true, locked: true },
+    { id: 3, label: "olaaa", deleted: false, boss: false, locked: false },
+    { id: 4, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 5, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 6, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 7, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 8, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 9, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 10, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 11, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 12, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 13, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 14, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 15, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 16, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 17, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 18, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 19, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 20, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 21, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 22, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 23, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 24, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 25, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 26, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 27, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 28, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 29, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 30, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 31, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 32, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 33, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 34, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 35, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 36, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 37, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 38, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 39, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 40, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 41, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 42, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 43, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 44, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 45, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 46, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 47, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 48, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 49, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 50, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 51, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 52, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 53, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 54, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 55, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 56, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 57, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 58, label: "olaaa", deleted: false, boss: false, locked: true },
+  ];
+
+ // Função para calcular o deslocamento X e criar uma curva em S com uma onda senoidal
+ const getCurveX = (index) => {
+  const amplitude = 80; // Máximo deslocamento horizontal (como na imagem)
+  const frequency = 0.5; // Frequência da curva (controla a suavidade do "S")
+  return amplitude * Math.sin(frequency * index); // Usa seno para criar o "S"
+};
+
+return (
+  <div className="w-full flex flex-col items-center transition-all space-y-3 p-4 relative">
+    {/* Imagem decorativa à esquerda (ex.: personagem no computador) */}
+    {trails[0] && (
+      <div
+       
+      
+        className="absolute -left-40 bg-green-700 top-12 w-32 opacity-80"
+      />
+    )}
+
+    {trails.map((trail, index) => {
+      const offsetX = getCurveX(index); // Calcula o deslocamento X para a curva
+
+      return (
+        <div key={trail.id} className="relative">
+          {/* Bolinha principal */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ x: offsetX, y: 0, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25, delay: index * 0.05 }}
+            className="w-fit flex items-center justify-center text-white font-bold transition-all duration-300"
+          >
+            {trail.id === 0 ? (
+              <div  alt="" className="w-16 animate-bounce" />
+            ) : (
+              <motion.span
+                className="flex w-28 h-28 bg-gradient-to-br from-green-500 via-green-600 to-green-700 rounded-full border-b-8 border-black/50 text-white font-bold justify-center items-center cursor-pointer"
+                whileHover={{ scale: 1.1 }}
+              >
+                {trail.id}
+              </motion.span>
+            )}
+          </motion.div>
+
+          {/* Estrelas entre as bolinhas (aparecem a cada transição) */}
+          {index < trails.length - 1 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.05 + 0.1 }}
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-16"
+            >
+              <span className="text-white text-2xl">✦</span>
+            </motion.div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+);
+
+
+
+2-  const trails = [
+    { id: 0, label: "olaaa", deleted: false, boss: false, locked: false },
+    { id: 1, label: "olaaa", deleted: false, boss: false, locked: false },
+    { id: 2, label: "olaaa", deleted: false, boss: true, locked: true },
+    { id: 3, label: "olaaa", deleted: false, boss: false, locked: false },
+    { id: 4, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 5, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 6, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 7, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 8, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 9, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 10, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 11, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 12, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 13, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 14, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 15, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 16, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 17, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 18, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 19, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 20, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 21, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 22, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 23, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 24, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 25, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 26, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 27, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 28, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 29, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 30, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 31, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 32, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 33, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 34, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 35, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 36, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 37, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 38, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 39, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 40, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 41, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 42, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 43, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 44, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 45, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 46, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 47, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 48, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 49, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 50, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 51, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 52, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 53, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 54, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 55, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 56, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 57, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 58, label: "olaaa", deleted: false, boss: false, locked: true },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-start min-h-screen bg-[#2c2354] pt-10 relative">
+      {/* Logo fixo no topo */}
+      <div className="absolute top-5 left-5">
+        <img src={logoPng} alt="Logo" className="w-[108px] h-[25px]" />
+      </div>
+
+      {/* Trilha */}
+      <div className="flex flex-col items-center space-y-10">
+        {trails.map((trail, index) => {
+          const offsetX = Math.sin(index / 2) * 30;
+
+          return (
+            <div key={trail.id} className="relative flex flex-col items-center">
+              {/* Quadrado */}
+              <motion.div
+                initial={{ opacity: 0, x: 0 }}
+                animate={{ opacity: 1, x: offsetX }}
+                transition={{ delay: index * 0.2 }}
+                className={`w-16 h-16 ${
+                  trail.boss ? "bg-blue-500" : "bg-gray-300"
+                } rounded-xl flex items-center justify-center`}
+              >
+                {/* Conteúdo dentro */}
+              </motion.div>
+
+              {/* Estrelinha */}
+              {index < trails.length - 1 && (
+                <motion.div
+                  initial={{ opacity: 0, x: 0 }}
+                  animate={{ opacity: 1, x: offsetX }}
+                  transition={{ delay: index * 0.2 + 0.1 }}
+                  className="mt-2"
+                >
+                  <span className="text-white text-2xl">✦</span>
+                </motion.div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
