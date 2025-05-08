@@ -6,8 +6,8 @@ export const handleInputModify = (e, step, setForm, form, setImagePreview) => {
     setForm((prev) => ({ ...prev, image: file }));
     setImagePreview(URL.createObjectURL(file));
   } else if (name === "image" && (!files || files.length === 0)) {
-    setForm((prev) => ({ ...prev, image: null }));
-    setImagePreview(null);
+    setForm((prev) => ({ ...prev, image: '' }));
+    setImagePreview('');
   } else if (step === 0) {
  
     setForm((prev) => ({ ...prev, [name]: value }));

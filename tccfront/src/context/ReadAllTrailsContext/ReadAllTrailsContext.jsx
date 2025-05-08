@@ -9,6 +9,7 @@ export function ReadAllTrailsProvider({children}){
 
     const [trails,setTrails] = useState([])
    const {loading,setLoading,setLoadingText} = UseLoading()
+
     const token = localStorage.getItem("token");
     useEffect(()=>{
         const searchtrails = async()=>{
@@ -16,8 +17,11 @@ export function ReadAllTrailsProvider({children}){
 
       if (!token) return;
             try{
-                setLoading(true)
-       
+             
+               
+                setTimeout(() => {
+                    setLoading(true) 
+                }, 2000);
                 
                 const response = await api.get("/trail/read/all-trails")
                 console.log(response.data)
@@ -30,10 +34,16 @@ export function ReadAllTrailsProvider({children}){
             finally{
              
            
-                    setLoadingText("oi de novo...")
+                    setLoadingText("Carregando imagens...")
+
+               
             
-      
+                    setTimeout(() => {
+                        
+                    
                     setLoading(false)
+                   
+                }, 50000);
         
                    
          

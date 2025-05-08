@@ -10,7 +10,7 @@ export default function HelloUser({ IconBadgeRank }) {
     const {userPhoto} = usePhotoMockData()
     const {dataProfile,loading} = UseDataProfile()
     return (
-        <div className={`relative ${IconBadgeRank?"sticky md:justify-between bg-black/80":"relative py-8 justify-between bg-calygam-semi-light-red"} flex w-full transition-all delay-100 duration-200 ease-in-out rounded-lg font-poppins gap-y-3 md:gap-x-0 gap-x-32   justify-center flex-wrap items-center  py-4 px-6 `}>
+        <div className={`relative ${IconBadgeRank?"sticky md:justify-between bg-black/80":"relative py-8 justify-between bg-calygam-semi-light-red w-full"} flex w-full transition-all delay-100 duration-200 ease-in-out rounded-lg font-poppins gap-y-3 md:gap-x-0 gap-x-32   justify-center flex-wrap items-center  py-4 px-6  `}>
             {/* {loading && <LoadingCrazy/>
             } */}
             

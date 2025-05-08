@@ -54,7 +54,7 @@ export default function CreateAndShowTrailManagement() {
     setForm((prev) => ({ ...prev, activities: updatedActivities }));
   };
 
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
 
 
   useEffect(() => {
@@ -115,9 +115,9 @@ export default function CreateAndShowTrailManagement() {
   };
 
   return (
-    <div className="lg:w-[500px] md:w-[350px] w-[300px] px-2 py-6 font-poppins flex flex-col items-center   bg-calygam-semi-light-red rounded-2xl ">
+    <div className="lg:w-[75%] md:w-[95%]  px-2 py-6 font-poppins flex flex-col items-center   bg-calygam-semi-light-red rounded-2xl ">
 
-      <form onSubmit={submitForm} className="w-[90%] flex flex-col  space-y-4">
+      <form onSubmit={submitForm} className=" flex flex-col  space-y-4">
       <div className='flex flex-col text-white my-2'>
         <h2 className="text-lg  font-semibold  ">
           {step === 0 ? 'Criar nova Trilha' : `Atividade - ${step<=9? 0+""+step:step}`}
