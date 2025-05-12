@@ -14,7 +14,7 @@ export default function ItemWithDetails({ itemImage, itemName, itemData, itemVac
             <div className='flex items-center md:justify-center justify-start w-full  gap-x-2  gap-y-3  order-1'>
                 {!itemImage?
                 <p>Opa</p>:
-                <img src={itemImage} alt='imagem  da trilha' className='w-[48px] h-[48px] rounded-lg object-center object-cover' />
+                <img src={itemImage} alt='imagem  da trilha' className='min-w-[48px] max-w-[48px] min-h-[48px] max-h-[48px]  rounded-lg object-center object-cover' />
                 }
 
                 <p className='text-xs font-medium'> {itemName}</p>

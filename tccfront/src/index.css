@@ -5,37 +5,23 @@
 
 
 
-/* .scrollbar-hidden::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-  }
-  .scrollbar-calygam::-webkit-scrollbar {
-   width: 8px;
-   height: 8px;
-  
-  }
 
-  
-  .scrollbar-calygam::-webkit-scrollbar-thumb {
-   
-    border-radius: 4px;
-   
-    background:  #1f2f63;
-  
-  }
-  .scrollbar-calygam::-webkit-scrollbar-track {
-   
-    border-radius: 4px;
-   
-    background:  #1834926c;
-  
-  }
-  
- 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
-  @-moz-document url-prefix() {
-    .scrollbar-hidden {
-      scrollbar-width: thin;
-      scrollbar-color: #1f2f63 #1834926c;
-    }
-  } */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.575);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #db232393;
+}
+
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(85, 3, 3, 0.575) rgba(201, 113, 113, 0.575);
+}

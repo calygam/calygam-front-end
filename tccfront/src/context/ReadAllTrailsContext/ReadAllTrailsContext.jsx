@@ -8,6 +8,7 @@ const ReadAllTrailsContext = createContext()
 export function ReadAllTrailsProvider({children}){
 
     const [trails,setTrails] = useState([])
+    const [targetTrailId,setTargetTrailId] = useState(null) 
    const {loading,setLoading,setLoadingText} = UseLoading()
 
     const token = localStorage.getItem("token");
@@ -23,7 +24,7 @@ export function ReadAllTrailsProvider({children}){
                     setLoading(true) 
                 }, 2000);
                 
-                const response = await api.get("/trail/read/all-trails")
+                const response = await api.get("/trail/read/by/teacher")
                 console.log(response.data)
                 setTrails(response.data)
                
@@ -43,7 +44,7 @@ export function ReadAllTrailsProvider({children}){
                     
                     setLoading(false)
                    
-                }, 50000);
+                }, 2000);
         
                    
          
@@ -51,9 +52,9 @@ export function ReadAllTrailsProvider({children}){
             }
         }
         searchtrails()
-    },[token])
+    },[token,targetTrailId])
     return(
-        <ReadAllTrailsContext.Provider value={{trails,loading}}>
+        <ReadAllTrailsContext.Provider value={{trails,loading,targetTrailId,setTargetTrailId}}>
          
             {children}
         </ReadAllTrailsContext.Provider>

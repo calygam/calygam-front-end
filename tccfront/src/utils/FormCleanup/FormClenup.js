@@ -2,8 +2,9 @@ export const FormClenup = (setForm,setImagePreview,setStep) => {
     setForm({
         name: '',
         description: '',
-        price: '',
+        points: '0',
         password: '',
+        vacancy:'0',
         image: null,
         activities: [],
     });

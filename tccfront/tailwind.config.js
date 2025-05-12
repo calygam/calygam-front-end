@@ -58,6 +58,10 @@ export default {
          'desktop-login-desert':'url("./src/assets/img/desktop-login-desert.jpg")',
 
       },
+      
+      dropShadow:{
+        'calygam-light':' 8px 7px 6px #000'
+      },
       keyframes:{
         spinningClean:{
           '0%':{transform:'rotate(0deg)'},

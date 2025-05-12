@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import api from "../../api/api";
 import LoadingCrazy from "../../components/LoadingCrazy/LoadingCrazy";
 import { UseLoading } from "../../hooks/UseLoading/UseLoading";
+import { useLocation } from "react-router-dom";
 
 const DataProfileContext = createContext()
 
@@ -10,6 +11,7 @@ export function DataProfileProvider({children}){
     const [dataProfile,setDataProfile] = useState([])
     const {loading,setLoading,setLoadingText} = UseLoading()
     const token = localStorage.getItem("token");
+    const location = useLocation();
     useEffect(()=>{
         const searchDataProfile = async()=>{
      
@@ -30,7 +32,7 @@ export function DataProfileProvider({children}){
             }
         }
         searchDataProfile()
-    },[token])
+    },[token,location])
     return(
         <DataProfileContext.Provider value={{dataProfile,loading}}>
        
