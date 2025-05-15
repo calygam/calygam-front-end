@@ -22,6 +22,8 @@ export default function CreateAndShowTrailManagement() {
   const { loading, setLoading, setLoadingText } = UseLoading()
   const [imagePreview, setImagePreview] = useState(null);
   const targetTrail = trails.find(oneTrail => oneTrail.trailId === targetTrailId);
+
+ 
   const [selectedDifficultyOption, setSelectedDifficultyOption] = useState('');
   const [codeTarget, setCodeTarget] = useState("")
   const [form, setForm] = useState({

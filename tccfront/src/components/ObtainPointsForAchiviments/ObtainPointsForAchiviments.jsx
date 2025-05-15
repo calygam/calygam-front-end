@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import ObtainMoney from '../../assets/img/obtain-money.svg'
 import EarnRewards from '../../assets/img/earn-rewards.svg'
@@ -11,11 +11,15 @@ import siteDevelopExemple from '../../assets/img/site-develop-exemple.png'
 import CardAnnouncesPlayPoints from '../../components/CardAnnouncesPlayPoints/CardAnnouncesPlayPoints.jsx'
 import CalygamCarouselOfTrails from '../../components/CalygamCarouselOfTrails/CalygamCarouselOfTrails.jsx'
 import CardDevelopProject from '../../components/CardDevelopProject/CardDevelopProject.jsx'
+import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook.js'
+import { useLocation } from 'react-router-dom'
 
 
 export default function ObtainPointsForAchiviments({ isSakuraActive,isTrailsActive,isDevelopmentActive }) {
+  const {trails} = UseReadAllTrailsHook()
 
-  const trails = [
+
+  const trailse = [
     {
       id: 1, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
         "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",

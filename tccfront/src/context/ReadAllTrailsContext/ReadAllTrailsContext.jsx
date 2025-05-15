@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import api from "../../api/api";
 import LoadingCrazy from "../../components/LoadingCrazy/LoadingCrazy";
 import { UseLoading } from "../../hooks/UseLoading/UseLoading";
+import { useLocation } from "react-router-dom";
 
 const ReadAllTrailsContext = createContext()
 
@@ -9,22 +10,25 @@ export function ReadAllTrailsProvider({children}){
 
     const [trails,setTrails] = useState([])
     const [targetTrailId,setTargetTrailId] = useState(null) 
+    const [readAllTrails,setReadAllTrails] = useState(false)
    const {loading,setLoading,setLoadingText} = UseLoading()
+
+   const location = useLocation()
 
     const token = localStorage.getItem("token");
     useEffect(()=>{
         const searchtrails = async()=>{
      
-
+    setTrails([]);
       if (!token) return;
             try{
+
+                const isHomePage = location.pathname === "/home"?
+                "/trail/read/all-trails":"/trail/read/by/teacher"
              
-               
-                setTimeout(() => {
-                    setLoading(true) 
-                }, 2000);
+            
                 
-                const response = await api.get("/trail/read/by/teacher")
+                const response = await api.get(isHomePage)
                 console.log(response.data)
                 setTrails(response.data)
                
@@ -39,12 +43,6 @@ export function ReadAllTrailsProvider({children}){
 
                
             
-                    setTimeout(() => {
-                        
-                    
-                    setLoading(false)
-                   
-                }, 2000);
         
                    
          
@@ -52,7 +50,10 @@ export function ReadAllTrailsProvider({children}){
             }
         }
         searchtrails()
-    },[token,targetTrailId])
+    },[token,location.pathname])
+
+        
+     
     return(
         <ReadAllTrailsContext.Provider value={{trails,loading,targetTrailId,setTargetTrailId}}>
          
