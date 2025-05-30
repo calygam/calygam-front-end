@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 
@@ -7,9 +7,17 @@ import CalygamSidebar from '../../components/CalygamSidebar/CalygamSidebar.jsx'
 import DashboardInfoTrails from '../../components/DashboardInfoTrails/DashboardInfoTrails.jsx'
 import ModifyTeacherTag from '../../components/ModifyTeacherTag/ModifyTeacherTag.jsx'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js';
+import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile.js';
+import { useLocation, useNavigate } from 'react-router-dom';
 export default function AssignTeacher() {
   const { setToken } = useAuth();
+  const {dataProfile} = UseDataProfile() 
     const [isEnabled,setIsEnabled] = useState(true)
+  const navigate = useNavigate()
+  const location = useLocation()
+    useEffect(()=>{
+    if(dataProfile.userRole !='COORDENADOR' && location.pathname.includes('/coordenacao')){navigate("/login")}
+    },[dataProfile])
   return (
     
     // <div className='w-full h-full transition-all font-poppins duration-1000 ease-in-out grid lg:grid-cols-[max-content_1fr_max-content] md:grid-cols-[1fr_max-content] grid-cols-1'>
@@ -31,7 +39,7 @@ export default function AssignTeacher() {
     // </div>
     <div className='w-full h-full transition-all font-poppins duration-1000 ease-in-out grid lg:grid-cols-[max-content_1fr_max-content]  grid-cols-1'>
     <div className='flex lg:order-1 order-3 '>
-  <CalygamSidebar isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
+  <CalygamSidebar isEnabled={isEnabled} setIsEnabled={setIsEnabled}  />
   </div>
   {/* <div className=' flex min-h-lvh lg:order-2 my-8 md:order-1 order-2'> */}
   <div className=' flex min-h-lvh lg:order-2 my-8  order-2'>

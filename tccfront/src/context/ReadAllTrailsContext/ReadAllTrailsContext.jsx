@@ -9,7 +9,8 @@ const ReadAllTrailsContext = createContext()
 export function ReadAllTrailsProvider({children}){
 
     const [trails,setTrails] = useState([])
-    const [targetTrailId,setTargetTrailId] = useState(null) 
+    const [targetTrailId,setTargetTrailId] = useState(null)
+     
     const [readAllTrails,setReadAllTrails] = useState(false)
    const {loading,setLoading,setLoadingText} = UseLoading()
 

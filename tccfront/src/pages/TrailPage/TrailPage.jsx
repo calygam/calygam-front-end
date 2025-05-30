@@ -15,6 +15,7 @@ import SubHeaderArea from '../../components/SubHeaderArea/SubHeaderArea.jsx'
 import ShowUserState from '../../components/ShowUserState/ShowUserState.jsx'
 import MenuLocationLeasson from '../../components/MenuLocationLeasson/MenuLocationLeasson.jsx'
 import CalygamTrailVillage from '../../components/CalygamTrailVillage/CalygamTrailVillage.jsx'
+
 import LessonFeatures from '../../components/LessonFeatures/LessonFeatures.jsx'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
 import axios from 'axios'
@@ -24,9 +25,14 @@ import starOmega from '../../assets/img/starOmega.svg'
 import lineRankingDecor from '../../assets/img/line-ranking-decor.svg'
 import userKing from '../../assets/img/king-of-leasson.svg'
 import comentChatIcon from '../../assets/img/coment-chat-icon.svg'
+import logoImage from '../../assets/img/calygam-logo.svg'
 import comunityIcon from '../../assets/img/comunity-icon.svg'
 import { MockUserDataContext } from '../../context/MockUserDataContext/MockUserDataContext.jsx'
-
+import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook.js'
+import UserInfoDisplay from '../../components/UserInfoDisplay/UserInfoDisplay.jsx'
+import { DisplayCleaner } from '../../stylebase/DisplayStyle/DisplayStyle.js'
+import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile.js'
+import MenuCalygamAdmin from '../../components/MenuCalygamAdmin/MenuCalygamAdmin.jsx'
 
 
 
@@ -34,85 +40,99 @@ import { MockUserDataContext } from '../../context/MockUserDataContext/MockUserD
 
 
 export default function TrailPage() {
+  const { activities, setTrailId } = UseDataActivitiesPerTrailIdHook()
 
-
-  //  const { setToken } = useAuth();
+  const { setToken } = useAuth();
   const { userPhoto } = useContext(MockUserDataContext)
   const [userDataMock, setUserDataMock] = useState([])
+  const [isEnabled,setIsEnabled] = useState(false)
+
+  const trailSettings ={
+    logoImage:logoImage,
+    menus:{
+      home:'Home',
+      lolja:'Lolja',
+      perfil:'Perfil',
+      mais:'mais'
+    }
+  }
+
+
   useEffect(() => {
     const getUsersMock = async () => {
       try {
         const response = await axios.get("https://randomuser.me/api/")
-        console.log(response.data.results[0].picture)
+
         setUserDataMock(response.data.results[0].picture)
       } catch (e) {
         console.log("erro tentando consumer a randuser " + e)
       }
     }
+
     getUsersMock()
   }, [])
 
-  const trails = [
-    { id: 0, label: "olaaa", deleted: false, boss: false, locked: false },
-    { id: 1, label: "olaaa", deleted: false, boss: false, locked: false },
-    { id: 2, label: "olaaa", deleted: false, boss: true, locked: true },
-    { id: 3, label: "olaaa", deleted: false, boss: false, locked: false },
-    { id: 4, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 5, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 6, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 7, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 8, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 9, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 10, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 11, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 12, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 13, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 14, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 15, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 16, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 17, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 18, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 19, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 20, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 21, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 22, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 23, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 24, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 25, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 26, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 27, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 28, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 29, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 30, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 31, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 32, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 33, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 34, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 35, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 36, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 37, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 38, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 39, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 40, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 41, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 42, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 43, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 44, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 45, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 46, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 47, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 48, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 49, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 50, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 51, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 52, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 53, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 54, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 55, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 56, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 57, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 58, label: "olaaa", deleted: false, boss: false, locked: true },
-  ];
+  // const trails = [
+  //   { id: 0, label: "olaaa", deleted: false, boss: false, locked: false },
+  //   { id: 1, label: "olaaa", deleted: false, boss: false, locked: false },
+  //   { id: 2, label: "olaaa", deleted: false, boss: true, locked: true },
+  //   { id: 3, label: "olaaa", deleted: false, boss: false, locked: false },
+  //   { id: 4, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 5, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 6, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 7, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 8, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 9, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 10, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 11, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 12, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 13, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 14, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 15, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 16, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 17, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 18, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 19, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 20, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 21, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 22, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 23, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 24, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 25, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 26, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 27, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 28, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 29, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 30, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 31, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 32, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 33, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 34, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 35, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 36, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 37, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 38, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 39, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 40, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 41, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 42, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 43, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 44, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 45, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 46, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 47, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 48, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 49, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 50, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 51, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 52, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 53, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 54, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 55, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 56, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 57, label: "olaaa", deleted: false, boss: false, locked: true },
+  //   { id: 58, label: "olaaa", deleted: false, boss: false, locked: true },
+  // ];
   const numbers = [
     { id: 1, label: "olaaa", deleted: false, boss: false, locked: false },
     { id: 2, label: "olaaa", deleted: false, boss: true, locked: true },
@@ -168,39 +188,13 @@ export default function TrailPage() {
   ];
 
   return (
-    <div className='w-full font-poppins  transition-all delay-100 duration-200 bg-calygam-light-green ease-in-out'>
-    
+    <div className='w-full font-poppins min-h-screen h-full outline-none    bg-calygam-purple-semi-bold '>
+
       <div className="flex relative">
-        <aside className="hidden md:block fixed top-0 bottom-0 left-0 w-fit  text-white p-5">
-          <div className='flex flex-col md:h-full'>
+        <aside className="z-30 md:block fixed top-0 bottom-0 left-0 w-fit  text-white ">
+ 
 
-            <MenuLocationLeasson FirstIcon={CheckMyTasks} FirstLocationText={"Tarefas Do Aluno"} SecondIcon={TurmasIcon} SecondLocationText={"Turmas"} ThirdIcon={TodoIcon} ThirdLocationText={"Todo-List"} />
-            <div className='md:flex flex-col justify-center space-y-3 items-center hidden lg:hidden'>
-              <ButtonSocialAreaLocation imgArea={comentChatIcon} nameArea={"Chat"} />
-              <ButtonSocialAreaLocation imgArea={comunityIcon} nameArea={"Comunidade"} />
-            </div>
-            <aside className='flex flex-col items-center justify-center space-y-2 w-[200px]'>
-              <div className='flex flex-col items-center justify-center mb-2'>
-                <div className='flex gap-1 mt-6 justify-center items-center'>
-                  <div className='flex justify-center items-center'>
-                    <p className='text-xl'>Ranking</p>
-                  </div>
-                  <div className='flex w-7 h-7'>
-                    <img src={starOmega} alt="" className='w-full' />
-                  </div>
-                </div>
-                <div className='flex w-[112px] -mt-[5px] justify-center items-center'>
-                  <img src={lineRankingDecor} alt="" className='w-full' />
-                </div>
-              </div>
-
-              <div className='flex flex-col items-center justify-center space-y-4 '>
-                <TopUsersPodium userImage={userPhoto.medium} userPoints={100.34} userKing={userKing} userName={"Warren"} numberPodium={1} />
-                <TopUsersPodium userImage={userPhoto.medium} userPoints={100.34} userKing={null} userName={"Angel"} numberPodium={2} />
-                <TopUsersPodium userImage={userPhoto.medium} userPoints={100.34} userKing={null} userName={"Victoria"} numberPodium={3} />
-              </div>
-
-            </aside>
+        <MenuCalygamAdmin trailSettings={trailSettings} isEnabled={isEnabled} setIsEnabled={setIsEnabled}/>
 
 
 
@@ -209,8 +203,7 @@ export default function TrailPage() {
 
 
 
-
-          </div>
+       
         </aside>
 
 
@@ -227,14 +220,20 @@ export default function TrailPage() {
       </header> */}
 
 
-      <div className='flex flex-col  md:left-[25%] bg-calygam-light-green lg:left-0 left-0 right-0 fixed mx-auto z-20 py-5  items-center   space-y-14 md:w-[60%] w-full px-4 md:px-0  '>
-        <SubHeaderArea HaveLargeRate={true} IconBadgeRank={IconBadgeRankGlitter} BackToOthersPages={false} />
+      <div className='flex flex-col  md:left-[25%] outline-none  bg-calygam-purple-semi-bold  lg:left-0 left-0 right-0 fixed mx-auto z-10 py-5  items-center    md:w-[55%] w-full px-4 md:px-0  '>
+        {/* <SubHeaderArea HaveLargeRate={true} IconBadgeRank={IconBadgeRankGlitter} BackToOthersPages={false} />  */}
+
+        <UserInfoDisplay displayStyle={DisplayCleaner('bg-calygam-purple-semi-light/30', "30px", false, "4", "white")} setIsEnabled={setIsEnabled} isEnabled={isEnabled} />
+
+        {/*CAIO<- USAR ESTRATEGIA DE CONTROLE TOTAL DE COMPONENTE A PERTIR DE AGORA */}
       </div>
-      <div className='mt-72 md:mt-40 '>
-        <CalygamTrailVillage trails={trails} />
+      <div className='mt-[200px]  '>
+        <CalygamTrailVillage Activities={numbers} />
       </div>
 
+
     </div>
+
 
   )
 

@@ -4,7 +4,7 @@ export default function CardAnnouncesPlayPoints({ imgForAnnounce,AnnounceAlertMe
     
     
     return (
-        <div className='flex flex-col  w-[185px] text-center animate-calygamScaleClean   border border-white rounded-md bg-calygam-semi-light-pink' onMouseMoveCapture={()=>setShowInvites(true)}>
+        <div className='flex flex-col  w-[185px] text-center animate-calygamScaleClean   border border-white rounded-md bg-calygam-semi-light-pink' >
             <div className='w-full flex-col space-y-2 h-[200px] justify-center flex items-center'>
                 <img src={imgForAnnounce} alt="" className='w-8' />
                 <p className='text-base text-white font-bold'>{AnnounceAlertMessage}</p>

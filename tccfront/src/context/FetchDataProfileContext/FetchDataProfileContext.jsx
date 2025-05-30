@@ -27,7 +27,7 @@ export function DataProfileProvider({children}){
                 console.log("Deu alguma coisa errada! :/")
             }
             finally{
-    
+               
                 setLoading(false)
             }
         }
