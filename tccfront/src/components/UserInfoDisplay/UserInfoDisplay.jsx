@@ -7,7 +7,7 @@ import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile'
 
 import moneyIcon from '../../assets/img/Moedas.svg'
 
-export default function UserInfoDisplay({ displayStyle,setIsEnabled,isEnabled }) {
+export default function UserInfoDisplay({ displayStyle,setIsEnabled,isEnabled,Activities }) {
   const { dataProfile } = UseDataProfile()
 
 
@@ -34,7 +34,7 @@ export default function UserInfoDisplay({ displayStyle,setIsEnabled,isEnabled })
 
       </div>
      <div className='flex w-full justify-center items-center lg:col-span-1 md:justify-center md:items-center flex-col md:col-span-2'>
-  <p className='text-white text-lg text-center'>Tarefas Feitas 0</p>
+  <p className='text-white text-lg text-center'>Tarefas Feitas: {dataProfile.activitiesCompleted}</p>
   <div className='flex justify-center'>
     <button type='button' className='rounded-lg px-4 outline-none flex items-center justify-center bg-white'>
       <p className='text-calygam-purple-medium-bold text-lg'>Histórico</p>

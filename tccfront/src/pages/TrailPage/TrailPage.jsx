@@ -228,7 +228,7 @@ export default function TrailPage() {
         {/*CAIO<- USAR ESTRATEGIA DE CONTROLE TOTAL DE COMPONENTE A PERTIR DE AGORA */}
       </div>
       <div className='mt-[200px]  '>
-        <CalygamTrailVillage Activities={numbers} />
+        <CalygamTrailVillage Activities={activities} />
       </div>
 
 
