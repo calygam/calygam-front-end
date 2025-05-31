@@ -39,7 +39,7 @@ function TccFront() {
             <Route path="/FaleConosco" element={<div>Chama component de Fale Conosco</div>} />
             <Route path="/Login" element={<LoginPage/>} />
             <Route path="/Register" element={<RegisterPage/>} />
-            <Route path="/Trail" element={<TrailPage/>} />
+            <Route path="/Trilha" element={<TrailPage/>} />
             <Route path="/Quiz" element={<QuizPage/>}/>
             {/* <Route path="/AboutLeasson" element={<AboutLeassonPage/>}/> */}
              <Route path="/Coordenacao" element={<AssignTeacher/>}/> 

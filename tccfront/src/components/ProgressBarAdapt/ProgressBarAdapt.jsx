@@ -11,7 +11,7 @@ export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, ranger
   }, [barPercent,xpInMoment,xpToGet])
 
   return (
-    <div className={`flex ${CountStartRow ? "flex-col-reverse " : "flex-col"} w-full  ${rangeBar ? "px-2" : "px-0"} font-jersey   items-center `}>
+    <div className={`flex ${CountStartRow ? "flex-col-reverse " : "flex-col"} w-full  ${rangeBar ? "px-2" : "px-0"} font-jersey    `}>
       {!rangerBarRank ? CountStartRow ?
         <div className='flex w-full justify-start items-center space-x-2  '>
           <div className=''>
@@ -25,7 +25,7 @@ export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, ranger
           </div>
           </div>
           :
-          <p className={`text-white text-xs `}>{xpInMoment}/{xpToGet==0?"MAX":xpToGet}</p>:null}
+          <p className={`text-white text-xs `}>{xpInMoment}/{xpToGet==0?"MAX":xpToGet} Pontos</p>:null}
           
 
         

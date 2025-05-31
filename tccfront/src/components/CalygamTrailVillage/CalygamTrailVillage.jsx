@@ -1,52 +1,77 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import sapato from '../../assets/img/sapato.svg'
 import threeForest from '../../assets/img/three-forest.svg'
 import grassOne from '../../assets/img/grass-one.svg'
-import houseTrail from '../../assets/img/house-trail.svg'
+import starProgress from '../../assets/img/star-progress-identifier.svg'
+import planetSaturn from '../../assets/img/planet-saturn.svg'
+import alienPlanet from  '../../assets/img/purple-planet-alien.svg'
+import aquaPlanet from  '../../assets/img/planet-aqua-florest.svg'
+
+//import houseactivity from '../../assets/img/house-activity.svg'
 import bookGrass from '../../assets/img/book-js.svg'
-export default function CalygamTrailVillage({ trails }) {
+import { useSearchParams } from 'react-router-dom'
+import { useState } from 'react'
+export default function CalygamactivityVillage({ Activities }) {
+  const myPlanets = [planetSaturn,alienPlanet,aquaPlanet]
+ 
+
     return (
-      <div className="w-full flex flex-col items-center transition-all space-y-3  p-4">
-        {trails.map((trail, index) => {
+      <div className="md:w-[70%] w-full lg:w-full  flex flex-col items-center lg:items-center md:items-end   transition-all gap-y-3  py-12">
+        {Activities.map((activity, index) => {
+          
+        
           let group = Math.floor(index / 3);
+     
           let curve = group % 2 === 0
             ? ["translate-x-0 ", "translate-x-[40px]", "translate-x-[80px]"]
             : ["translate-x-[80px]", "translate-x-[40px]", "translate-x-0"];
-            // let curveTwo = group % 2 === 0
-            // ? ["translate-x-[40px] rotate-[40deg] my-6 ", "translate-x-[80px]  rotate-[40deg] my-6", "translate-x-[105px] rotate-[50deg] my-6"]
-            // : ["translate-x-[90px] rotate-[60deg] my-6", "translate-x-[50px] rotate-[60deg] my-6", "translate-x-[20px] rotate-[40deg] my-6"];
+            let curveTwo = group % 2 === 0
+            ? ["translate-x-[20px] rotate-[90deg] my-6 ", "translate-x-[60px]  rotate-[90deg] my-6", "translate-x-[90px] rotate-[100deg] my-6"]
+            : ["translate-x-[70px] rotate-[20deg] my-6", "translate-x-[30px] rotate-[30deg] my-6", "translate-x-[0px] rotate-[100deg] my-6"];
   
           return (
             <div
-              key={trail.id}>
+              key={activity.activityId}>
+                         
 
 
             <div
              
               className={`w-fit flex items-center justify-center  text-white font-bold    transition-all duration-300 ${curve[index % 3]}`}
             >
-       {trail.id ==0 ? <img src={bookGrass} alt="" className='w-16 animate-bounce' />:       <>
-             <span className='flex w-28 h-28 bg-gradient-to-br from-green-500 via-green-600 rounded-full text-white to-green-700 justify-center items-center  border-b-8 border-black/50 cursor-pointer hover:border-b-4'>{trail.id}</span>
+       {activity.id ==0 ? <img src={bookGrass} alt="" className='w-16 animate-bounce' />:       <>
+             <span className='flex w-[90px] h-[90px] bg-gradient-to-br  rounded-3xl text-black bg-white  justify-center items-center  border-b-8 border-black/50 cursor-pointer hover:border-b-4'>{activity.activityId}</span>
 
-              {/* {index % 3 === 2 && group % 2 === 0 && trail.id != trails.length &&(
-                <img src={houseTrail} alt="" className="absolute -left-40 top-12 w-32 opacity-80" />
-              )} */}
+              {index % 3 === 2 && group % 2 === 0 && index !== Activities.length - 1 && (
+               
+      <img src={myPlanets[group % myPlanets.length]} alt="" className="absolute -left-40 top-12 w-24 opacity-80" />
+           
+          
+               
+
+              )}
+             
+                     {index % 3 === 2 && group % 2 === 0 && index !== Activities.length - 1 && (
+                <img src={planetSaturn} alt="" className="absolute hidden md:block -right-16 lg:-top-[250px] md:-top-[230px] w-44 opacity-80" />
+              )}
               </> }
+              
 
             </div>
-            {/* <div
+            
+             <div
              
-             className={`w-fit flex items-center justify-center  text-white font-bold my-2   transition-all duration-300 ${curveTwo[index % 3]}`}
+             className={` flex items-center justify-center  text-white font-bold my-2   transition-all duration-300 ${curveTwo[index % 3]}`}
            >
-      {trail.id ==0 ? null:       <>
-            <span className='flex w-14 h-14 bg-gradient-to-br from-gray-500 via-gray-600 rounded-full rounded-br-sm  rounded-tl-sm text-white to-gray-700 justify-center items-center  border-b-8 border-black/50 cursor-pointer hover:border-b-4'>{trail.id}</span>
+      {activity.activityId ==0 ||  index+1==Activities.length ?null:       <>
+            <span className='flex  bg-gradient-to-br  rounded-full rounded-br-sm  rounded-tl-sm text-white to-gray-700 justify-center items-center    cursor-pointer '><img src={starProgress} alt="" className='w-8 bg-cover' /></span>
 
-             {/* {index % 3 === 2 && group % 2 === 0 && trail.id != trails.length &&(
-               <img src={houseTrail} alt="" className="absolute -left-40 top-12 w-32 opacity-80" />
-             )} */}
-             {/* </> } */}
+              {/* {index % 3 === 2 && group % 2 === 0 && activity.id != activity.length &&(
+               <img src={bookGrass} alt="" className="absolute -left-40 top-12 w-32 opacity-80" />
+             )}  */}
+              </> } 
 
-           {/* </div> */} 
+            </div> 
             </div>
 
             

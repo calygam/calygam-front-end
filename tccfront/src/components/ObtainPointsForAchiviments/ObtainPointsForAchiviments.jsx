@@ -19,31 +19,31 @@ export default function ObtainPointsForAchiviments({ isSakuraActive,isTrailsActi
   const {trails} = UseReadAllTrailsHook()
 
 
-  const trailse = [
-    {
-      id: 1, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
-        "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
-    },
-    {
-      id: 2, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
-        "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
-    },
-    {
-      id: 3, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
-        "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
-    },
-    {
-      id: 4, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
-        "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
-    },    {
-      id: 5, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
-        "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
-    }
-    ,    {
-      id: 6, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
-        "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
-    }
-  ]
+  // const trailse = [
+  //   {
+  //     id: 1, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
+  //       "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
+  //   },
+  //   {
+  //     id: 2, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
+  //       "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
+  //   },
+  //   {
+  //     id: 3, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
+  //       "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
+  //   },
+  //   {
+  //     id: 4, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
+  //       "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
+  //   },    {
+  //     id: 5, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
+  //       "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
+  //   }
+  //   ,    {
+  //     id: 6, trailImage:iconMockJs, trailName: "Lógica de Programação", trailDescription:
+  //       "Desbloquei o JavaScript: trilha de JavaScript e uma linguagem muito usada expanda seu conhecimento",
+  //   }
+  // ]
   return (
     <div className={`w-full flex flex-col items-center font-poppins   ${isTrailsActive||isDevelopmentActive?"bg-transparent":"bg-calygam-semi-strong-pink"}`}>
       {isSakuraActive ?

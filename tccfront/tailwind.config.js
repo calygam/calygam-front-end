@@ -31,7 +31,7 @@ export default {
         //  caio<- Agora com conjunto, visando ser mais semântico
         //pink
         'calygam-semi-strong-pink':'#B23A48',
-        'calygam-semi-light-pink':'#F4978E',
+        // 'calygam-semi-light-pink':'#F4978E',
         'calygam-extra-light-pink':"#FFB8B8",
         'calygam-semi-light-pink':'#FFB7B7',
         //red
@@ -48,8 +48,12 @@ export default {
         'calygam-gray-semi-light':'#D9D9D9',
         'calygam-gray-semi-strong':'#ADADAD',
         //black
-        'calygam-black-semi-strong':'#2F2E41'
-        //
+        'calygam-black-semi-strong':'#2F2E41',
+        //purple
+        'calygam-purple-semi-light':'#5D5578',
+        'calygam-purple-semi-bold':'#2A1C4A',
+        'calygam-purple-medium-bold':'#625380',
+        'calygam-purple-light':'#B892FF1A'
          
       },
       backgroundImage:{
@@ -70,6 +74,10 @@ export default {
         calygamScaleClean:{
           '0%':{transform:'scale(1.00) translateY(-3px)'},
           '100%':{transform:'scale(1.03) translateY(0px)'}
+        },
+        rotateYBadge:{
+          '0%':{transform:'rotateY(0deg)'},
+          '100%':{transform:'rotateY(360deg)'}
         }
       },
       // animation:{
@@ -84,7 +92,8 @@ export default {
         spinningCleanRage: 'spinningClean 3s linear alternate infinite',
         spinningCleanMediumRage: 'spinningClean 2.8s linear infinite',
         spinningCleanSuperRage: 'spinningClean 3.6s linear infinite',
-        calygamScaleClean: 'calygamScaleClean 2s alternate infinite ease-in-out'
+        calygamScaleClean: 'calygamScaleClean 2s alternate infinite ease-in-out',
+        rotateYBadge:'rotateYBadge 2s alternate infinite ease-in-out '
       }
 
     },

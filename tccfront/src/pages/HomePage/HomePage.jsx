@@ -34,17 +34,17 @@ export default function HomePage() {
   //DESCOMENTAR ESSA LINHA PARA VOLTAR O LOGIN
   const { setToken } = useAuth();
 
-  // useEffect(() => {
-  //   const searchParams = new URLSearchParams(location.search);
-  //   const urlToken = searchParams.get("token");
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const urlToken = searchParams.get("token");
 
-  //   if (urlToken) {
-  //     localStorage.setItem("token", urlToken);
-  //     setToken(urlToken);
-  //     navigate("/home");
-  //   }
+    if (urlToken) {
+      localStorage.setItem("token", urlToken);
+      setToken(urlToken);
+      navigate("/home");
+    }
 
-  // }, [location.search]);
+  }, [location.search]);
 
 
   return (

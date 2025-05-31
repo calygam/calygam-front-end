@@ -9,7 +9,7 @@ import { CalygamAuthContext } from "../../context/CalygamAuthContext/CalygamAuth
 import { DataProfileProvider } from "../../context/FetchDataProfileContext/FetchDataProfileContext";
 import { ReadAllTrailsProvider } from "../../context/ReadAllTrailsContext/ReadAllTrailsContext.jsx";
 import { LoadingProvider } from "../../context/LoadingContext/LoadingContext.jsx";
-
+import { ReadActivitiesByTrailIdProvider } from "../../context/ReadActivitiesByTrailIdContext/ReadActivitiesByTrailIdContext.jsx";
 
 //export const CalygamProvidersContext = createContext()
 
@@ -45,8 +45,11 @@ export default function CalygamProviders({ children }) {
                             userCpf, setUserCpf
                         }}>
                             <ReadAllTrailsProvider>
+                                <ReadActivitiesByTrailIdProvider>
 
+                               
                                 {children}
+                                 </ReadActivitiesByTrailIdProvider>
 
                             </ReadAllTrailsProvider>
                         </CalygamAuthContext.Provider>

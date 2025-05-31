@@ -7,8 +7,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
+import { Link } from 'react-router-dom';
+import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook';
 
 export default function CalygamCarouselOfTrails({ Trails }) {
+  const {setTrailId} = UseDataActivitiesPerTrailIdHook()
   return (
     <div className='w-[93%] flex flex-col font-poppins   '>
       <>
@@ -32,7 +35,7 @@ export default function CalygamCarouselOfTrails({ Trails }) {
                 <p className='text-xs text-white font-bold my-2'>{trail.trailName}</p>
                 <p className='text-xs font-light text-white/80 my-8'>{trail.trailDescription}</p>
                 <div className='w-full flex justify-center'>
-                  <button className='rounded-xl bg-white outline-none text-xs py-2 px-4'>Ir Para a Trilha</button>
+                  <Link to={"/Trilha"}><button className='rounded-xl bg-white outline-none text-xs py-2 px-4' onClick={()=>setTrailId(trail.trailId)}>Ir Para a Trilha</button></Link>
                 </div>
               </div>
             </SwiperSlide>
