@@ -8,19 +8,23 @@ const ReadActivitiesByTrailIdContext = createContext()
 
 export const ReadActivitiesByTrailIdProvider = ({ children }) => {
     const [activities, setActivities] = useState([])
+    const [targetActivity, setTargetActivity] = useState({})
     const { loading, setLoading, setLoadingText } = UseLoading()
+    const storedActivityId = Number(localStorage.getItem("targetActivityId"));
+    const [targetActivityId, setTargetActivityId] = useState(storedActivityId > 0 ? storedActivityId : 0);
+    const [position,setPosition] = useState(0)
     const navigation = useNavigate()
     const location = useLocation()
-const storedTrailId = Number(localStorage.getItem("TrailId"));
-const [trailId, setTrailId] = useState(storedTrailId > 0 ? storedTrailId : 0);
+    const storedTrailId = Number(localStorage.getItem("TrailId"));
+    const [trailId, setTrailId] = useState(storedTrailId > 0 ? storedTrailId : 0);
 
     const readActivitiesByTrailId = async () => {
         try {
             setLoading(true)
             setLoadingText("Carregando atividades...")
             const response = await api.get(`/activities/trail/${trailId}`)
-      
-     
+
+
             setActivities(response.data)
         }
         catch (e) {
@@ -31,33 +35,59 @@ const [trailId, setTrailId] = useState(storedTrailId > 0 ? storedTrailId : 0);
 
         }
     }
+    const readActivitiesByTrailAndActivityId = async () => {
+        try {
+            setLoading(true)
+            setLoadingText("Carregando atividade...")
+            const response = await api.get(`/activities/trail/${trailId}/activity/${targetActivityId}`)
+
+
+            setTargetActivity(response.data)
+        }
+        catch (e) {
+            console.log("algo deu errado tentando obter essa atividade :( " + e)
+        }
+        finally {
+            setLoading(false)
+
+        }
+    }
     useEffect(() => {
+        if (targetActivityId > 0) {
+            if (localStorage.getItem("token")) {
+                readActivitiesByTrailAndActivityId()
+            }
+        }
+    }, [targetActivityId])
+
+        useEffect(() => {
         if (localStorage.getItem("token")) {
             if (trailId > 0) {
-                localStorage.setItem("TrailId", trailId)
+                localStorage.setItem("targetActivityId", targetActivityId)
                 readActivitiesByTrailId()
-            } else if(location.pathname.includes("/Trilha")) {
-                localStorage.removeItem("TrailId")
-                navigation("/home")
+            } else {
+                localStorage.removeItem("targetActivityId")
             }
-        }else{
-            localStorage.removeItem("TrailId")
-          
+                
+           
+        } else {
+            localStorage.removeItem("targetActivityId")
+
         }
     }, [trailId, location.pathname])
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
-            if (!location.pathname.includes("/Trilha")) {
-                setTrailId(0)
-            }
-        }else{
+            
+                return
+            
+        } else {
             localStorage.removeItem("TrailId")
         }
     }, [location.pathname])
 
     return (
-        <ReadActivitiesByTrailIdContext.Provider value={{ activities, setTrailId }}>
+        <ReadActivitiesByTrailIdContext.Provider value={{ activities, setTrailId, trailId, targetActivityId, setTargetActivityId,position,setPosition,targetActivity }}>
             {children}
         </ReadActivitiesByTrailIdContext.Provider>
     )

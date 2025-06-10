@@ -6,19 +6,33 @@ import starProgress from '../../assets/img/star-progress-identifier.svg'
 import planetSaturn from '../../assets/img/planet-saturn.svg'
 import alienPlanet from  '../../assets/img/purple-planet-alien.svg'
 import aquaPlanet from  '../../assets/img/planet-aqua-florest.svg'
+import rocketOpenActivity from '../../assets/img/rocket-activity-open.svg'
+import lockedActivity from '../../assets/img/locked-activity-space.svg'
 
 //import houseactivity from '../../assets/img/house-activity.svg'
 import bookGrass from '../../assets/img/book-js.svg'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
-export default function CalygamactivityVillage({ Activities }) {
+import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook'
+export default function CalygamactivityVillage({ Activities,progress }) {
   const myPlanets = [planetSaturn,alienPlanet,aquaPlanet]
+  const {targetActivityId,setTargetActivityId,position,setPosition} = UseDataActivitiesPerTrailIdHook() 
+  const navigation = useNavigate()
  
+  const handlePositionAndIdentifier = (positionIndex,identifier,statusAtv)=>{
+    if(statusAtv==="ENABLE"){
+    setPosition(positionIndex)
+    setTargetActivityId(identifier)
+    if(positionIndex>0 && identifier>0){
+      navigation("/Atividade")
+    }
+  }
+  }
 
     return (
       <div className="md:w-[70%] w-full lg:w-full  flex flex-col items-center lg:items-center md:items-end   transition-all gap-y-3  py-12">
         {Activities.map((activity, index) => {
-          
+          let findTargetProgress = progress.progressList?.find(targetProgress=> targetProgress.activityId ===activity.activityId )
         
           let group = Math.floor(index / 3);
      
@@ -33,14 +47,14 @@ export default function CalygamactivityVillage({ Activities }) {
             <div
               key={activity.activityId}>
                          
-
+            {/* <p className={`${curve[index % 3]} text-white`}>{activity.activityName}</p> */}
 
             <div
              
               className={`w-fit flex items-center justify-center  text-white font-bold    transition-all duration-300 ${curve[index % 3]}`}
             >
        {activity.id ==0 ? <img src={bookGrass} alt="" className='w-16 animate-bounce' />:       <>
-             <span className='flex w-[90px] h-[90px] bg-gradient-to-br  rounded-3xl text-black bg-white  justify-center items-center  border-b-8 border-black/50 cursor-pointer hover:border-b-4'>{activity.activityId}</span>
+             <button type='button' onClick={()=>handlePositionAndIdentifier(index+1,activity.activityId,findTargetProgress?.activityStatus)} className={`flex w-[90px] outline-none  h-[90px] bg-gradient-to-br overflow-hidden  rounded-[32px] relative text-black ${findTargetProgress?.activityStatus ==="ENABLE"?"bg-blue-300  ":"bg-white/50 "} group justify-center items-center  border-b-8 border-black/50 cursor-pointer hover:border-b-4`}><img src={findTargetProgress?.activityStatus ==="ENABLE"?rocketOpenActivity:lockedActivity} alt='Trancada ou liberada' className={`${findTargetProgress?.activityStatus ==="ENABLE"?"transition-all duration-[1200ms] ease-linear group-hover:translate-x-24  group-hover:-translate-y-24 ring-offset-slate-400 absolute z-0":"transition-all ease-linear group-hover:scale-125"} w-[50px] h-[50px]`}></img></button>
 
               {index % 3 === 2 && group % 2 === 0 && index !== Activities.length - 1 && (
                

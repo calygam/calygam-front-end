@@ -13,6 +13,7 @@ import HomePage                from './pages/HomePage/HomePage.jsx'
 import AssignTeacher           from './pages/AssignTeacher/AssignTeacher.jsx'
 import MakeNewTrailPage        from './pages/MakeNewTrailPage/MakeNewTrailPage.jsx'
 import AboutLeassonPage        from './pages/AboutLeassonPage/AboutLeassonPage.jsx'
+import DetailMakeActivityPage from './pages/DetailMakeActivityPage/DetailMakeActivityPage.jsx'
 import Search                  from "./assets/img/searchIcon.png"
 import usePhotoMockData        from "./hooks/UserMockHook/UserMockHook.js"
 import { MockUserDataContext } from "./context/MockUserDataContext/MockUserDataContext.jsx"
@@ -45,6 +46,7 @@ function TccFront() {
              <Route path="/Coordenacao" element={<AssignTeacher/>}/> 
             <Route path="/home" element={<HomePage/>}/>
             <Route path="/Trail/Criar" element={<MakeNewTrailPage/>}/>
+            <Route path="/Atividade" element={<DetailMakeActivityPage/>}/>
           </Routes>
           </CalygamProviders>
           

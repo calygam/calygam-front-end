@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function AdminButtonDasnboard({ iconAreaDash, textAreaDash,identifier,selectedButton,setSelectedButton }) {
+export default function AdminButtonDasnboard({ iconAreaDash, textAreaDash,identifier,selectedButton,setSelectedButton,modifyStyles }) {
 
     return (
         <button type='button' className='flex justify-center outline-none font-poppins cursor-pointer items-center  w-full group   rounded-l-xl relative   lg:p-4 py-4 px-6    ' onClick={()=> setSelectedButton(identifier)}>
@@ -18,7 +18,7 @@ export default function AdminButtonDasnboard({ iconAreaDash, textAreaDash,identi
                 </div>
 }                  {iconAreaDash&&
                 <div>
-                    <p className={`  ${identifier === selectedButton?  " text-red-clean-type font-semibold":" text-gray-500"}`}>{textAreaDash}</p>
+                    <p className={`  ${identifier === selectedButton?  ` ${modifyStyles?modifyStyles.selectedColorText: "text-red-clean-type font-semibold"}`:" text-gray-500"}`}>{textAreaDash}</p>
                 </div>
 }
                 {!iconAreaDash&&

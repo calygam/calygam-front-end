@@ -10,6 +10,7 @@ import { DataProfileProvider } from "../../context/FetchDataProfileContext/Fetch
 import { ReadAllTrailsProvider } from "../../context/ReadAllTrailsContext/ReadAllTrailsContext.jsx";
 import { LoadingProvider } from "../../context/LoadingContext/LoadingContext.jsx";
 import { ReadActivitiesByTrailIdProvider } from "../../context/ReadActivitiesByTrailIdContext/ReadActivitiesByTrailIdContext.jsx";
+import { ReadProgressByUserProvider } from "../../context/ReadProgressByUserContext/ReadProgressByUserContext.jsx";
 
 //export const CalygamProvidersContext = createContext()
 
@@ -37,22 +38,24 @@ export default function CalygamProviders({ children }) {
 
                 <DataProfileProvider>
                     <MockUserDataContext.Provider value={{ userPhoto, loadingMock }}>
-                        <CalygamAuthContext.Provider value={{
-                            userName, setUserName,
-                            userEmail, setUserEmail,
-                            userPassword, setUserPassword,
-                            userPhone, setUserPhone,
-                            userCpf, setUserCpf
-                        }}>
-                            <ReadAllTrailsProvider>
-                                <ReadActivitiesByTrailIdProvider>
+                        <ReadProgressByUserProvider>
+                            <CalygamAuthContext.Provider value={{
+                                userName, setUserName,
+                                userEmail, setUserEmail,
+                                userPassword, setUserPassword,
+                                userPhone, setUserPhone,
+                                userCpf, setUserCpf
+                            }}>
+                                <ReadAllTrailsProvider>
+                                    <ReadActivitiesByTrailIdProvider>
 
-                               
-                                {children}
-                                 </ReadActivitiesByTrailIdProvider>
 
-                            </ReadAllTrailsProvider>
-                        </CalygamAuthContext.Provider>
+                                        {children}
+                                    </ReadActivitiesByTrailIdProvider>
+
+                                </ReadAllTrailsProvider>
+                            </CalygamAuthContext.Provider>
+                        </ReadProgressByUserProvider>
 
                     </MockUserDataContext.Provider>
                 </DataProfileProvider>
