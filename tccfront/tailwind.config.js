@@ -30,9 +30,11 @@ export default {
          'salmon-calygam-clean':"#FFDAB9",
         //  caio<- Agora com conjunto, visando ser mais semântico
         //pink
+        'calygam-strong-pink':"#CE82FF",
         'calygam-semi-strong-pink':'#B23A48',
         // 'calygam-semi-light-pink':'#F4978E',
         'calygam-extra-light-pink':"#FFB8B8",
+
         'calygam-semi-light-pink':'#FFB7B7',
         //red
         'calygam-semi-strong-red':"#E74040",

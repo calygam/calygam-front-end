@@ -1,9 +1,9 @@
 import { FormatCoins } from "../../utils/FormatCoins/FormatCoins.js";
+import { RegexPassword } from "../RegexPassword/RegexPassword.js";
 
-export const handleInputModify = (e, step, setForm, form, setImagePreview) => {
+export const handleInputModify = (e, step, setForm, form, setImagePreview,setFormErrors) => {
   const { name, value, files } = e.target;
 
-  // ── upload de imagem ─────────────────────────────────────────────────────────
   if (name === "trailImage") {
     if (files?.length) {
       setForm(prev => ({ ...prev, trailImage: files[0] }));
@@ -15,17 +15,34 @@ export const handleInputModify = (e, step, setForm, form, setImagePreview) => {
     return;
   }
 
-  // ── trailPoints com máscara ────────────────────────────────────────────────
+if (name === "trailPassword") {
+ 
+    setFormErrors(prev => ({ ...prev, trailPassword: RegexPassword(value) }));
+    
+ 
+}
+
+
   if (name === "trailPoints") {
-    const onlyNums  = value.replace(/\D/g, "") || "0";    // força ao menos "0"
+    const onlyNums  = value.replace(/\D/g, "") || "0";  
+    if(onlyNums.length>6)return  
     const formatted = FormatCoins(onlyNums);
     setForm(prev => ({ ...prev, trailPoints: formatted }));
     return;
   }
+    if (name === "trailVacancy") {
+    const onlyNums  = value.replace(/\D/g, "") || "0";  
+    const numInt = parseInt(onlyNums)
+    if(numInt>45)return
+    if(onlyNums.length>2)return  
+    const formatted = FormatCoins(onlyNums);
+    setForm(prev => ({ ...prev, trailVacancy: formatted }));
+    return;
+  }
+  
 
-  // ── activityPoints com máscara e sem NaN ───────────────────────────────────
   if (name === "activityPoints") {
-    // remove não dígitos, e garante "0" se ficar vazio
+
     const onlyNums  = value.replace(/\D/g, "") || "0";
     const formatted = FormatCoins(onlyNums);
 
@@ -40,30 +57,36 @@ export const handleInputModify = (e, step, setForm, form, setImagePreview) => {
     return;
   }
 
-  // ── vagas ─────────────────────────────────────────────────────────────────
   if (name === "trailVacancy") {
     if (value.length > 2) return;
     setForm(prev => ({ ...prev, trailVacancy: value }));
     return;
   }
 
-  // ── nome da trilha ────────────────────────────────────────────────────────
   if (name === "trailName") {
-    if (value.length > 25) return;
+    if (value.length > 20) return;
     setForm(prev => ({ ...prev, trailName: value }));
     return;
   }
+    if (name === "trailDescription") {
+    if (value.length > 200) return;
+    setForm(prev => ({ ...prev, trailDescription: value }));
+    return;
+  }
 
-  // ── campos do step 0 ───────────────────────────────────────────────────────
   if (step === 0) {
     setForm(prev => ({ ...prev, [name]: value }));
     return;
   }
 
-  // ── demais campos de atividades (name, description, difficulty) ────────────
   setForm(prev => {
     const activities = [...prev.activities];
     activities[step - 1] = { ...activities[step - 1], [name]: value };
     return { ...prev, activities };
   });
+
+
+
+
+
 };

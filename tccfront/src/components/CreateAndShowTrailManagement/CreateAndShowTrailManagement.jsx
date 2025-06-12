@@ -15,15 +15,20 @@ import { FormatCoins } from '../../utils/FormatCoins/FormatCoins.js';
 import { AuxiliaryLibraryResponse } from '../../utils/AuxiliaryLibraryResponse/AuxiliaryLibraryResponse.js';
 import { UseLoading } from '../../hooks/UseLoading/UseLoading.js';
 
+import eyeOpen from '../../assets/img/eye-pass-open.png'
+import eyeClose from '../../assets/img/eye-pass-close.png'
+
 export default function CreateAndShowTrailManagement() {
   const [step, setStep] = useState(0);
   const { trails, targetTrailId, setTargetTrailId } = UseReadAllTrailsHook();
+  const [formErrors, setFormErrors] = useState({});
+  const [eyeIsOpen, setEyeIsOpen] = useState(false)
   const [isPublish, setIsPublish] = useState(false)
   const { loading, setLoading, setLoadingText } = UseLoading()
   const [imagePreview, setImagePreview] = useState(null);
   const targetTrail = trails.find(oneTrail => oneTrail.trailId === targetTrailId);
 
- 
+
   const [selectedDifficultyOption, setSelectedDifficultyOption] = useState('');
   const [codeTarget, setCodeTarget] = useState("")
   const [form, setForm] = useState({
@@ -35,7 +40,6 @@ export default function CreateAndShowTrailManagement() {
     trailImage: '',
     activities: [],
   });
-
 
 
 
@@ -113,7 +117,7 @@ export default function CreateAndShowTrailManagement() {
     }
   }, [step, form.activities]);
 
-  const submitForm = async e => {
+  const submitForm = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('trailName', form.trailName.trim());
@@ -121,7 +125,7 @@ export default function CreateAndShowTrailManagement() {
     const rawtrailPts = String(form.trailPoints).replace(/[.,]/g, '');
     formData.append('trailPrice', Number(rawtrailPts));
     if (form.trailImage) formData.append('trailFileImage', form.trailImage);
-    formData.append('trailPassword', form.trailPassword.trim());
+    formData.append('trailPassword', isPublish ? "" : form.trailPassword.trim());
     formData.append('trailVacancies', Number(form.trailVacancy));
     form.activities.forEach((activity, index) => {
       if (activity.activityId) {
@@ -204,7 +208,7 @@ export default function CreateAndShowTrailManagement() {
                 id="nameTrail"
                 placeholder="Nome"
                 value={form.trailName}
-                onChange={e => handleInputModify(e, step, setForm, form, setImagePreview)}
+                onChange={e => handleInputModify(e, step, setForm, form, setImagePreview, setFormErrors)}
                 required
                 className="md:w-full  md:mx-0  p-3 focus:outline-none rounded-lg outline-none border-none"
               />
@@ -258,18 +262,27 @@ export default function CreateAndShowTrailManagement() {
                 <label className="text-white font-bold" htmlFor="passwordTrail">
                   Senha da Trilha
                 </label>
-                <input
-                  type="password"
-                  name="trailPassword"
-                  id="passwordTrail"
-                  placeholder="senha"
-                  value={form.trailPassword}
-                  onChange={e => handleInputModify(e, step, setForm, form, setImagePreview)}
-                  required
-                  className="lg:w-[150px] md:w-[125px] p-3 focus:outline-none rounded-lg outline-none border-none"
-                />
+                <div className=' flex px-2 rounded-md justify-between   bg-white'>
+                  <input
+                    type={eyeIsOpen?"text":"password"}
+                    name="trailPassword"
+                    id="passwordTrail"
+                    placeholder="senha"
+                    value={form.trailPassword}
+                    // onChange={e => handleInputModify(e, step, setForm, form, setImagePreview)}
+                    onChange={e => handleInputModify(e, step, setForm, form, setImagePreview, setFormErrors)}
+                    required
+                    className="  focus:outline-none pr-3 rounded-lg bg-transparent outline-none border-none"
+                  />
+                  <button type='button' className='bg-white  outline-none rounded-r-lg' onClick={() => setEyeIsOpen(!eyeIsOpen)}>
+                    <img src={eyeIsOpen ? eyeOpen : eyeClose} alt="" className='w-[25px] outline-none h-[25px] object-cover rounded-r-lg' />
+                  </button>
+                </div>
+                {formErrors && <p className='text-red-500 transition-all ease-in-out duration-1000 text-xs my-2 font-bold bg-black rounded-md'>{formErrors.trailPassword ? "*" + formErrors.trailPassword : ""}</p>}
               </div>
+
             </div>
+
             <div className="w-full">
               <label
                 htmlFor="imageTrail"
@@ -337,7 +350,7 @@ export default function CreateAndShowTrailManagement() {
               <button type="button" onClick={() => goToNextForm(step, setStep, form, setForm)} className="px-6 h-[40px] bg-red-500/35 text-white rounded-lg border-b-4 border-black/35 hover;border-b-0">
                 Próximo
               </button>
-              
+
               <button type="submit" className="relative group overflow-hidden px-6 h-[40px] bg-red-500/35 text-white rounded-lg border-b-4 border-black/35 hover;border-b-0">
                 <div className="relative z-10 group-hover:translate-x-[99px] group-hover:-translate-y-[99px] transition-all duration-[1300ms] ease-in-out">
                   <img src={toSend} alt="" className="w-[25px] h-[25px]" />
@@ -357,7 +370,7 @@ export default function CreateAndShowTrailManagement() {
                 Limpar
               </button>
 
-              {form.trailName !== '' && form.trailDescription !== '' && form.trailVacancy > 0 && form.trailVacancy < 60 ? (
+              {form.trailName !== '' && form.trailDescription !== '' && form.trailVacancy > 0 && form.trailVacancy < 60 && formErrors.trailPassword === "" ? (
                 <button type="button" onClick={() => goToNextForm(step, setStep, form, setForm)} className="px-6 h-[40px] bg-red-300 text-white rounded-lg border-b-4 border-gray-500/45 hover:border-b-0">
                   Próximo
                 </button>
