@@ -40,7 +40,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
     // }, [userCpf, errorTarget]);
 
     return (
-        <div className={` w-[250px] md:w-[300px] lg:w-[400px] font-poppins my-4    lg flex flex-col bg-white/50 mx-auto min-h-[350px] h-full rounded-md `}>
+        <div className={`font-poppins flex flex-col  bg-white/5  min-h-screen  `}>
             <h2 className='text-center font-semibold mt-2 text-3xl'>{actionName}</h2>
 
             <form className='flex flex-col  w-full items-center h-full' onSubmit={handleSendFormAuth}>
@@ -177,7 +177,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                         actionName == "Cadastre-se" ?
 
 
-                            <button type='submit' disabled={validEmail != '' || userName.length>15|| validPassword != '' || errorTarget != "" ? true : false} className={`w-[125px] px-4 py-2  text-white   border-b-4 ${validEmail != "" || validPassword != '' || userCpf.length > 14 || errorTarget != "" ? 'border-red-950/15 bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed' :
+                            <button type='submit' disabled={validEmail != '' || userName.length>15|| validPassword != '' || errorTarget != "" ? true : false} className={`w-[125px] px-4 py-2  text-white   border-b-4 ${validEmail != "" || validPassword != '' || userCpf.length > 14 || errorTarget != "" ? 'border-red-950/15 h-[50px] bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed' :
                                 'bg-red-clean-type border-b-4 border-red-800 hover:border-0 hover:bg-red-700 '}  md:w-[175px] lg:w-[225px] rounded-b-xl rounded-md`}>
                                 {actionForm}
 

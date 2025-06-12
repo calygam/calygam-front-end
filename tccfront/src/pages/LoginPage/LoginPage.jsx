@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import backPage from '../../assets/img/back-page.svg'
-import mobileLoginDesert from '../../assets/img/mobile-login-desert.jpg'
-import desktopLoginDesert from '../../assets/img/desktop-login-desert.jpg'
+import mobileLoginDesert from '../../assets/img/waves-login.png'
+import desktopLoginDesert from '../../assets/img/waves-login.png'
 
 import AuthFormComponent from '../../components/AuthFormComponent/AuthFormComponent.jsx'
 import { Link, useNavigate } from 'react-router-dom'
@@ -71,19 +71,19 @@ export default function LoginPage() {
             <LoadingCrazy/>
           :null}
           </div>
-    <div className='w-full min-h-lvh flex flex-col h-full '  >
+  
       
-      <Link className='w-full mt-3 pl-5' to={"/Register"}>
-        <img src={backPage} alt="" className='w-6 h-6'/>
-
-      </Link>
-      <div className='mt-4'>
+   
+      <div className=' w-full grid grid-cols-2 place-items-center'>
+        <div className=''>
+          
+        </div>
       <AuthFormComponent className={"mt-3"} actionName={"Login"}  nameRequired={false} newUser={true} actionForm={"Entrar"} handleSendFormAuth={loginStyleForm} errorTarget={""}/>
       </div>
 
       
       
-    </div>
+  
     </div>
   )
 }

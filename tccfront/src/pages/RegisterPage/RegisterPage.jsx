@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthFormComponent from '../../components/AuthFormComponent/AuthFormComponent'
 import Header from '../../components/Header/Header'
-import mobileLoginDesert from '../../assets/img/mobile-login-desert.jpg'
+
 import backPage from '../../assets/img/back-page.svg'
-import desktopLoginDesert from '../../assets/img/desktop-login-desert.jpg'
+import mobileLoginDesert from '../../assets/img/waves-login.png'
+import desktopLoginDesert from '../../assets/img/waves-login.png'
 import { TargetBackgroundByWidth } from '../../utils/TargetBackgroundByWidth/TargetBackgroundByWidth'
 import api from '../../api/api'
 import { CalygamAuthContext } from '../../context/CalygamAuthContext/CalygamAuthContext'
 import LoadingCrazy from '../../components/LoadingCrazy/LoadingCrazy'
 import { getValidCPF } from '../../utils/ValidateCPF/ValidateCPF'
 import { Link, useNavigate } from 'react-router-dom'
+import { motion } from "framer-motion";
 
 export default function RegisterPage() {
   const { userName, setUserName,
@@ -72,7 +74,7 @@ export default function RegisterPage() {
 
 
   return (
-    <div className='w-full min-h-lvh flex flex-col h-full  '
+    <div className='w-full  flex flex-col  overflow-hidden '
       style={{
         backgroundImage: TargetImagePerWidth,
 
@@ -87,12 +89,19 @@ export default function RegisterPage() {
         {loading?
           <LoadingCrazy/>
         :null}
-        <div className='w-full min-h-lvh flex flex-col h-full '  >
-            <Link className='w-full mt-1 pl-5' to={"/"}>
+        <div className='w-full  flex flex-col  '  >
+            {/* <Link className='w-full mt-1 pl-5' to={"/"}>
         <img src={backPage} alt="" className='w-6 h-6'/>
 
-      </Link>
+      </Link> */}
+      <motion.div className='grid grid-cols-2 w-full   overflow-hidden  '
+      initial={{translateX:"130vw"}}
+      animate={{translateX:"0vw"} }
+      
+      transition={{type:"tween",duration:0.8,ease:"easeInOut"}}>
+        <div></div>
         <AuthFormComponent actionName={"Cadastre-se"} nameRequired={true} actionForm={"Cadastrar"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
+        </motion.div>
       </div>
       </div>
     </div>
