@@ -8,7 +8,7 @@ export default function CardAnalisisView({titleAnalisis,numberAnalisis,positionI
     const rounded = useTransform(() => Math.round(count.get()))
 
     useEffect(() => {
-        const controls = animate(count, numberAnalisis, { duration: 6})
+        const controls = animate(count, numberAnalisis, { duration: 5})
         return () => controls.stop()
     }, [])
 

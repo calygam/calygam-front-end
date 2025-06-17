@@ -77,7 +77,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
       animate={{translateX:"0vw"} }
       transition={{type:"tween",duration:0.8,ease:"easeInOut"}}>
             <div className='w-10/12 flex flex-col '>
-                <div className='w-full flex justify-between flex-wrap gap-2 my-6 '>
+                <div className='w-full flex justify-between flex-wrap gap-2 my-2 '>
                     <p className='text-white font-normal text-lg text-nowrap'>Bem Vindo ao <span className='text-calygam-purple-semi-strong'>Calygam</span></p>
                     {!newUser ?
                         <div className='flex flex-col  justify-center items-center text-xs'>
@@ -123,7 +123,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
 
 
                 </div>
-                <div className='flex flex-col w-full items-center mt-3  space-y-2'>
+                <div className='flex flex-col w-full items-center   space-y-2'>
 
                     <p>OU</p>
                     <span className='w-[100px] md:w-[150px] lg:w-[200px] h-[2px] bg-white' ></span>

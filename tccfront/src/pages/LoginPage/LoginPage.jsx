@@ -80,7 +80,7 @@ export default function LoginPage() {
             <div className='grid md:grid-cols-2 grid-cols-1 w-full place-items-center md:place-items-stretch   overflow-hidden  '
 >
         <div>
-          <img src={trailCalygamLogo} alt="" className='w-[100px] h-[100px]' />
+          <img src={trailCalygamLogo} alt="" className='lg:w-[700px] lg:h-[700px] md:w-[400px] w-[50px] h-[50px]  md:h-[400px]' />
         </div>
       <AuthFormComponent className={"mt-3"} actionName={"Login"}  nameRequired={false} newUser={true} actionForm={"Entrar"} handleSendFormAuth={loginStyleForm} errorTarget={""}/>
       </div>

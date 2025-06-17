@@ -49,6 +49,7 @@ export default {
         //gray
         'calygam-gray-semi-light':'#D9D9D9',
         'calygam-gray-semi-strong':'#ADADAD',
+        'calygam-gray-medium-light':'#535862',
         //black
         'calygam-black-semi-strong':'#2F2E41',
         //purple
@@ -61,6 +62,7 @@ export default {
 
         //white
         'calygam-white-matte':"#E9F1FF",
+        'calygam-white-semi-light':"#FAFAFA",
 
         //blue
         'calygam-blue-semi-bold':"#000437",

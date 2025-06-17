@@ -72,6 +72,7 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
                     <nav className='w-[95%] space-y-5 flex flex-col py-3'>
                         <ul>
                             {trailSettings?.menus?.map((info, index) => (
+                                info.navRoute &&
                                 <li key={index} className='my-3'>
                                     <AdminButtonDasnboard iconAreaDash={info.routeIcon} textAreaDash={info.navNameRoute} identifier={index} selectedButton={selectedButton} setSelectedButton={setSelectedButton} modifyStyles={modifyStyles} />
                                 </li>
