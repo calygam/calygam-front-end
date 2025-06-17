@@ -49,13 +49,24 @@ export default {
         //gray
         'calygam-gray-semi-light':'#D9D9D9',
         'calygam-gray-semi-strong':'#ADADAD',
+        'calygam-gray-medium-light':'#535862',
         //black
         'calygam-black-semi-strong':'#2F2E41',
         //purple
         'calygam-purple-semi-light':'#5D5578',
         'calygam-purple-semi-bold':'#2A1C4A',
+        'calygam-purple-semi-strong':'#5A189A',
         'calygam-purple-medium-bold':'#625380',
-        'calygam-purple-light':'#B892FF1A'
+        'calygam-purple-light':'#B892FF1A',
+        'calygam-purple-medium-light':"#6813DE",
+
+        //white
+        'calygam-white-matte':"#E9F1FF",
+        'calygam-white-semi-light':"#FAFAFA",
+
+        //blue
+        'calygam-blue-semi-bold':"#000437",
+        'calygam-blue-semi-light':"#4285F4"
          
       },
       backgroundImage:{

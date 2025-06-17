@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthFormComponent from '../../components/AuthFormComponent/AuthFormComponent'
 import Header from '../../components/Header/Header'
-import mobileLoginDesert from '../../assets/img/mobile-login-desert.jpg'
+
 import backPage from '../../assets/img/back-page.svg'
-import desktopLoginDesert from '../../assets/img/desktop-login-desert.jpg'
+import mobileLoginDesert from '../../assets/img/waves-login.png'
+import trailCalygamLogo from '../../assets/img/trail-calygam-logo.svg'
+import desktopLoginDesert from '../../assets/img/waves-login.png'
 import { TargetBackgroundByWidth } from '../../utils/TargetBackgroundByWidth/TargetBackgroundByWidth'
 import api from '../../api/api'
 import { CalygamAuthContext } from '../../context/CalygamAuthContext/CalygamAuthContext'
 import LoadingCrazy from '../../components/LoadingCrazy/LoadingCrazy'
 import { getValidCPF } from '../../utils/ValidateCPF/ValidateCPF'
 import { Link, useNavigate } from 'react-router-dom'
+import { motion } from "framer-motion";
 
 export default function RegisterPage() {
   const { userName, setUserName,
@@ -72,7 +75,7 @@ export default function RegisterPage() {
 
 
   return (
-    <div className='w-full min-h-lvh flex flex-col h-full  '
+    <div className='w-full  flex flex-col min-h-screen  overflow-hidden '
       style={{
         backgroundImage: TargetImagePerWidth,
 
@@ -87,12 +90,18 @@ export default function RegisterPage() {
         {loading?
           <LoadingCrazy/>
         :null}
-        <div className='w-full min-h-lvh flex flex-col h-full '  >
-            <Link className='w-full mt-1 pl-5' to={"/"}>
+        <div className='w-full  flex flex-col  '  >
+            {/* <Link className='w-full mt-1 pl-5' to={"/"}>
         <img src={backPage} alt="" className='w-6 h-6'/>
 
-      </Link>
-        <AuthFormComponent actionName={"Cadastre-se"} nameRequired={true} actionForm={"Cadastrar"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
+      </Link> */}
+      <div className='grid md:grid-cols-2 grid-cols-1 w-full place-items-center md:place-items-stretch   overflow-hidden  '
+  >
+        <div>
+          <img src={trailCalygamLogo} alt="" className='w-[100px] h-[100px]' />
+        </div>
+        <AuthFormComponent actionName={"Criar Conta"} nameRequired={true} actionForm={"Cadastrar"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
+        </div>
       </div>
       </div>
     </div>

@@ -34,13 +34,14 @@ import { DisplayCleaner } from '../../stylebase/DisplayStyle/DisplayStyle.js'
 import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile.js'
 import MenuCalygamAdmin from '../../components/MenuCalygamAdmin/MenuCalygamAdmin.jsx'
 
-
+import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js'
 //images
  import homeIcon from '../../assets/img/home-icon-menu.svg'
  import loljaIcon from '../../assets/img/lolja-icon-menu.svg'
  import perfilIcon from '../../assets/img/perfil-icon-menu.svg'
  import moreIcon from '../../assets/img/menu-icon-trail.svg'
-import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js'
+
+
 
 
 
@@ -57,7 +58,7 @@ export default function TrailPage() {
     
   },[trailId])
 // const UseProgr
-  const { setToken } = useAuth();
+  // const { setToken } = useAuth();
   const { userPhoto } = useContext(MockUserDataContext)
   const [userDataMock, setUserDataMock] = useState([])
   const [isEnabled,setIsEnabled] = useState(false)
@@ -71,18 +72,27 @@ export default function TrailPage() {
     roundedSelected:"rounded-xl rounded-bl-none"
 }
 
-const baseMenus = {
-    home: { label: 'Home', icon: homeIcon, showInNav: true },
-    lolja: { label: 'Lolja', icon: loljaIcon, showInNav: false },
-    perfil: { label: 'Perfil', icon: perfilIcon, showInNav: true },
-    mais: { label: 'Mais', icon: moreIcon, showInNav: false }
-};
+const infoAdminButton = [
+  {
+    routeIcon:homeIcon,
+    navNameRoute:"Home"
+  },
+  {
+    routeIcon:loljaIcon,
+    navNameRoute:"Lolja"
+  },
+  {
+    routeIcon:perfilIcon,
+    navNameRoute:"Perfil"
+  },
+
+];
 
 // Função para criar trailSettings
 const createTrailSettings = (showNav) => ({
     logoImage,
     showNav,
-    menus: baseMenus
+    menus: infoAdminButton
 });
 
 
@@ -163,59 +173,59 @@ const createTrailSettings = (showNav) => ({
   //   { id: 57, label: "olaaa", deleted: false, boss: false, locked: true },
   //   { id: 58, label: "olaaa", deleted: false, boss: false, locked: true },
   // ];
-  // const numbers = [
-  //   { id: 1, label: "olaaa", deleted: false, boss: false, locked: false },
-  //   { id: 2, label: "olaaa", deleted: false, boss: true, locked: true },
-  //   { id: 3, label: "olaaa", deleted: false, boss: false, locked: false },
-  //   { id: 4, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 5, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 6, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 7, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 8, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 9, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 10, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 11, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 12, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 13, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 14, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 15, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 16, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 17, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 18, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 19, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 20, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 21, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 22, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 23, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 24, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 25, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 26, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 27, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 28, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 29, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 30, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 31, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 32, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 33, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 34, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 35, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 36, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 37, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 38, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 39, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 40, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 41, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 42, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 43, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 44, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 45, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 46, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 47, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 48, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 49, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 50, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 51, label: "olaaa", deleted: false, boss: false, locked: true },
-  // ];
+  const numbers = [
+    { id: 1, label: "olaaa", deleted: false, boss: false, locked: false },
+    { id: 2, label: "olaaa", deleted: false, boss: true, locked: true },
+    { id: 3, label: "olaaa", deleted: false, boss: false, locked: false },
+    { id: 4, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 5, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 6, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 7, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 8, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 9, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 10, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 11, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 12, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 13, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 14, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 15, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 16, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 17, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 18, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 19, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 20, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 21, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 22, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 23, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 24, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 25, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 26, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 27, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 28, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 29, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 30, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 31, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 32, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 33, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 34, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 35, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 36, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 37, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 38, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 39, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 40, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 41, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 42, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 43, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 44, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 45, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 46, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 47, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 48, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 49, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 50, label: "olaaa", deleted: false, boss: false, locked: true },
+    { id: 51, label: "olaaa", deleted: false, boss: false, locked: true },
+  ];
 
   return (
     <div className='w-full font-poppins min-h-screen h-full outline-none    bg-calygam-purple-semi-bold '>
@@ -259,7 +269,7 @@ const createTrailSettings = (showNav) => ({
         {/*CAIO<- USAR ESTRATEGIA DE CONTROLE TOTAL DE COMPONENTE A PERTIR DE AGORA */}
       </div>
       <div className='mt-[200px]  '>
-        <CalygamTrailVillage Activities={activities} progress={progress} />
+        <CalygamTrailVillage Activities={numbers} progress={progress} />
       </div>
 
 

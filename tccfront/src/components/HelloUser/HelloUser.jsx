@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import RankingViewProgress from '../RankingViewProgress/RankingViewProgress'
 import usePhotoMockData from '../../hooks/UserMockHook/UserMockHook'
 import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile'
@@ -8,7 +8,11 @@ import iconOfTeacher from '../../assets/img/icon-of-teacher.svg'
 
 export default function HelloUser({ IconBadgeRank }) {
     const {userPhoto} = usePhotoMockData()
-    const {dataProfile,loading} = UseDataProfile()
+        const {dataProfile,loading} = UseDataProfile()
+    useEffect(()=>{
+        console.log(dataProfile.userImage)
+    },[dataProfile.userImage])
+
     return (
         <div className={`relative ${IconBadgeRank?"sticky md:justify-between bg-black/80":"relative py-8 justify-between bg-calygam-semi-light-red w-full"} flex w-full transition-all delay-100 duration-200 ease-in-out rounded-lg font-poppins gap-y-3 md:gap-x-0 gap-x-32   justify-center flex-wrap items-center  py-4 px-6  `}>
             {/* {loading && <LoadingCrazy/>
@@ -18,7 +22,7 @@ export default function HelloUser({ IconBadgeRank }) {
             {IconBadgeRank?
                 <div className=' rounded-full'>
                     <span className='flex bg-slate-500 rounded-full'>
-                        <img src={userPhoto.medium} alt="" className='w-[65px] h-[65px] rounded-full' />
+                        <img src={`${dataProfile.userImage?dataProfile.userImage:userPhoto.medium}`} alt="" className='w-[65px] h-[65px] rounded-full' />
                     </span>
                 </div>
                 :null}

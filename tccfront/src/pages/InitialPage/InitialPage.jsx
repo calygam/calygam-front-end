@@ -11,15 +11,24 @@ import SenaiRollCardsCourse from '../../components/SenaiRollCardsCourse/SenaiRol
 import ChooseTheSchool from '../../components/ChooseTheSchool/ChooseTheSchool.jsx'
 import FooterAssesment from '../../components/FooterAssessment/FooterAssesment.jsx'
 import Header from '../../components/Header/Header.jsx'
+import CalygamHeaderConfigurer from '../../components/CalygamHeaderConfigurer/CalygamHeaderConfigurer.jsx'
 
 export default function InitialPage() {
+  const navRoutes=[
+    {navRoute:"/Login",navNameRoute:"Entrar"},
+    {navRoute:"/Register",navNameRoute:"Criar Conta"},
+    {navRoute:"/",navNameRoute:"Home"},
+
+  ]
+  
  useEffect(()=>{
     localStorage.removeItem("token")
   },[])
   return (
     <div>
       <header>
-        <Header />
+        {/* <Header /> */}
+        <CalygamHeaderConfigurer navRoutes={navRoutes}/>
 
       </header>
       <StudentWhichBook />
