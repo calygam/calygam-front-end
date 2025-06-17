@@ -19,15 +19,23 @@ import imgShare from '../../assets/img/community-represent-group.png'
 import bgActivitys from '../../assets/img/bg-blur-recently-activity.png'
 import bgAnalytics from '../../assets/img/bg-blur-analytics.png'
 import imgBallFinalForm from '../../assets/img/blur-ball-final-form.png'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
+import CalygamHeaderConfigurer from '../../components/CalygamHeaderConfigurer/CalygamHeaderConfigurer.jsx'
+import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile.js'
 
+//imagens
+import homeIcon from '../../assets/img/home-icon-menu.svg'
+import loljaIcon from '../../assets/img/lolja-icon-menu.svg'
+import perfilIcon from '../../assets/img/perfil-icon-menu.svg'
+import moreIcon from '../../assets/img/menu-icon-trail.svg'
 
 export default function HomePage() {
 
 
   const location = useLocation();
-
+  const navigate = useNavigate()
+  const {dataProfile,loading} = UseDataProfile()
 
 
 
@@ -46,12 +54,21 @@ export default function HomePage() {
 
   }, [location.search]);
 
+  const navRoutes = [
+    ["ADMIN", "INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
+    { navRoute: "/Coordenacao", navNameRoute: "Equipe",routeIcon:homeIcon },
+    ["INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
+    { navRoute: "/Trail/Criar", navNameRoute: "Oficina",routeIcon:homeIcon },
+    { navRoute: "/", navNameRoute: "Trilhas",routeIcon:homeIcon }
+
+  ]
+
 
   return (
     <div className='w-full font-poppins  transition-all delay-100 duration-200 ease-in-out'>
       
       <header>
-        <Header withPhoto={false} />
+       <CalygamHeaderConfigurer navRoutes={navRoutes} baseMenus={navRoutes}/>
       </header>
       <main className='w-full space-y-14'>
 

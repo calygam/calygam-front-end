@@ -62,7 +62,7 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
             {isEnabled &&
             
                 <div className={`flex ${trailSettings ? "md:hidden fixed -z-10 " : "lg:hidden fixed -z-10"}  w-full h-full    bg-black/50 `}></div>}
-            <menu className={`w-full flex flex-col items-end  ${location.pathname == "/Trilha" || "/Atividade" ? "bg-purple-950 md:bg-calygam-purple-light" : "bg-calygam-brown-semi-light"} lg:pt-8 overflow-y-auto  pt-0 h-full`}>
+            <menu className={`w-full flex flex-col items-end  ${["/Trilha","/Atividade"].includes(location.pathname)? "bg-calygam-purple-semi-bold md:bg-calygam-purple-light" : "bg-calygam-purple-semi-bold"} lg:pt-8 overflow-y-auto  pt-0 h-full`}>
                 <div className={`w-full ${trailSettings ? "md:hidden" : "lg:hidden"} flex justify-end pr-5 text-black  font-black text-xl`}>
                     <button className='text-white font-bold' onClick={() => setIsEnabled(!isEnabled)}> {isEnabled ? "X" : "/"}</button></div>
                 <div className={`w-full flex justify-center ${trailSettings ? "border-none" : "border-b"} border-gray-400/50 lg:py-7  p-5  `}>
@@ -71,9 +71,9 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
                 {trailSettings?.showNav &&
                     <nav className='w-[95%] space-y-5 flex flex-col py-3'>
                         <ul>
-                            {infoAdminButton.map((info, index) => (
+                            {trailSettings?.menus?.map((info, index) => (
                                 <li key={index} className='my-3'>
-                                    <AdminButtonDasnboard iconAreaDash={info.image} textAreaDash={info.areaDash} identifier={index} selectedButton={selectedButton} setSelectedButton={setSelectedButton} modifyStyles={modifyStyles} />
+                                    <AdminButtonDasnboard iconAreaDash={info.routeIcon} textAreaDash={info.navNameRoute} identifier={index} selectedButton={selectedButton} setSelectedButton={setSelectedButton} modifyStyles={modifyStyles} />
                                 </li>
                             ))
 

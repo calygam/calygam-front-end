@@ -31,7 +31,8 @@ export default function CreateAndShowTrailManagement() {
 
   const [selectedDifficultyOption, setSelectedDifficultyOption] = useState('');
   const [codeTarget, setCodeTarget] = useState("")
-  const [form, setForm] = useState({
+  const savedForm = localStorage.getItem('trailInProgress');
+  const initialForm = savedForm ? JSON.parse(savedForm) : {
     trailName: '',
     trailDescription: '',
     trailPoints: '0',
@@ -39,23 +40,13 @@ export default function CreateAndShowTrailManagement() {
     trailPassword: '',
     trailImage: '',
     activities: [],
-  });
+  };
+  const [form, setForm] = useState(initialForm);
 
 
 
   useEffect(() => {
-    if (targetTrailId === 0) {
-      setForm({
-        trailName: '',
-        trailDescription: '',
-        trailPoints: '0',
-        trailVacancy: '0',
-        trailPassword: '',
-        trailImage: '',
-        activities: [],
-      });
-      localStorage.removeItem('trailInProgress');
-    } else if (targetTrailId > 0 && targetTrail) {
+ if (targetTrailId > 0 && targetTrail) {
       setForm({
 
         trailName: targetTrail.trailName,
@@ -370,7 +361,15 @@ export default function CreateAndShowTrailManagement() {
                 Limpar
               </button>
 
-              {form.trailName !== '' && form.trailDescription !== '' && form.trailVacancy > 0 && form.trailVacancy < 60 && formErrors.trailPassword === "" ? (
+              {targetTrailId? form.trailName !== '' && form.trailDescription !== '' && form.trailVacancy > 0 && form.trailVacancy < 60 ? (
+                <button type="button" onClick={() => goToNextForm(step, setStep, form, setForm)} className="px-6 h-[40px] bg-red-300 text-white rounded-lg border-b-4 border-gray-500/45 hover:border-b-0">
+                  Próximo
+                </button>
+              ): (
+                <button disabled type="button" className="px-6 h-[40px] bg-black/15 cursor-not-allowed text-white/75 rounded-lg border-b-4 border-black/15">
+                  Próximo
+                </button>
+              ): form.trailName !== '' && form.trailDescription !== '' && form.trailVacancy > 0 && form.trailVacancy < 60 && formErrors.trailPassword === "" ? (
                 <button type="button" onClick={() => goToNextForm(step, setStep, form, setForm)} className="px-6 h-[40px] bg-red-300 text-white rounded-lg border-b-4 border-gray-500/45 hover:border-b-0">
                   Próximo
                 </button>
@@ -379,11 +378,11 @@ export default function CreateAndShowTrailManagement() {
                   Próximo
                 </button>
               )}
-              {targetTrailId && !targetTrail.trailStatus.includes("ENABLE") ?
+              {targetTrailId && !targetTrail?.trailStatus.includes("ENABLE") ?
                 <button type="button" onClick={() => setIsPublish(true)} className="px-6 h-[40px] bg-green-300 outline-none hover:bg-green-700 text-black transition-all ease-linear saturate-200 hover:text-white rounded-lg border-b-4 border-gray-500/45 hover:border-b-0">
                   Publicar
                 </button> : null}
-              {targetTrailId && targetTrail.trailStatus.includes("ENABLE") ?
+              {targetTrailId && targetTrail?.trailStatus.includes("ENABLE") ?
                 <button type="button" disabled onClick={() => setIsPublish(true)} className="px-6 h-[40px] bg-green-300/50 outline-none  cursor-not-allowed text-black transition-all ease-linear saturate-200  rounded-lg border-b-4 border-gray-500/45 hover:border-b-0">
                   Publicada
                 </button> : null}

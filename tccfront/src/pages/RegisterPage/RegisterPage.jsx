@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header'
 
 import backPage from '../../assets/img/back-page.svg'
 import mobileLoginDesert from '../../assets/img/waves-login.png'
+import trailCalygamLogo from '../../assets/img/trail-calygam-logo.svg'
 import desktopLoginDesert from '../../assets/img/waves-login.png'
 import { TargetBackgroundByWidth } from '../../utils/TargetBackgroundByWidth/TargetBackgroundByWidth'
 import api from '../../api/api'
@@ -74,7 +75,7 @@ export default function RegisterPage() {
 
 
   return (
-    <div className='w-full  flex flex-col  overflow-hidden '
+    <div className='w-full  flex flex-col min-h-screen  overflow-hidden '
       style={{
         backgroundImage: TargetImagePerWidth,
 
@@ -94,14 +95,13 @@ export default function RegisterPage() {
         <img src={backPage} alt="" className='w-6 h-6'/>
 
       </Link> */}
-      <motion.div className='grid grid-cols-2 w-full   overflow-hidden  '
-      initial={{translateX:"130vw"}}
-      animate={{translateX:"0vw"} }
-      
-      transition={{type:"tween",duration:0.8,ease:"easeInOut"}}>
-        <div></div>
-        <AuthFormComponent actionName={"Cadastre-se"} nameRequired={true} actionForm={"Cadastrar"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
-        </motion.div>
+      <div className='grid md:grid-cols-2 grid-cols-1 w-full place-items-center md:place-items-stretch   overflow-hidden  '
+  >
+        <div>
+          <img src={trailCalygamLogo} alt="" className='w-[100px] h-[100px]' />
+        </div>
+        <AuthFormComponent actionName={"Criar Conta"} nameRequired={true} actionForm={"Cadastrar"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
+        </div>
       </div>
       </div>
     </div>

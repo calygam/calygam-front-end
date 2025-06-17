@@ -119,7 +119,7 @@ export default function ObtainPointsForAchiviments({ isSakuraActive,isTrailsActi
               <CardDevelopProject FirstCard={false} titleCard={"Web"} TextCard={'Desenvolva seu projeto Web e aprenda a criar novas Web Sites do zero, aplicando as melhores práticas e tecnologias do mercado!'} />
               <CardDevelopProject FirstCard={false} titleCard={"Responsividade"} TextCard={'Desenvolva seu projeto Web e aprenda a criar novas Web Sites do zero, aplicando as melhores práticas e tecnologias do mercado!'} />
             </div>
-            <div className='px-8 pt-2 border lg:w-[525px] md:w-[325px] md:h-[400px] w-[80%] rounded-xl flex md:justify-start justify-center border-calygam-yellow-semi-strong bg-calygam-extra-light-pink'>
+            <div className='px-8 pt-2 border lg:w-full md:w-[325px] md:h-[400px] w-[80%] rounded-xl flex md:justify-start justify-center border-calygam-yellow-semi-strong bg-calygam-extra-light-pink'>
               <div className='flex w-[55%] '>
                   <img src={siteDevelopExemple} alt="" className='w-full'  />
               </div>

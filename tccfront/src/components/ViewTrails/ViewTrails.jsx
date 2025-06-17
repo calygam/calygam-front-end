@@ -27,10 +27,10 @@ export default function ViewTrails() {
             //caio<- Destinado a mostrar detalhes de uma trilha
             !trail.trailStatus.includes("ENABLE")&&
             <div key={trail.trailId} onClick={()=>setTargetTrailId(trail.trailId)} className='hover:scale-105 cursor-pointer'>
-            <ItemWithDetails itemImage={trail.trailImage?trail.trailImage:null} itemName={trail.trailName} itemData={trail.trailCreatedDate} itemVacancies={trail.trailVacancies} />
+            <ItemWithDetails itemImage={trail.trailImage?trail.trailImage:null} itemName={trail.trailName} itemData={trail?.trailCreatedDate} itemVacancies={trail.trailVacancies} />
             </div>
-        )): <div key={targetTrail.trailId} className='flex flex-col items-center border-4 border-yellow-600  rounded-xl p-4 bg-black/95 drop-shadow-calygam-light text-white'>
-            <ItemWithDetails itemImage={targetTrail.trailImage?targetTrail.trailImage:null} itemName={targetTrail.trailName} itemData={targetTrail.trailCreatedDate} itemVacancies={targetTrail.trailVacancies} />
+        )): targetTrail&&<div key={targetTrail?.trailId} className='flex flex-col items-center border-4 border-yellow-600  rounded-xl p-4 bg-black/95 drop-shadow-calygam-light text-white'>
+            <ItemWithDetails itemImage={targetTrail?.trailImage?targetTrail?.trailImage:null} itemName={targetTrail?.trailName} itemData={targetTrail?.trailCreatedDate} itemVacancies={targetTrail?.trailVacancies} />
             <div></div>
            
             </div>}

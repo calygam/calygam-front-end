@@ -11,6 +11,7 @@ import { ReadAllTrailsProvider } from "../../context/ReadAllTrailsContext/ReadAl
 import { LoadingProvider } from "../../context/LoadingContext/LoadingContext.jsx";
 import { ReadActivitiesByTrailIdProvider } from "../../context/ReadActivitiesByTrailIdContext/ReadActivitiesByTrailIdContext.jsx";
 import { ReadProgressByUserProvider } from "../../context/ReadProgressByUserContext/ReadProgressByUserContext.jsx";
+import { DashBoardManagementProvider } from "../../context/DashBoardManagementContext/DashBoardManagementContext.jsx";
 
 //export const CalygamProvidersContext = createContext()
 
@@ -37,6 +38,7 @@ export default function CalygamProviders({ children }) {
             }}>
 
                 <DataProfileProvider>
+                    <DashBoardManagementProvider>
                     <MockUserDataContext.Provider value={{ userPhoto, loadingMock }}>
                         <ReadProgressByUserProvider>
                             <CalygamAuthContext.Provider value={{
@@ -58,6 +60,7 @@ export default function CalygamProviders({ children }) {
                         </ReadProgressByUserProvider>
 
                     </MockUserDataContext.Provider>
+                    </DashBoardManagementProvider>
                 </DataProfileProvider>
             </ComponentToggleContext.Provider>
         </LoadingProvider>

@@ -40,10 +40,10 @@ export default function StudentWhichBook() {
 
         <div className='hidden md:flex lg:flex flex-col  lg:w-[582px] mt-40    lg:overflow-x-hidden  lg:items-end'>
 
-          <div className='w-[300px] mr-9   lg:-ml-[30%] lg:absolute   z-10 lg:w-[532px] mt-[-125px]  '>
+          {/* <div className='w-[300px] mr-9   lg:-ml-[30%] lg:absolute   z-10 lg:w-[532px] mt-[-125px]  '>
             <img className='w-full ' src={studentIconOne} alt="" />
             <img className='hidden lg:block w-full  absolute -mt-24 z-30' src={smoke} alt="" />
-          </div>
+          </div> */}
 
           <div className='hidden lg:flex  translate-x-20   w-[100%] h-[107px]  bg-red-500 rounded-l-3xl'></div>
         </div>

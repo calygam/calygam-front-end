@@ -14,6 +14,7 @@ import AssignTeacher           from './pages/AssignTeacher/AssignTeacher.jsx'
 import MakeNewTrailPage        from './pages/MakeNewTrailPage/MakeNewTrailPage.jsx'
 import AboutLeassonPage        from './pages/AboutLeassonPage/AboutLeassonPage.jsx'
 import DetailMakeActivityPage from './pages/DetailMakeActivityPage/DetailMakeActivityPage.jsx'
+import AdminManagementPage from './pages/AdminManagementPage/AdminManagementPage.jsx'
 import Search                  from "./assets/img/searchIcon.png"
 import usePhotoMockData        from "./hooks/UserMockHook/UserMockHook.js"
 import { MockUserDataContext } from "./context/MockUserDataContext/MockUserDataContext.jsx"
@@ -43,7 +44,8 @@ function TccFront() {
             <Route path="/Trilha" element={<TrailPage/>} />
             <Route path="/Quiz" element={<QuizPage/>}/>
             {/* <Route path="/AboutLeasson" element={<AboutLeassonPage/>}/> */}
-             <Route path="/Coordenacao" element={<AssignTeacher/>}/> 
+             {/* <Route path="/Coordenacao" element={<AssignTeacher/>}/>  */}
+             <Route path="/Coordenacao" element={<AdminManagementPage/>}/> 
             <Route path="/home" element={<HomePage/>}/>
             <Route path="/Trail/Criar" element={<MakeNewTrailPage/>}/>
             <Route path="/Atividade" element={<DetailMakeActivityPage/>}/>

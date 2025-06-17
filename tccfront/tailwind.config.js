@@ -54,8 +54,17 @@ export default {
         //purple
         'calygam-purple-semi-light':'#5D5578',
         'calygam-purple-semi-bold':'#2A1C4A',
+        'calygam-purple-semi-strong':'#5A189A',
         'calygam-purple-medium-bold':'#625380',
-        'calygam-purple-light':'#B892FF1A'
+        'calygam-purple-light':'#B892FF1A',
+        'calygam-purple-medium-light':"#6813DE",
+
+        //white
+        'calygam-white-matte':"#E9F1FF",
+
+        //blue
+        'calygam-blue-semi-bold':"#000437",
+        'calygam-blue-semi-light':"#4285F4"
          
       },
       backgroundImage:{
