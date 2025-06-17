@@ -42,7 +42,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
         },
     };
     const goToGoogle = () => {
-        window.location.href = "http://localhost:8080/auth/google";
+        window.location.href = "https://trail-dff8ahgzdkhvhbe8.brazilsouth-01.azurewebsites.net/auth/google";
     };
 
     const { userName, setUserName,
