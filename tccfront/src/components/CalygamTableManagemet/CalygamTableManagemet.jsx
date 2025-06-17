@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function CalygamTableManagemet() {
     return (
-        <div className="w-full max-w-4xl text-center mx-auto p-4">
+        <div className="w-full max-w-4xl text-center font-poppins mx-auto p-4">
             <div className="flex items-center justify-between mb-4">
-                <div>
-                    <h2 className="text-lg font-semibold text-gray-900">Times Membros</h2>
+                <div className='flex items-center gap-x-2'>
+                    <h2 className="text-base font-semibold text-gray-900">Times Membros</h2>
                     <span className="text-purple-600 font-medium">5 Usuários</span>
                 </div>
                 <button className="text-gray-500 hover:text-gray-700">
@@ -14,20 +14,20 @@ export default function CalygamTableManagemet() {
             </div>
 
             <div
-                className="rounded-t-2xl overflow-hidden border-2 border-gray-200 shadow-md"
+                className=" overflow-hidden border-2 border-gray-200 shadow-md"
                 role="table"
                 aria-label="Lista de membros do time"
             >
 
                 <div
-                    className="grid grid-cols-5 place-items-center gap-2 p-3 bg-gray-100/50"
+                    className="grid grid-cols-5 place-items-center text-base gap-2 p-3 text-gray-600/50 bg-gray-100/50"
                     role="row"
                 >
 
-                    <div className="font-bold" role="cell">Nome</div>
-                    <div className="font-bold" role="cell">Status</div>
-                    <div className="font-bold" role="cell">Email</div>
-                    <div className="font-bold" role="cell">Ação</div>
+                    <div className="font-semibold" role="cell">Nome</div>
+                    <div className="font-semibold" role="cell">Status</div>
+                    <div className="font-semibold" role="cell">Email</div>
+                    <div className="font-semibold" role="cell">Ação</div>
                 </div>
 
                 <div className="divide-y-2 divide-gray-200">
