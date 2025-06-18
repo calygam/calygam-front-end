@@ -17,7 +17,7 @@ import turmasIcon from '../../assets/img/turmas-icon.svg'
 import { motion } from 'framer-motion'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
 export default function AdminManagementPage() {
-  // const { setToken } = useAuth();
+  const { setToken } = useAuth();
   const { dataProfile, loading } = UseDataProfile()
   const navRoutes = [
     ["ADMIN", "INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
@@ -55,11 +55,11 @@ export default function AdminManagementPage() {
 
 
         </div>
-        <div className='w-[400px] overflow-x-auto'>
-          <section className='w-[800px]  overflow-x-auto  mx-auto'>
-            <CalygamTableManagemet />
-          </section>
-        </div>
+ <div className="max-w-[800px] w-full mb-16 overflow-x-auto custom-scrollbar mx-auto ">
+  <div className="min-w-[900px]">
+    <CalygamTableManagemet />
+  </div>
+</div>
       </div>
     </div>
   )

@@ -52,8 +52,10 @@ export default function CalygamHeaderConfigurer({ navRoutes,baseMenus }) {
                             <button type='button' className='' onClick={() => setIsEnabled(!isEnabled)}>
                                 <img src={menuHamburguer} alt="acesso a sidebar mobile" className='w-[35px] md:hidden h-[35px]' />
                             </button>
+                            <Link className='flex gap-x-1 items-center justify-center' to={"/home"}>
                             <img src={calygamTrailLogo} alt="Logo calygam" className='lg:w-[50px] lg:h-[50px] w-[45px] h-[45px]' />
                             <p className='md:text-lg text-base font-bold text-white'>Calygam</p>
+                            </Link>
                         </div>
 
                         <nav className='md:flex justify-center items-center hidden'>

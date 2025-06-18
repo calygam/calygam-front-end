@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function CalygamTableManagemet() {
     return (
-        <div className="w-full max-w-4xl text-center font-poppins mx-auto p-4">
+        <div className="w-full min-w-[800px] text-center font-poppins p-4">
             <div className="flex items-center justify-between mb-4">
                 <div className='flex items-center gap-x-2'>
                     <h2 className="text-base font-semibold text-gray-900">Times Membros</h2>
