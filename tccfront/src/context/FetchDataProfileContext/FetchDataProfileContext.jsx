@@ -9,6 +9,7 @@ const DataProfileContext = createContext()
 export function DataProfileProvider({children}){
 
     const [dataProfile,setDataProfile] = useState([])
+     const [dataTeachers,setDataTeachers] = useState([])
     const {loading,setLoading,setLoadingText} = UseLoading()
     const token = localStorage.getItem("token");
     const location = useLocation();
@@ -21,6 +22,7 @@ export function DataProfileProvider({children}){
                 setLoading(true)
                 setLoadingText('Carregando dados de usuário...')
                 const response = await api.get("/users/readOne")
+                console.log(response.data)
                 setDataProfile(response.data)
 
             }catch(e){
@@ -33,8 +35,28 @@ export function DataProfileProvider({children}){
         }
         searchDataProfile()
     },[token,location])
+
+            const searchDataTeachers = async()=>{
+     
+
+      if (!token) return;
+            try{
+                setLoading(true)
+                setLoadingText('Carregando dados dos professores...')
+                const response = await api.get("http://localhost:8080/users/readAllUsers/teacher?page=0&size=5&sort=userEmail,desc")
+                console.log(response.data)
+                setDataTeachers(response.data?.content)
+
+            }catch(e){
+                console.log("Deu alguma coisa errada! :/")
+            }
+            finally{
+               
+                setLoading(false)
+            }
+        }
     return(
-        <DataProfileContext.Provider value={{dataProfile,loading}}>
+        <DataProfileContext.Provider value={{dataProfile,loading,dataTeachers,searchDataTeachers}}>
        
             {children}
         </DataProfileContext.Provider>

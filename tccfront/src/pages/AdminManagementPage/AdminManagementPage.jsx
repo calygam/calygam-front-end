@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 //components
 import CalygamHeaderConfigurer from '../../components/CalygamHeaderConfigurer/CalygamHeaderConfigurer'
@@ -18,11 +18,15 @@ import { motion } from 'framer-motion'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
 export default function AdminManagementPage() {
   const { setToken } = useAuth();
-  const { dataProfile, loading } = UseDataProfile()
+  const { dataProfile, loading,dataTeachers,searchDataTeachers } = UseDataProfile()
+  useEffect(()=>{
+searchDataTeachers()
+  },[])
+
   const navRoutes = [
-    ["ADMIN", "INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
+    ["ADMIN","COORDENADOR"].includes(dataProfile.userRole) &&
     { navRoute: "/Coordenacao", navNameRoute: "Equipe", routeIcon: homeIcon },
-    ["INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
+    ["ADMIN", "INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
     { navRoute: "/Trail/Criar", navNameRoute: "Oficina", routeIcon: homeIcon },
     { navRoute: "/", navNameRoute: "Trilhas", routeIcon: homeIcon }
 
@@ -57,7 +61,7 @@ export default function AdminManagementPage() {
         </div>
  <div className="max-w-[800px] w-full mb-16 overflow-x-auto custom-scrollbar mx-auto ">
   <div className="min-w-[900px]">
-    <CalygamTableManagemet />
+    <CalygamTableManagemet  rowOfTable={dataTeachers}/>
   </div>
 </div>
       </div>

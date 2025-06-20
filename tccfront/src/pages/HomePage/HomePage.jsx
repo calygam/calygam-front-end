@@ -55,9 +55,9 @@ export default function HomePage() {
   }, [location.search]);
 
   const navRoutes = [
-    ["ADMIN", "INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
+    ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
     { navRoute: "/Coordenacao", navNameRoute: "Equipe",routeIcon:homeIcon },
-    ["INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
+    ["ADMIN","INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
     { navRoute: "/Trail/Criar", navNameRoute: "Oficina",routeIcon:homeIcon },
     { navRoute: "/", navNameRoute: "Trilhas",routeIcon:homeIcon }
 
