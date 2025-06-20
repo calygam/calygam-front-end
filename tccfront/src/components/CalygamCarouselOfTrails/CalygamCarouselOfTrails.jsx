@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 
-
-// import required modules
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook';

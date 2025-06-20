@@ -74,7 +74,7 @@ export default function CalygamHeaderConfigurer({ navRoutes,baseMenus }) {
                     </div>
                  
                         <span className=''>
-                            <img src={dataProfile.userImage?dataProfile.userImage:userPhoto.medium} alt="Foto de Perfil" className=' object-cover w-[40px] h-[40px] rounded-full' />
+                            <img src={dataProfile.userImage?dataProfile?.userImage:userPhoto?.medium} alt="Foto de Perfil" className=' object-cover w-[40px] h-[40px] rounded-full' />
                         </span>
                
 
