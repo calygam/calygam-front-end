@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header                  from "./components/Header/Header"
 import InitialPage             from "./pages/InitialPage/InitialPage"
 import FooterAssesment         from "./components/FooterAssessment/FooterAssesment"
-import ComponentToggleContext  from "./context/ComponentToggleContext/ComponentToggleContext.jsx"
+
 import LoginPage               from "./pages/LoginPage/LoginPage.jsx"
 import RegisterPage            from "./pages/RegisterPage/RegisterPage.jsx"
 import TrailPage               from "./pages/TrailPage/TrailPage.jsx"

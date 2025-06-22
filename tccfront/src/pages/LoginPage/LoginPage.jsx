@@ -3,8 +3,10 @@ import backPage from '../../assets/img/back-page.svg'
 import mobileLoginDesert from '../../assets/img/waves-login.png'
 import desktopLoginDesert from '../../assets/img/waves-login.png'
 import trailCalygamLogo from '../../assets/img/trail-calygam-logo.svg'
+import discussionWhite from '../../assets/img/discussion-white.png'
 import AuthFormComponent from '../../components/AuthFormComponent/AuthFormComponent.jsx'
 import { Link, useNavigate } from 'react-router-dom'
+
 import Header from '../../components/Header/Header.jsx'
 
 import { TargetBackgroundByWidth } from '../../utils/TargetBackgroundByWidth/TargetBackgroundByWidth.js'
@@ -63,7 +65,8 @@ export default function LoginPage() {
             backgroundImage: TargetImagePerWidth,
     
             backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition:'center'
           }}>
     {/* <header>
     <Header />
@@ -77,11 +80,25 @@ export default function LoginPage() {
   
       
    
-            <div className='grid md:grid-cols-2 grid-cols-1 w-full place-items-center md:place-items-stretch   overflow-hidden  '
->
-        <div>
-          <img src={trailCalygamLogo} alt="" className='lg:w-[700px] lg:h-[700px] md:w-[400px] w-[50px] h-[50px]  md:h-[400px]' />
-        </div>
+ <div className='grid md:grid-cols-2 grid-cols-1 gap-x-12 w-full place-items-center md:place-items-stretch   overflow-hidden  '
+          >
+            <motion.div
+              className='md:bg-white/20 h-full flex flex-col font-poppins items-center text-start   md:backdrop-blur-lg'
+              initial={{ opacity: 0, y: 20, x: -10 }}
+              animate={{ opacity: 1, y: 0, x: 0 }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+            >
+              <img
+                src={discussionWhite}
+                alt=""
+                className='lg:w-[600px]  lg:h-[600px] md:w-[400px] w-[300px] h-[300px] md:h-[400px]'
+              />
+              <div className='relative lg:text-2xl lg:-mt-32 md:text-base md:-mt-24 '>
+                <p className=' text-white     font-semibold'>Entre na sua jornada de aprendizado</p>
+                <p className=' text-white     font-semibold'>e desbloqueie conquistas a cada</p>
+                <p className=' text-white   font-semibold'>passo!</p>
+              </div>
+            </motion.div>
       <AuthFormComponent className={"mt-3"} actionName={"Login"}  nameRequired={false} newUser={true} actionForm={"Entrar"} handleSendFormAuth={loginStyleForm} errorTarget={""}/>
       </div>
 

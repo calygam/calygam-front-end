@@ -11,6 +11,7 @@ export function DataProfileProvider({children}){
     const [dataProfile,setDataProfile] = useState([])
      const [dataTeachers,setDataTeachers] = useState([])
     const {loading,setLoading,setLoadingText} = UseLoading()
+    const [targetTeacher,setTargetTeacher]=useState("")
     const token = localStorage.getItem("token");
     const location = useLocation();
     useEffect(()=>{
@@ -36,14 +37,14 @@ export function DataProfileProvider({children}){
         searchDataProfile()
     },[token,location])
 
-            const searchDataTeachers = async()=>{
+            const searchDataTeachers = async(page,ColumnFilter)=>{
      
 
       if (!token) return;
             try{
                 setLoading(true)
                 setLoadingText('Carregando dados dos professores...')
-                const response = await api.get("http://localhost:8080/users/readAllUsers/teacher?page=0&size=5&sort=userEmail,desc")
+                const response = await api.get(`http://localhost:8080/users/readAllUsers/teacher?page=${page}&size=5&sort=${ColumnFilter}`)
                 console.log(response.data)
                 setDataTeachers(response.data?.content)
 
@@ -56,7 +57,7 @@ export function DataProfileProvider({children}){
             }
         }
     return(
-        <DataProfileContext.Provider value={{dataProfile,loading,dataTeachers,searchDataTeachers}}>
+        <DataProfileContext.Provider value={{dataProfile,loading,dataTeachers,searchDataTeachers,targetTeacher,setTargetTeacher}}>
        
             {children}
         </DataProfileContext.Provider>

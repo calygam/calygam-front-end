@@ -13,7 +13,7 @@ export default function AnalyticsInfoAction({ attackAnalisis }) {
           
                     <CardAnalisisView  titleAnalisis={"Total de Professores"} numberAnalisis={dashboardAdmin.totalTeachers} />
                     <CardAnalisisView  titleAnalisis={"Trilhas Ativas"} numberAnalisis={dashboardAdmin.activeTrails} />
-                    <CardAnalisisView  titleAnalisis={"Membros"} numberAnalisis={dashboardAdmin.members} />
+                    <CardAnalisisView  titleAnalisis={"Inscritos"} numberAnalisis={dashboardAdmin.members} />
                    
 
             
