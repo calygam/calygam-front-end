@@ -10,11 +10,11 @@ import CheckMyTasks from '../../assets/img/check-my-tasks.svg'
 import TurmasIcon from '../../assets/img/turmas-icon.svg'
 import TodoIcon from '../../assets/img/todolist-icon.svg'
 import ModalPlaceActivity from '../../components/ModalPlaceActivity/ModalPlaceActivity.jsx'
-import ComponentToggleContext from '../../context/ComponentToggleContext/ComponentToggleContext.jsx'
+// import ComponentToggleContext from '../../context/ComponentToggleContext/ComponentToggleContext.jsx'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
 export default function AboutLeassonPage() {
   const { setToken } = useAuth();
-  const {toggleUploadModal,setToggleUploadModal} = useContext(ComponentToggleContext)
+  // const {toggleUploadModal,setToggleUploadModal} = useContext(ComponentToggleContext)
   return (
     <div className='font-jersey transition-all'>
       <header className=''>

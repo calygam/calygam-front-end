@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import placeActivityIcon from '../../assets/img/place-activity-icon.svg'
 import sendActivityIcon from '../../assets/img/send-activity-icon.svg'
-import ComponentToggleContext from '../../context/ComponentToggleContext/ComponentToggleContext'
+// import ComponentToggleContext from '../../context/ComponentToggleContext/ComponentToggleContext'
 
 export default function BoxSendLeassonViaDocs({ BoxTitleDoc, BoxPossiblePlaceLeasson, BoxIconFor, BoxInfoDataTime, BoxForSendActivity }) {
-    const {toggleUploadModal,setToggleUploadModal} = useContext(ComponentToggleContext)
+    // const {toggleUploadModal,setToggleUploadModal} = useContext(ComponentToggleContext)
     return (
         <div className='flex flex-col   items-center font-poppins w-full min-h-[150px] h-full rounded-xl py-2 px-2 bg-trail-info-action/50 '>
             <div className='w-full flex justify-center'>

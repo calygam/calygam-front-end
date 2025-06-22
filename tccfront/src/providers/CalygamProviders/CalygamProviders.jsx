@@ -1,7 +1,7 @@
 
 
 import { createContext, useState } from "react";
-import ComponentToggleContext from "../../context/ComponentToggleContext/ComponentToggleContext";
+
 import { MockUserDataContext } from "../../context/MockUserDataContext/MockUserDataContext";
 import usePhotoMockData from "../../hooks/UserMockHook/UserMockHook";
 import { CalygamAuthContext } from "../../context/CalygamAuthContext/CalygamAuthContext";
@@ -12,6 +12,7 @@ import { LoadingProvider } from "../../context/LoadingContext/LoadingContext.jsx
 import { ReadActivitiesByTrailIdProvider } from "../../context/ReadActivitiesByTrailIdContext/ReadActivitiesByTrailIdContext.jsx";
 import { ReadProgressByUserProvider } from "../../context/ReadProgressByUserContext/ReadProgressByUserContext.jsx";
 import { DashBoardManagementProvider } from "../../context/DashBoardManagementContext/DashBoardManagementContext.jsx";
+import { ModalProvider } from "../../context/ModalContext/ModalContext.jsx";
 
 //export const CalygamProvidersContext = createContext()
 
@@ -27,42 +28,39 @@ export default function CalygamProviders({ children }) {
     const [userCpf, setUserCpf] = useState('')
     return (
         <LoadingProvider>
+            <ModalProvider>
 
 
 
-            <ComponentToggleContext.Provider value={{
-                toggleComponent,
-                setToggleComponent,
-                toggleUploadModal,
-                setToggleUploadModal
-            }}>
-
-                <DataProfileProvider>
-                    <DashBoardManagementProvider>
-                    <MockUserDataContext.Provider value={{ userPhoto, loadingMock }}>
-                        <ReadProgressByUserProvider>
-                            <CalygamAuthContext.Provider value={{
-                                userName, setUserName,
-                                userEmail, setUserEmail,
-                                userPassword, setUserPassword,
-                                userPhone, setUserPhone,
-                                userCpf, setUserCpf
-                            }}>
-                                <ReadAllTrailsProvider>
-                                    <ReadActivitiesByTrailIdProvider>
 
 
-                                        {children}
-                                    </ReadActivitiesByTrailIdProvider>
+                    <DataProfileProvider>
+                        <DashBoardManagementProvider>
+                            <MockUserDataContext.Provider value={{ userPhoto, loadingMock }}>
+                                <ReadProgressByUserProvider>
+                                    <CalygamAuthContext.Provider value={{
+                                        userName, setUserName,
+                                        userEmail, setUserEmail,
+                                        userPassword, setUserPassword,
+                                        userPhone, setUserPhone,
+                                        userCpf, setUserCpf
+                                    }}>
+                                        <ReadAllTrailsProvider>
+                                            <ReadActivitiesByTrailIdProvider>
 
-                                </ReadAllTrailsProvider>
-                            </CalygamAuthContext.Provider>
-                        </ReadProgressByUserProvider>
 
-                    </MockUserDataContext.Provider>
-                    </DashBoardManagementProvider>
-                </DataProfileProvider>
-            </ComponentToggleContext.Provider>
+                                                {children}
+                                            </ReadActivitiesByTrailIdProvider>
+
+                                        </ReadAllTrailsProvider>
+                                    </CalygamAuthContext.Provider>
+                                </ReadProgressByUserProvider>
+
+                            </MockUserDataContext.Provider>
+                        </DashBoardManagementProvider>
+                    </DataProfileProvider>
+         
+            </ModalProvider>
         </LoadingProvider>
     )
 }

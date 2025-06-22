@@ -8,6 +8,7 @@ import eyeClose from '../../assets/img/eye-pass-close.png'
 import googleIcon from '../../assets/img/google-icon.svg'
 import facebookIcon from '../../assets/img/facebook-icon.svg'
 import { Link } from 'react-router-dom'
+
 import { CalygamAuthContext } from '../../context/CalygamAuthContext/CalygamAuthContext'
 import { targetCPF } from '../../utils/MaskCPF/MaskCPF'
 import { RegexEmail } from '../../utils/RegexEmail/RegexEmail'
@@ -82,21 +83,21 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
       transition={{type:"tween",duration:0.8,ease:"easeInOut"}}>
             <div className='w-10/12 flex flex-col '>
                 <div className='w-full flex justify-between flex-wrap gap-2 my-2 '>
-                    <p className='text-white font-normal text-lg text-nowrap'>Bem Vindo ao <span className='text-calygam-purple-semi-strong'>Calygam</span></p>
+                    <p className={`${!newUser?"text-black":"text-white"} font-normal text-lg text-nowrap`}>Bem Vindo ao <span className='text-calygam-purple-semi-strong'>Calygam</span></p>
                     {!newUser ?
                         <div className='flex flex-col  justify-center items-center text-xs'>
                             <p className='text-black'>Possui conta?</p>
-                            <p className='font-light hover:underline text-white'><Link to={"/Login"}>Entrar</Link></p>
+                            <p className={` hover:underline ${!newUser?"text-calygam-purple-semi-strong font-medium":"text-white font-medium"} `}><Link to={"/Login"}>Entrar</Link></p>
                         </div>
                         :
                         <div className='flex flex-col  justify-center items-center text-xs'>
                             <p className='text-black'>Sem conta?</p>
-                            <p className='font-light hover:underline text-white'><Link to={"/Register"}>Inscrever-se</Link></p>
+                            <p className=' hover:underline text-white font-medium'><Link to={"/Register"}>Inscrever-se</Link></p>
                         </div>
 
                     }
                 </div>
-                <h2 className=' font-semibold text-white mt-2 text-3xl'>{actionName}</h2>
+                <h2 className={` font-semibold ${!newUser?"text-black":"text-white"} mt-2 text-3xl`}>{actionName}</h2>
 
                 <div className=' my-1  flex  py-4'>
 
@@ -137,7 +138,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                     <div className='flex flex-col h-full w-full space-y-4'>
                         {nameRequired ?
                             <div className='flex flex-col gap-y-1  '>
-                                <label htmlFor="register-user-name" className='font-light text-white text-sm'>Seu Usuário:</label>
+                                <label htmlFor="register-user-name" className={`font-light ${!newUser?"text-black":"text-white"} text-sm`}>Seu Usuário:</label>
                                 <div className='flex items-center gap-y-2 bg-white py-2 px-4 rounded-md'>
                                     <input type="text" maxLength={15} className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-name' name='register-user-name' value={userName} onChange={(e) => setUserName(e.target.value)} autoComplete='off' placeholder='Digite seu nome' />
                                     <img src={perfilNameIcon} alt="" className='w-5 h-5' />
@@ -158,7 +159,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                         }
 
                         <div className={"flex flex-col gap-y-1  "}>
-                            <label htmlFor="register-user-email" className='font-light text-white text-sm'>Digite seu endereço de email:</label>
+                            <label htmlFor="register-user-email" className={`font-light ${!newUser?"text-black":"text-white"} text-sm`}>Digite seu endereço de email:</label>
                             <div className='flex items-center gap-2 bg-white py-2 px-4 rounded-md'>
                                 <input type="email" className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-email' name='register-user-email' value={userEmail} onChange={(e) => setUserEmail(e.target.value)} autoComplete='off' placeholder='calygam@gmail.com' />
                                 <img src={emailIcon} alt="" className='w-5 h-5' />
@@ -185,7 +186,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
 
                         {cpfRequired ?
                             <div className={`flex flex-col gap-y-1    bg-transparent ${errorTarget.includes("CPF") ? 'border-red-500' : 'border-black'}  `}>
-                                <label htmlFor="register-user-cpf" className='font-light text-white text-sm'>CPF:</label>
+                                <label htmlFor="register-user-cpf" className={`font-light ${!newUser?"text-black":"text-white"} text-sm`}>CPF:</label>
                                 <div className='flex items-center gap-2 bg-white py-2 px-4 rounded-md'>
                                     <input type="text" maxLength={14} className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-cpf' name='register-user-cpf' value={userCpf} onChange={(e) => setUserCpf(targetCPF(e.target.value))} autoComplete='off' placeholder='XXX.XXX.XXX-XX' />
                                     <img src={identityCard} alt="Campo de CPF" className='w-6 h-6' />
@@ -215,7 +216,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
 
 
                         <div className='flex flex-col gap-y-1  '>
-                            <label htmlFor="register-user-password" className='font-light text-white text-sm'>Senha:</label>
+                            <label htmlFor="register-user-password" className={`font-light ${!newUser?"text-black":"text-white"} text-sm`}>Senha:</label>
                             <div className='flex items-center gap-2 bg-white py-2 px-4 rounded-md'>
                                 <input type={showPassword ? "text" : "password"} className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-password' name='register-user-password' value={userPassword} onChange={(e) => setUserPassword(e.target.value)} autoComplete='off' placeholder='Digite uma Senha Forte' />
                                 <img src={showPassword?eyeOpen:eyeClose} alt="" className='w-6 h-6 opacity-90 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
@@ -233,11 +234,11 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                     </div>
 
                     <div className='flex w-full justify-end mt-2 '>
-                        <p className='font-normal text-sm text-white/85'>Esqueceu a senha?</p>
+                        <p className={`font-normal text-sm  ${!newUser?"text-calygam-purple-semi-strong/85":"text-white/85"}`}>Esqueceu a senha?</p>
 
                     </div>
 
-                    <div className='flex w-full h-[50px] justify-end mt-4'>
+                    <div className='flex w-full h-[50px]  mt-4'>
                         {
                             // validEmail != '' ?
                             //     <button type='submit' disabled={true} className='w-[125px] px-4 py-2  text-white     hover:shadow-lg  bg-red-800/35 border-b-4 border-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed  md:w-[175px] lg:[225px] rounded-b-xl rounded-md'>
@@ -266,15 +267,15 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                             actionName == "Criar Conta" ?
 
 
-                                <button type='submit' disabled={validEmail != '' || userName.length > 15 || validPassword != '' || errorTarget != "" ? true : false} className={`outline-none  w-[125px] h-[50px] px-4 py-2  text-white   border-b-4 ${validEmail != "" || validPassword != '' || userCpf.length > 14 || errorTarget != "" ? 'border-red-950/15  bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed' :
-                                    'bg-calygam-purple-medium-light border-b-4 border-purple-800 hover:border-0 hover:bg-purple-700 '}  md:w-[175px] lg:w-[225px] rounded-b-xl rounded-md`}>
+                                <button type='submit' disabled={validEmail != '' || userName.length > 15 || validPassword != '' || errorTarget != "" ? true : false} className={`outline-none  w-full h-[50px] px-4 py-2    border-b-4 ${validEmail != "" || validPassword != '' || userCpf.length > 14 || errorTarget != "" ? 'border-red-950/15  bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed text-white/50' :
+                                    'bg-calygam-purple-medium-light text-white border-b-4 border-purple-800 hover:border-0 hover:bg-purple-700 '}   rounded-b-xl rounded-md`}>
                                     {actionForm}
 
                                 </button> : actionName == "Login" ?
 
 
-                                    <button type='submit' disabled={validEmail != '' || userName.length > 15 || validPassword != '' || errorTarget != "" ? true : false} className={`outline-none w-[125px] h-[50px] px-4 py-2  text-white   border-b-4 ${validEmail != "" || validPassword != '' || errorTarget != "" ? 'border-red-950/15 bg-red-950/15  hover:border-0 hover:bg-red-700/35 cursor-not-allowed' :
-                                        'bg-calygam-purple-medium-light border-b-4 border-purple-800 hover:border-0 hover:bg-purple-700 '}  md:w-[175px] lg:w-[225px] rounded-b-xl rounded-md`}>
+                                    <button type='submit' disabled={validEmail != '' || userName.length > 15 || validPassword != '' || errorTarget != "" ? true : false} className={`outline-none w-full h-[50px] px-4 py-2    border-b-4 ${validEmail != "" || validPassword != '' || errorTarget != "" ? 'border-red-950/15 bg-red-950/15  hover:border-0 hover:bg-red-700/35 cursor-not-allowed text-white/50' :
+                                        'bg-calygam-purple-medium-light border-b-4 text-white border-purple-800 hover:border-0 hover:bg-purple-700 '}   rounded-b-xl rounded-md`}>
                                         {actionForm}
 
                                     </button> : null
