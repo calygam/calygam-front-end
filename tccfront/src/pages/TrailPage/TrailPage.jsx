@@ -51,6 +51,16 @@ import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js'
 export default function TrailPage() {
   const { activities,trailId } = UseDataActivitiesPerTrailIdHook()
   const {setTrailId,progress,activityUnlocked,setActivityUnlocked} = UseProgressHook()
+
+     const { dataProfile } = UseDataProfile()
+      const navRoutes = [
+        ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
+        { navRoute: "/Coordenacao", navNameRoute: "Equipe", routeIcon: homeIcon },
+        ["ADMIN", "INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
+        { navRoute: "/Trail/Criar", navNameRoute: "Oficina", routeIcon: homeIcon },
+        { navRoute: "/", navNameRoute: "Trilhas", routeIcon: homeIcon }
+    
+      ]
   useEffect(()=>{ 
     
    
@@ -92,7 +102,7 @@ const infoAdminButton = [
 const createTrailSettings = (showNav) => ({
     logoImage,
     showNav,
-    menus: infoAdminButton
+    menus: navRoutes
 });
 
 
@@ -269,7 +279,7 @@ const createTrailSettings = (showNav) => ({
         {/*CAIO<- USAR ESTRATEGIA DE CONTROLE TOTAL DE COMPONENTE A PERTIR DE AGORA */}
       </div>
       <div className='mt-[200px]  '>
-        <CalygamTrailVillage Activities={numbers} progress={progress} />
+        <CalygamTrailVillage Activities={activities} progress={progress} />
       </div>
 
 

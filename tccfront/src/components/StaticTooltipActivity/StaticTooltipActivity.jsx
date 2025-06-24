@@ -10,7 +10,7 @@ export default function StaticTooltipActivity({comumInfo,tooltipInfo}) {
         <h3>Detalhes</h3>
         <div className='w-full bg-white/65 rounded-full h-[1px]'></div>
         <p className='text-base font-light'>{comumInfo.activityName}</p>
-        <p className='text-xs font-light'>{comumInfo.activityDescription}</p>
+        <p className='text-xs font-light truncate text-center max-w-[150px] text-wrap'>{comumInfo.activityDescription}</p>
         <p className={`text-base font-bold my-1
             ${difficulties[comumInfo.activityDifficulty] === "Fácil"?"bg-yellow-500/25 rounded-3xl p-2 text-purple-600"
             :difficulties[comumInfo.activityDifficulty] === "Difícil"?"bg-purple-500/25 rounded-bl-xl rounded-tl-lg rounded-3xl p-2 text-red-600":"bg-transparent"}`}>{difficulties[comumInfo.activityDifficulty]}</p>

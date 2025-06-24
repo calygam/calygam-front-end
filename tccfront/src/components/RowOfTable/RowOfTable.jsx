@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { TranslateStatusUserUtil } from '../../utils/TranslateStatusUserUtil/TranslateStatusUserUtil'
 import { ColorStatusUser } from '../../utils/ColorStatusUser/ColorStatusUser.js'
 import { motion } from 'framer-motion';
@@ -16,6 +16,10 @@ export default function RowOfTable({ oneRow }) {
 
 
   }
+
+  useEffect(()=>{
+    console.log(oneRow?.userImage)
+  },[oneRow])
   
   const statusClass = oneRow?.userStatus ? ColorStatusUser(TranslateStatusUserUtil[oneRow?.userStatus], false) : "";
   const statusClassBall = oneRow?.userStatus ? ColorStatusUser(TranslateStatusUserUtil[oneRow?.userStatus], true) : "";
@@ -42,7 +46,7 @@ export default function RowOfTable({ oneRow }) {
 
       <div className="flex items-center  w-[100px]  gap-x-2" role="cell">
         <div className=''>
-          <img src={oneRow.userImage} alt="Foto do professor" className='w-[25px] rounded-full' />
+          <img src={`${oneRow?.userImage}`} alt="Foto do professor" className='w-[25px] rounded-full' />
         </div>
         <div>
           <p className="font-medium  text-xs text-gray-900 ">{hiddenTextLimitter(oneRow.userName, 8)}</p>
