@@ -7,10 +7,27 @@ import ViewTrails from '../../components/ViewTrails/ViewTrails.jsx'
 
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js';
 import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook.js';
+import CalygamHeaderConfigurer from '../../components/CalygamHeaderConfigurer/CalygamHeaderConfigurer.jsx';
+import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile.js';
+
+//images
+import homeIcon from '../../assets/img/home-icon-menu.svg'
+import loljaIcon from '../../assets/img/lolja-icon-menu.svg'
+import perfilIcon from '../../assets/img/perfil-icon-menu.svg'
+import moreIcon from '../../assets/img/menu-icon-trail.svg'
 
 export default function MakeNewTrailPage() {
   const { setToken } = useAuth();
   const {targetTrailId} = UseReadAllTrailsHook()
+   const { dataProfile } = UseDataProfile()
+    const navRoutes = [
+      ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
+      { navRoute: "/Coordenacao", navNameRoute: "Equipe", routeIcon: homeIcon },
+      ["ADMIN", "INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
+      { navRoute: "/Trail/Criar", navNameRoute: "Oficina", routeIcon: homeIcon },
+      { navRoute: "/", navNameRoute: "Trilhas", routeIcon: homeIcon }
+  
+    ]
 
    useEffect(() => {
     if (targetTrailId) {
@@ -22,9 +39,9 @@ export default function MakeNewTrailPage() {
 
   return (
     <div className='flex  flex-col items-center    h-full transition-all duration-[2000ms] ease-linear'>
-      
+      <CalygamHeaderConfigurer navRoutes={navRoutes} baseMenus={navRoutes} />
       <div className='md:w-[90%] w-[85%]'>
-        <UserInfoViewManagement />
+        {/* <UserInfoViewManagement /> */}
         <div className={`w-full transition-all ease-linear duration-[3000ms]  gap-x-4 ${targetTrailId?"flex justify-center":"grid lg:grid-cols-2 my-16 md:grid-cols-2 justify-center"}   md:space-y-0 space-y-3  grid-cols-1`}>
 
           <CreateAndShowTrailManagement />

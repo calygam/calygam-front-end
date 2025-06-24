@@ -14,7 +14,6 @@ export function DataProfileProvider({children}){
     const [targetTeacher,setTargetTeacher]=useState("")
     const token = localStorage.getItem("token");
     const location = useLocation();
-    useEffect(()=>{
         const searchDataProfile = async()=>{
      
 
@@ -34,6 +33,8 @@ export function DataProfileProvider({children}){
                 setLoading(false)
             }
         }
+    useEffect(()=>{
+    
         searchDataProfile()
     },[token,location])
 
