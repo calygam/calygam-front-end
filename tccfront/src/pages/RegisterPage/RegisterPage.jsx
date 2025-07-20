@@ -82,7 +82,7 @@ export default function RegisterPage() {
 
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition:'center'
+        backgroundPosition: 'center'
       }}>
       {/* <header>
         <Header />
@@ -99,13 +99,14 @@ export default function RegisterPage() {
       </Link> */}
           <div className='grid md:grid-cols-2 grid-cols-1 gap-x-12 w-full place-items-center md:place-items-stretch   overflow-hidden  '
           >
-            <motion.div
+            <div
               className='md:bg-white/20 h-full flex flex-col font-poppins items-center text-start   md:backdrop-blur-lg'
-              initial={{ opacity: 0, y: 20, x: -10 }}
-              animate={{ opacity: 1, y: 0, x: 0 }}
-              transition={{ duration: 1, ease: 'easeOut' }}
+
             >
-              <img
+              <motion.img
+                initial={{ opacity: 0, y: 20, x: -10 }}
+                animate={{ opacity: 1, y: 0, x: 0 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
                 src={discussionPurple}
                 alt=""
                 className='lg:w-[600px]  lg:h-[600px] md:w-[400px] w-[300px] h-[300px] md:h-[400px]'
@@ -115,7 +116,7 @@ export default function RegisterPage() {
                 <p className=' text-calygam-purple-medium-light     font-semibold'>e desbloqueie conquistas a cada</p>
                 <p className=' text-calygam-purple-medium-light   font-semibold'>passo!</p>
               </div>
-            </motion.div>
+            </div>
             <AuthFormComponent actionName={"Criar Conta"} nameRequired={true} actionForm={"Cadastrar"} handleSendFormAuth={handleSendFormRegisterAuth} errorTarget={errorMessage} cpfRequired={true} />
           </div>
         </div>

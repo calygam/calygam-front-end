@@ -25,7 +25,7 @@ import starOmega from '../../assets/img/starOmega.svg'
 import lineRankingDecor from '../../assets/img/line-ranking-decor.svg'
 import userKing from '../../assets/img/king-of-leasson.svg'
 import comentChatIcon from '../../assets/img/coment-chat-icon.svg'
-import logoImage from '../../assets/img/calygam-logo.svg'
+import logoImage from '../../assets/img/trail-calygam-logo.svg'
 import comunityIcon from '../../assets/img/comunity-icon.svg'
 import { MockUserDataContext } from '../../context/MockUserDataContext/MockUserDataContext.jsx'
 import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook.js'
@@ -40,6 +40,7 @@ import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js'
  import loljaIcon from '../../assets/img/lolja-icon-menu.svg'
  import perfilIcon from '../../assets/img/perfil-icon-menu.svg'
  import moreIcon from '../../assets/img/menu-icon-trail.svg'
+ 
 
 
 
@@ -61,14 +62,9 @@ export default function TrailPage() {
         { navRoute: "/", navNameRoute: "Trilhas", routeIcon: homeIcon }
     
       ]
-  useEffect(()=>{ 
-    
-   
-      setTrailId(trailId)
-    
-  },[trailId])
+
 // const UseProgr
-  // const { setToken } = useAuth();
+   const { setToken } = useAuth();
   const { userPhoto } = useContext(MockUserDataContext)
   const [userDataMock, setUserDataMock] = useState([])
   const [isEnabled,setIsEnabled] = useState(false)
@@ -122,159 +118,23 @@ const createTrailSettings = (showNav) => ({
     getUsersMock()
   }, [])
 
-  // const trails = [
-  //   { id: 0, label: "olaaa", deleted: false, boss: false, locked: false },
-  //   { id: 1, label: "olaaa", deleted: false, boss: false, locked: false },
-  //   { id: 2, label: "olaaa", deleted: false, boss: true, locked: true },
-  //   { id: 3, label: "olaaa", deleted: false, boss: false, locked: false },
-  //   { id: 4, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 5, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 6, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 7, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 8, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 9, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 10, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 11, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 12, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 13, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 14, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 15, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 16, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 17, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 18, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 19, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 20, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 21, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 22, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 23, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 24, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 25, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 26, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 27, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 28, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 29, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 30, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 31, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 32, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 33, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 34, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 35, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 36, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 37, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 38, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 39, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 40, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 41, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 42, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 43, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 44, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 45, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 46, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 47, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 48, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 49, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 50, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 51, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 52, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 53, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 54, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 55, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 56, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 57, label: "olaaa", deleted: false, boss: false, locked: true },
-  //   { id: 58, label: "olaaa", deleted: false, boss: false, locked: true },
-  // ];
-  const numbers = [
-    { id: 1, label: "olaaa", deleted: false, boss: false, locked: false },
-    { id: 2, label: "olaaa", deleted: false, boss: true, locked: true },
-    { id: 3, label: "olaaa", deleted: false, boss: false, locked: false },
-    { id: 4, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 5, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 6, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 7, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 8, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 9, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 10, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 11, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 12, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 13, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 14, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 15, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 16, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 17, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 18, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 19, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 20, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 21, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 22, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 23, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 24, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 25, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 26, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 27, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 28, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 29, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 30, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 31, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 32, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 33, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 34, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 35, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 36, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 37, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 38, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 39, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 40, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 41, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 42, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 43, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 44, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 45, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 46, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 47, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 48, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 49, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 50, label: "olaaa", deleted: false, boss: false, locked: true },
-    { id: 51, label: "olaaa", deleted: false, boss: false, locked: true },
-  ];
-
   return (
     <div className='w-full font-poppins min-h-screen h-full outline-none    bg-calygam-purple-semi-bold '>
-
       <div className="flex relative">
         <aside className="z-30 md:block fixed top-0 bottom-0 left-0 w-fit  text-white ">
  
-
         <MenuCalygamAdmin trailSettings={createTrailSettings(true)} progress={progress} modifyStyles={modifyStyles} isEnabled={isEnabled} setIsEnabled={setIsEnabled} activityUnlocked={activityUnlocked}/>
 
-
-
-
-
-
-
-
-       
         </aside>
-
 
         <aside className="hidden lg:block fixed top-0 bottom-0 right-0 w-fit  text-white">
-           <MenuCalygamAdmin progress={progress} trailSettings={createTrailSettings(false)}   isEnabled={isEnabled} setIsEnabled={setIsEnabled} activityUnlocked={activityUnlocked}/>
-          {/* <div className='flex flex-col md:hidden md:h-full space-y-2 lg:flex order-2 md:order-3 '>
-            <ButtonSocialAreaLocation imgArea={comentChatIcon} nameArea={"Chat"} />
-            <ButtonSocialAreaLocation imgArea={comunityIcon} nameArea={"Comunidade"} />
-           <ShowUserState roundedDelimiter={true} imgRamdomMock={userDataMock.medium} teachers={true} /> 
-          </div> */}
+           <MenuCalygamAdmin progress={progress} trailSettings={createTrailSettings(false)}   isEnabled={isEnabled} setIsEnabled={setIsEnabled} activityUnlocked={activityUnlocked} inverse={true}/>
+     
         </aside>
       </div>
-      {/* <header>
-        <Header withPhoto={true} />
-      </header> */}
-
-
       <div className='flex flex-col  md:left-[25%] outline-none  bg-calygam-purple-semi-bold  lg:left-0 left-0 right-0 fixed mx-auto z-10 py-5  items-center    md:w-[55%] w-full px-4 md:px-0  '>
-        {/* <SubHeaderArea HaveLargeRate={true} IconBadgeRank={IconBadgeRankGlitter} BackToOthersPages={false} />  */}
 
-        <UserInfoDisplay displayStyle={DisplayCleaner('bg-calygam-purple-semi-light/30', "30px", false, "4", "white")} setIsEnabled={setIsEnabled} isEnabled={isEnabled} progressRequired={progressRequired} />
+        <UserInfoDisplay displayStyle={DisplayCleaner('bg-calygam-purple-semi-light/30', "30px", false, "4", "white")} setIsEnabled={setIsEnabled} isEnabled={isEnabled} progressRequired={progressRequired} activities={activities} />
 
         {/*CAIO<- USAR ESTRATEGIA DE CONTROLE TOTAL DE COMPONENTE A PERTIR DE AGORA */}
       </div>

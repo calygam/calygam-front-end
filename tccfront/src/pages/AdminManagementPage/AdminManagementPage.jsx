@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+//view
 //components
 import CalygamHeaderConfigurer from '../../components/CalygamHeaderConfigurer/CalygamHeaderConfigurer'
 import AnalyticsInfoAction from '../../components/AnalyticsInfoAction/AnalyticsInfoAction.jsx'
@@ -32,6 +32,15 @@ export default function AdminManagementPage() {
     }
   }, [modalIsOpen])
 
+    useEffect(()=>{
+            if (!dataProfile?.userRole) return;
+          if(!["ADMIN","COORDENADOR"].includes(dataProfile.userRole)){
+            localStorage.removeItem("token")
+          }
+        },[location.pathname,modalIsOpen])
+
+
+
   const navRoutes = [
     ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
     { navRoute: "/Coordenacao", navNameRoute: "Equipe", routeIcon: homeIcon },
@@ -44,11 +53,11 @@ export default function AdminManagementPage() {
 
 
 
-  const attackAnalisis = [
-    { idAnalisis: 1, titleAnalisis: "Total de Professores", numberAnalisis: 2500 },
-    { idAnalisis: 2, titleAnalisis: "Trilhas Ativas", numberAnalisis: 5500 },
-    { idAnalisis: 3, titleAnalisis: "Total de Professores", numberAnalisis: 10500 },
-  ]
+  // const attackAnalisis = [
+  //   { idAnalisis: 1, titleAnalisis: "Total de Professores", numberAnalisis: 2500 },
+  //   { idAnalisis: 2, titleAnalisis: "Trilhas Ativas", numberAnalisis: 5500 },
+  //   { idAnalisis: 3, titleAnalisis: "Total de Professores", numberAnalisis: 10500 },
+  // ]
   return (
     <div className='flex flex-col min-h-[1200px] md:min-h-full gap-y-2 '>
       {modalIsOpen&&contentModal.includes("AssignTeacher")&&
@@ -59,7 +68,7 @@ export default function AdminManagementPage() {
           <CalygamHeaderConfigurer navRoutes={navRoutes} baseMenus={navRoutes} />
         </header>
         <div className='w-fit flex flex-col mx-auto  items-center justify-center gap-y-8'>
-          <AnalyticsInfoAction attackAnalisis={attackAnalisis} />
+          <AnalyticsInfoAction />
 
           <button type='button' className='rounded-md flex outline-none justify-center self-end border-b-8 border-b-pink-600/10 hover:border-b-0 h-[50px]  bg-calygam-strong-pink items-center py-2 px-4 gap-2' onClick={()=>openModal("AssignTeacher")}>
 
@@ -70,7 +79,7 @@ export default function AdminManagementPage() {
 
 
         </div>
-        <div className='mt-4 mb-16  border-2 lg:max-w-[55%] md:max-w-[65%] max-w-[75%] pb-2  mx-auto  rounded-xl'>
+         <div className='mt-4 mb-16 w-[90%] border pb-2 border-calygam-purple-semi-strong/50  mx-auto  rounded-xl'>
           <div className=" w-full  pb-6   ">
             <div className="">
               <CalygamTableManagemet rowOfTable={dataTeachers} />

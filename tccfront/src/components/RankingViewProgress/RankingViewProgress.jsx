@@ -1,20 +1,52 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProgressBarAdapt from '../ProgressBarAdapt/ProgressBarAdapt'
 import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile'
 import { translateRank } from '../../utils/RankIconLibrary/DarkRankIcon/DarkRankIcon'
+import calyCoin from '../../assets/img/homePage/coinSimbol.svg'
+import { animate, useMotionValue, useTransform } from 'framer-motion'
+export default function RankingViewProgress({ IconBadgeRank, NameRank, LargeRange, img, sunOn }) {
+    const { dataProfile, loading } = UseDataProfile()
+     const [roundedValue,setRoundedValue] = useState(0)
+    const hasValidSuffix = ["-I", "-II", "-III"].some(suffix =>
+        IconBadgeRank?.toUpperCase().includes(suffix)
+    )
 
-export default function RankingViewProgress({ IconBadgeRank, NameRank, LargeRange, img }) {
-    const {dataProfile,loading} = UseDataProfile()
-const hasValidSuffix = ["-I", "-II", "-III"].some(suffix =>
-  IconBadgeRank?.toUpperCase().includes(suffix)
-)
+    const formattedCoins  = new Intl.NumberFormat('pt-BR', {
+  maximumFractionDigits: 0,
+}).format(roundedValue);
 
-const icon = hasValidSuffix ? translateRank(IconBadgeRank) : IconBadgeRank
+  const count = useMotionValue(0)
+
+
+
+
+    const icon = hasValidSuffix ? translateRank(IconBadgeRank) : IconBadgeRank
+
+    const getRankColor = (rank) => {
+        if (rank?.includes("BRONZE")) return "text-[#CD7F32]";
+        if (rank?.includes("SILVER")) return "text-gray-600";
+        if (rank?.includes("GOLD")) return "text-yellow-400";
+        if (rank?.includes("PLATINUM")) return "text-teal-300";
+        if (rank?.includes("DIAMOND")) return "text-sky-300";
+        if (rank?.includes("ASCENDENT")) return "text-fuchsia-600";
+        return "text-white";
+    };
+
+  useEffect(() => {
+    const controls = animate(count, dataProfile?.userMoney, {
+      duration: 5,
+      onUpdate: (latest) => {
+        setRoundedValue(Math.round(latest))
+      }
+    })
+    return () => controls.stop()
+  }, [dataProfile?.userMoney])
+
     return (
         NameRank != null ?
 
-            <div className={`flex flex-col  w-full  items-center rounded-3xl py-2 px-4  bg-gradient-to-r bg-center ${IconBadgeRank?.includes("I")?"bg-transparent":"from-rank-achiviment-bronze-one-first to-rank-achiviment-bronze-one-second/80"} `}>
-                
+            <div className={`flex flex-col  w-full font-poppins   items-center ${sunOn ? "rounded-full bg-transparent" : "rounded-3xl"} py-2 px-4  bg-center ${IconBadgeRank?.includes("I") ? "bg-transparent" : "from-rank-achiviment-bronze-one-first to-rank-achiviment-bronze-one-second/80"} `}>
+
                 {LargeRange ?
                     <div className='flex items-center lg:w-[800px]   md:w-[400px] w-[200px] px-4 flex-wrap-reverse justify-center md:justify-between'>
                         <div className='w-[250px] text-white   text-xs pl-5'>
@@ -30,15 +62,25 @@ const icon = hasValidSuffix ? translateRank(IconBadgeRank) : IconBadgeRank
                         <div className={`flex flex-row-reverse items-center justify-between w-full gap-x-5  `}>
                             <span className='flex transform cursor-pointer    [transform-style:preserve-3d] hover:animate-rotateYBadge'>
 
-                                <img src={icon} alt="" className={`${IconBadgeRank?.includes("-I")?"w-[25px]":"w-[40px]" } `} />
+                                <img src={icon} alt="" className={`${IconBadgeRank?.includes("-I") ? "w-[25px]" : "w-[40px]"} `} />
                             </span>
-                            <div className='flex text-base  text-white'>
+                            <div className='flex flex-col text-sm  text-black'>
 
-                                <p className=' font-bold'> Rank <span className={`${IconBadgeRank?.includes("-I")?"text-yellow-500":"text-white"}`}>{dataProfile.userRank}</span></p>
+                                <p className="font-semibold">
+                                    Rank <span className={getRankColor(dataProfile.userRank)}>
+                                        {dataProfile.userRank}
+                                    </span>
+                                </p>
+                             
                             </div>
                         </div>
-                        <div className='flex w-full '>
-                            <ProgressBarAdapt xpInMoment={dataProfile.userXp} xpToGet={dataProfile.userRankPoints} rangeBar={false} rangerBarRank={IconBadgeRank?.includes("-I")?false:true} />
+                        <div className='flex flex-col w-full '>
+                            <ProgressBarAdapt xpInMoment={dataProfile.userXp} xpToGet={dataProfile.userRankPoints} rangeBar={false} rangerBarRank={IconBadgeRank?.includes("-I") ? false : true} />
+                            {sunOn&&   
+                            <div className='flex gap-x-1 my-1 items-center'>
+                            <img src={calyCoin} alt="moedas" className='w-[25px] h-[25px]' />
+                            <p>{formattedCoins}</p>
+                            </div>}
                         </div>
                     </>}
 

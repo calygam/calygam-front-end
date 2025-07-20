@@ -15,12 +15,15 @@ import MakeNewTrailPage        from './pages/MakeNewTrailPage/MakeNewTrailPage.j
 import AboutLeassonPage        from './pages/AboutLeassonPage/AboutLeassonPage.jsx'
 import DetailMakeActivityPage from './pages/DetailMakeActivityPage/DetailMakeActivityPage.jsx'
 import AdminManagementPage from './pages/AdminManagementPage/AdminManagementPage.jsx'
+import PetManagementPage from './pages/PetManagementPage/PetManagementPage.jsx'
 import Search                  from "./assets/img/searchIcon.png"
 import usePhotoMockData        from "./hooks/UserMockHook/UserMockHook.js"
 import { MockUserDataContext } from "./context/MockUserDataContext/MockUserDataContext.jsx"
 
 
 import CalygamProviders from "./providers/CalygamProviders/CalygamProviders.jsx"
+import CalygamRewardPackagePage from "./pages/CalygamRewardPackagePage/CalygamRewardPackagePage.jsx"
+import CalygamEmporiumPage from './pages/CalygamEmporiumPage/CalygamEmporiumPage.jsx'
 
 
 function TccFront() {
@@ -49,6 +52,10 @@ function TccFront() {
             <Route path="/home" element={<HomePage/>}/>
             <Route path="/Trail/Criar" element={<MakeNewTrailPage/>}/>
             <Route path="/Atividade" element={<DetailMakeActivityPage/>}/>
+            <Route path="/Calygam/Admin/Reward/Create" element={<CalygamRewardPackagePage/>}/>
+            <Route path="/Pet/Create" element={<PetManagementPage/>}/>
+            <Route path="/Emporium/Stock" element={<CalygamEmporiumPage/>}/>
+      
           </Routes>
           </CalygamProviders>
           

@@ -9,7 +9,7 @@ const ReadAllTrailsContext = createContext()
 export function ReadAllTrailsProvider({ children }) {
 
     const [trails, setTrails] = useState([])
-        const storedTrailId = Number(localStorage.getItem("TrailId"));
+        const storedTrailId = parseInt(localStorage.getItem("TrailId"));
     const [targetTrailId, setTargetTrailId] = useState(storedTrailId > 0 ? storedTrailId : 0)
     const [modelIsOpen, setModelIsOpen] = useState(false)
     const navigation = useNavigate()
@@ -27,13 +27,13 @@ export function ReadAllTrailsProvider({ children }) {
             if (!token) return;
             try {
 
-                const isHomePage = location.pathname === "/home" ?
+                const isHomePage = location.pathname.toLowerCase() === "/home" ?
                     "/trail/read/all-trails" : "/trail/read/by/teacher"
 
 
 
                 const response = await api.get(isHomePage)
-                console.log(response.data)
+
                 setTrails(response.data)
 
 
@@ -62,6 +62,7 @@ export function ReadAllTrailsProvider({ children }) {
 
         
             if (!token) return;
+            if(!targetTrailId)return;
             try {
 
                 const isHomePage = targetTrailId&&
@@ -70,7 +71,7 @@ export function ReadAllTrailsProvider({ children }) {
 
 
                 const response = await api.get(isHomePage)
-                console.log(response.data)
+
                 setTargetTrail(response.data)
 
 
@@ -91,13 +92,13 @@ export function ReadAllTrailsProvider({ children }) {
             }
         }
         useEffect(() => {
-        if(modelIsOpen){
+        if(modelIsOpen || ["/Atividade","/Trilha"].includes(location.pathname)){
         searchtrailsById()
         }
-    }, [token,modelIsOpen])
+    }, [token,modelIsOpen,location.pathname])
 
     useEffect(()=>{
-        console.log("vindo da trilha = "+ targetTrailId)
+ 
     },[targetTrailId])
 
     
@@ -108,14 +109,21 @@ export function ReadAllTrailsProvider({ children }) {
         if (localStorage.getItem("token")) {
             if (targetTrailId > 0) {
                 localStorage.setItem("TrailId", targetTrailId)
-                searchtrailsById()
+             
             } 
             
         } else {
             localStorage.removeItem("TrailId")
 
         }
-    }, [targetTrailId, location.pathname])
+    }, [ location.pathname])
+
+    useEffect(()=>{
+        if(!localStorage.getItem("token"))return
+        if(targetTrailId>0){
+             searchtrailsById()
+        }
+    },[targetTrailId])
 
     useEffect(() => {
         if (localStorage.getItem("token")) {

@@ -15,7 +15,7 @@ export const DashBoardManagementProvider = ({children})=>{
             setLoading(true)
             setLoadingText("Calculando dados de acesso...")
         const response = await api.get("users/dash/count/admin")
-        console.log(response.data)
+    
         setDashboardAdmin(response.data)
         }    
         catch(e){

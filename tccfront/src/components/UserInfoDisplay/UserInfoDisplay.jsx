@@ -6,15 +6,20 @@ import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile'
 //images
 
 import moneyIcon from '../../assets/img/Moedas.svg'
+
 import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook'
 import UseTrailDataHook from '../../hooks/UseTrailDataHook/UseTrailDataHook'
 import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook'
 import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook'
+import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked'
+import { useNavigate } from 'react-router-dom'
 
-export default function UserInfoDisplay({ displayStyle,setIsEnabled,isEnabled }) {
+export default function UserInfoDisplay({ displayStyle,setIsEnabled,isEnabled,activities }) {
   const { dataProfile } = UseDataProfile()
   const {targetTrailId } = UseReadAllTrailsHook();
   const {trailId} = UseDataActivitiesPerTrailIdHook()
+  const { setToken } = useAuth();
+  const navigate = useNavigate()
 
 
   const {setTrailId,progress} = UseProgressHook()
@@ -24,6 +29,8 @@ export default function UserInfoDisplay({ displayStyle,setIsEnabled,isEnabled })
       setTrailId(trailId)
     
   },[trailId])
+
+
 // const UseProgressHook
 
   return (
@@ -49,11 +56,9 @@ export default function UserInfoDisplay({ displayStyle,setIsEnabled,isEnabled })
 
       </div>
      <div className='flex w-full justify-center items-center lg:col-span-1 md:justify-center md:items-center flex-col md:col-span-2'>
-  <p className='text-white text-lg text-center'>Tarefas Feitas: {progress?.activitiesCompleted}</p>
+
   <div className='flex justify-center'>
-    <button type='button' className='rounded-lg px-4 outline-none flex items-center justify-center bg-white'>
-      <p className='text-calygam-purple-medium-bold text-lg'>Histórico</p>
-    </button>
+          <span className='py-2 px-4 bg-white rounded-xl text-purple-600 flex justify-center items-center'>Tarefas Feitas: {progress?.activitiesCompleted +"/"+activities.length}</span>
   </div>
 </div>
 

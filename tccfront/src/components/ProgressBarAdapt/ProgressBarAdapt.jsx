@@ -1,14 +1,34 @@
+import { animate, useMotionValue, useTransform } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
+import calyXp from '../../assets/img/rewards/xp-icon.svg'
 
 export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, rangerBarRank, CountStartRow,trailVacancy }) {
-  const [barPercent, setBarPercent] = useState(0)
+const [barPercent, setBarPercent] = useState(0)
+  const [roundedValue,setRoundedValue] = useState(0)
   useEffect(() => {
     const getXpForFullBar = () => {
-      const calculumnForFullBar = Math.round((xpToGet==0?1:xpInMoment / xpToGet) * 100)
+      const calculumnForFullBar = Math.round((xpToGet == 0 ? 1 : xpInMoment / xpToGet) * 100)
       setBarPercent(calculumnForFullBar)
     }
     getXpForFullBar();
-  }, [barPercent,xpInMoment,xpToGet])
+  }, [barPercent, xpInMoment, xpToGet])
+
+     const formattedCoins  = new Intl.NumberFormat('pt-BR', {
+  maximumFractionDigits: 0,
+}).format(roundedValue);
+
+  const count = useMotionValue(0)
+  const rounded = useTransform(() => Math.round(count.get()))
+
+  useEffect(() => {
+    const controls = animate(count, xpInMoment, {
+      duration: 5,
+      onUpdate: (latest) => {
+        setRoundedValue(Math.round(latest))
+      }
+    })
+    return () => controls.stop()
+  }, [xpInMoment])
 
   return (
     <div className={`flex ${CountStartRow ? "flex-col-reverse " : "flex-col"} w-full  ${rangeBar ? "px-2" : "px-0"} font-jersey    `}>
@@ -25,17 +45,20 @@ export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, ranger
           </div>
           </div>
           :
-          <p className={`text-white text-xs `}>{xpInMoment}/{xpToGet==0?"MAX":xpToGet} Pontos</p>:null}
+          <div className='flex gap-x-1 items-center'>
+          <p className={`text-black text-xs `}>{formattedCoins}/{xpToGet==0?"MAX":xpToGet} </p>
+          <img src={calyXp} alt="seu xp" className='w-[35px] h-[35px]' />
+          </div>:null}
           
 
         
        
       <div className={`flex w-full ${rangeBar ? " w-full h-[4px]" : "w-full h-[5px]"} ${trailVacancy?"bg-gray-300":"bg-white"} rounded-full`}>
-        <span className={` transition-all delay-150 duration-[3000ms] flex h-full rounded-full w-0 bg-gradient-to-tr ${trailVacancy?"from-purple-800 via-purple-600 to-purple-400":"from-green-800 via-green-600 to-green-400"}`} style={{ width: `${barPercent + "%"}` }}></span>
+        <span className={` transition-all delay-150 duration-[3000ms] flex h-full rounded-full w-0 bg-gradient-to-tr ${trailVacancy?"from-purple-800 via-purple-600 to-purple-400":"from-purple-800 via-purple-600 to-purple-400"}`} style={{ width: `${barPercent + "%"}` }}></span>
       </div>
       {rangerBarRank && !trailVacancy ?
         <div className='flex w-full justify-end '>
-          <p className='text-white text-xs'>{xpInMoment}/{xpToGet==0?"MAX":xpToGet}</p>
+          <p className='text-black text-xs'>{xpInMoment}/{xpToGet==0?"MAX":xpToGet}</p>
         </div>
         : rangerBarRank && trailVacancy?
         <div className='flex w-full  '>

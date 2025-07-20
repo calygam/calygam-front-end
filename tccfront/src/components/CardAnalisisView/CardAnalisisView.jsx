@@ -11,6 +11,7 @@ export default function CardAnalisisView({titleAnalisis,numberAnalisis,positionI
         const controls = animate(count, numberAnalisis, { duration: 5})
         return () => controls.stop()
     }, [])
+    //.
 
   return (
     <div className='rounded-md border border-gray-400/55 w-[250px] h-[100px] px-4 py-2 flex flex-col  font-poppins'>

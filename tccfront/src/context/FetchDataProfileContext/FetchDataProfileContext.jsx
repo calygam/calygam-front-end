@@ -22,11 +22,11 @@ export function DataProfileProvider({children}){
                 setLoading(true)
                 setLoadingText('Carregando dados de usuário...')
                 const response = await api.get("/users/readOne")
-                console.log(response.data)
+            
                 setDataProfile(response.data)
 
             }catch(e){
-                console.log("Deu alguma coisa errada! :/")
+            
             }
             finally{
                
@@ -46,11 +46,11 @@ export function DataProfileProvider({children}){
                 setLoading(true)
                 setLoadingText('Carregando dados dos professores...')
                 const response = await api.get(`http://localhost:8080/users/readAllUsers/teacher?page=${page}&size=5&sort=${ColumnFilter}`)
-                console.log(response.data)
+               
                 setDataTeachers(response.data?.content)
 
             }catch(e){
-                console.log("Deu alguma coisa errada! :/")
+           
             }
             finally{
                
@@ -58,7 +58,7 @@ export function DataProfileProvider({children}){
             }
         }
     return(
-        <DataProfileContext.Provider value={{dataProfile,loading,dataTeachers,searchDataTeachers,targetTeacher,setTargetTeacher}}>
+        <DataProfileContext.Provider value={{dataProfile,loading,dataTeachers,searchDataProfile,searchDataTeachers,targetTeacher,setTargetTeacher}}>
        
             {children}
         </DataProfileContext.Provider>

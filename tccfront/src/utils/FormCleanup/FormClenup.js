@@ -1,11 +1,9 @@
-export const FormClenup = (setForm,setImagePreview,setStep) => {
+export const FormClenup = (setForm, setImagePreview, setStep, storagekey) => {
     setForm({
-        name: '',
-        description: '',
-        points: '0',
-        password: '',
-        vacancy:'0',
-        image: null,
+        trailName: '',
+        trailDescription: '',
+        trailVacancy: '0',
+        trailImage: '',
         activities: [],
     });
     setImagePreview(null);

@@ -49,7 +49,7 @@ setModelIsOpen(true)
             <SwiperSlide className="flex justify-center  " key={trail.trailId}>
               <div className=" py-4 px-4 w-[200px] h-[250px] flex flex-col justify-between   rounded-lg bg-black/80">
                 <div className=' overflow-hidden'>
-                  <img src={trail.trailImage} alt="" className='w-14 h-14 rounded-md object-cover ' />
+                  <img src={trail.trailImage} alt="" className='w-[45px] h-full object-cover rounded-full  ' />
                 </div>
                 <p className='text-xs text-white font-bold my-2'>{trail.trailName}</p>
 <p className='text-xs font-light text-white/80 my-8'>

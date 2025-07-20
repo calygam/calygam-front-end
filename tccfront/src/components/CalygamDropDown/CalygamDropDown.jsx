@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import AdminButtonDasnboard from '../AdminButtonDasnboard/AdminButtonDasnboard'
+import { motion } from 'framer-motion'
 
 export default function CalygamDropDown({toggle,setToggle,options,Options,selectedOption,SelectOneOption}) {
    
@@ -13,7 +14,7 @@ export default function CalygamDropDown({toggle,setToggle,options,Options,select
                     type='button'
 
                     onClick={() => setToggle(() => !toggle)}
-                    className="flex  px-4 py-2   justify-between gap-2 bg-calygam-semi-light-red/45 border rounded-t-lg  shadow-sm outline-none"
+                    className="flex  px-4 py-2   justify-between gap-2 bg-purple-800 border border-gray-700 rounded-t-lg  shadow-sm outline-none"
                 >
                     {selectedOption ? selectedOption.label : SelectOneOption}
                     <span className='w-10'>
@@ -23,15 +24,19 @@ export default function CalygamDropDown({toggle,setToggle,options,Options,select
 
 
                 {toggle && (
-                    <ul className="flex flex-col   bg-calygam-semi-light-red/45 text-black border ">
+                    <ul className="flex flex-col   bg-purple-700 text-black border overflow-hidden border-gray-700  ">
                         {options.map((option,index) => (
-                            <li
+                            
+                            <motion.li
                                 key={option.value}
                                 onClick={() => Options(option)}
-                                className="border-b    group-hover:text-black    shadow-b-lg cursor-pointer"
+                                className="border-b border-gray-700     group-hover:text-black    shadow-b-lg cursor-pointer"
+                                initial={!toggle?false:{y:-20}}
+                                animate={{y:0}}
+                                transition={{type:'spring',stiffness:200,mass:2+index}}
                             >
                                <AdminButtonDasnboard identifier={index} textAreaDash={option.label} selectedButton={selectedButton} setSelectedButton={setSelectedButton} />
-                            </li>
+                            </motion.li>
                         ))}
                     </ul>
                 )}

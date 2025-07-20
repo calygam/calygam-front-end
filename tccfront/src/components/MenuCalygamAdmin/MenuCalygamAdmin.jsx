@@ -5,25 +5,34 @@ import dashCoordinator from '../../assets/img/dash-coordinator.svg'
 import configsCoordinator from '../../assets/img/configs-coordinator.svg'
 import quitCoordinator from '../../assets/img/quit-coordinator.svg'
 import AdminButtonDasnboard from '../../components/AdminButtonDasnboard/AdminButtonDasnboard.jsx'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import StaticTooltipActivity from '../../components/StaticTooltipActivity/StaticTooltipActivity.jsx'
 import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook.js'
+import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook.js'
+
 // import CalygamNavBar from '../../components/CalygamNavBar/CalygamNavBar.jsx'
-export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnabled, modifyStyles, progress,activityUnlocked }) {
+export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnabled, modifyStyles, progress, activityUnlocked, inverse,isAnchor }) {
     const [objTrail, setObjTrail] = useState({})
     const { activities, trailId } = UseDataActivitiesPerTrailIdHook()
+    const { targetTrail, searchtrailsById, targetTrailId } = UseReadAllTrailsHook()
+
     const location = useLocation()
     useEffect(() => {
         if (trailSettings) {
             setObjTrail(trailSettings)
         }
     }, [trailSettings])
+    useEffect(()=>{
+        console.log(activityUnlocked)
+    },[activityUnlocked])
 
 
 
 
-    const [selectedButton, setSelectedButton] = useState(1)
+
+
+    const [selectedButton, setSelectedButton] = useState(-1)
     //Trail:
     //  logoImage:logoImage,
     //  menus:{
@@ -58,38 +67,48 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
 
 
     return (
-        <div className={`lg:w-fit  lg:block ${!isEnabled ? "hidden md:block" : "block"}  outline-none        font-poppins ${trailSettings ? "border-r-2  border-white/20" : "border-none fixed lg:sticky w-[75%] inset-0"}    min-h-lvh h-full transition-all delay-75 duration-[10000ms] z-20 ease-in-out `}>
+        <div className={`lg:w-fit lg:min-w-[200px] lg:max-w-[200px]   lg:block ${!isEnabled ? "hidden md:block" : "block"}  outline-none        font-poppins ${trailSettings ?!inverse? "border-r-2 border-white/20": "border-l-2 border-white/20"   : "border-none fixed lg:sticky w-[75%]  inset-0"}    min-h-lvh h-full transition-all delay-75 duration-[10000ms] z-20 ease-in-out `}>
             {isEnabled &&
-            
+
                 <div className={`flex ${trailSettings ? "md:hidden fixed -z-10 " : "lg:hidden fixed -z-10"}  w-full h-full    bg-black/50 `}></div>}
-            <menu className={`w-full flex flex-col items-end  ${["/Trilha","/Atividade"].includes(location.pathname)? "bg-calygam-purple-semi-bold md:bg-calygam-purple-light" : "bg-calygam-purple-semi-bold"} lg:pt-8 overflow-y-auto  pt-0 h-full`}>
+            <menu className={`w-full min-w-[250px] md:min-w-full flex flex-col items-end  ${["/Trilha", "/Atividade"].includes(location.pathname) ? "bg-calygam-purple-semi-bold md:bg-calygam-purple-light" : "bg-calygam-purple-semi-bold"}  overflow-y-auto custom-scrollbar  pt-0 h-full`}>
                 <div className={`w-full ${trailSettings ? "md:hidden" : "lg:hidden"} flex justify-end pr-5 text-black  font-black text-xl`}>
                     <button className='text-white font-bold' onClick={() => setIsEnabled(!isEnabled)}> {isEnabled ? "X" : "/"}</button></div>
-                <div className={`w-full flex justify-center ${trailSettings ? "border-none" : "border-b"} border-gray-400/50 lg:py-7  p-5  `}>
-                    <img src={location.pathname == "/Trilha"||"/Atividade" ? objTrail?.logoImage : senaiLogo} alt="" className={`${location.pathname =="/Atividade"?"w-full object-cover":trailSettings ? "shadow-none w-[150px] h-[50px]" : "shadow-xl w-[150px] lg:w-full shadow-black/50"}  `} />
+                <div className={`w-full flex justify-center  ${trailSettings ? "border-none" : "border-b"} border-gray-400/50 lg:py-7 w-[150px]  p-5  `}>
+                    {!inverse ?
+                        <Link to={"/home"}><img src={location.pathname == "/Trilha" || "/Atividade" && !inverse ? objTrail?.logoImage : senaiLogo} alt="" className={`${location.pathname == "/Atividade" ? "w-full object-contain" : trailSettings ? "shadow-none w-[100px] h-auto max-h-[100px]" : "shadow-xl w-[150px] lg:w-full shadow-black/50"} hover:object-cover `} /></Link>
+                        : <img src={targetTrail.trailImage?targetTrail.trailImage:senaiLogo} alt="" className={`${targetTrail.trailImage?"w-full h-auto max-h-[200px] object-contain  rounded-md border border-white/15 shadow-sm shadow-purple-500/50 hover:scale-110 overflow-hidden transition-all ":"hidden"}  `} />
+                    }
                 </div>
                 {trailSettings?.showNav &&
                     <nav className='w-[95%] space-y-5 flex flex-col py-3'>
                         <ul>
                             {trailSettings?.menus?.map((info, index) => (
-                                info.navRoute &&
+                                info.navRoute && 
                                 <li key={index} className='my-3'>
-                                    <AdminButtonDasnboard iconAreaDash={info.routeIcon} textAreaDash={info.navNameRoute} identifier={index} selectedButton={selectedButton} setSelectedButton={setSelectedButton} modifyStyles={modifyStyles} />
+                                    <AdminButtonDasnboard iconAreaDash={info.routeIcon} textAreaDash={info.navNameRoute} identifier={index} isEnabled={isEnabled} setIsEnabled={setIsEnabled} selectedButton={selectedButton} setSelectedButton={setSelectedButton} modifyStyles={modifyStyles} navRoute={info.navRoute}/>
                                 </li>
+                                
                             ))
 
                             }
                         </ul>
                     </nav>}
-                {progress &&
-                    <div className={`flex w-full ${trailSettings?.showNav?"lg:hidden":""}  items-center px-2 flex-col`}>
-                        <div className='my-1 flex flex-col items-center'>
-                            <h3 className=''>Painel da Atividade</h3>
-                            <div className='h-[2px] rounded-full space-y-4 w-full bg-white'></div>
+                {progress && activityUnlocked &&targetTrail.trailName? 
+                    <div className={`flex w-full ${trailSettings?.showNav ? "lg:hidden" : ""}  items-center px-2 flex-col`}>
+                       
+                        <div className=' flex flex-col w-full my-1 items-center space-y-4'>
+                            <StaticTooltipActivity comumInfo={activityUnlocked} tooltipInfo={false} />
+
                         </div>
-                        <div className=' flex flex-col w-full my-4 items-center space-y-4'>
-                            <StaticTooltipActivity comumInfo={activityUnlocked} tooltipInfo={activityUnlocked} />
-                            <StaticTooltipActivity comumInfo={false} tooltipInfo={false} />
+                    </div>
+                :location.pathname == "/Trilha" &&inverse?<p className='px-4 text-purple-300 font-bold'>Carregando...</p>:null}
+                {progress && 
+                    <div className={`flex w-full ${trailSettings?.showNav ? "lg:hidden" : ""}  items-center px-2 flex-col`}>
+                     
+                        <div className=' flex flex-col w-full my-1 items-center space-y-4'>
+                            <StaticTooltipActivity comumInfo={false} tooltipInfo={activityUnlocked} />
+
                         </div>
                     </div>
                 }

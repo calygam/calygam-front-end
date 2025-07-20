@@ -1,47 +1,221 @@
-import React from 'react'
-import sendActivityArchive from '../../assets/img/send-activity-archive.png'
+import React, { useEffect, useState } from 'react';
+import sendActivityArchive from '../../assets/img/send-activity-archive.png';
 import api from '../../api/api';
+import { motion } from 'framer-motion';
+import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook';
+import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile';
+import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook';
+import { Link, useNavigate, useNavigation, useSearchParams } from 'react-router-dom';
+import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook';
+import SubmitActivityForTeacherModal from '../../components/modals/SubmitActivityForTeacherModal/SubmitActivityForTeacherModal.jsx'
 
-export default function SendActivityArea() {
-      const handleFileChange = async (event) => {
-    const file = event.target.files[0];
-    
-    if (!file) return;
 
-    // Bloqueia imagens
-    if (file.type.startsWith("image/")) {
-      alert("Somente arquivos que não sejam imagens são permitidos.");
+import closeX from '../../assets/img/close-enter-to-trail.svg'
+import { ExplorerProcessFilesUtil } from '../../utils/HandleChangeDragDropUtil/ExplorerProcessFilesUtil.js';
+import { HandleDeleteSubmit } from '../../utils/HandleDeleteSubmit/HandleDeleteSubmit.js';
+export default function SendActivityArea({ viewSubmissions, setViewSubmissions }) {
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const { dataProfile, searchDataProfile } = UseDataProfile()
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const { modalIsOpen, openModal, contentModal } = UseModalHook()
+  const [isDeleting, setIsDeleting] = useState(false)
+  const { submissionBaggage, ListenerOfDowloadableArchivesSubmited } = UseProgressHook()
+  const [sending, setSending] = useState(false)
+  const navigation = useNavigate()
+  const [obtainFile, setSObtainFile] = useState({})
+
+  const { activities, setTrailId, trailId, targetActivityId, setTargetActivityId, position, setPosition, targetActivity, readActivitiesByTrailId } = UseDataActivitiesPerTrailIdHook()
+
+  const [searchParams] = useSearchParams();
+  const progressId = searchParams.get("progressId");
+
+  const deletingMode = {
+    isDeleting: isDeleting,
+    setIsDeleting: setIsDeleting,
+    obtainFile: obtainFile,
+    progressId: progressId,
+
+  }
+
+
+
+  const handleRemoveFile = (idx) =>
+    setSelectedFiles((files) => files.filter((_, i) => i !== idx));
+
+
+
+  useEffect(() => {
+    if (!isDeleting) {
+      ListenerOfDowloadableArchivesSubmited(progressId)
+    }
+  }, [progressId, isDeleting])
+  const handleFileChange = (event) => {
+    if (!(event.target.files)) {
       return;
     }
-
-    const formData = new FormData();
-    formData.append("activityFile", file); 
-
-    try {
-      const response = await api.post(
-        "progress/submit/trail/1/activity/1",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        }
-      );
-      alert("Arquivo enviado com sucesso!");
-      console.log(response.data);
-    } catch (error) {
-      console.error("Erro ao enviar o arquivo:", error);
-      alert("Erro ao enviar o arquivo.");
-    }
+    ExplorerProcessFilesUtil(event.target.files, setSelectedFiles)
   };
+
+
+
+  useEffect(() => {
+    if (selectedFiles.length === 0) {
+      setHasAnimated(false);
+    } else {
+      setHasAnimated(true);
+    }
+  }, [selectedFiles]);
+
+  useEffect(() => {
+    if (!modalIsOpen) {
+      setIsDeleting(false)
+    }
+  }, [modalIsOpen])
+
   return (
-    <div className=' border border-dashed group  font-poppins rounded-xl overflow-hidden relative justify-center flex bg-black/50 border-calygam-purple-semi-strong '>
-        <div className='w-full h-full bg-calygam-purple-semi-strong/10 group text-center items-center flex justify-center rouneded-2xl absolute backdrop-blur-sm'>
-      <p className='text-calygam-purple-semi-strong'>Entregar</p>
+    <div className='flex flex-col w-full items-end' >
+      {
+        modalIsOpen && ["submitActivityModal"].includes(contentModal) &&
+        <SubmitActivityForTeacherModal sending={sending} selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} trailId={trailId} targetActivityId={targetActivityId} setSending={setSending} deletingMode={deletingMode} progressId={progressId} />
+      }
+
+      <div className='border border-dashed  w-auto group  font-poppins  rounded-xl overflow-hidden relative justify-center flex   bg-black/50 border-calygam-purple-semi-strong'
+        onDragOver={(e) => {
+          e.preventDefault();
+          setIsDragging(true)
+        }}
+        onDrop={(e) => {
+          e.preventDefault();
+          setIsDragging(false)
+          if (e.dataTransfer.files) {
+            ExplorerProcessFilesUtil(
+              e.dataTransfer.files,
+              setSelectedFiles
+
+            );
+          }
+        }}
+      >
+
+        <div className='w-full h-full  justify-center group text-center flex flex-col rounded-2xl absolute backdrop-blur-sm'>
+
+          {selectedFiles.length === 0 && submissionBaggage?.submissions?.length === 0 ? (
+
+
+            <>
+              <label htmlFor="file-do-input-submit" className='text-calygam-purple-semi-strong cursor-pointer lg:block hidden py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-calygam-purple-semi-strong font-semibold rounded-lg'>
+                Clique para selecionar arquivos
+              </label>
+              <label htmlFor="file-do-input-submit" className='text-calygam-purple-semi-strong cursor-pointer lg:hidden block py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-calygam-purple-semi-strong font-semibold rounded-lg'>
+                Toque para selecionar arquivos
+              </label>
+            </>
+          ) : (
+            <div className='w-full h-full flex flex-col p-2 justify-start text-center rounded-2xl absolute backdrop-blur-sm overflow-y-auto custom-scrollbar max-h-40'>
+              {viewSubmissions &&
+                <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
+                  <p>Estregues</p>
+                </span>
+              }
+              {submissionBaggage?.submissions.length > 0 && viewSubmissions && submissionBaggage.submissions.map((file, index) => (
+                <div
+                  key={index}
+
+                  className=''
+                >
+                  <motion.div
+
+                    className='w-full rounded-md bg-purple-600  px-4 py-2 border-b-4 border-purple-700 flex justify-between items-center mb-2'
+                    initial={hasAnimated ? false : { scale: 0.9 }}
+                    animate={{ scale: 1.00 }}
+                    transition={{ type: 'spring', stiffness: 200, mass: 2 }}
+                  >
+                    <div className='flex items-center gap-x-2'>
+                      <span className='rounded-md p-2 hidden md:block border-l border-gray-600  bg-gray-500'>
+                        <p className='text-white '>.{file.activitySubmitedFile.split('.').pop()}</p>
+                      </span>
+                      <p className=' md:max-w-[70px] max-w-[80px]   md:block text-white truncate'>{file.activityOriginalFileName.split('.').slice(0, -1).join('.')}</p>
+
+                    </div>
+                    <div className=' items-center flex gap-x-2'>
+                      <Link to={file.activitySubmitedFile} className='outline-none px-4 py-2 bg-purple-900 border-b border-purple-950 text-xs text-white rounded-full'>Baixar</Link>
+                      <button className='bg-red-500/65 outline-none rounded-full border-2 border-purple-800 overflow-hidden flex justify-center items-center' onClick={() => {
+                        setIsDeleting(true);
+                        openModal("submitActivityModal");
+
+                        setSObtainFile(file);
+                      }}  > <img src={closeX} alt="Deletar arquivo" className='w-[25px]' /></button>
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
+              {!(viewSubmissions) &&
+                <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
+                  <p>Área de Entrega</p>
+                </span>
+              }
+              {!(viewSubmissions) && selectedFiles?.map((file, index) => (
+                <motion.div
+                  key={index}
+                  className='w-full rounded-md bg-purple-600 p-1 border border-dashed border-black flex justify-between items-center mb-2'
+                  initial={hasAnimated ? false : { scale: 0.9 }}
+                  animate={{ scale: 1.00 }}
+                  transition={{ type: 'spring', stiffness: 200, mass: 2 }}
+                >
+                  <div className='flex items-center gap-x-1'>
+                    <span className='rounded-md p-2 border border-gray-800 bg-gray-500'>
+                      <p className='text-white'>.{file.name.split('.').pop()}</p>
+                    </span>
+                    <p className='max-w-[120px] text-white truncate'>{file.name.split('.').slice(0, -1).join('.')}</p>
+
+                  </div>
+                  <button
+                    onClick={() => handleRemoveFile(index)}
+                    className='bg-red-500/65 outline-none rounded-md p-1 flex items-center justify-center'
+                  >
+                    <img src={closeX} alt='Remover arquivo' className='w-[20px]' />
+                  </button>
+                </motion.div>
+              ))}
+              {!(viewSubmissions) &&
+                <label htmlFor="file-do-input-submit" className='w-full h-[35px] rounded-md px-6 py-4 items-center cursor-pointer  text-white/85  justify-between bg-white/15 border flex border-white/75'>
+                  <p>+</p>
+                  <p>Adicionar</p>
+
+                </label>
+              }
+            </div>
+          )}
+        </div>
+        <div className='w-full rounded-2xl flex justify-center items-center cursor-pointer'>
+          <input
+            type="file"
+            id='file-do-input-submit'
+            onChange={(e) => handleFileChange(e)}
+            accept="application/*,text/*"
+            multiple
+            className="hidden"
+          />
+          <img
+            src={sendActivityArchive}
+            alt="Enviar arquivo"
+            className='w-full duration-500 rounded-2xl'
+          />
+        </div>
       </div>
-      <div className='w-full rouneded-2xl '>
-        <img src={sendActivityArchive} alt="" className='w-full group-hover:object-contain group-hover:scale-125 transition-all ease-linear duration-[5000]  rouneded-2xl ' />
+
+
+      <div className='flex flex-wrap gap-x-4 gap-y-4  my-2 '>
+        {submissionBaggage?.submissions?.length>0&&
+          <button type='button' className='bg-green-800 outline-none py-2 px-4 h-[35px] rounded-md border-b-4 p-0 border-green-900 text-xs  font-medium hover:border-none text-white' onClick={() => setViewSubmissions(!viewSubmissions)}>Modo Feito</button>
+        }
+        {selectedFiles.length > 0 ?
+          < button className='outline-none py-2 px-4  border-0 border-b-4 hover:border-b-0 h-[35px]  border-purple-950  font-medium rounded-md text-xs text-white bg-calygam-purple-semi-strong' disabled={sending} type='button' onClick={() => openModal("submitActivityModal")}>Preparar</button>
+          : < button className='outline-none py-2  px-4 border-0 border-b-4 hover:border-b-0 h-[35px]  border-gray-600/50 font-medium   rounded-md text-xs text-white/75 cursor-not-allowed bg-calygam-purple-semi-strong/50' disabled={true} type='button'>Preparar</button>
+        }
       </div>
-    </div>
-  )
+    </div >
+  );
 }
