@@ -18,6 +18,7 @@ export function ModalProvider({children}){
         setModalIsOpen(false)
         setError(errorMsg)
         setSucess(sucessMsg)
+        setContentModal("")
         setTimeout(() => {
             setError("")
             setSucess("")

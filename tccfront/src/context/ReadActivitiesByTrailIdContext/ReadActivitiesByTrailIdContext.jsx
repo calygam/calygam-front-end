@@ -17,6 +17,7 @@ export const ReadActivitiesByTrailIdProvider = ({ children }) => {
     const location = useLocation()
     const storedTrailId = Number(localStorage.getItem("TrailId"));
     const [trailId, setTrailId] = useState(storedTrailId > 0 ? storedTrailId : 0);
+    
 
     const readActivitiesByTrailId = async () => {
         try {
@@ -26,6 +27,7 @@ export const ReadActivitiesByTrailIdProvider = ({ children }) => {
 
 
             setActivities(response.data)
+            console.log(response.data)
         }
         catch (e) {
             console.log("algo deu errado tentando obter as atividades de uma trilha :( " + e)
@@ -87,7 +89,7 @@ export const ReadActivitiesByTrailIdProvider = ({ children }) => {
     }, [location.pathname])
 
     return (
-        <ReadActivitiesByTrailIdContext.Provider value={{ activities, setTrailId, trailId, targetActivityId, setTargetActivityId,position,setPosition,targetActivity }}>
+        <ReadActivitiesByTrailIdContext.Provider value={{ activities, setTrailId, trailId, targetActivityId, setTargetActivityId,position,setPosition,targetActivity,readActivitiesByTrailId }}>
             {children}
         </ReadActivitiesByTrailIdContext.Provider>
     )

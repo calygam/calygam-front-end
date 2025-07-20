@@ -1,12 +1,20 @@
+import { UseModalHook } from "../../hooks/UseModalHook/UseModalHook.js";
 import { FormatCoins } from "../../utils/FormatCoins/FormatCoins.js";
 import { RegexPassword } from "../RegexPassword/RegexPassword.js";
 
-export const handleInputModify = (e, step, setForm, form, setImagePreview,setFormErrors) => {
-  const { name, value, files } = e.target;
+export const handleInputModify = (e, step, setForm, form, setImagePreview, setFormErrors) => {
 
+  const { name, value, files } = e.target;
+const MAX_IMAGE_KB = 30;
+const MAX_IMAGE_BYTES = MAX_IMAGE_KB * 1024; 
   if (name === "trailImage") {
+
     if (files?.length) {
-      setForm(prev => ({ ...prev, trailImage: files[0] }));
+      if (files[0].size >MAX_IMAGE_BYTES){
+     setFormErrors(prev => ({ ...prev, trailImage: "Arquivo Deve ser Menor que 2MB" }));
+        return
+      }
+        setForm(prev => ({ ...prev, trailImage: files[0] }));
       setImagePreview(URL.createObjectURL(files[0]));
     } else {
       setForm(prev => ({ ...prev, trailImage: "" }));
@@ -16,34 +24,33 @@ export const handleInputModify = (e, step, setForm, form, setImagePreview,setFor
   }
 
 if (name === "trailPassword") {
- 
-    setFormErrors(prev => ({ ...prev, trailPassword: RegexPassword(value) }));
-    
- 
+  setFormErrors(prev => ({ ...prev, trailPassword: RegexPassword(value) }));
+  setForm(prev => ({ ...prev, trailPassword: value }));
+  return;
 }
 
 
   if (name === "trailPoints") {
-    const onlyNums  = value.replace(/\D/g, "") || "0";  
-    if(onlyNums.length>6)return  
+    const onlyNums = value.replace(/\D/g, "") || "0";
+    if (onlyNums.length > 6) return
     const formatted = FormatCoins(onlyNums);
     setForm(prev => ({ ...prev, trailPoints: formatted }));
     return;
   }
-    if (name === "trailVacancy") {
-    const onlyNums  = value.replace(/\D/g, "") || "0";  
+  if (name === "trailVacancy") {
+    const onlyNums = value.replace(/\D/g, "") || "0";
     const numInt = parseInt(onlyNums)
-    if(numInt>45)return
-    if(onlyNums.length>2)return  
+    if (numInt > 45) return
+    if (onlyNums.length > 2) return
     const formatted = FormatCoins(onlyNums);
     setForm(prev => ({ ...prev, trailVacancy: formatted }));
     return;
   }
-  
+
 
   if (name === "activityPoints") {
 
-    const onlyNums  = value.replace(/\D/g, "") || "0";
+    const onlyNums = value.replace(/\D/g, "") || "0";
     const formatted = FormatCoins(onlyNums);
 
     setForm(prev => {
@@ -65,11 +72,14 @@ if (name === "trailPassword") {
 
   if (name === "trailName") {
     if (value.length > 20) return;
+    
+     setFormErrors(prev => ({ ...prev, trailName: value.length>0?"batatonananana":"" }));
+     
     setForm(prev => ({ ...prev, trailName: value }));
     return;
   }
-    if (name === "trailDescription") {
-    if (value.length > 200) return;
+  if (name === "trailDescription") {
+    if (value.length > 500) return;
     setForm(prev => ({ ...prev, trailDescription: value }));
     return;
   }

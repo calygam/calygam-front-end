@@ -5,6 +5,15 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+    safelist: [
+    "bg-yellow-800", "border-yellow-950/50",
+    "bg-gray-400", "bg-yellow-400",
+    "bg-teal-300", "bg-sky-300",
+    "bg-fuchsia-300", "bg-purple-500/50",
+    "text-gray-300", "text-yellow-400",
+    "text-teal-300", "text-sky-300", "text-fuchsia-600",
+    "text-fuchsia-600"
+  ],
   theme: {
     extend: {
 
@@ -50,6 +59,7 @@ export default {
         'calygam-gray-semi-light':'#D9D9D9',
         'calygam-gray-semi-strong':'#ADADAD',
         'calygam-gray-medium-light':'#535862',
+        'calygam-gray-light':'#61758A',
         //black
         'calygam-black-semi-strong':'#2F2E41',
         //purple
@@ -66,7 +76,8 @@ export default {
 
         //blue
         'calygam-blue-semi-bold':"#000437",
-        'calygam-blue-semi-light':"#4285F4"
+        'calygam-blue-semi-strong':"#4C48CE",
+        'calygam-blue-semi-light':"#4285F4",
          
       },
       backgroundImage:{

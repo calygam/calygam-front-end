@@ -22,6 +22,7 @@ import imgBallFinalForm from '../../assets/img/blur-ball-final-form.png'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
 import CalygamHeaderConfigurer from '../../components/CalygamHeaderConfigurer/CalygamHeaderConfigurer.jsx'
+import FlorestGradientBackground from '../../components/FlorestGradientBackground/FlorestGradientBackground.jsx'
 import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile.js'
 
 //imagens
@@ -35,7 +36,7 @@ export default function HomePage() {
 
   const location = useLocation();
   const navigate = useNavigate()
-  const {dataProfile,loading} = UseDataProfile()
+  const { dataProfile, loading } = UseDataProfile()
 
 
 
@@ -55,25 +56,34 @@ export default function HomePage() {
   }, [location.search]);
 
   const navRoutes = [
+    ["ADMIN"].includes(dataProfile.userRole) &&
+    { navRoute: "/Calygam/Admin/Reward/Create", navNameRoute: "Recompensas", routeIcon: homeIcon },
     ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
-    { navRoute: "/Coordenacao", navNameRoute: "Equipe",routeIcon:homeIcon },
-    ["ADMIN","INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
-    { navRoute: "/Trail/Criar", navNameRoute: "Oficina",routeIcon:homeIcon },
-    { navRoute: "/", navNameRoute: "Trilhas",routeIcon:homeIcon }
+    { navRoute: "/Coordenacao", navNameRoute: "Equipe", routeIcon: homeIcon },
+    ["ADMIN", "INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
+    { navRoute: "/Trail/Criar", navNameRoute: "Oficina", routeIcon: homeIcon },
+
+    { navRoute: "/home", navNameRoute: "Home", routeIcon: homeIcon },
+    { navRoute: "/Biblioteca", navNameRoute: "Biblioteca", routeIcon: homeIcon },
+    ["ADMIN"].includes(dataProfile.userRole) &&
+    { navRoute: "/Pet/Create", navNameRoute: "Pets", routeIcon: homeIcon }, 
+    { navRoute: "/Emporium/Stock", navNameRoute: "empório", routeIcon: homeIcon }
 
   ]
 
 
   return (
     <div className='w-full font-poppins  transition-all delay-100 duration-200 ease-in-out'>
-      
+
       <header>
-       <CalygamHeaderConfigurer navRoutes={navRoutes} baseMenus={navRoutes}/>
+        <FlorestGradientBackground navRoutes={navRoutes} dataProfile={dataProfile} />
+
+
       </header>
       <main className='w-full space-y-14'>
 
         <div className='flex flex-col mt-6 space-y-14 mx-auto w-[85%]'>
-          <SubHeaderArea HaveLargeRate={true} IconBadgeRank={IconBadgeRankGlitter} BackToOthersPages={false} imgBellSrc={bellImgSrc} />
+
           <ViewAdventureOfUser />
         </div>
         <div className='w-full flex flex-col space-y-14  mt-4'>
@@ -82,10 +92,10 @@ export default function HomePage() {
           <ObtainPointsForAchiviments isSakuraActive={true} />
           <ObtainPointsForAchiviments isTrailsActive={true} />
 
-     
+
         </div>
         <div className='flex flex-col mt-2 space-y-14  w-full'>
-            <DevelopBigProjects/>
+          <DevelopBigProjects />
         </div>
         {/* <div className='flex flex-col mt-14 space-y-14 mx-auto w-[85%]'> */}
 

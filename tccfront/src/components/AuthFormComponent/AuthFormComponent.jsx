@@ -80,7 +80,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
         <motion.div className={`font-poppins flex flex-col items-center py-4  bg-white/40 rounded-2xl  w-[80%] my-10  `}
         initial={{translateX:"130vw"}}
       animate={{translateX:"0vw"} }
-      transition={{type:"tween",duration:0.8,ease:"easeInOut"}}>
+      transition={{type:"tween",duration:1.5,ease:"easeInOut"}}>
             <div className='w-10/12 flex flex-col '>
                 <div className='w-full flex justify-between flex-wrap gap-2 my-2 '>
                     <p className={`${!newUser?"text-black":"text-white"} font-normal text-lg text-nowrap`}>Bem Vindo ao <span className='text-calygam-purple-semi-strong'>Calygam</span></p>
