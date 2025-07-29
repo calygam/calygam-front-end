@@ -79,7 +79,7 @@ if (name === "trailPassword") {
     return;
   }
   if (name === "trailDescription") {
-    if (value.length > 500) return;
+    if (value.length > 3500) return;
     setForm(prev => ({ ...prev, trailDescription: value }));
     return;
   }

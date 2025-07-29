@@ -22,6 +22,7 @@ export const HandleEnterInTrail =async(id,password,loadingData,searchTrails,navi
     finally{
         
         if(sucessJoin){
+      
         navigate("/Trilha")
         }
   loadingData.setLoadingState(false);

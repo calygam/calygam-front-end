@@ -11,16 +11,16 @@ import lockedActivity from '../../assets/img/locked-activity-space.svg';
 import spaceAlien from '../../assets/img/space-alien-completed.svg';
 import rocketForMarte from '../../assets/img/space-game-rocket-purple.svg';
 import bookGrass from '../../assets/img/book-js.svg';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook';
 import { motion } from 'framer-motion';
 import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook';
 
 export default function CalygamactivityVillage({ Activities, progress }) {
-  const myPlanets = [planetSaturn, alienPlanet, aquaPlanet];
+   const myPlanets = [planetSaturn, alienPlanet, aquaPlanet];
    const difficulties = ["FÁCIL", "MÉDIO", "DIFÍCIL", "CHEFE"]
-  const { targetActivityId, setTargetActivityId, position, setPosition,readActivitiesByTrailId } = UseDataActivitiesPerTrailIdHook();
+  const { targetActivityId, setTargetActivityId,trailId, position, setPosition,readActivitiesByTrailId } = UseDataActivitiesPerTrailIdHook();
     const {ListenerOfDowloadableArchivesSubmited,searchProgressByUser} = UseProgressHook()
   const navigation = useNavigate();
   
@@ -29,7 +29,7 @@ export default function CalygamactivityVillage({ Activities, progress }) {
   useEffect(()=>{
 
     searchProgressByUser()
-  },[Activities])
+  },[Activities,trailId])
  
   useEffect(() => {
     const firstEnabledActivity = progress.progressList?.find(

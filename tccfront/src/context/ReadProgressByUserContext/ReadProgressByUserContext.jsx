@@ -10,7 +10,7 @@ export function ReadProgressByUserProvider({ children }) {
 
   const [progress,setProgress] = useState([])
   const [activityUnlocked,setActivityUnlocked] = useState({})
-   const [trailId,setTrailId] = useState(localStorage.getItem("TrailId")?localStorage.getItem("TrailId"):0)
+   const [progressTrailId,setProgressTrailId] = useState(localStorage.getItem("TrailId")?localStorage.getItem("TrailId"):0)
  const { loading, setLoading, setLoadingText } = UseLoading()
  const location = useLocation();
  const token = localStorage.getItem("token");
@@ -40,7 +40,7 @@ export function ReadProgressByUserProvider({ children }) {
       
       setLoading(true)
       setLoadingText("Servindo o caminho")
-    const response = await api.get(`/progress/read/${trailId}`)
+    const response = await api.get(`/progress/read/${progressTrailId}`)
     setProgress(response.data)
 
     }catch(e){
@@ -56,10 +56,10 @@ export function ReadProgressByUserProvider({ children }) {
   useEffect(()=>{
  
     
-    if(trailId>0 && location.pathname.includes("/Trilha")){
+    if(progressTrailId>0 && location.pathname.includes("/Trilha")){
       searchProgressByUser()
     }
-  },[trailId])
+  },[progressTrailId])
 
   const ListenerOfDowloadableArchivesSubmited=useCallback(
      async(progressId)=>{
@@ -100,7 +100,7 @@ export function ReadProgressByUserProvider({ children }) {
       
       setLoading(true)
       setLoadingText("Mapeando atividade desbloqueada")
-    const response = await api.get(`/progress/read/unlocked/${trailId}`)
+    const response = await api.get(`/progress/read/unlocked/${progressTrailId}`)
     setActivityUnlocked(response.data)
       console.log(response.data)
     }catch(e){
@@ -116,17 +116,17 @@ export function ReadProgressByUserProvider({ children }) {
   useEffect(()=>{
 
     
-    if(trailId>0 && location.pathname=="/Trilha"){
+    if(progressTrailId>0 && location.pathname=="/Trilha"){
       searchUnlockedActivityByUser()
     }
-  },[trailId,location.pathname])
+  },[progressTrailId,location.pathname])
 
 //CAIO <---- paramos aqui da ultima vez para trazer o progresso de um usuário
 
 
     return (
         <ReadProgressByUserContext.Provider value={{
-          progress,setProgress,trailId,setTrailId, activityUnlocked,setActivityUnlocked,searchProgressByUser,
+          progress,setProgress,progressTrailId,setProgressTrailId, activityUnlocked,setActivityUnlocked,searchProgressByUser,
           ...submissionCrate}}>
 
             {children}

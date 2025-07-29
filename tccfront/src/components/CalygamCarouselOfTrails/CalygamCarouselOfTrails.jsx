@@ -23,6 +23,7 @@ export default function CalygamCarouselOfTrails({ Trails }) {
 
 
 }
+//.
 const handleModelIsOpen =(id)=>{
 setTrailId(id)
 setTargetTrailId(id)

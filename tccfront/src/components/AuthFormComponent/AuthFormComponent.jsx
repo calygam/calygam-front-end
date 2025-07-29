@@ -46,9 +46,9 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
     //     window.location.href = "http://localhost:8080/auth/google";
     // };
 
-    const goToGoogle = () => {
-        window.location.href = "https://trail-dff8ahgzdkhvhbe8.brazilsouth-01.azurewebsites.net/auth/google";
-    };
+     const goToGoogle = () => {
+         window.location.href = "https://trail-dff8ahgzdkhvhbe8.brazilsouth-01.azurewebsites.net/auth/google";
+     };
 
     const { userName, setUserName,
         userEmail, setUserEmail,

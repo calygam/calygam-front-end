@@ -69,7 +69,13 @@ export default function CreateNewRewardModal({setRewards}) {
     try {
       setLoading(true)
       setLoadingText("Adicionando professor...")
-      const response = await api.post(`/reward/create`)
+      const response = await api.post(`/reward/create`,{
+        'rewardPackageMoney':userCoins,
+        'rewardPackageXp':userXp,
+        'rewardPackageFood':userFood,
+        'rewardPackageDifficulty':selectedDifficultyOption.value
+        
+      })
       if (response.status === 200) {
         closeModal(response.data?.responseMsg, "")
       }

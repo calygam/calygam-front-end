@@ -40,6 +40,8 @@ import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js'
  import loljaIcon from '../../assets/img/lolja-icon-menu.svg'
  import perfilIcon from '../../assets/img/perfil-icon-menu.svg'
  import moreIcon from '../../assets/img/menu-icon-trail.svg'
+import { recentlyAcess } from '../../utils/recentlyAcess.js'
+import { getRoutesByRole } from '../../utils/navRoutesUtil.js'
  
 
 
@@ -69,36 +71,19 @@ export default function TrailPage() {
   const [userDataMock, setUserDataMock] = useState([])
   const [isEnabled,setIsEnabled] = useState(false)
 
-  const progressRequired ={
-    
-  }
+
 
   const modifyStyles = {
     selectedColorText:"text-calygam-strong-pink",
     roundedSelected:"rounded-xl rounded-bl-none"
 }
 
-const infoAdminButton = [
-  {
-    routeIcon:homeIcon,
-    navNameRoute:"Home"
-  },
-  {
-    routeIcon:loljaIcon,
-    navNameRoute:"Lolja"
-  },
-  {
-    routeIcon:perfilIcon,
-    navNameRoute:"Perfil"
-  },
-
-];
 
 // Função para criar trailSettings
 const createTrailSettings = (showNav) => ({
     logoImage,
     showNav,
-    menus: navRoutes
+    menus: getRoutesByRole(dataProfile)
 });
 
 
@@ -118,6 +103,12 @@ const createTrailSettings = (showNav) => ({
     getUsersMock()
   }, [])
 
+  useEffect(()=>{
+    recentlyAcess(trailId)
+  },[])
+
+
+
   return (
     <div className='w-full font-poppins min-h-screen h-full outline-none    bg-calygam-purple-semi-bold '>
       <div className="flex relative">
@@ -134,7 +125,7 @@ const createTrailSettings = (showNav) => ({
       </div>
       <div className='flex flex-col  md:left-[25%] outline-none  bg-calygam-purple-semi-bold  lg:left-0 left-0 right-0 fixed mx-auto z-10 py-5  items-center    md:w-[55%] w-full px-4 md:px-0  '>
 
-        <UserInfoDisplay displayStyle={DisplayCleaner('bg-calygam-purple-semi-light/30', "30px", false, "4", "white")} setIsEnabled={setIsEnabled} isEnabled={isEnabled} progressRequired={progressRequired} activities={activities} />
+        <UserInfoDisplay displayStyle={DisplayCleaner('bg-calygam-purple-semi-light/30', "30px", false, "4", "white")} setIsEnabled={setIsEnabled} isEnabled={isEnabled}  activities={activities} />
 
         {/*CAIO<- USAR ESTRATEGIA DE CONTROLE TOTAL DE COMPONENTE A PERTIR DE AGORA */}
       </div>

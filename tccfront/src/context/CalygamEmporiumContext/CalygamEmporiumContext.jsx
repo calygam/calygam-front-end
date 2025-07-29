@@ -11,6 +11,8 @@ export function CalygamEmporiumProvider({children}){
     const {setLoading,setLoadingText} = UseLoading()
     //caio<- buscando items do estoque
     useEffect(()=>{
+        const token = localStorage.getItem("token")
+        if(!token)return
         getStockInEmporium(setLoading,setLoadingText,setStockData,state.filters.orderByMinMax)
     },[state.filters.orderByMinMax])
     return <CalygamEmporiumContext.Provider value={{...state,getStockInEmporium,setStockData,setFilter,setPurchase}}>
