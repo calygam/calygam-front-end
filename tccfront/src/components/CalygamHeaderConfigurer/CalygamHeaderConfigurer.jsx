@@ -1,24 +1,31 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 import { Link, useLocation } from 'react-router-dom'
-import { useScroll } from 'framer-motion'
+import { AnimatePresence, useScroll } from 'framer-motion'
 import MenuCalygamAdmin from '../MenuCalygamAdmin/MenuCalygamAdmin'
 import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook'
 
 //images
+import loadingImages from '../../assets/img/loading-images.svg'
+import perfilPageIcon from '../../assets/img/perfilPageIcon.png'
 
 import calygamTrailLogo from '../../assets/img/trail-calygam-logo.svg'
 import menuHamburguer from '../../assets/img/menu-hamburguer-activity.svg'
 import { MockUserDataContext } from '../../context/MockUserDataContext/MockUserDataContext'
 import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile'
+import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook'
+import ViewDetailsPerfil from '../modals/ViewDetailsPerfilComps/ViewDetailsPerfilModal.jsx'
 
 
-export default function CalygamHeaderConfigurer({ navRoutes, baseMenus, isAnchor,adverseStyle }) {
+export default function CalygamHeaderConfigurer({ navRoutes, baseMenus, isAnchor, adverseStyle }) {
     const location = useLocation()
     const [isAnonimous, setIsAnonimous] = useState(false)
     const { setTrailId, progress, activityUnlocked, setActivityUnlocked } = UseProgressHook()
     const [isEnabled, setIsEnabled] = useState(false)
+      
+    const [isImageLoading, setIsImageLoading] = useState(true);
     const { dataProfile } = UseDataProfile()
+    const { modalIsOpen, contentModal, openModal } = UseModalHook()
     const { userPhoto, loadingMock } = useContext(MockUserDataContext)
 
 
@@ -35,6 +42,8 @@ export default function CalygamHeaderConfigurer({ navRoutes, baseMenus, isAnchor
         menus: baseMenus
     });
 
+
+
     useEffect(() => {
         if (location.pathname == "/") {
             setIsAnonimous(true)
@@ -44,7 +53,11 @@ export default function CalygamHeaderConfigurer({ navRoutes, baseMenus, isAnchor
         }
     }, [location.pathname])
     return (
-        <header className={`w-[85%] mx-auto transition-all  font-poppins ${adverseStyle?"my-0 mb-2 border-2 border-white":"my-6"}  py-2 px-4 rounded-3xl flex items-center justify-between bg-calygam-purple-semi-strong`}>
+
+        <header className={`w-[85%] mx-auto transition-all  font-poppins ${adverseStyle ? "my-0 mb-2 border-2 border-white" : "my-6"}  py-2 px-4 rounded-3xl flex items-center justify-between bg-calygam-purple-semi-strong`}>
+            <AnimatePresence>
+                {modalIsOpen && contentModal.includes("ViewYourDataProfile") && <ViewDetailsPerfil />}
+            </AnimatePresence>
             {navRoutes ?
                 <div className='flex gap-x-6 items-center w-full  justify-between'>
                     <div className='flex gap-x-6 items-center justify-center'>
@@ -79,11 +92,20 @@ export default function CalygamHeaderConfigurer({ navRoutes, baseMenus, isAnchor
                             </aside>
                         </div>
                     </div>
-                    {!isAnonimous &&
-                        <span className=''>
-                            <img src={`${dataProfile?.userImage}`} alt="Foto de Perfil" className=' object-cover w-[40px] h-[40px] rounded-full' />
+                    {!isAnonimous ?
+                        dataProfile.userImage ?
+                            <button type='button' className='relative outline-none flex cursor-pointer' onClick={() => openModal("ViewYourDataProfile")}>
+                                {isImageLoading && dataProfile.userImage != "" &&
+                                    <span className='absolute flex bg-gradient-to-tr inset-0 justify-center items-center from-black via-gray-700 to-gray-700  rounded-full animate-spin'>
+                                        <img src={loadingImages} alt="" className='w-[60px]  h-[60px]' />
+                                    </span>
+                                }
+                                <img src={dataProfile.userImage} alt="Foto de Perfil" className=' object-cover w-[60px] z-10 h-[60px] rounded-full' onLoad={()=>setIsImageLoading(false)}/>
 
-                        </span>}
+                            </button> : <button type='button' className='flex rounded-full outline-none group cursor-pointer overflow-hidden transition-all hover:rotate-6  hover:rounded-tl-md hover:rounded-br-md  bg-black/25 p-1 justify-center items-center' onClick={() => openModal("ViewYourDataProfile")}>
+                                <img src={perfilPageIcon} alt="ir para perfil" className='w-[25px] group-hover:-rotate-45 transition-all h-[25px]' />
+                            </button> : null}
+
 
                     {isAnonimous &&
                         <div className=' flex items-center gap-x-2'>

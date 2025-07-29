@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 //component
 import SendActivityArea from '../../components/SendActivityArea/SendActivityArea.jsx'
+import BoxCommentsLayout from '../../components/BoxCommentsComponents/BoxCommentsLayout.jsx'
 import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js';
 
 export default function CalygamActivityDetail() {
@@ -35,9 +36,12 @@ export default function CalygamActivityDetail() {
               <p className=''>Coloque os arquivos aqui {">"}</p>
             </div>
             <div>
-          <SendActivityArea viewSubmissions={viewSubmissions} setViewSubmissions={setViewSubmissions} />
+            <SendActivityArea viewSubmissions={viewSubmissions} setViewSubmissions={setViewSubmissions} />
           </div>
           </div>
+        </div>
+        <div className=''>
+          <BoxCommentsLayout/>
         </div>
       </div>
     </div>

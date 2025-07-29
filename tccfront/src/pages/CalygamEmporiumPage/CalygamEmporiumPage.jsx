@@ -10,12 +10,18 @@ import CalygamHeaderConfigurer from '../../components/CalygamHeaderConfigurer/Ca
 import LayoutSistemEmporium from '../../components/LayoutSistemEmporium/LayoutSistemEmporium.jsx'
 import PurchaseOneItemModal from '../../components/modals/PurchaseOneItemModal/PurchaseOneItemModal.jsx';
 import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js';
+import { UseLoading } from '../../hooks/UseLoading/UseLoading.js';
 
 export default function CalygamEmporiumPage() {
     const { dataProfile} = UseDataProfile()
-    const {purchase} = useCalygamEmporium()
+    const {purchase,getStockInEmporium,setStockData,filters} = useCalygamEmporium()
+     const {setLoading,setLoadingText} = UseLoading()
     const {modalIsOpen,contentModal} = UseModalHook()
     const { setToken } = useAuth();
+
+    useEffect(()=>{
+    getStockInEmporium(setLoading,setLoadingText,setStockData,filters.orderByMinMax)
+    },[])
     
 
   return (

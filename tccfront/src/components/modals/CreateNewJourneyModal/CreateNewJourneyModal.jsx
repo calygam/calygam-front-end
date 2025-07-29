@@ -32,18 +32,34 @@ import { AuxiliaryLibraryResponse } from '../../../utils/AuxiliaryLibraryRespons
 import eyeOpen from '../../../assets/img/eye-pass-open.png'
 import eyeClose from '../../../assets/img/eye-pass-close.png'
 import trailIndicatorCreator from '../../../assets/img/trail-indicator-creating.svg'
+import { HandleEnterInTrail } from '../../../utils/HandleEnterInTrail/HandleEnterInTrail.js'
 
 
 export default function CreateNewJourneyModal() {
   const [hasAnimated, setHasAnimated] = useState(false)
   const { dataProfile, searchDataProfile } = UseDataProfile()
   const { submissionBaggage, ListenerOfDowloadableArchivesSubmited } = UseProgressHook()
-  const navigation = useNavigate()
   const { loading, setLoading, setLoadingText } = UseLoading()
   const { closeModal } = UseModalHook()
   const [step, setStep] = useState(0);
+
+
+  const { setTrailId } = UseDataActivitiesPerTrailIdHook()
+  // const {setTrailId} = UseDataActivitiesPerTrailIdHook()
+
+
+  const { setProgressTrailId } = UseProgressHook()
+
+
+
+  const navigate = useNavigate()
+
+
+
+
+
   const { trails, targetTrailId, setTargetTrailId, searchtrails } = UseReadAllTrailsHook();
-  const [formErrors, setFormErrors] = useState(targetTrailId ? false : { trailPassword: "vazio",trailName:"vazio" });
+  const [formErrors, setFormErrors] = useState(targetTrailId ? false : { trailPassword: "vazio", trailName: "vazio" });
 
   const [eyeIsOpen, setEyeIsOpen] = useState(false)
   const [isPublish, setIsPublish] = useState(false)
@@ -76,11 +92,11 @@ export default function CreateNewJourneyModal() {
 
   const isFormValid = useMemo(() => {
     console.log(formErrors.trailName)
-    const abc =        form?.trailName &&
-        form?.trailDescription &&
-        form?.trailVacancy > 0 &&
-        form?.trailVacancy < 60 &&
-        formErrors.trailPassword==""
+    const abc = form?.trailName &&
+      form?.trailDescription &&
+      form?.trailVacancy > 0 &&
+      form?.trailVacancy < 60 &&
+      formErrors.trailPassword == ""
     if (!targetTrailId) {
       return abc;
     } else {
@@ -93,31 +109,31 @@ export default function CreateNewJourneyModal() {
     }
   }, [form, formErrors]);
 
-   const isFormValidSecondTier = useMemo(() => {
+  const isFormValidSecondTier = useMemo(() => {
     console.log(formErrors.trailName)
-    const abcTwo =       
-    form.activities[step - 1]?.activityName?.length>0&&
-     form.activities[step - 1]?.activityDescription?.length>0&&
-     
-     targetTrailId?form.activities[step - 1]?.activityName?.length>0&&form.activities[step - 1]?.activityDescription?.length>0?true:form.activities[step - 1]?.activityDifficulty?.length>0:form.activities[step - 1]?.activityDifficulty?.length>0
- 
-      return abcTwo;
-    
-  }, [form, formErrors,step]);
+    const abcTwo =
+      form.activities[step - 1]?.activityName?.length > 0 &&
+        form.activities[step - 1]?.activityDescription?.length > 0 &&
+
+        targetTrailId ? form.activities[step - 1]?.activityName?.length > 0 && form.activities[step - 1]?.activityDescription?.length > 0 ? true : form.activities[step - 1]?.activityDifficulty?.length > 0 : form.activities[step - 1]?.activityDifficulty?.length > 0
+
+    return abcTwo;
+
+  }, [form, formErrors, step]);
 
   const clenupFormAndCloseModal = () => {
     closeModal("", "")
     setTargetTrailId(0)
     setStep(0)
-    if(targetTrailId>0){
+    if (targetTrailId > 0) {
       setForm({
         trailName: "",
         trailDescription: "",
         trailVacancy: "0",
         trailImage: "",
         activities: [],
-    });
-    setImagePreview("")
+      });
+      setImagePreview("")
     }
   }
 
@@ -229,6 +245,13 @@ export default function CreateNewJourneyModal() {
       setLoading(true);
       setLoadingText(targetTrailId ? 'Completando edição...' : 'Criando a trilha...');
       if (targetTrailId) {
+        if (isPublish) {
+          setTrailId(targetTrail.trailId)
+
+          setTargetTrailId(targetTrail.trailId)
+          setProgressTrailId(targetTrail.trailId)
+         
+        }
         await api.put(`trail/update/${targetTrail.trailId}`, formData);
         closeModal("Trilha atualizada com sucesso!", "")
         FormClenup(setForm, setImagePreview, setStep)
@@ -251,10 +274,13 @@ export default function CreateNewJourneyModal() {
     }
   };
 
-
+if(isPublish){
+         return( <PublishTrail setIsPublish={setIsPublish} isPublish={isPublish} trailName={targetTrail.trailName} setTrailCode={setCodeTarget} trailCode={codeTarget} handleUpdate={submitForm} trailId={targetTrail.trailId} searchTrails={searchtrails} />)
+}else{
 
   return (
-    <motion.div className={`w-full  font-poppins   fixed inset-0 z-30 ${isPublish ? "overflow-hidden" : "overflow-y-auto"} bg-calygam-purple-semi-bold/50 pb-2 custom-scrollbar backdrop-blur-md flex justify-center  items-start`}
+   
+    <motion.div className={`w-full  font-poppins    fixed inset-0 z-30 ${isPublish ? "overflow-hidden" : "overflow-y-auto"} bg-calygam-purple-semi-bold/50 pb-2 custom-scrollbar backdrop-blur-md flex justify-center  items-start`}
       key={step}
       initial={hasAnimated ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -267,16 +293,14 @@ export default function CreateNewJourneyModal() {
         exit={{ opacity: 0, scale: 0 }}
         animate={{ scale: 1, rotateX: 0, rotateY: 0 }}
         transition={{ type: 'spring', stiffness: 250, mass: 1 }}
-        className='lg:w-[600px] md:w-[425px] w-[300px]
-             bg-white rounded-md divide-y divide-gray-200 pb-4
-               mt-16 mb-8'
+        className='lg:w-[600px] md:w-[425px] w-[300px] bg-white pb-4 mt-4 rounded-md divide-y divide-gray-200 pb-4mt-16 mb-8'
       >
         <div className='w-full flex justify-between p-4 items-center'>
           <div className='flex items-center justify-center gap-x-2'>
             <span className='p-2 rounded-md border border-gray-400'>
               <img src={trailIndicatorCreator} alt="" className='w-[25px] h-[25px]' />
             </span>
-            <p className='text-black md:text-base text-xs font-medium'>{step === 0 ?targetTrailId>0?"Editando Trilha": 'Criar nova Trilha' : `Atividade - ${step <= 9 ? '0' + step : step}`}</p>
+            <p className='text-black md:text-base text-xs font-medium'>{step === 0 ? targetTrailId > 0 ? "Editando Trilha" : 'Criar nova Trilha' : `Atividade - ${step <= 9 ? '0' + step : step}`}</p>
           </div>
           <button className='flex outline-none justify-center items-center' onClick={() => clenupFormAndCloseModal()}>
             <img src={closeX} alt="fechar" className='md:w-[20px] w-[15px] ' />
@@ -461,19 +485,18 @@ export default function CreateNewJourneyModal() {
           </div>
         )}
 
-        {isPublish &&
-          <PublishTrail setIsPublish={setIsPublish} isPublish={isPublish} trailName={targetTrail.trailName} setTrailCode={setCodeTarget} trailCode={codeTarget} handleUpdate={submitForm} />}
+        
 
         <div className={`flex  w-full flex-wrap gap-y-2 md:flex-nowrap ${step === 0 ? "gap-x-4 justify-end" : "gap-x-0"}  p-4 pb-0 items-center`}>
           {step === 0 && (
             <>
               <div className='gap-x-1 flex items-center'>
-                {form?.activities.length >1&&
-                <button type='button' disabled={!(isFormValid || formErrors.trailPassword === "") || !imagePreview} className={`outline-none py-2 h-[45px] px-4 ${!(isFormValid || formErrors.trailPassword === "") || !imagePreview ? "bg-purple-700/25 cursor-not-allowed text-white/45 border-none" : "bg-purple-500 border-purple-600"} border-b-4 hover:translate-y-[2px] transition-all   rounded-md text-white  text-black/35 hover:border-b-0`} onClick={() => setStep(form?.activities.length)}>{"Ultima atividade"}</button>
-}
-                {isFormValid && imagePreview&&
-                <button type='button'  className={`outline-none h-[45px]  py-2 px-4 ${!(isFormValid || formErrors.trailPassword === "") || !imagePreview ? "bg-purple-700/25 cursor-not-allowed text-white/45 border-none" : "bg-purple-500 border-purple-600"} border-b-4 hover:translate-y-[2px] transition-all   rounded-md text-white  text-black/35 hover:border-b-0`} onClick={() => goToNextForm(step, setStep, form, setForm)}>{"Avançar >"}</button>
-}
+                {form?.activities.length > 1 &&
+                  <button type='button' disabled={!(isFormValid || formErrors.trailPassword === "") || !imagePreview} className={`outline-none py-2 h-[45px] px-4 ${!(isFormValid || formErrors.trailPassword === "") || !imagePreview ? "bg-purple-700/25 cursor-not-allowed text-white/45 border-none" : "bg-purple-500 border-purple-600"} border-b-4 hover:translate-y-[2px] transition-all   rounded-md text-white  text-black/35 hover:border-b-0`} onClick={() => setStep(form?.activities.length)}>{"Ultima atividade"}</button>
+                }
+                {isFormValid && imagePreview &&
+                  <button type='button' className={`outline-none h-[45px]  py-2 px-4 ${!(isFormValid || formErrors.trailPassword === "") || !imagePreview ? "bg-purple-700/25 cursor-not-allowed text-white/45 border-none" : "bg-purple-500 border-purple-600"} border-b-4 hover:translate-y-[2px] transition-all   rounded-md text-white  text-black/35 hover:border-b-0`} onClick={() => goToNextForm(step, setStep, form, setForm)}>{"Avançar >"}</button>
+                }
               </div>
               {targetTrailId && !targetTrail?.trailStatus.includes("ENABLE") ?
                 <button type="button" onClick={() => setIsPublish(true)} className={`outline-none py-2 px-4  h-[45px] ${!(isFormValid || formErrors.trailPassword === "") || !imagePreview ? "bg-purple-600/45 cursor-not-allowed text-white/45 border-none" : "bg-purple-600 border-purple-700/40"} border-b-8  rounded-md text-white border-0 text-black/35 hover:border-b-0`}>
@@ -485,9 +508,9 @@ export default function CreateNewJourneyModal() {
               <div className='flex gap-x-2 items-center flex-wrap gap-y-1 justify-center'>
                 <button type='button' disabled={!(isFormValid || formErrors.trailPassword === "") || !imagePreview} className={`outline-none py-2 px-4  h-[45px] ${!(isFormValid || formErrors.trailPassword === "") || !imagePreview ? "bg-purple-700/25 cursor-not-allowed text-white/45 border-none" : "bg-blue-700 border-blue-800"} border-b-4 hover:translate-y-[2px] transition-all  rounded-md text-white  text-black/35 hover:border-b-0`} onClick={() => setStep(0)}>{"< Trilha"}</button>
                 <button type='button' disabled={!(isFormValid || formErrors.trailPassword === "") || !imagePreview} className={`outline-none py-2 px-4  h-[45px] ${!(isFormValid || formErrors.trailPassword === "") || !imagePreview ? "bg-purple-700/25 cursor-not-allowed text-white/45 border-none" : "bg-purple-500 border-purple-600"} border-b-4 hover:translate-y-[2px] transition-all  rounded-md text-white  text-black/35 hover:border-b-0`} onClick={() => goToFormBack(step, setStep)}>{"< Voltar"}</button>
-                {isFormValidSecondTier&&
-                <button type='button' disabled={!(isFormValid || formErrors.trailPassword === "") || !imagePreview} className={`outline-none py-2 px-4  h-[45px] ${!(isFormValid || formErrors.trailPassword === "") || !imagePreview ? "bg-purple-700/25 cursor-not-allowed text-white/45 border-none" : "bg-purple-500 border-purple-600"} border-b-4 hover:translate-y-[2px] transition-all   rounded-md text-white  text-black/35 hover:border-b-0`} onClick={() => goToNextForm(step, setStep, form, setForm)}>{"Avançar >"}</button>
-}
+                {isFormValidSecondTier &&
+                  <button type='button' disabled={!(isFormValid || formErrors.trailPassword === "") || !imagePreview} className={`outline-none py-2 px-4  h-[45px] ${!(isFormValid || formErrors.trailPassword === "") || !imagePreview ? "bg-purple-700/25 cursor-not-allowed text-white/45 border-none" : "bg-purple-500 border-purple-600"} border-b-4 hover:translate-y-[2px] transition-all   rounded-md text-white  text-black/35 hover:border-b-0`} onClick={() => goToNextForm(step, setStep, form, setForm)}>{"Avançar >"}</button>
+                }
 
               </div>
               {step >= 10 || form?.activities.length >= 10 ?
@@ -509,4 +532,5 @@ export default function CreateNewJourneyModal() {
 
     </motion.div>
   )
+}
 }

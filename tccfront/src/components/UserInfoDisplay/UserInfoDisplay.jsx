@@ -23,12 +23,7 @@ export default function UserInfoDisplay({ displayStyle,setIsEnabled,isEnabled,ac
 
 
   const {setTrailId,progress} = UseProgressHook()
-  useEffect(()=>{ 
-    
-   
-      setTrailId(trailId)
-    
-  },[trailId])
+ 
 
 
 // const UseProgressHook

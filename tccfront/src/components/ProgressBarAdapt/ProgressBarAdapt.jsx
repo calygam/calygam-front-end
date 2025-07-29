@@ -2,7 +2,7 @@ import { animate, useMotionValue, useTransform } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import calyXp from '../../assets/img/rewards/xp-icon.svg'
 
-export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, rangerBarRank, CountStartRow,trailVacancy }) {
+export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, rangerBarRank, CountStartRow,trailVacancy,barPercentual }) {
 const [barPercent, setBarPercent] = useState(0)
   const [roundedValue,setRoundedValue] = useState(0)
   useEffect(() => {
@@ -21,14 +21,14 @@ const [barPercent, setBarPercent] = useState(0)
   const rounded = useTransform(() => Math.round(count.get()))
 
   useEffect(() => {
-    const controls = animate(count, xpInMoment, {
-      duration: 5,
+    const controls = animate(count, barPercentual?barPercent:xpInMoment, {
+      duration: 2,
       onUpdate: (latest) => {
         setRoundedValue(Math.round(latest))
       }
     })
     return () => controls.stop()
-  }, [xpInMoment])
+  }, [xpInMoment,barPercent])
 
   return (
     <div className={`flex ${CountStartRow ? "flex-col-reverse " : "flex-col"} w-full  ${rangeBar ? "px-2" : "px-0"} font-jersey    `}>
@@ -44,10 +44,13 @@ const [barPercent, setBarPercent] = useState(0)
             <p className={`text-white text-xs `}>{xpToGet}</p>
           </div>
           </div>
-          :
+          :!barPercentual?
           <div className='flex gap-x-1 items-center'>
           <p className={`text-black text-xs `}>{formattedCoins}/{xpToGet==0?"MAX":xpToGet} </p>
           <img src={calyXp} alt="seu xp" className='w-[35px] h-[35px]' />
+          </div>:<div className='flex gap-x-1 items-center'>
+          <p className={`text-black text-xs `}>{formattedCoins}% </p>
+       
           </div>:null}
           
 

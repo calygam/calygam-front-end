@@ -34,9 +34,10 @@ export function DataProfileProvider({children}){
             }
         }
     useEffect(()=>{
-    
+    const token = localStorage.getItem("token")
+        if(!token)return
         searchDataProfile()
-    },[token,location])
+    },[token,location.pathname])
 
             const searchDataTeachers = async(page,ColumnFilter)=>{
      

@@ -24,7 +24,7 @@ import { MockUserDataContext } from "./context/MockUserDataContext/MockUserDataC
 import CalygamProviders from "./providers/CalygamProviders/CalygamProviders.jsx"
 import CalygamRewardPackagePage from "./pages/CalygamRewardPackagePage/CalygamRewardPackagePage.jsx"
 import CalygamEmporiumPage from './pages/CalygamEmporiumPage/CalygamEmporiumPage.jsx'
-
+import LibraryOfPathsPage from './pages/LibraryOfPathsPage/LibraryOfPathsPage.jsx'
 
 function TccFront() {
   const [loading,setLoading] = useState(false)
@@ -55,6 +55,7 @@ function TccFront() {
             <Route path="/Calygam/Admin/Reward/Create" element={<CalygamRewardPackagePage/>}/>
             <Route path="/Pet/Create" element={<PetManagementPage/>}/>
             <Route path="/Emporium/Stock" element={<CalygamEmporiumPage/>}/>
+            <Route path="/Biblioteca" element={<LibraryOfPathsPage/>}/>
       
           </Routes>
           </CalygamProviders>

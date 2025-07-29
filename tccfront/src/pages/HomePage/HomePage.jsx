@@ -19,7 +19,7 @@ import imgShare from '../../assets/img/community-represent-group.png'
 import bgActivitys from '../../assets/img/bg-blur-recently-activity.png'
 import bgAnalytics from '../../assets/img/bg-blur-analytics.png'
 import imgBallFinalForm from '../../assets/img/blur-ball-final-form.png'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
 import CalygamHeaderConfigurer from '../../components/CalygamHeaderConfigurer/CalygamHeaderConfigurer.jsx'
 import FlorestGradientBackground from '../../components/FlorestGradientBackground/FlorestGradientBackground.jsx'
@@ -30,15 +30,20 @@ import homeIcon from '../../assets/img/home-icon-menu.svg'
 import loljaIcon from '../../assets/img/lolja-icon-menu.svg'
 import perfilIcon from '../../assets/img/perfil-icon-menu.svg'
 import moreIcon from '../../assets/img/menu-icon-trail.svg'
+import YourTrailsManager from '../../components/LibraryOfPathsComponents/TrailManagers/YourTrailsManager.jsx'
+import { UseLoading } from '../../hooks/UseLoading/UseLoading.js'
+import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook.js'
+import InitialSupportCalygam from '../../components/InitialSupportCalygam/InitialSupportCalygam.jsx'
 
 export default function HomePage() {
 
 
   const location = useLocation();
   const navigate = useNavigate()
-  const { dataProfile, loading } = UseDataProfile()
+  const { dataProfile } = UseDataProfile()
+  const { searchtrailsOfThisUser, trailsWithThisUser } = UseReadAllTrailsHook()
 
-
+  const { loading } = UseLoading()
 
   //DESCOMENTAR ESSA LINHA PARA VOLTAR O LOGIN
   const { setToken } = useAuth();
@@ -51,42 +56,38 @@ export default function HomePage() {
       localStorage.setItem("token", urlToken);
       setToken(urlToken);
       navigate("/home");
+
     }
 
   }, [location.search]);
 
-  const navRoutes = [
-    ["ADMIN"].includes(dataProfile.userRole) &&
-    { navRoute: "/Calygam/Admin/Reward/Create", navNameRoute: "Recompensas", routeIcon: homeIcon },
-    ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
-    { navRoute: "/Coordenacao", navNameRoute: "Equipe", routeIcon: homeIcon },
-    ["ADMIN", "INSTRUTOR", "COORDENADOR"].includes(dataProfile.userRole) &&
-    { navRoute: "/Trail/Criar", navNameRoute: "Oficina", routeIcon: homeIcon },
+  useEffect(() => {
 
-    { navRoute: "/home", navNameRoute: "Home", routeIcon: homeIcon },
-    { navRoute: "/Biblioteca", navNameRoute: "Biblioteca", routeIcon: homeIcon },
-    ["ADMIN"].includes(dataProfile.userRole) &&
-    { navRoute: "/Pet/Create", navNameRoute: "Pets", routeIcon: homeIcon }, 
-    { navRoute: "/Emporium/Stock", navNameRoute: "empório", routeIcon: homeIcon }
+    searchtrailsOfThisUser()
 
-  ]
+  }, [])
+
+
 
 
   return (
     <div className='w-full font-poppins  transition-all delay-100 duration-200 ease-in-out'>
 
       <header>
-        <FlorestGradientBackground navRoutes={navRoutes} dataProfile={dataProfile} />
+        <FlorestGradientBackground dataProfile={dataProfile} />
 
 
       </header>
       <main className='w-full space-y-14'>
 
-        <div className='flex flex-col mt-6 space-y-14 mx-auto w-[85%]'>
+        <div className='flex flex-col mt-6 items-center font-poppins w-full space-y-2 mx-auto '>
+          <p className='font-medium'>Caminhos</p>
+          <p className='lg:text-3xl md:text-xl text-lg font-semibold'>Acessados Recentemente</p>
+          {loading ? <p>Recuperando seus Passos...</p> : <YourTrailsManager withRecentlyTrails={true} />}
 
-          <ViewAdventureOfUser />
+          <Link to={"/Biblioteca"} className='py-2 px-4 rounded-xl bg-gradient-to-tr font-medium w-fit flex items-center text-sm  text-black text-center gap-x-2'>Ver Mais <span className='text-lg'>{">"}</span>  </Link>
         </div>
-        <div className='w-full flex flex-col space-y-14  mt-4'>
+        {/* <div className='w-full flex flex-col space-y-14  mt-4'>
           <ObtainPointsForAchiviments />
           <InviteToCommunity />
           <ObtainPointsForAchiviments isSakuraActive={true} />
@@ -96,7 +97,7 @@ export default function HomePage() {
         </div>
         <div className='flex flex-col mt-2 space-y-14  w-full'>
           <DevelopBigProjects />
-        </div>
+        </div> */}
         {/* <div className='flex flex-col mt-14 space-y-14 mx-auto w-[85%]'> */}
 
         {/* <FullControlOfUser/>
@@ -110,6 +111,9 @@ export default function HomePage() {
 
         {/* </div> */}
       </main>
+      <section  className='my-6 mb-12'>
+        <InitialSupportCalygam />
+      </section>
       <footer>
         <FooterAssesment />
       </footer>

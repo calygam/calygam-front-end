@@ -9,7 +9,7 @@ import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook'
 export default function CalygamRewardsView({ rewards,setRewards }) {
      const { loading, setLoading, setLoadingText } = UseLoading()
      const{modalIsOpen,openModal,contentModal}=UseModalHook()
-      const { closeModal } = UseModalHook()
+      
     const pa = [
         { id: 1, money: 30, xp: 20, food: 30 },
         { id: 2, money: 30, xp: 20, food: 30 },
@@ -18,8 +18,9 @@ export default function CalygamRewardsView({ rewards,setRewards }) {
     ]
 
     useEffect(()=>{
-        ReadAllRewards(setLoading,setLoadingText,closeModal,setRewards)
-    },[])
+        
+        ReadAllRewards(setLoading,setLoadingText,setRewards)
+    },[modalIsOpen])
 
 
     return (

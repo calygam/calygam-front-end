@@ -67,6 +67,7 @@ export default {
         'calygam-purple-semi-bold':'#2A1C4A',
         'calygam-purple-semi-strong':'#5A189A',
         'calygam-purple-medium-bold':'#625380',
+        'calygam-purple-tone-2':'#6C63FF',
         'calygam-purple-light':'#B892FF1A',
         'calygam-purple-medium-light':"#6813DE",
 
