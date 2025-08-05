@@ -23,6 +23,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked.js'
 import CalygamHeaderConfigurer from '../../components/CalygamHeaderConfigurer/CalygamHeaderConfigurer.jsx'
 import FlorestGradientBackground from '../../components/FlorestGradientBackground/FlorestGradientBackground.jsx'
+import PetSectionManager from '../../components/PetComponents/PetSectionManager.jsx'
 import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile.js'
 
 //imagens
@@ -87,29 +88,7 @@ export default function HomePage() {
 
           <Link to={"/Biblioteca"} className='py-2 px-4 rounded-xl bg-gradient-to-tr font-medium w-fit flex items-center text-sm  text-black text-center gap-x-2'>Ver Mais <span className='text-lg'>{">"}</span>  </Link>
         </div>
-        {/* <div className='w-full flex flex-col space-y-14  mt-4'>
-          <ObtainPointsForAchiviments />
-          <InviteToCommunity />
-          <ObtainPointsForAchiviments isSakuraActive={true} />
-          <ObtainPointsForAchiviments isTrailsActive={true} />
-
-
-        </div>
-        <div className='flex flex-col mt-2 space-y-14  w-full'>
-          <DevelopBigProjects />
-        </div> */}
-        {/* <div className='flex flex-col mt-14 space-y-14 mx-auto w-[85%]'> */}
-
-        {/* <FullControlOfUser/>
-          <MetricsAndAnalyticsSection bgActivitys={bgActivitys} bgAnalytics={bgAnalytics}/>
-          <SectionOfTrails/>
-          
-          <TogheterInOurCommunity/>
-          <InviteAnFriend imgExempleShare={imgShare}/>
-          <YourGoals imgBallFinalForm={imgBallFinalForm}/>
-          <PersonPerfil /> */}
-
-        {/* </div> */}
+        <PetSectionManager/>
       </main>
       <section  className='my-6 mb-12'>
         <InitialSupportCalygam />
