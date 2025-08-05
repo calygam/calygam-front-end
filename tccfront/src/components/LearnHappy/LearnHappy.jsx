@@ -5,13 +5,13 @@ import trailIsStarting from '../../assets/img/initialPage/trail-is-starting.png'
 
 export default function LearnHappy() {
   return (
-    <div className='mx-auto flex flex-wrap lg:justify-between gap-y-12 justify-center items-center font-poppins md:w-[80%] w-[90%]'>
+    <div className='mx-auto flex flex-wrap md:flex-nowrap gap-x-6 lg:justify-between gap-y-12 justify-center items-center font-poppins md:w-[80%] w-[90%]'>
       <div className='flex flex-col gap-y-2 '>
         <>
         <p className='text-bold md:text-3xl text-xl text-wrap md:w-[85%]'><span className='text-calygam-strong-pink'>Aprender</span> nunca foi tão divertido!</p>
     
         </>
-        <div className='text-sm font-normal'>
+        <div className='text-sm text-wrap font-normal'>
             <p>Descubra uma nova forma de aprender com diversão e desafios.</p>
             <p>Conquiste conhecimento e transforme suas tarefas em emocionantes</p>
             <p>missões!</p>
