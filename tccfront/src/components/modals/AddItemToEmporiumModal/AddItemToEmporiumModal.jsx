@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
-import { useAddToEmporiumForm } from '../../../utils/FormsReducers/AddToEmporiumReducerUtil/UseAddToEmporiumForm.js';
+import { useAddToEmporiumForm } from '../../../utils/FormsReducers/AddToEmporiumReducerUtil/useAddToEmporiumForm.js';
 import closeX from '../../../assets/img/close-x.svg'
 import { UseLoading } from '../../../hooks/UseLoading/UseLoading';
 import { UseModalHook } from '../../../hooks/UseModalHook/UseModalHook';
