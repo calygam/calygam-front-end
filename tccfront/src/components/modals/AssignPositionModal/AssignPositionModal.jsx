@@ -88,11 +88,11 @@ export default function AssignPositionModal() {
         <motion.div className='w-full h-full font-poppins fixed inset-0 z-30 bg-calygam-purple-semi-bold/50 backdrop-blur-md flex justify-center items-center'
             initial={hasAnimated ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 200, mass: 2 }}>
+               transition={{ type: 'tween',duration:0.7, ease:'easeInOut' }}>
             <motion.div
                 initial={hasAnimated ? false : { scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ type: 'spring', stiffness: 150, mass: 1 }}
+                   transition={{ type: 'tween',duration:0.7, ease:'easeInOut' }}
                 className='lg:w-[500px] md:w-[325px] w-[250px] rounded-md divide-y divide-gray-200 bg-white min-h-[150px] pb-4 '
             >
                 <div className='w-full flex justify-between p-4 items-center'>

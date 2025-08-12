@@ -117,7 +117,7 @@ export default function AddItemToEmporiumModal({ itemId }) {
             initial={{ scale: 0, rotateX: -50, rotateY: 35 }}
             animate={{ scale: 1, rotateX: 0, rotateY: 0 }}
             exit={{ opacity: 0, scale: 0 }}
-            transition={{ type: 'spring', stiffness: 250, mass: 1 }}
+       transition={{ type: 'tween',duration:0.7, ease:'easeInOut' }}
             className="bg-white rounded-md shadow-md p-6 w-[90%] max-w-md"
         >
             <div className="flex justify-between items-center mb-4">

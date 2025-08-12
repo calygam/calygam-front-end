@@ -1,7 +1,10 @@
 export const InitialPet = {
     details:{
-        dataPets:null,
+        dataPetNotEquipped:[],
+        dataPetEquippedSkins:[],
         dataPetEquipped:null,
+        recallQueries:false,
+   
         foundInventoryItem:false
     },
 

@@ -19,7 +19,7 @@ export default function SucessModal({ sucessMessage }) {
     return (
         <div
 
-            className='fixed font-poppins flex z-20 w-full my-4 justify-end items-center'>
+            className='fixed font-poppins flex z-[1000] w-full my-4 justify-end items-center'>
 
             <motion.div
                 key={sucessMessage}

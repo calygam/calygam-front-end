@@ -104,13 +104,13 @@ export default function CreateNewRewardModal({setRewards}) {
       animate={{ opacity: 1 }}
 
       exit={{ opacity: 0 }}
-      transition={{ type: 'spring', stiffness: 200, mass: 2 }}>
+         transition={{ type: 'tween',duration:0.7, ease:'easeInOut' }}>
       <motion.div
         key={"b"}
         initial={hasAnimated ? false : { scale: 0, rotateX: -50, rotateY: 35 }}
         exit={{ opacity: 0, scale: 0 }}
         animate={{ scale: 1, rotateX: 0, rotateY: 0 }}
-        transition={{ type: 'spring', stiffness: 250, mass: 1 }}
+           transition={{ type: 'tween',duration:0.7, ease:'easeInOut' }}
         className='lg:w-[600px] md:w-[425px] w-[300px]
              bg-white rounded-md divide-y divide-gray-200 pb-4
                mt-16 mb-8'

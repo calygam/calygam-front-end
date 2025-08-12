@@ -135,6 +135,7 @@ export default function CreateNewPetModal({ targetTreat }) {
       className="fixed inset-0 z-30 bg-calygam-purple-semi-bold/45 backdrop-blur-lg flex custom-scrollbar justify-center items-start overflow-y-auto pt-16"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+         transition={{ type: 'tween',duration:0.7, ease:'easeInOut' }}
       exit={{ opacity: 0 }}
     >
       {!addToShop ?
@@ -143,7 +144,7 @@ export default function CreateNewPetModal({ targetTreat }) {
           initial={{ scale: 0, rotateX: -50, rotateY: 35 }}
           animate={{ scale: 1, rotateX: 0, rotateY: 0 }}
           exit={{ opacity: 0, scale: 0 }}
-          transition={{ type: 'spring', stiffness: 250, mass: 1 }}
+             transition={{ type: 'tween',duration:0.7, ease:'easeInOut' }}
           className="bg-white rounded-md shadow-md p-6 w-[90%] max-w-md"
         >
           <div className="flex justify-between items-center mb-4">

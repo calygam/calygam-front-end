@@ -98,13 +98,13 @@ export default function ViewDetailsPerfil() {
         <motion.div className='w-full h-full pt-[300px] md:pt-0 font-poppins fixed   inset-0 z-30 overflow-y-auto custom-scrollbar bg-calygam-purple-semi-bold/50 backdrop-blur-md flex justify-center items-center'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 200, mass: 2 }}
+            transition={{ type: 'tween',duration:0.7, ease:'easeInOut' }}
             exit={{ opacity: 0 }}>
 
             <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ type: 'spring', stiffness: 150, mass: 1 }}
+                transition={{type: 'tween',duration:0.6, ease:'easeInOut'}}
                 exit={{ scale: 0 }}
                 className='lg:w-[550px] md:w-[400px] relative   w-[300px] rounded-md divide-y divide-gray-200 bg-white min-h-[150px] pb-4 '
             >

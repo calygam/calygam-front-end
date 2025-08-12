@@ -70,6 +70,7 @@ export default {
         'calygam-purple-tone-2':'#6C63FF',
         'calygam-purple-light':'#B892FF1A',
         'calygam-purple-medium-light':"#6813DE",
+        'calygam-purple-tone-3': '#2F2E41',
 
         //white
         'calygam-white-matte':"#E9F1FF",

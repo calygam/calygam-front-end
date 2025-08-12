@@ -22,7 +22,7 @@ export default function PetEquippedCard() {
 
             initial={{ y: -80, x: -80 }}
             animate={{ y: 0, x: 0 }}
-            transition={{ type: 'spring', stiffness: 350, mass: 1 }}
+               transition={{ type: 'tween',duration:0.7, ease:'easeInOut' }}
             className='w-[250px] min-h-[250px] relative overflow-hidden bg-gradient-to-tr my-2 font-poppins pb-2 gap-y-2 flex flex-col justify-between border-[6px] border-gray-700 group   rounded-md from-orange-500 via-purple-600 to-yellow-500'
         >
 
@@ -71,15 +71,15 @@ export default function PetEquippedCard() {
              
                     <div className='flex items-center gap-x-1'>
                         <img src={coinSymbol} alt="" className='w-[20px]' />
-                        <p>+{toPercentMoney(details.dataPetEquipped.petBoostMoney)}</p>
+                        <p>+{details.dataPetEquipped.petOutfitPlusMoney}</p>
                     </div>
                     <div className='flex items-center gap-x-1'>
                         <img src={xpIcon} alt="" className='w-[20px]' />
-                        <p>+{toPercentMoney(details.dataPetEquipped.petBoostXp)}</p>
+                        <p>+{details.dataPetEquipped.petOutfitPlusXp}</p>
                     </div>
                     <div className='flex items-center gap-x-1'>
                         <img src={frangoIcon} alt="" className='w-[20px]' />
-                        <p>+{toPercentMoney(details.dataPetEquipped.petBoostFood)}</p>
+                        <p>+{details.dataPetEquipped.petOutfitPlusFood}</p>
 
                     </div>
 
