@@ -62,7 +62,7 @@ export default function CreateNewPetModal({ targetTreat }) {
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      if (file.size > 400 * 1024) {
+      if (file.size > 2000 * 1024) {
         closeModal("", "imagem muito grande")
         return;
       }
@@ -205,7 +205,7 @@ export default function CreateNewPetModal({ targetTreat }) {
                   onChange={handleImageUpload}
                   className="text-sm hidden"
                 />
-                <p className="text-xs text-gray-500">Tamanho máximo: 400kb</p>
+                <p className="text-xs text-gray-500">Tamanho máximo: 2MB</p>
               </label>
               <PetCalygamInput inputId={"input-for-oufit-boost-money"} inputValue={petBoostOutfitMoney} inputSetValue={setPetBoostOutfitMoney} inputPlaceholder={"123"} inputLabel={"Boost somatico de coins (skin)"} inputType={"number"} />
               <PetCalygamInput inputId={"input-for-oufit-boost-xp"} inputValue={petBoostOutfitXp} inputSetValue={setPetBoostOutfitXp} inputPlaceholder={"123"} inputLabel={"Boost somatico de xp (skin)"} inputType={"number"} />
