@@ -10,10 +10,16 @@ import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js';
 import { TranslateTrailStatusUtil } from '../../utils/TranslateTrailStatusUtil/TranslateTrailStatusUtil.js';
 import { ColorStatusTrail } from '../../utils/ColorStatusTrail/ColorStatusTrail.js';
 import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook.js';
+import { data } from 'react-router-dom';
 
 export default function RowOfTable({ oneRow }) {
   const { dataProfile, loading, dataTeachers, searchDataTeachers, targetTeacher, setTargetTeacher } = UseDataProfile()
     const { trails, targetTrailId, setTargetTrailId } = UseReadAllTrailsHook();
+
+    useEffect(()=>{
+      console.log("LOGANDO ------ DEBUG")
+      console.log(dataTeachers)
+    },[dataProfile])
    
 
 
@@ -91,7 +97,7 @@ export default function RowOfTable({ oneRow }) {
       {oneRow?.trailId &&
         <div className="flex items-center   w-full min-w-[300px] px-4  gap-x-2" role="cell">
           <div className=''>
-            <img src={`${oneRow?.trailImage}`} alt="Foto do professor" className='w-[40px] h-[40px]  rounded-full object-cover' />
+            <img src={`${oneRow?.trailImage}`} alt="Foto do professor" className='w-[50px] h-[50px]  rounded-full object-cover' />
           </div>
           <div>
             <p className="font-medium  text-xs text-gray-900 ">{hiddenTextLimitter(oneRow.trailName, 20)}</p>
@@ -122,7 +128,7 @@ export default function RowOfTable({ oneRow }) {
         </div>}
       {oneRow?.trailId && <div className="flex items-center   w-full px-4   gap-x-2" role="cell">
         <div className=''>
-          <img src={`${dataProfile?.userImage}`} alt="Foto do professor" className='w-[25px] rounded-full' />
+          <img src={`${dataProfile?.userImage}`} alt="Foto do professor" className='w-[50px] h-[50px] object-cover rounded-full' />
         </div>
         <div>
           <p className="font-medium  text-xs text-gray-900 ">{hiddenTextLimitter(dataProfile?.userName, 15)}</p>

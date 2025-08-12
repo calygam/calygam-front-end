@@ -35,6 +35,9 @@ import YourTrailsManager from '../../components/LibraryOfPathsComponents/TrailMa
 import { UseLoading } from '../../hooks/UseLoading/UseLoading.js'
 import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook.js'
 import InitialSupportCalygam from '../../components/InitialSupportCalygam/InitialSupportCalygam.jsx'
+import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js'
+import ShowInventoryModal from '../../components/modals/ShowInventoryModal/ShowInventoryModal.jsx'
+import { AnimatePresence } from 'framer-motion'
 
 export default function HomePage() {
 
@@ -43,7 +46,7 @@ export default function HomePage() {
   const navigate = useNavigate()
   const { dataProfile } = UseDataProfile()
   const { searchtrailsOfThisUser, trailsWithThisUser } = UseReadAllTrailsHook()
-
+  const {modalIsOpen,contentModal} = UseModalHook()
   const { loading } = UseLoading()
 
   //DESCOMENTAR ESSA LINHA PARA VOLTAR O LOGIN
@@ -73,6 +76,10 @@ export default function HomePage() {
 
   return (
     <div className='w-full font-poppins  transition-all delay-100 duration-200 ease-in-out'>
+        {modalIsOpen && ["showInventory","SkinsOfPet"].includes(contentModal)&&
+        <AnimatePresence>
+        <ShowInventoryModal/>
+        </AnimatePresence>}
 
       <header>
         <FlorestGradientBackground dataProfile={dataProfile} />
@@ -88,6 +95,7 @@ export default function HomePage() {
 
           <Link to={"/Biblioteca"} className='py-2 px-4 rounded-xl bg-gradient-to-tr font-medium w-fit flex items-center text-sm  text-black text-center gap-x-2'>Ver Mais <span className='text-lg'>{">"}</span>  </Link>
         </div>
+      
         <PetSectionManager/>
       </main>
       <section  className='my-6 mb-12'>

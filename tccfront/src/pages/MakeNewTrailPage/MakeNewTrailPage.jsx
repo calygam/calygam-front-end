@@ -36,11 +36,7 @@ export default function MakeNewTrailPage() {
       { navRoute: "/", navNameRoute: "Trilhas", routeIcon: homeIcon }
   
     ]
-    useEffect(()=>{
-      console.log("estado de modalIsOpen = "+modalIsOpen)
-      console.log("estado de contentModal = "+contentModal)
-
-    },[contentModal,modalIsOpen])
+   
 
    useEffect(() => {
     if (targetTrailId) {
