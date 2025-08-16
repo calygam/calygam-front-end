@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 //component
 import SendActivityArea from '../../components/SendActivityArea/SendActivityArea.jsx'
-import BoxCommentsLayout from '../../components/BoxCommentsComponents/BoxCommentsLayout.jsx'
+import {BoxCommentsLayout} from '../BoxCommentsComponents/shells/index.js';
 import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js';
 
 export default function CalygamActivityDetail() {
@@ -40,7 +40,7 @@ export default function CalygamActivityDetail() {
           </div>
           </div>
         </div>
-        <div className=''>
+        <div className='flex w-full mb-16'>
           <BoxCommentsLayout/>
         </div>
       </div>

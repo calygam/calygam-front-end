@@ -116,7 +116,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
             <div className='w-full h-full flex flex-col p-2 justify-start text-center rounded-2xl absolute backdrop-blur-sm overflow-y-auto custom-scrollbar max-h-40'>
               {viewSubmissions &&
                 <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
-                  <p>Estregues</p>
+                  <p>Entregues</p>
                 </span>
               }
               {submissionBaggage?.submissions.length > 0 && viewSubmissions && submissionBaggage.submissions.map((file, index) => (

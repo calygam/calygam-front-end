@@ -27,7 +27,7 @@ export const ReadActivitiesByTrailIdProvider = ({ children }) => {
 
 
             setActivities(response.data)
-            console.log(response.data)
+ 
         }
         catch (e) {
             console.log("algo deu errado tentando obter as atividades de uma trilha :( " + e)

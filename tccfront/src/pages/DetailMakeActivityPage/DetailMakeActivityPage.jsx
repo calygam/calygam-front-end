@@ -14,6 +14,7 @@ import backToTrail from '../../assets/img/arrow-activity-indicator.svg'
 import sendFeedBack from '../../assets/img/send-feedback-hat.svg'
 import { Link } from 'react-router-dom';
 import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js';
+import { getRoutesByRole } from '../../utils/navRoutesUtil.js';
 
 
 
@@ -32,7 +33,7 @@ export default function DetailMakeActivityPage() {
   return (
     <div className='w-full font-poppins flex flex-col'>
 
-      <CalygamHeaderConfigurer navRoutes={navRoutes} baseMenus={navRoutes} />
+      <CalygamHeaderConfigurer navRoutes={getRoutesByRole(dataProfile)} baseMenus={getRoutesByRole(dataProfile)} />
       <div className='flex flex-col mx-auto items-center gap-y-6 mt-4 w-[80%]'>
         <Link to={"/Trilha"} className='w-full flex group items-center gap-x-1'>
           <img src={backToTrail} alt="voltar para trilha" className='w-[15px] group-hover:-translate-x-[4px] transition-all ease-linear h-[15px] opacity-75' />

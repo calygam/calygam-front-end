@@ -1,0 +1,1 @@
+export {default as BoxCommentsLayout} from './BoxCommentsLayout.jsx'

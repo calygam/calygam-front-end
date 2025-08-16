@@ -23,9 +23,7 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
             setObjTrail(trailSettings)
         }
     }, [trailSettings])
-    useEffect(()=>{
-        console.log(activityUnlocked)
-    },[activityUnlocked])
+
 
 
 

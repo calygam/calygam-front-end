@@ -1,4 +1,4 @@
-
+//.
 export function PetReducer(petState,petAction){
     switch (petAction.type) {
         case "SET_PET_DETAILS": return{

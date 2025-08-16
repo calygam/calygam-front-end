@@ -27,7 +27,7 @@ export default function ErrorModal({ errorMessage }) {
                 animate={{ width: '50%' }}
                 transition={{ type: 'spring', stiffness: 200, mass: 2 }} className='p-4 px-8 rounded-tl-md rounded-tr-md bg-red-600/20 backdrop-blur-sm'>
 
-                <p className='text-white/85 font-extrabold'>{"* " + errorMessage}</p>
+                <p className='text-white/85   font-extrabold'>{"* " + errorMessage}</p>
 
                 <motion.div
                     initial={{ width: '100%' }}
