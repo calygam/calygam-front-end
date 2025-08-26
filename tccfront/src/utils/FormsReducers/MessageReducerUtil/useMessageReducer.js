@@ -8,5 +8,8 @@ export const useMessageReducer=()=>{
     const setMessageBody =(key,value)=>{
         msgDispatch({type:"SET_MESSAGE_BODY", payload:{key,value}})
     }
-    return {msgState,setMessageBody}
+    const setMessageData =(key,value)=>{
+        msgDispatch({type:"SET_MESSAGE_DATA",payload:{key,value}})
+    }
+    return {msgState,setMessageBody,setMessageData}
 }

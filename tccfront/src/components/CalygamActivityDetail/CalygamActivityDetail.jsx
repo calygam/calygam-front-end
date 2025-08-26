@@ -5,24 +5,22 @@ import { useLocation } from 'react-router-dom';
 
 //component
 import SendActivityArea from '../../components/SendActivityArea/SendActivityArea.jsx'
-import {BoxCommentsLayout} from '../BoxCommentsComponents/shells/index.js';
+import {BoxCommentsLayout,CommentCard} from '../BoxCommentsComponents/shells/index.js';
 import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js';
+import { useMessageReducer } from '../../utils/FormsReducers/MessageReducerUtil/useMessageReducer.js';
+import { useMessageCall } from '../../utils/FormsReducers/MessageReducerUtil/useMessageCall.js';
+import { useMessageContext } from '../../hooks/useMessageContext.js';
 
 export default function CalygamActivityDetail() {
   const { targetTrail, searchtrailsById } = UseReadAllTrailsHook();
-    const [viewSubmissions, setViewSubmissions] = useState(false)
-  const location = useLocation()
-  const { submissionBaggage, ListenerOfDowloadableArchivesSubmited } = UseProgressHook()
- 
-
+  const [viewSubmissions, setViewSubmissions] = useState(false)
+ const {msgState,setMessageBody,setMessageData,setDataMsg} = useMessageContext()
   const { targetActivity } = UseDataActivitiesPerTrailIdHook()
-  const trailData = {
-    trailId: targetTrail.trailId,
-    trailName: targetTrail.trailName,
-    trailImage: targetTrail.trailImage
-  }
+  useMessageCall(setMessageData)
+
+
   return (
-    <div className=' flex lg:w-[600px] md:w-[300px] w-full  font-poppins  '>
+    <div className=' flex lg:w-[600px]   md:w-[300px] w-full  font-poppins  '>
       <div className='flex gap-x-2 flex-wrap items-center'>
         <h4 className='font-bold'>{targetTrail.trailName ? targetTrail.trailName : "Carregando... "}:</h4>
         <h2 className='font-semibold text-black/75'>{targetActivity?.activityName}</h2>
@@ -40,8 +38,10 @@ export default function CalygamActivityDetail() {
           </div>
           </div>
         </div>
-        <div className='flex w-full mb-16'>
-          <BoxCommentsLayout/>
+        <div className='flex flex-col w-full mb-16'>
+          <BoxCommentsLayout msgState={msgState} setMessageBody={setMessageBody} setMessageData={setMessageData}/>
+          <CommentCard/>
+          
         </div>
       </div>
     </div>

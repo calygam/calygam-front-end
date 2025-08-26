@@ -8,6 +8,13 @@ export const messageReducer=(msgState,msgAction)=>{
             [msgAction.payload.key]: msgAction.payload.value
             }
         }
+        case "SET_MESSAGE_DATA": return{
+            ...msgState,
+            dataMsg:{
+                ...msgState.dataMsg,
+                [msgAction.payload.key]: msgAction.payload.value
+            }
+        }
     
         default:
             break;

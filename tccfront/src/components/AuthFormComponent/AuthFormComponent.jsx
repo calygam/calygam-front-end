@@ -53,8 +53,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
     const { userName, setUserName,
         userEmail, setUserEmail,
         userPassword, setUserPassword,
-        userPhone, setUserPhone,
-        userCpf, setUserCpf } = useContext(CalygamAuthContext)
+        userPhone, setUserPhone, } = useContext(CalygamAuthContext)
 
     const [validEmail, setValidEmail] = useState("false")
     const [validPassword, setValidPassword] = useState("false")
@@ -71,10 +70,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
     }, [userPassword])
 
 
-    // useEffect(() => {
-    //     console.log("CPF atual:", userCpf);
-    //     console.log("Erro atual:", errorTarget);
-    // }, [userCpf, errorTarget]);
+
 
     return (
         <motion.div className={`font-poppins flex flex-col items-center py-4  bg-white/40 rounded-2xl  w-[80%] my-10  `}
@@ -184,30 +180,13 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                             : null
                         }
 
-                        {cpfRequired ?
-                            <div className={`flex flex-col gap-y-1    bg-transparent ${errorTarget.includes("CPF") ? 'border-red-500' : 'border-black'}  `}>
-                                <label htmlFor="register-user-cpf" className={`font-light ${!newUser?"text-black":"text-white"} text-sm`}>CPF:</label>
-                                <div className='flex items-center gap-2 bg-white py-2 px-4 rounded-md'>
-                                    <input type="text" maxLength={14} className='bg-transparent text-xs w-full text-black placeholder:text-black/50 outline-none' id='register-user-cpf' name='register-user-cpf' value={userCpf} onChange={(e) => setUserCpf(targetCPF(e.target.value))} autoComplete='off' placeholder='XXX.XXX.XXX-XX' />
-                                    <img src={identityCard} alt="Campo de CPF" className='w-6 h-6' />
-                                </div>
-                            </div>
-                            : null}
+                       
 
 
-                        {cpfRequired ? errorTarget != '' && errorTarget.includes("CPF") ?
-                            <div className='flex w-full'>
-                                <p className='text-red-grad-bold-type font-semibold text-xs'>*{errorTarget}</p>
-                            </div>
-                            : null
-                            : null}
+                       
 
 
-                        {cpfRequired ? userCpf.length > 14 ?
-                            <div className='flex w-full'>
-                                <p className='text-red-grad-bold-type font-semibold text-xs'>*Volte o MaxLength ao normal :/</p>
-                            </div>
-                            : null : null}
+                     
 
 
 
@@ -251,7 +230,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                             //         <button type='submit' disabled={true} className='w-[125px] px-4 py-2  text-white     hover:shadow-lg  bg-red-800/35 border-b-4 border-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed  md:w-[175px] lg:[225px] rounded-b-xl rounded-md'>
                             //             {actionForm}
 
-                            //         </button> :cpfRequired ? userCpf.length > 14 ? <button type='submit' disabled={true} className='w-[125px] px-4 py-2  text-white     hover:shadow-lg  bg-red-800/35 border-b-4 border-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed  md:w-[175px] lg:[225px] rounded-b-xl rounded-md'>
+                            //         </button> :cpfRequired ? <button type='submit' disabled={true} className='w-[125px] px-4 py-2  text-white     hover:shadow-lg  bg-red-800/35 border-b-4 border-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed  md:w-[175px] lg:[225px] rounded-b-xl rounded-md'>
                             //             {actionForm}
 
                             //         </button>:null:
@@ -267,7 +246,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
                             actionName == "Criar Conta" ?
 
 
-                                <button type='submit' disabled={validEmail != '' || userName.length > 15 || validPassword != '' || errorTarget != "" ? true : false} className={`outline-none  w-full h-[50px] px-4 py-2    border-b-4 ${validEmail != "" || validPassword != '' || userCpf.length > 14 || errorTarget != "" ? 'border-red-950/15  bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed text-white/50' :
+                                <button type='submit' disabled={validEmail != '' || userName.length > 15 || validPassword != '' || errorTarget != "" ? true : false} className={`outline-none  w-full h-[50px] px-4 py-2    border-b-4 ${validEmail != "" || validPassword != ''  || errorTarget != "" ? 'border-red-950/15  bg-red-950/15 hover:border-0 hover:bg-red-700/35 cursor-not-allowed text-white/50' :
                                     'bg-calygam-purple-medium-light text-white border-b-4 border-purple-800 hover:border-0 hover:bg-purple-700 '}   rounded-b-xl rounded-md`}>
                                     {actionForm}
 

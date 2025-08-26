@@ -3,5 +3,8 @@ export const messageInitialState ={
         messageActivityDescription:"",
         messageActivityType:"MESSAGE_CONTRIBUTION",
         messageActivityIsPrivate:false
+    },
+    dataMsg:{
+        messages:[]
     }
 } 

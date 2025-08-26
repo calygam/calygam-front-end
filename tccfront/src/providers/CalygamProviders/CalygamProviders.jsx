@@ -15,6 +15,7 @@ import { DashBoardManagementProvider } from "../../context/DashBoardManagementCo
 import { ModalProvider } from "../../context/ModalContext/ModalContext.jsx";
 import { CalygamEmporiumProvider } from "../../context/CalygamEmporiumContext/CalygamEmporiumContext.jsx";
 import { PetProvider } from "../../context/PetContext/PetContext.jsx";
+import MessageContext, { MessageProvider } from "../../context/MessageContext/MessageContext.jsx";
 
 //export const CalygamProvidersContext = createContext()
 
@@ -38,31 +39,33 @@ export default function CalygamProviders({ children }) {
 
                 <DataProfileProvider>
                     <CalygamEmporiumProvider>
-                        <PetProvider>
-                            <DashBoardManagementProvider>
-                                <MockUserDataContext.Provider value={{ userPhoto, loadingMock }}>
-                                    <ReadProgressByUserProvider>
-                                        <CalygamAuthContext.Provider value={{
-                                            userName, setUserName,
-                                            userEmail, setUserEmail,
-                                            userPassword, setUserPassword,
-                                            userPhone, setUserPhone,
-                                            userCpf, setUserCpf
-                                        }}>
-                                            <ReadAllTrailsProvider>
-                                                <ReadActivitiesByTrailIdProvider>
+                        <MessageProvider>
+                            <PetProvider>
+                                <DashBoardManagementProvider>
+                                    <MockUserDataContext.Provider value={{ userPhoto, loadingMock }}>
+                                        <ReadProgressByUserProvider>
+                                            <CalygamAuthContext.Provider value={{
+                                                userName, setUserName,
+                                                userEmail, setUserEmail,
+                                                userPassword, setUserPassword,
+                                                userPhone, setUserPhone,
+                                                userCpf, setUserCpf
+                                            }}>
+                                                <ReadAllTrailsProvider>
+                                                    <ReadActivitiesByTrailIdProvider>
 
 
-                                                    {children}
-                                                </ReadActivitiesByTrailIdProvider>
+                                                        {children}
+                                                    </ReadActivitiesByTrailIdProvider>
 
-                                            </ReadAllTrailsProvider>
-                                        </CalygamAuthContext.Provider>
-                                    </ReadProgressByUserProvider>
+                                                </ReadAllTrailsProvider>
+                                            </CalygamAuthContext.Provider>
+                                        </ReadProgressByUserProvider>
 
-                                </MockUserDataContext.Provider>
-                            </DashBoardManagementProvider>
-                        </PetProvider>
+                                    </MockUserDataContext.Provider>
+                                </DashBoardManagementProvider>
+                            </PetProvider>
+                        </MessageProvider>
                     </CalygamEmporiumProvider>
                 </DataProfileProvider>
 

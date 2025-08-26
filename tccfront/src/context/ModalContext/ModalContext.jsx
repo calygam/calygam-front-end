@@ -26,7 +26,7 @@ export function ModalProvider({children}){
     }
 
     return(
-        <ModalContext.Provider value={{modalIsOpen,openModal,closeModal,contentModal}}>
+        <ModalContext.Provider value={{modalIsOpen,openModal,closeModal,contentModal,setError,setSucess}}>
             {error!=""&&
             <ErrorModal errorMessage={error}/>}
             {sucess!=""&&

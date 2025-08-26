@@ -5,9 +5,9 @@ import ChooseIcon3 from '../../assets/img/business.png'
 
 export default function ChooseTheSchool() {
     return (
-        <div className='w-full flex flex-col place-items-center mt-20 font-poppins'>
+        <div className='w-full flex flex-col place-items-center mt- font-poppins'>
             <div className='flex justify-center mb-10'>
-                <p className='lg:text-3xl md:lg:text-2xl text-lg font-bold'>"Por que escolher o SENAI?":</p>
+                <p className='lg:text-3xl md:lg:text-2xl bg-ca  text-lg font-bold'>"Por que escolher o SENAI?":</p>
             </div>
             <div className='grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3  place-content-around'>
 
