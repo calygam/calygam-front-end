@@ -8,14 +8,14 @@ export default function CommentCard() {
     const { getPageableMessages } = MessageServices();
     const activityId = localStorage.getItem("targetActivityId")
 
-    useEffect(() => {
-        console.log(msgState.dataMsg.messages.content)
-    }, [msgState, msgState.dataMsg])
+    // useEffect(() => {
+    //     console.log(msgState.dataMsg.messages.content)
+    // }, [msgState, msgState.dataMsg])
     return (
         <div className='font-poppins flex  flex-col my-2 '>
             <h2 className='font-semibold my-2 text-lg'>Comentários da turma</h2>
             <ul className='flex flex-col pr-2  gap-y-2  '>
-                {msgState.dataMsg.messages.content?.map(msg => (
+                {msgState.dataMsg.messages.map(msg => (
                     <div key={msg.messageActivityId}>
                    <DetailCommentCard msg={msg} /></div>
                 ))}
