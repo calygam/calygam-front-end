@@ -26,5 +26,5 @@ export const useMessageCall = (setDataMsg) => {
             }
         }
         fetchAll()
-    },[])
+    },[activityId])
 }

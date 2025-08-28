@@ -1,10 +1,14 @@
 export const messageInitialState ={
     bodyMsg:{
         messageActivityDescription:"",
+        messageActivityDescriptionReply:"",
         messageActivityType:"MESSAGE_CONTRIBUTION",
-        messageActivityIsPrivate:false
+        messageActivityIsPrivate:false,
+        messageActivityId:0,
+       
     },
     dataMsg:{
-        messages:[]
+        messages:[],
+        messageLastId:0
     }
 } 

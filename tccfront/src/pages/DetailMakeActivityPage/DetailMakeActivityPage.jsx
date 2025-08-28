@@ -31,7 +31,7 @@ export default function DetailMakeActivityPage() {
 
   ]
   return (
-    <div className='w-full font-poppins flex flex-col'>
+    <div className='w-full flex flex-col font-poppins '>
 
       <CalygamHeaderConfigurer navRoutes={getRoutesByRole(dataProfile)} baseMenus={getRoutesByRole(dataProfile)} />
       <div className='flex flex-col mx-auto items-center gap-y-6 mt-4 w-[80%]'>
@@ -42,8 +42,8 @@ export default function DetailMakeActivityPage() {
         <div className='  w-full flex flex-wrap gap-x-4 gap-y-6 md:gap-y-0 md:justify-between justify-center '>
 
           <CalygamActivityDetail />
-
-          <div className='flex flex-col gap-y-3 items-center w-[250px] '>
+        
+          <div className='flex flex-col gap-y-3  items-center w-[250px] '>
             <div className='border p-2 border-calygam-purple-semi-strong w-full backdrop-blur-2xl rounded-md'>
               <p className='text-xs font-bold'>Feedback</p>
             </div>

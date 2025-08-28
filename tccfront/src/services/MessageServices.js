@@ -5,20 +5,30 @@ import { UseModalHook } from "../hooks/UseModalHook/UseModalHook"
 import { useMessageReducer } from "../utils/FormsReducers/MessageReducerUtil/useMessageReducer"
 import { styleEffect } from "framer-motion"
 
+import { useMessageContext } from "../hooks/useMessageContext"
+
 export const MessageServices = () => {
     const { setError, setSucess } = UseModalHook()
     const { setLoading, setLoadingText } = UseLoading()
+    const {msgState} = useMessageContext()
 
 
 
-    const getPageableMessages = useCallback(async (activityId, lastMsgId, setDataMsg) => {
+    const getPageableMessages = useCallback(async (activityId, lastMsgId, setDataMsg,msgState) => {
         try {
             setLoading(true)
-            setLoadingText("Carregando comentários")
-            setLoading
+            setLoadingText(lastMsgId==0?"Carregando comentários...":"Carregando mais comentários...")
+         
             const response = await api.get(`message/activity/list-all-basics?activityId=${activityId}${lastMsgId > 0 ? "&lastMsgId=" + lastMsgId : ''}&page=0&size=10`)
+            if(lastMsgId==0){
             setDataMsg("messages", response.data)
-            console.log(response.data)
+            //console.log(response.data.content[response.data.content.length-1].messageActivityId)
+            }else{
+                console.log(msgState)
+                setDataMsg("messages", ...msgState.dataMsg.messages,response.data)
+                
+            }
+            setDataMsg("messageLastId",response.data.content[response.data.content.length-1].messageActivityId)
         }
         catch (err) {
             setError("Erro ao buscar comentàrios")
@@ -37,15 +47,15 @@ export const MessageServices = () => {
     const sendMessage = async (msgState,activityId, messageActivityId,setMessageData) => {
         try {
             setLoading(true)
-            setLoadingText("Comentando na atividade...")
+            setLoadingText(messageActivityId>0?"Enviando resposta...":"Comentando na atividade...")
 
             const response = await api.post(`message/activity/${activityId}/send${messageActivityId > 0 ? `?messageActivityId=${messageActivityId}` : ""}`, {
-                'messageActivityDescription': msgState.bodyMsg.messageActivityDescription.trim(),
-                'messageActivityType': msgState.bodyMsg.messageActivityType.trim(),
+                'messageActivityDescription': messageActivityId>0?msgState.bodyMsg.messageActivityDescriptionReply.trim(): msgState.bodyMsg.messageActivityDescription.trim(),
+                'messageActivityType': messageActivityId>0?"MESSAGE_REPLY": msgState.bodyMsg.messageActivityType.trim(),
                 "messageActivityIsPrivate": msgState.bodyMsg.messageActivityIsPrivate
             })
 
-            setSucess("Você enviou uma mensagem")
+            setSucess(messageActivityId>0?"Usuário respondido!":"Você enviou uma mensagem")
 
         } catch (err) {
             setError("Algum erro ocorreu " + err?.response?.data)

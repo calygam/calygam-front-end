@@ -38,9 +38,10 @@ export default function CalygamActivityDetail() {
           </div>
           </div>
         </div>
-        <div className='flex flex-col w-full mb-16'>
+        <div className='flex flex-col h-full w-full '>
           <BoxCommentsLayout msgState={msgState} setMessageBody={setMessageBody} setMessageData={setMessageData}/>
           <CommentCard/>
+          
           
         </div>
       </div>

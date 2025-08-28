@@ -19,7 +19,7 @@ export default function BoxCommentsLayout({msgState,setMessageBody,setMessageDat
   return (
     <div className='flex flex-col  w-full'>
       <div className='w-[75%] flex gap-y-2 flex-col'>
-        <CommentTextArea setMessageBody={setMessageBody} targetValue={msgState.bodyMsg.messageActivityDescription}/>
+        <CommentTextArea setMessageBody={setMessageBody} targetValue={msgState.bodyMsg.messageActivityDescription} modeArea={"messageActivityDescription"}/>
         <div className='self-end'>
           {msgState.bodyMsg.messageActivityDescription.length>0?
           <SendMessageButton actionButton={"Enviar"} stylesPlus={"bg-calygam-purple-tone-2 border-calygam-purple-semi-bold/25"} method={()=>sendMessage(msgState,activityId,0,setMessageData)} />
