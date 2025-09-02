@@ -81,7 +81,7 @@ export default function DetailCommentCard({ msg }) {
 
                     <div className='flex flex-col gap-y-1'>
                         <p className='text-xs font-semibold'>{msg.userName}</p>
-                        <p className='text-sm text-wrap break-words '>{msg.messageActivityDescription + "."}</p>
+                        <p className='text-sm text-wrap break-words whitespace-normal'>{msg.messageActivityDescription + "."}</p>
                     </div>
                 </div>
                 {msg.userId === dataProfile.userId&&
