@@ -15,12 +15,14 @@ import sendFeedBack from '../../assets/img/send-feedback-hat.svg'
 import { Link } from 'react-router-dom';
 import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js';
 import { getRoutesByRole } from '../../utils/navRoutesUtil.js';
+import DeleteModal from '../../components/modals/deleteModal/deleteModal.jsx';
 
 
 
 export default function DetailMakeActivityPage() {
   const { setToken } = useAuth();
   const { dataProfile } = UseDataProfile()
+  const {contentModal,modalIsOpen} = UseModalHook()
   
   const navRoutes = [
     ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
@@ -34,6 +36,7 @@ export default function DetailMakeActivityPage() {
     <div className='w-full flex flex-col font-poppins '>
 
       <CalygamHeaderConfigurer navRoutes={getRoutesByRole(dataProfile)} baseMenus={getRoutesByRole(dataProfile)} />
+
       <div className='flex flex-col mx-auto items-center gap-y-6 mt-4 w-[80%]'>
         <Link to={"/Trilha"} className='w-full flex group items-center gap-x-1'>
           <img src={backToTrail} alt="voltar para trilha" className='w-[15px] group-hover:-translate-x-[4px] transition-all ease-linear h-[15px] opacity-75' />

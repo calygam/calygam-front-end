@@ -3,12 +3,14 @@ import api from "../../../api/api"
 import { MessageServices } from "../../../services/MessageServices"
 import { UseLoading } from "../../../hooks/UseLoading/UseLoading";
 import { UseModalHook } from "../../../hooks/UseModalHook/UseModalHook";
+import { useSearchParams } from "react-router-dom";
 
 export const useMessageCall = (setDataMsg) => {
     const { getPageableMessages } = MessageServices();
     const { setLoadingText, setLoadingPrevail } = UseLoading()
-    const {setError} = UseModalHook()
+    const {setError,setSucess} = UseModalHook()
     const activityId = localStorage.getItem("targetActivityId")
+    const [searchParams] = useSearchParams()
     useEffect(() => {
         const fetchAll = async () => {
             try {

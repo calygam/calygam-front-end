@@ -5,10 +5,12 @@ export const messageInitialState ={
         messageActivityType:"MESSAGE_CONTRIBUTION",
         messageActivityIsPrivate:false,
         messageActivityId:0,
+        
        
     },
     dataMsg:{
         messages:[],
-        messageLastId:0
+        messageLastId:0,
+        messageHasNext:false,
     }
 } 
