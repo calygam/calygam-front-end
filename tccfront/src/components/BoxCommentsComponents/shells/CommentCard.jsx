@@ -22,7 +22,7 @@ export default function CommentCard() {
             {!loading&& msgState.dataMsg.messages.length==0?<p className='text-sm text-gray-600'>*Sem comentários no momento</p>:
             <ul className='flex flex-col max-w-[350px] pr-2  gap-y-2  '>
                 {msgState.dataMsg.messages.map(msg => (
-                    <div className='flex flex-wrap bg-purple-500 w-[350px]' key={msg.messageActivityId}>
+                    <div className='flex flex-wrap' key={msg.messageActivityId}>
                    <DetailCommentCard msg={msg} />
                    
                    

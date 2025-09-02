@@ -67,7 +67,7 @@ export default function DetailCommentCard({ msg }) {
         <li key={msg.messageActivityId} className={`flex flex-col w-[350px] gap-y-2 `}>
       {modalIsOpen&& contentModal ==="deleteOneComment"?<DeleteModal id={msg.messageActivityId} setData={setMessageData} data={msgState}/>:null}
             <div className='w-full flex items-center justify-between    rounded-md '>
-                <div className='flex items-center relative gap-2'>
+                <div className='flex items-center flex-wrap relative gap-2'>
                     {msg.userImageUrl != "" && msg.userImageUrl != null ? isImageLoading &&
                         <span className='absolute flex bg-gradient-to-tr  w-[45px] justify-center items-center from-black via-gray-700 to-gray-700  rounded-full animate-spin'>
                             <img src={loadingImages} alt="" className='w-[45px]' />
@@ -79,17 +79,18 @@ export default function DetailCommentCard({ msg }) {
                         <img src={msg.userImageUrl} alt="Foto de Perfil" className='  w-[45px] h-[45px]  z-10 object-cover  rounded-full' onLoad={() => setIsImageLoading(false)} /> : null}
 
 
-                    <div className='flex flex-col gap-y-1 max-w-[300px]'>
+                    <div className='flex flex-col gap-y-1 max-w-[350px]'>
                         <p className='text-xs font-semibold'>{msg.userName}</p>
                         <p className='text-sm text-wrap break-words whitespace-normal'>{msg.messageActivityDescription + "."}</p>
                     </div>
-                </div>
-                {msg.userId === dataProfile.userId&&
+                           {msg.userId === dataProfile.userId&&
                 <div className='rounded-md bg-black/15 p-1 flex gap-x-1'>
                     <button type="button" className='outline-none hover:bg-red-500/25 rounded-md p-1' onClick={()=>openModal("deleteOneComment")}>
                     <img src={trashIcon} alt="" className='w-[15px]' />
                     </button>
                 </div>}
+                </div>
+         
             </div>
             <div className='flex gap-2 justify-end'>
                 {msg.messageResSize > 0 &&
