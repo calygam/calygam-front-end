@@ -76,7 +76,7 @@ export default function DetailCommentCard({ msg }) {
                             <img src={perfilPageIcon} alt="ir para perfil" className='w-[25px] transition-all h-[25px]' />
                         </button>}
                     {msg.userImageUrl != null ?
-                        <img src={msg.userImageUrl} alt="Foto de Perfil" className='  w-[45px] h-[45px]  z-10 object-cover  rounded-full' onLoad={() => setIsImageLoading(false)} /> : null}
+                        <img src={msg.userImageUrl} alt="Foto de Perfil" className='  w-[45px] h-[45px]  z-10 object-cover self-start  rounded-full' onLoad={() => setIsImageLoading(false)} /> : null}
 
                     <div className='flex flex-wrap'>
                         <div className='flex flex-col gap-y-1 max-w-[350px]'>
