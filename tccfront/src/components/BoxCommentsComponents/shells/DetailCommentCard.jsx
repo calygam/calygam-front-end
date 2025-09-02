@@ -64,7 +64,7 @@ export default function DetailCommentCard({ msg }) {
 
 
     return (
-        <li key={msg.messageActivityId} className={`flex flex-col gap-y-2 `}>
+        <li key={msg.messageActivityId} className={`flex flex-col w-[350px] gap-y-2 `}>
       {modalIsOpen&& contentModal ==="deleteOneComment"?<DeleteModal id={msg.messageActivityId} setData={setMessageData} data={msgState}/>:null}
             <div className='w-full flex items-center justify-between    rounded-md '>
                 <div className='flex items-center relative gap-2'>
@@ -81,7 +81,7 @@ export default function DetailCommentCard({ msg }) {
 
                     <div className='flex flex-col gap-y-1'>
                         <p className='text-xs font-semibold'>{msg.userName}</p>
-                        <p className='text-sm'>{msg.messageActivityDescription + "."}</p>
+                        <p className='text-sm text-wrap '>{msg.messageActivityDescription + "."}</p>
                     </div>
                 </div>
                 {msg.userId === dataProfile.userId&&
