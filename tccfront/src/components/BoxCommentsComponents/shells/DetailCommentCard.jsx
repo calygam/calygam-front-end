@@ -84,8 +84,8 @@ export default function DetailCommentCard({ msg }) {
                             <p className='text-sm text-wrap break-words whitespace-normal'>{msg.messageActivityDescription + "."}</p>
                         </div>
                         {msg.userId === dataProfile.userId &&
-                            <div className='rounded-md bg-black/15 p-1 flex gap-x-1'>
-                                <button type="button" className='outline-none hover:bg-red-500/25 w-fit rounded-md p-1' onClick={() => openModal("deleteOneComment")}>
+                            <div className='rounded-md bg-black/15 p-1 flex w-fit gap-x-1'>
+                                <button type="button" className='outline-none hover:bg-red-500/25  rounded-md p-1' onClick={() => openModal("deleteOneComment")}>
                                     <img src={trashIcon} alt="" className='w-[15px]' />
                                 </button>
                             </div>}
