@@ -20,7 +20,7 @@ export default function CommentCard() {
             
             <h2 className='font-semibold my-2 text-lg'>Comentários da turma</h2>
             {!loading&& msgState.dataMsg.messages.length==0?<p className='text-sm text-gray-600'>*Sem comentários no momento</p>:
-            <ul className='flex flex-col pr-2  gap-y-2  '>
+            <ul className='flex flex-col max-w-[350px] pr-2  gap-y-2  '>
                 {msgState.dataMsg.messages.map(msg => (
                     <div key={msg.messageActivityId}>
                    <DetailCommentCard msg={msg} />

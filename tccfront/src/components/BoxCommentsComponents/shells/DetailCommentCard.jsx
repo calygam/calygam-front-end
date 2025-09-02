@@ -120,7 +120,7 @@ export default function DetailCommentCard({ msg }) {
                 }}>Enviar</button>
             </div>}
             {showResponse &&
-                <ul className='border-l-2 pl-4 ml-4   border-purple-900'>
+                <ul className='border-l-2 pl-4 ml-4 max-w-[350px]   border-purple-900'>
                     {detailResponseState.responseMsgInfo.messages.map(msg => (
                         <div key={msg.messageActivityId}>
                             <DetailResponseCard msg={msg} />
