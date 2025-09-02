@@ -79,7 +79,7 @@ export default function DetailCommentCard({ msg }) {
                         <img src={msg.userImageUrl} alt="Foto de Perfil" className='  w-[45px] h-[45px]  z-10 object-cover  rounded-full' onLoad={() => setIsImageLoading(false)} /> : null}
 
 
-                    <div className='flex flex-col gap-y-1'>
+                    <div className='flex flex-col gap-y-1 max-w-[150px]'>
                         <p className='text-xs font-semibold'>{msg.userName}</p>
                         <p className='text-sm text-wrap break-words whitespace-normal'>{msg.messageActivityDescription + "."}</p>
                     </div>
