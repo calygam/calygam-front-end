@@ -79,9 +79,9 @@ export default function DetailCommentCard({ msg }) {
                         <img src={msg.userImageUrl} alt="Foto de Perfil" className='  w-[45px] h-[45px]  z-10 object-cover  rounded-full' onLoad={() => setIsImageLoading(false)} /> : null}
 
 
-                    <div className='flex flex-col max-w-[350px] bg-blue-500 gap-y-1'>
+                    <div className='flex flex-col text-wrap max-w-[350px] flex-wrap bg-blue-500 gap-y-1'>
                         <p className='text-xs font-semibold'>{msg.userName}</p>
-                        <p className='text-sm text-wrap '>{msg.messageActivityDescription + "."}</p>
+                        <p className='text-sm text-wrap'>{msg.messageActivityDescription + "."}</p>
                     </div>
                 </div>
                 {msg.userId === dataProfile.userId&&
