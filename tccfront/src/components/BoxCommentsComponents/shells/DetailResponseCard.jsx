@@ -32,9 +32,9 @@ export default function DetailResponseCard({ msg }) {
                     <img src={msg.userImageUrl} alt="Foto de Perfil" className='  w-[40px] h-[40px]   z-10 object-cover rounded-full' onLoad={() => setIsImageLoading(false)} /> : null}
 
 
-                <div className='flex flex-col gap-y-1'>
+                <div className='flex flex-col  gap-y-1'>
                     <p className='text-xs font-semibold'>{msg.userName}</p>
-                    <p className='text-sm'>{msg.messageActivityDescription + "."}</p>
+                    <p className='text-sm max-w-[350px] text-wrap'>{msg.messageActivityDescription + "."}</p>
                 </div>
             </div>
             <div className='flex gap-2 justify-end'>
