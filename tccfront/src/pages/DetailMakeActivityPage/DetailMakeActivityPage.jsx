@@ -15,7 +15,7 @@ import sendFeedBack from '../../assets/img/send-feedback-hat.svg'
 import { Link } from 'react-router-dom';
 import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js';
 import { getRoutesByRole } from '../../utils/navRoutesUtil.js';
-import DeleteModal from '../../components/modals/deleteModal/deleteModal.jsx';
+import DeleteModal from '../../components/modals/DeleteModal/DeleteModal.jsx';
 
 
 

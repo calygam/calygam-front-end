@@ -10,7 +10,7 @@ import { CommentTextArea } from '../patterns';
 import DetailResponseCard from './DetailResponseCard';
 import { UseDataProfile } from '../../../hooks/UseDataProfile/UseDataProfile';
 import { UseModalHook } from '../../../hooks/UseModalHook/UseModalHook';
-import DeleteModal from '../../modals/deleteModal/deleteModal';
+import DeleteModal from '../../modals/DeleteModal/DeleteModal';
 export default function DetailCommentCard({ msg }) {
     const [isImageLoading, setIsImageLoading] = useState(true);
     const [isMsgResponse, setIsMsgResponse] = useState(false)
