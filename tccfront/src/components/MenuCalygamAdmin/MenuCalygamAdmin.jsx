@@ -10,8 +10,7 @@ import { Link, useLocation } from 'react-router-dom'
 import StaticTooltipActivity from '../../components/StaticTooltipActivity/StaticTooltipActivity.jsx'
 import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook.js'
 import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook.js'
-import trailMenuFirst from '../../assets/img/trail-menu-first.png'
-import trailMenuSecond from '../../assets/img/trail-menu-second.png'
+
 // import CalygamNavBar from '../../components/CalygamNavBar/CalygamNavBar.jsx'
 export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnabled, modifyStyles, progress, activityUnlocked, inverse,isAnchor }) {
     const [objTrail, setObjTrail] = useState({})
@@ -66,18 +65,17 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
 
 
     return (
-        <div className={`lg:w-fit  bg-cover bg-no-repeat    lg:block ${!isEnabled ? "hidden md:block" : "block"}  outline-none        font-poppins ${trailSettings ?!inverse? " lg:min-w-[240px] md:min-w-[260px] lg:max-w-[240px] border-white/20": "lg:w-[250px] border-white/20"   : "border-none fixed lg:sticky w-[75%]  inset-0"}    min-h-lvh h-full transition-all delay-75 duration-[10000ms] z-20 ease-in-out bg-transparent `}
-        style={{backgroundImage:`url(${!inverse?trailMenuFirst:trailMenuSecond})`}}>
+        <div className={`lg:w-fit lg:min-w-[200px] lg:max-w-[200px]   lg:block ${!isEnabled ? "hidden md:block" : "block"}  outline-none        font-poppins ${trailSettings ?!inverse? "border-r-2 border-white/20": "border-l-2 border-white/20"   : "border-none fixed lg:sticky w-[75%]  inset-0"}    min-h-lvh h-full transition-all delay-75 duration-[10000ms] z-20 ease-in-out `}>
             {isEnabled &&
 
-                <div className={`flex ${trailSettings ? "md:hidden fixed -z-10 " : "lg:hidden fixed -z-10"}  w-full h-full    bg-purple-600/50 `}></div>}
-            <menu className={`w-full min-w-[250px] md:min-w-full flex ${inverse&&"justify-center"} flex-col   ${["/Trilha", "/Atividade"].includes(location.pathname) ? "":""}  overflow-y-auto  custom-scrollbar  pt-0 h-full`}>
+                <div className={`flex ${trailSettings ? "md:hidden fixed -z-10 " : "lg:hidden fixed -z-10"}  w-full h-full    bg-black/50 `}></div>}
+            <menu className={`w-full min-w-[250px] md:min-w-full flex flex-col items-end  ${["/Trilha", "/Atividade"].includes(location.pathname) ? "bg-calygam-purple-semi-bold md:bg-calygam-purple-light" : "bg-calygam-purple-semi-bold"}  overflow-y-auto custom-scrollbar  pt-0 h-full`}>
                 <div className={`w-full ${trailSettings ? "md:hidden" : "lg:hidden"} flex justify-end pr-5 text-black  font-black text-xl`}>
                     <button className='text-white font-bold' onClick={() => setIsEnabled(!isEnabled)}> {isEnabled ? "X" : "/"}</button></div>
-                <div className={`w-full flex   ${trailSettings ? "border-none" : "border-b"} border-gray-400/50 lg:py-7 w-[150px]  p-5  `}>
+                <div className={`w-full flex justify-center  ${trailSettings ? "border-none" : "border-b"} border-gray-400/50 lg:py-7 w-[150px]  p-5  `}>
                     {!inverse ?
-                        <Link to={"/home"}><img src={location.pathname == "/Trilha" || "/Atividade" && !inverse ? objTrail?.logoImage : senaiLogo} alt="" className={`${location.pathname == "/Atividade" ? "w-full object-contain" : trailSettings ? "shadow-none w-[100px] h-auto max-h-[100px]" : "shadow-xl w-[150px] lg:w-full shadow-black/50"} hover:object-cover bg-black rounded-full border-4 border-purple-950 `} /></Link>
-                        : <img src={targetTrail.trailImage?targetTrail.trailImage:senaiLogo} alt="" className={`${targetTrail.trailImage?"w-[150px] mx-auto h-auto max-h-[200px] object-contain  rounded-md border border-white/15 shadow-sm shadow-purple-500/50 hover:scale-110 overflow-hidden transition-all ":"hidden"}  `} />
+                        <Link to={"/home"}><img src={location.pathname == "/Trilha" || "/Atividade" && !inverse ? objTrail?.logoImage : senaiLogo} alt="" className={`${location.pathname == "/Atividade" ? "w-full object-contain" : trailSettings ? "shadow-none w-[100px] h-auto max-h-[100px]" : "shadow-xl w-[150px] lg:w-full shadow-black/50"} hover:object-cover `} /></Link>
+                        : <img src={targetTrail.trailImage?targetTrail.trailImage:senaiLogo} alt="" className={`${targetTrail.trailImage?"w-full h-auto max-h-[200px] object-contain  rounded-md border border-white/15 shadow-sm shadow-purple-500/50 hover:scale-110 overflow-hidden transition-all ":"hidden"}  `} />
                     }
                 </div>
                 {trailSettings?.showNav &&
@@ -95,7 +93,7 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
                         </ul>
                     </nav>}
                 {progress && activityUnlocked &&targetTrail.trailName? 
-                    <div className={`flex  w-full ${trailSettings?.showNav ? "lg:hidden" : ""}  items-center px-2 flex-col`}>
+                    <div className={`flex w-full ${trailSettings?.showNav ? "lg:hidden" : ""}  items-center px-2 flex-col`}>
                        
                         <div className=' flex flex-col w-full my-1 items-center space-y-4'>
                             <StaticTooltipActivity comumInfo={activityUnlocked} tooltipInfo={false} />
@@ -108,6 +106,7 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
                      
                         <div className=' flex flex-col w-full my-1 items-center space-y-4'>
                             <StaticTooltipActivity comumInfo={false} tooltipInfo={activityUnlocked} />
+
                         </div>
                     </div>
                 }
