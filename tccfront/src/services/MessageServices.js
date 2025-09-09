@@ -8,9 +8,10 @@ import { styleEffect } from "framer-motion"
 import { useMessageContext } from "../hooks/useMessageContext"
 
 export const MessageServices = () => {
-    const { setError, setSucess } = UseModalHook()
+    const { setError, setSucess, contentModal } = UseModalHook()
     const { setLoading, setLoadingText } = UseLoading()
     const { msgState } = useMessageContext()
+
 
 
 
@@ -98,8 +99,10 @@ export const MessageServices = () => {
 
     }, [])
 
-    const deleteOneComment = useCallback(async (id,setData, data) => {
+    const deleteOneComment = useCallback(async (id, setData, data) => {
         const activityId = localStorage.getItem("targetActivityId")
+        console.log("-----deleteOneComment------ id")
+        console.log(id)
         try {
             setLoading(true)
             setLoadingText("Deletando comentário...")
@@ -115,6 +118,7 @@ export const MessageServices = () => {
             }, 5000);
             setLoading(false)
             setLoadingText("")
+
             await getPageableMessages(activityId, 0, setData)
         }
 
@@ -194,5 +198,44 @@ export const MessageServices = () => {
     }
 
 
-    return { sendMessage, getPageableMessages, getResponsePageableMessages, deleteOneComment }
+    const editMessage = async (messageActivityId, msgResponse, setDataMsg,editDescriptionMsg) => {
+        const activityId = localStorage.getItem("targetActivityId")
+        try {
+            setLoading(true)
+            setLoadingText(!msgResponse ? "editando sua mensagem..." : "editando sua resposta...")
+
+            const response = await api.put(`message/activity/update/${messageActivityId}?activityId=${activityId}&msgResponse=${msgResponse}`, {
+                'messageActivityDescription': editDescriptionMsg.trim()
+
+            })
+            if (response.status === 201 ||response.status === 200) {
+             
+                    setDataMsg("messages", response.data.content)
+                
+            }
+            console.log(response.status)
+            console.log(response.data)
+
+            setSucess(msgResponse > 0 ? "Mensagem editada!" : "resposta editada")
+
+        } catch (err) {
+            setError("Algum erro ocorreu " + err?.response?.data)
+        } finally {
+            setLoading(false)
+            setLoadingText("")
+
+            setTimeout(() => {
+                setError("")
+                setSucess("")
+            }, 5000);
+
+            // await getPageableMessages(activityId, 0, setMessageData)
+            // if (messageActivityId > 0) {
+            //     await getResponsePageableMessages(0, setDetailInfo, detailResponseState)
+            // }
+        }
+    }
+
+
+    return { sendMessage, getPageableMessages, getResponsePageableMessages, deleteOneComment, editMessage }
 }

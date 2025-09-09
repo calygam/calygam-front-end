@@ -3,7 +3,7 @@ import api from "../../../api/api"
 import { MessageServices } from "../../../services/MessageServices"
 import { UseLoading } from "../../../hooks/UseLoading/UseLoading";
 import { UseModalHook } from "../../../hooks/UseModalHook/UseModalHook";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export const useMessageCall = (setDataMsg) => {
     const { getPageableMessages } = MessageServices();
@@ -11,6 +11,8 @@ export const useMessageCall = (setDataMsg) => {
     const {setError,setSucess} = UseModalHook()
     const activityId = localStorage.getItem("targetActivityId")
     const [searchParams] = useSearchParams()
+    const progressId = searchParams.get("progressId")
+    const location = useLocation()
     useEffect(() => {
         const fetchAll = async () => {
             try {
@@ -28,5 +30,5 @@ export const useMessageCall = (setDataMsg) => {
             }
         }
         fetchAll()
-    },[activityId])
+    },[activityId,location.pathname,progressId])
 }

@@ -4,11 +4,14 @@ import { useMessageContext } from '../../../hooks/useMessageContext'
 import {DetailCommentCard} from './index'
 import { MessageServices } from '../../../services/MessageServices';
 import { UseLoading } from '../../../hooks/UseLoading/UseLoading';
+import DeleteModal from '../../modals/DeleteModal/DeleteModal';
+import { UseModalHook } from '../../../hooks/UseModalHook/UseModalHook';
 export default function CommentCard() {
     const { msgState,setMessageData } = useMessageContext()
     const { getPageableMessages } = MessageServices();
     const {loading} = UseLoading()
     const activityId = localStorage.getItem("targetActivityId")
+     const { openModal, modalIsOpen, contentModal } = UseModalHook()
 
     
 
@@ -17,13 +20,13 @@ export default function CommentCard() {
     // }, [msgState, msgState.dataMsg])
     return (
         <div className='font-poppins flex  flex-col my-2 '>
-            
+                        {modalIsOpen && contentModal === "deleteOneComment" ? <DeleteModal id={msgState.bodyMsg.messageActivityId} setData={setMessageData} data={msgState} /> : null}
             <h2 className='font-semibold my-2 text-lg'>Comentários da turma</h2>
             {!loading&& msgState.dataMsg.messages.length==0?<p className='text-sm text-gray-600'>*Sem comentários no momento</p>:
             <ul className='flex flex-col max-w-[350px] pr-2  gap-y-2  '>
                 {msgState.dataMsg.messages.map(msg => (
                     <div className='flex flex-wrap' key={msg.messageActivityId}>
-                   <DetailCommentCard msg={msg} />
+                   <DetailCommentCard msg={msg} messageActivityId={msg.messageActivityId} />
                    
                    
                    </div>

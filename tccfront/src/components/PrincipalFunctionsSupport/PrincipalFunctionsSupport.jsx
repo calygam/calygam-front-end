@@ -5,6 +5,7 @@ import React from 'react'
 import storeIcon from '../../assets/img/initialPage/store-icon.svg'
 import invitePetSystem from '../../assets/img/initialPage/invite-pet-sistem.svg'
 import enterSystemRanking from '../../assets/img/initialPage/enter-sistem-ranking.svg'
+import { Link } from 'react-router-dom'
 
 export default function PrincipalFunctionsSupport() {
     return (
@@ -26,7 +27,9 @@ export default function PrincipalFunctionsSupport() {
                 <p className=''>Colecione pets e personalize sua experiência!</p>
             </div>
             <div className='flex w-full'>
+                <Link to={"/Register"}>
                <button className='flex border outline-none border-calygam-purple-medium-light text-sm text-purple-500 rounded-md py-2 px-4 '>Começar</button>
+                </Link>
             </div>
 
 

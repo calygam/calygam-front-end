@@ -5,6 +5,7 @@ export const messageInitialState ={
         messageActivityType:"MESSAGE_CONTRIBUTION",
         messageActivityIsPrivate:false,
         messageActivityId:0,
+        messageActivityDescriptionEdit:""
         
        
     },

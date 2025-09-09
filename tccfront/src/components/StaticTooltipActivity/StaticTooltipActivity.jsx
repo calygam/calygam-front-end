@@ -15,7 +15,7 @@ export default function StaticTooltipActivity({ comumInfo, tooltipInfo }) {
     console.log(tooltipInfo?.trailImage)
   }, [tooltipInfo?.trailImage])
   return (
-    <div className={` border-2 border-white w-full flex-col p-2  font-poppins items-center min-h-[100px] flex  ${comumInfo ? "rounded-bl-[55px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[55px]" : "rounded-bl-[20px] rounded-tl-[55px] rounded-br-[55px] rounded-tr-[20px]"}`}>
+    <div className={` border-2 border-white  flex-col w-[160px] p-1   font-poppins items-center min-h-[100px] flex  ${comumInfo ? "rounded-bl-[55px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[55px]" : "rounded-bl-[20px] rounded-tl-[55px] rounded-br-[55px] rounded-tr-[20px]"}`}>
       {comumInfo && !tooltipInfo &&
         <div className='flex flex-col space-y-2 items-center'>
           <div className='w-[85%] mx-auto flex flex-col items-center'>

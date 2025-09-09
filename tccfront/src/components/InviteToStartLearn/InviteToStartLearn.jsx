@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function InviteToStartLearn() {
     return (
@@ -9,8 +10,13 @@ export default function InviteToStartLearn() {
                     <p className='text-white text-sm'>Descubra um mundo de conhecimento e diversão</p>
                 </div>
                 <div className='flex items-center flex-wrap justify-center gap-x-4'>
-                  <button className='outline-none py-2 px-4 rounded-md border-b-4 text-sm hover:border-0 transition-all hover:translate-y-1 border-gray-600/25 h-[40px] bg-white text-black'>Começar</button>
-                  <button className='outline-none py-2 px-4 rounded-md bg-transparent border text-white text-sm '>Começar</button>
+                    <Link to={"/Login"}>
+                        <button className='outline-none py-2 px-4 rounded-md border-b-4 text-sm hover:border-0 border-gray-600/25 h-[40px] bg-white text-black'>Começar</button>
+                    </Link>
+                    <Link to={"/Register"}>
+                        <button className='outline-none py-2 px-4 rounded-md border-b-4 text-sm hover:border-b h-[40px] bg-transparent border border-white text-white font-medium'>Desbloquar</button>
+                    </Link>
+
 
                 </div>
 

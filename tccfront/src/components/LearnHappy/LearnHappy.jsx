@@ -2,6 +2,7 @@ import React from 'react'
 
 //images
 import trailIsStarting from '../../assets/img/initialPage/trail-is-starting.png'
+import { Link } from 'react-router-dom'
 
 export default function LearnHappy() {
   return (
@@ -17,7 +18,9 @@ export default function LearnHappy() {
             <p>missões!</p>
         </div>
           <div>
-            <button className='bg-calygam-purple-medium-light outline-none rounded-lg py-2 px-4 flex justify-center items-center text-white h-[35px] border-b-4 hover:border-b-0 transition-all hover:translate-y-1 border-purple-800'>Desvendar</button>
+            <Link to={"/login"}>
+            <button className='bg-calygam-purple-medium-light outline-none rounded-lg py-2 px-4 flex justify-center items-center text-white h-[35px] border-b-4 hover:border-b-0   border-purple-800'>Desvendar</button>
+            </Link>
            
         </div>
       </div>

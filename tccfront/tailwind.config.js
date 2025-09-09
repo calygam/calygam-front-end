@@ -80,6 +80,7 @@ module.exports =  {
         'calygam-blue-semi-bold':"#000437",
         'calygam-blue-semi-strong':"#4C48CE",
         'calygam-blue-semi-light':"#4285F4",
+        'calygam-blue-semi-bold':"#413B99"
          
       },
       backgroundImage:{
