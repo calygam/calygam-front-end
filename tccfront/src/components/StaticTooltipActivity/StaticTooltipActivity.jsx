@@ -1,10 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook'
 import calyCoin from '../../assets/img/rewards/caly-coin.svg'
 import calyFood from '../../assets/img/rewards/frango-food.svg'
 import calyXp from '../../assets/img/rewards/xp-icon.svg'
+
+import useDailyFlagsServices from '../../services/useDailyFlagsServices'
+import { formatterOfTime } from '../../utils/formatterOfTime'
+import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook'
 export default function StaticTooltipActivity({ comumInfo, tooltipInfo }) {
   const { targetTrail, searchtrailsById, targetTrailId } = UseReadAllTrailsHook()
+
+    const { activities, trailId } = UseDataActivitiesPerTrailIdHook()
+  const [indexAtv,setIndexAtv] = useState(activities.findIndex((atv)=>atv.activityId == comumInfo.activityId))
+
   const difficulties = ["FÁCIL", "MÉDIO", "DIFÍCIL", "CHEFE"]
   const hiddenTextLimitter = (str, max = 0) => {
     return str?.length > max ? str.slice(0, max) + '…' : str;
@@ -14,16 +22,27 @@ export default function StaticTooltipActivity({ comumInfo, tooltipInfo }) {
   useEffect(() => {
     console.log(tooltipInfo?.trailImage)
   }, [tooltipInfo?.trailImage])
+
+  useEffect(()=>{
+    const atvIndex = activities.findIndex((atv)=>atv.activityId == comumInfo.activityId)
+    setIndexAtv(atvIndex+1)
+    
+   
+  },[comumInfo])
+
+
   return (
-    <div className={` border-2 border-white w-full flex-col p-2  font-poppins items-center min-h-[100px] flex  ${comumInfo ? "rounded-bl-[55px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[55px]" : "rounded-bl-[20px] rounded-tl-[55px] rounded-br-[55px] rounded-tr-[20px]"}`}>
-      {comumInfo && !tooltipInfo &&
-        <div className='flex flex-col space-y-2 items-center'>
-          <div className='w-[85%] mx-auto flex flex-col items-center'>
-            <h3>Detalhes</h3>
+    <div className={` bg-calygam-purple-tone-2/40  w-full flex-col p-1  font-poppins items-center min-h-[100px] flex  rounded-lg`}>
+      {comumInfo && !tooltipInfo &&<div>
+    
+        <div className='flex flex-col space-y-2 p-2 items-center'>
+          
+          <div className=' text-sm flex uppercase font-bold flex-col items-center'>
+            <h3>Detalhe da atividade</h3>
 
           </div>
 
-          <p className='text-sm font-semibold  text-nowrap'>{hiddenTextLimitter(comumInfo.activityName, 16)}</p>
+          <p className='text-sm font-semibold '>{hiddenTextLimitter(comumInfo.activityName, 25)}</p>
 
           <span className={`rounded-full px-4 py-1 font-semibold text-sm border-2 shadow-sm transition-all duration-300
   ${difficulties[comumInfo.activityDifficulty] === "FÁCIL" ? "bg-yellow-100 text-yellow-800 border-yellow-400" :
@@ -34,29 +53,29 @@ export default function StaticTooltipActivity({ comumInfo, tooltipInfo }) {
 `}>
             {difficulties[comumInfo.activityDifficulty]}
           </span>
-        </div>}
-      {!comumInfo && tooltipInfo && <div className='flex flex-col '>
+        </div></div>}
+      {comumInfo && tooltipInfo && <div className='flex flex-col '>
         <div className='flex justify-end'>
 
         </div>
 
         {tooltipInfo&&
-        <div className='flex flex-col w-full'>
+        <div className='flex flex-col p-2 items-center w-full'>
           {tooltipInfo.rewardPackageMoney &&
             <>
-              <h2>Recompensas</h2>
-              <div className='flex flex-col'>
+              <h2 className='uppercase font-semibold'>Recompensas - Atividade {indexAtv}</h2>
+              <div className='flex flex-col text-yellow-500 '>
                 <div className='flex items-center gap-x-1'>
                   <img src={calyCoin} alt="moedas calygam" className='w-[25px]' />
-                  <p className='text-base font-light'>{tooltipInfo.rewardPackageMoney}</p>
+                  <p className='text-base font-semibold'>{tooltipInfo.rewardPackageMoney}</p>
                 </div>
                 <div className='flex items-center gap-x-1'>
                   <img src={calyXp} alt="xp calygam" className='w-[25px]' />
-                  <p className='text-base font-light'>{tooltipInfo.rewardPackageXp}</p>
+                  <p className='text-base font-semibold'>{tooltipInfo.rewardPackageXp}</p>
                 </div>
                 <div className='flex items-center gap-x-1'>
                   <img src={calyFood} alt="comida calygam" className='w-[25px]' />
-                  <p className='text-base font-light'>{tooltipInfo.rewardPackageFood}</p>
+                  <p className='text-base font-semibold'>{tooltipInfo.rewardPackageFood}</p>
                 </div>
               </div>
             </>

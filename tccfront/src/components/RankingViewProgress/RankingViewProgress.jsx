@@ -4,7 +4,7 @@ import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile'
 import { translateRank } from '../../utils/RankIconLibrary/DarkRankIcon/DarkRankIcon'
 import calyCoin from '../../assets/img/homePage/coinSimbol.svg'
 import { animate, useMotionValue, useTransform } from 'framer-motion'
-export default function RankingViewProgress({ IconBadgeRank, NameRank, LargeRange, img, sunOn }) {
+export default function RankingViewProgress({ IconBadgeRank, NameRank, LargeRange, img, sunOn,pureMode }) {
     const { dataProfile, loading } = UseDataProfile()
      const [roundedValue,setRoundedValue] = useState(0)
     const hasValidSuffix = ["-I", "-II", "-III"].some(suffix =>
@@ -59,29 +59,31 @@ export default function RankingViewProgress({ IconBadgeRank, NameRank, LargeRang
 
                     </div> :
                     <>
-                        <div className={`flex flex-row-reverse items-center justify-between w-full gap-x-5  `}>
+                        <div className={`flex  ${pureMode?"flex gap-x-4 justify-between ":"flex-row-reverse justify-between gap-x-5 w-full"} items-center     `}>
                             <span className='flex transform cursor-pointer    [transform-style:preserve-3d] hover:animate-rotateYBadge'>
 
                                 <img src={icon} alt="" className={`${IconBadgeRank?.includes("-I") ? "w-[25px]" : "w-[40px]"} `} />
                             </span>
-                            <div className='flex flex-col text-sm  text-black'>
+                            <div className={`flex flex-col text-sm  ${pureMode?"text-white":"text-black"}`}>
 
-                                <p className="font-semibold">
-                                    Rank <span className={getRankColor(dataProfile.userRank)}>
+                                <p className={`font-semibold ${pureMode?"bg-black  p-1 pr-0 rounded-full border-2 border-calygam-purple-tone-3/40":""}`}>
+                                    Rank <span className={getRankColor(dataProfile.userRank)+` ${pureMode?"  [text-shadow:2px_1px_0_black] bg-white/15 rounded-r-full p-1":""}`}>
                                         {dataProfile.userRank}
                                     </span>
                                 </p>
                              
                             </div>
                         </div>
+                        {sunOn&&   
                         <div className='flex flex-col w-full '>
                             <ProgressBarAdapt xpInMoment={dataProfile.userXp} xpToGet={dataProfile.userRankPoints} rangeBar={false} rangerBarRank={IconBadgeRank?.includes("-I") ? false : true} />
-                            {sunOn&&   
+                            
                             <div className='flex gap-x-1 my-1 items-center'>
                             <img src={calyCoin} alt="moedas" className='w-[25px] h-[25px]' />
                             <p>{formattedCoins}</p>
-                            </div>}
+                            </div>
                         </div>
+                        }
                     </>}
 
             </div> :

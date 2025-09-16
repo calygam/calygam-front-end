@@ -12,7 +12,8 @@ module.exports =  {
     "bg-fuchsia-300", "bg-purple-500/50",
     "text-gray-300", "text-yellow-400",
     "text-teal-300", "text-sky-300", "text-fuchsia-600",
-    "text-fuchsia-600"
+    "text-fuchsia-600",
+    
   ],
   theme: {
     extend: {
@@ -67,7 +68,7 @@ module.exports =  {
         'calygam-purple-semi-bold':'#2A1C4A',
         'calygam-purple-semi-strong':'#5A189A',
         'calygam-purple-medium-bold':'#625380',
-        'calygam-purple-tone-2':'#6C63FF',
+        'calygam-purple-tone-2':'#6C63FF', //z
         'calygam-purple-light':'#B892FF1A',
         'calygam-purple-medium-light':"#6813DE",
         'calygam-purple-tone-3': '#2F2E41',

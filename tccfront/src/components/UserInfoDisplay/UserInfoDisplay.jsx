@@ -13,50 +13,45 @@ import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook'
 import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import loadingImages from '../../assets/img/loading-images.svg'
 
-export default function UserInfoDisplay({ displayStyle,setIsEnabled,isEnabled,activities }) {
+export default function UserInfoDisplay({ setIsEnabled, isEnabled }) {
   const { dataProfile } = UseDataProfile()
-  const {targetTrailId } = UseReadAllTrailsHook();
-  const {trailId} = UseDataActivitiesPerTrailIdHook()
-  const { setToken } = useAuth();
-  const navigate = useNavigate()
+  const { targetTrail, searchtrailsById, targetTrailId } = UseReadAllTrailsHook()
+  const [isImageLoading, setIsImageLoading] = useState(true);
 
 
-  const {setTrailId,progress} = UseProgressHook()
- 
 
 
-// const UseProgressHook
+  // const UseProgressHook
 
   return (
-    <div className={`${displayStyle} font-poppins p-4 `}>
-                       <div className='md:hidden w-full flex ' onClick={()=>setIsEnabled(!isEnabled)}>
-              <button className='flex outline-none items-center gap-x-1 justify-center'>
-                <span className='flex w-[2px] h-[2px] rounded-full bg-white'></span>
-                <span className='flex w-[2px] h-[2px] rounded-full bg-white'></span>
-                <span className='flex w-[2px] h-[2px] rounded-full bg-white'></span>
-                </button>
-                </div>
-      <div className='flex  w-full '>
-        {dataProfile.userRank ?
-          <RankingViewProgress IconBadgeRank={dataProfile.userRank} LargeRange={false} NameRank={'Bronze'} />
-          :
-          <p className='text-center text-white font-poppins text-xl'>Carregando...</p>}
+    <motion.div className='p-4 px-6 bg-calygam-purple-tone-2 flex flex-wrap items-center justify-between w-[80%] m-0 md:ml-20 lg:m-0 gap-2 rounded-3xl'
+      initial={{ y: -50 }}
+      animate={{ y: 0 }}
+      transition={{ type: 'tween', duration: 1.4, ease: 'easeInOut' }}>
+      <div className='flex w-full  md:hidden'>
+        <button className='flex outline-none self-start  items-center gap-x-1 justify-center' onClick={() => setIsEnabled(!isEnabled)}>
+          <span className='flex w-[2px] h-[2px] rounded-full bg-white'></span>
+          <span className='flex w-[2px] h-[2px] rounded-full bg-white'></span>
+          <span className='flex w-[2px] h-[2px] rounded-full bg-white'></span>
+        </button>
       </div>
-      <div className='flex w-full justify-center items-center gap-x-8  text-white'>
-        <img src={moneyIcon} alt="moedas do usuário" className='w-[20px]' />
-        <div>
-          <p>{dataProfile.userMoney}</p>
+      <div className='flex flex-wrap gap-4 items-center justify-center'>
+
+        {isImageLoading && dataProfile.userImage != "" &&
+          <span className=' flex bg-gradient-to-tr inset-0 justify-center items-center from-black via-gray-700 to-gray-700  rounded-full animate-spin'>
+            <img src={loadingImages} alt="" className='w-[60px]  h-[60px]' />
+          </span>
+        }
+        <img src={dataProfile.userImage} alt="imagem de perfil" className={`w-[50px] h-[50px] rounded-full object-cover ${isImageLoading ? "hidden" : ""}`} onLoad={() => setIsImageLoading(false)} />
+        <div className='flex flex-col gap-2'>
+
+          <p className='text-white font-bold text-xs uppercase'>Olá, {dataProfile.userName}! - {targetTrail.trailName}</p>
+          <p className='text-xs text-white font-light md:block hidden'>Continue de onde parou!</p>
         </div>
-
       </div>
-     <div className='flex w-full justify-center items-center lg:col-span-1 md:justify-center md:items-center flex-col md:col-span-2'>
-
-  <div className='flex justify-center'>
-          <span className='py-2 px-4 bg-white rounded-xl text-purple-600 flex justify-center items-center'>Tarefas Feitas: {progress?.activitiesCompleted +"/"+activities.length}</span>
-  </div>
-</div>
-
-    </div>
+    </motion.div>
   )
 }

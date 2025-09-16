@@ -42,6 +42,7 @@ import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js'
  import moreIcon from '../../assets/img/menu-icon-trail.svg'
 import { recentlyAcess } from '../../utils/recentlyAcess.js'
 import { getRoutesByRole } from '../../utils/navRoutesUtil.js'
+import UseTrailDataHook from '../../hooks/UseTrailDataHook/UseTrailDataHook.js'
  
 
 
@@ -53,7 +54,9 @@ import { getRoutesByRole } from '../../utils/navRoutesUtil.js'
 
 export default function TrailPage() {
   const { activities,trailId } = UseDataActivitiesPerTrailIdHook()
+  
   const {setTrailId,progress,activityUnlocked,setActivityUnlocked} = UseProgressHook()
+
 
      const { dataProfile } = UseDataProfile()
       const navRoutes = [
@@ -123,9 +126,10 @@ const createTrailSettings = (showNav) => ({
      
         </aside>
       </div>
-      <div className='flex flex-col  md:left-[25%] outline-none  bg-calygam-purple-semi-bold  lg:left-0 left-0 right-0 fixed mx-auto z-10 py-5  items-center    md:w-[55%] w-full px-4 md:px-0  '>
-
-        <UserInfoDisplay displayStyle={DisplayCleaner('bg-calygam-purple-semi-light/30', "30px", false, "4", "white")} setIsEnabled={setIsEnabled} isEnabled={isEnabled}  activities={activities} />
+      <div className='flex flex-col  md:left-[25%] outline-none  bg-calygam-purple-semi-bold  lg:left-0 left-0 right-0 fixed mx-auto z-10 py-5  items-center   lg:w-[40%] md:w-[60%] w-full px-4 md:px-0  '>
+{/* 
+        <UserInfoDisplay displayStyle={DisplayCleaner('bg-calygam-purple-semi-light/30', "30px", false, "4", "white")} setIsEnabled={setIsEnabled} isEnabled={isEnabled}  activities={activities} /> */}
+        <UserInfoDisplay isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
 
         {/*CAIO<- USAR ESTRATEGIA DE CONTROLE TOTAL DE COMPONENTE A PERTIR DE AGORA */}
       </div>
