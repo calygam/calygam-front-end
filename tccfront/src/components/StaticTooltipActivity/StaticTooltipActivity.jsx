@@ -32,7 +32,7 @@ export default function StaticTooltipActivity({ comumInfo, tooltipInfo }) {
 
 
   return (
-    <div className={` bg-calygam-purple-tone-2/40  w-full flex-col p-1  font-poppins items-center min-h-[100px] flex  rounded-lg`}>
+    <div className={` bg-calygam-purple-tone-2/40 lg:min-w-[250px] lg:max-w-[250px] md:min-w-[200px] md:max-w-[200px] flex-col p-1  font-poppins items-center min-h-[100px] flex  rounded-lg`}>
       {comumInfo && !tooltipInfo &&<div>
     
         <div className='flex flex-col space-y-2 p-2 items-center'>
@@ -42,7 +42,7 @@ export default function StaticTooltipActivity({ comumInfo, tooltipInfo }) {
 
           </div>
 
-          <p className='text-sm font-semibold '>{hiddenTextLimitter(comumInfo.activityName, 25)}</p>
+          <p className='text-sm font-semibold text-wrap'>{comumInfo.activityName}</p>
 
           <span className={`rounded-full px-4 py-1 font-semibold text-sm border-2 shadow-sm transition-all duration-300
   ${difficulties[comumInfo.activityDifficulty] === "FÁCIL" ? "bg-yellow-100 text-yellow-800 border-yellow-400" :

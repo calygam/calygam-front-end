@@ -62,7 +62,7 @@ export default function CalygamactivityVillage({ Activities, progress }) {
   };
 
   return (
-    <div className="md:w-[70%] w-full lg:w-full flex flex-col items-center lg:items-center md:items-end transition-all gap-y-3 py-12">
+    <div className="md:w-[65%] w-full lg:w-full flex flex-col items-center lg:items-center md:items-end transition-all gap-y-3 py-12">
       {Activities?.map((activity, index) => {
         let findTargetProgress = progress.progressList?.find(
           (targetProgress) => targetProgress.activityId === activity.activityId

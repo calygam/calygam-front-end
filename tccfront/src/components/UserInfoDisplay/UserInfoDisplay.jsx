@@ -27,7 +27,7 @@ export default function UserInfoDisplay({ setIsEnabled, isEnabled }) {
   // const UseProgressHook
 
   return (
-    <motion.div className='p-4 px-6 bg-calygam-purple-tone-2 flex flex-wrap items-center justify-between w-[80%] m-0 md:ml-20 lg:m-0 gap-2 rounded-3xl'
+    <motion.div className='p-4 px-6 bg-calygam-purple-tone-2 flex flex-wrap items-center justify-between w-full m-0 md:ml-20 md:w-[80%] lg:m-0 gap-2 rounded-3xl'
       initial={{ y: -50 }}
       animate={{ y: 0 }}
       transition={{ type: 'tween', duration: 1.4, ease: 'easeInOut' }}>

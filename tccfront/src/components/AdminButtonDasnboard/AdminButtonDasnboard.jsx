@@ -10,7 +10,7 @@ export default function AdminButtonDasnboard({ iconAreaDash, textAreaDash, ident
             }}>
                 {iconAreaDash ?
                     <div className='absolute w-full    group h-full flex justify-end p-1 '>
-                        <div className={`  delay-0 duration-[750ms] w-0 ease-in-out  group-hover:rounded-full group-hover:w-full   group-hover:h-full bg-purple-600/90 ${identifier === selectedButton ? "w-full rounded-l-xl " : "w-0 bg-transparent "}`}></div>
+                        <div className={`  delay-0 duration-[750ms] w-0 ease-in-out  group-hover:rounded-full group-hover:w-full   group-hover:h-full bg-purple-500/90 ${identifier === selectedButton ? "w-full rounded-l-xl " : "w-0 bg-transparent "}`}></div>
                     </div> : <div className='absolute w-full transition-all   group h-full flex justify-end'>
                         <div className={`  delay-0 duration-[750ms] w-0 ease-in-out  group-hover:rounded-0 group-hover:w-full   group-hover:h-full  ${identifier === selectedButton ? "w-full bg-blue-400/35 " : "w-0 bg-purple-900/20"}`}></div>
                     </div>

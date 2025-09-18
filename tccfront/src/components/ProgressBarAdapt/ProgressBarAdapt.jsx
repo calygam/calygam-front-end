@@ -2,7 +2,7 @@ import { animate, useMotionValue, useTransform } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import calyXp from '../../assets/img/rewards/xp-icon.svg'
 
-export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, rangerBarRank, CountStartRow,trailVacancy,barPercentual,customizeSemanticColor,petMin }) {
+export default function ProgressBarAdapt({ xpInMoment, xpToGet, rangeBar, rangerBarRank, CountStartRow,trailVacancy,barPercentual,customizeSemanticColor,petMin,remaining }) {
 const [barPercent, setBarPercent] = useState(0)
   const [roundedValue,setRoundedValue] = useState(0)
   useEffect(() => {
@@ -16,6 +16,8 @@ const [barPercent, setBarPercent] = useState(0)
      const formattedCoins  = new Intl.NumberFormat('pt-BR', {
   maximumFractionDigits: 0,
 }).format(roundedValue);
+
+
 
   const count = useMotionValue(0)
   const rounded = useTransform(() => Math.round(count.get()))
@@ -44,13 +46,13 @@ const [barPercent, setBarPercent] = useState(0)
             <p className={`text-white text-xs `}>{xpToGet}</p>
           </div>
           </div>
-          :!barPercentual?
+          :!barPercentual ?
           <div className={` flex gap-x-1  items-center`}>
           <p className={`text-black ${customizeSemanticColor} text-xs `}>{formattedCoins}/{xpToGet==0?"MAX":xpToGet} </p>
           {!customizeSemanticColor&&
           <img src={calyXp} alt="seu xp" className='w-[35px] h-[35px]' />
 }
-          </div>:<div className='flex gap-x-1 items-center'>
+          </div>:!remaining&&<div className='flex gap-x-1 items-center'>
           <p className={`text-black ${customizeSemanticColor} text-xs `}>{formattedCoins}% </p>
        
           </div>:null}
@@ -59,7 +61,7 @@ const [barPercent, setBarPercent] = useState(0)
         
        
       <div className={`flex w-full ${rangeBar ? " w-full h-[4px]" : "w-full h-[5px]"} ${trailVacancy?"bg-gray-300":"bg-white"} rounded-full`}>
-        <span className={` transition-all delay-150 duration-[3000ms] flex justify-center items-center h-full rounded-full w-0 bg-gradient-to-tr ${trailVacancy?"from-purple-800 via-purple-600 to-purple-400":"from-purple-800 via-purple-600 to-purple-400"}`} style={{ width: `${barPercent + "%"}` }}>
+        <span className={` transition-all delay-150 duration-[3000ms] flex justify-center items-center h-full rounded-full w-0 bg-gradient-to-tr  ${remaining?`${customizeSemanticColor}`:trailVacancy ?"from-purple-800 via-purple-600 to-purple-400":"from-purple-800 via-purple-600 to-purple-400"} `} style={{ width: `${barPercent + "%"}` }}>
 
         </span>
       </div>

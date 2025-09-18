@@ -126,7 +126,8 @@ const createTrailSettings = (showNav) => ({
      
         </aside>
       </div>
-      <div className='flex flex-col  md:left-[25%] outline-none  bg-calygam-purple-semi-bold  lg:left-0 left-0 right-0 fixed mx-auto z-10 py-5  items-center   lg:w-[40%] md:w-[60%] w-full px-4 md:px-0  '>
+      <div className='w-full relative flex flex-col'>
+      <div className='flex flex-col  md:left-[15%] outline-none  bg-calygam-purple-semi-bold  lg:left-0 left-0 right-0 fixed mx-auto z-10 py-5  items-center   lg:w-[45%] md:w-[70%] w-full px-4 md:px-0  '>
 {/* 
         <UserInfoDisplay displayStyle={DisplayCleaner('bg-calygam-purple-semi-light/30', "30px", false, "4", "white")} setIsEnabled={setIsEnabled} isEnabled={isEnabled}  activities={activities} /> */}
         <UserInfoDisplay isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
@@ -135,6 +136,7 @@ const createTrailSettings = (showNav) => ({
       </div>
       <div className='mt-[200px]  '>
         <CalygamTrailVillage Activities={activities} progress={progress} />
+      </div>
       </div>
 
 

@@ -15,6 +15,7 @@ import UserRecourseTrail from '../../components/UserRecourseTrail/UserRecourseTr
 import UserViewRank from '../../components/UserViewRank/UserViewRank.jsx'
 import UserViewRankProgressArea from '../../components/UserViewRankProgressArea/UserViewRankProgressArea.jsx'
 
+
 // import CalygamNavBar from '../../components/CalygamNavBar/CalygamNavBar.jsx'
 export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnabled, modifyStyles, progress, activityUnlocked, inverse, isAnchor }) {
     const [objTrail, setObjTrail] = useState({})
@@ -70,7 +71,7 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
 
 
     return (
-        <div className={`lg:w-full lg:min-w-[250px]   lg:block ${!isEnabled ? "hidden md:block" : "block"}  outline-none        font-poppins ${trailSettings ? !inverse ? "border-r-2 border-white/20" : "border-none border-white/20" : "border-none fixed lg:sticky w-[75%]  inset-0"}    min-h-lvh h-full transition-all delay-75 duration-[10000ms] z-20 ease-in-out `}>
+        <div className={`lg:w-full lg:min-w-[250px] md:max-w-[250px] lg:max-w-full  lg:block ${!isEnabled ? "hidden md:block" : "block"}  outline-none        font-poppins ${trailSettings ? !inverse ? "border-r-2 border-white/20" : "border-none border-white/20" : "border-none fixed lg:sticky w-[75%]  inset-0"}    min-h-lvh h-full transition-all delay-75 duration-[10000ms] z-20 ease-in-out `}>
             {isEnabled &&
 
                 <div className={`flex ${trailSettings ? "md:hidden fixed -z-10 " : "lg:hidden fixed -z-10"}  w-full h-full    bg-black/50 `}></div>}
@@ -110,6 +111,7 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
 
                         </div>
                     </div>}
+                    
                        {progress && activityUnlocked && targetTrail.trailName &&
                     <div className={`flex w-full ${trailSettings?.showNav ? "lg:hidden" : ""}  items-center px-4 flex-col`}>
 
@@ -118,14 +120,15 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
 
                         </div>
                     </div>}
-                      {/* {progress && activityUnlocked && targetTrail.trailName &&
+                       
+                      {progress && activityUnlocked && targetTrail.trailName &&
                     <div className={`flex w-full ${trailSettings?.showNav ? "lg:hidden" : ""}  items-center px-4 flex-col`}>
 
                         <div className=' flex flex-col w-full  items-center space-y-4'>
                             {<UserViewRankProgressArea/>} 
 
                         </div>
-                    </div>} */}
+                    </div>}
                 {progress && activityUnlocked && targetTrail.trailName ?
                     <div className={`flex w-full ${trailSettings?.showNav ? "lg:hidden" : ""}  items-center px-4 flex-col`}>
 

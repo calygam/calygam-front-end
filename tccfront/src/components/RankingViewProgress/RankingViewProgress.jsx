@@ -22,15 +22,19 @@ export default function RankingViewProgress({ IconBadgeRank, NameRank, LargeRang
 
     const icon = hasValidSuffix ? translateRank(IconBadgeRank) : IconBadgeRank
 
-    const getRankColor = (rank) => {
-        if (rank?.includes("BRONZE")) return "text-[#CD7F32]";
-        if (rank?.includes("SILVER")) return "text-gray-600";
-        if (rank?.includes("GOLD")) return "text-yellow-400";
-        if (rank?.includes("PLATINUM")) return "text-teal-300";
-        if (rank?.includes("DIAMOND")) return "text-sky-300";
-        if (rank?.includes("ASCENDENT")) return "text-fuchsia-600";
-        return "text-white";
-    };
+ const getRankColor = (rank) => {
+  const pm = typeof pureMode !== "undefined" && pureMode;
+  const r = (rank || "").toUpperCase();
+
+  if (r.includes("BRONZE")) return pm ? "text-[#CD7F32]/80 [text-shadow:1px_1px_rgba(255,255,255,0.35)]" : "text-[#CD7F32]";
+  if (r.includes("SILVER")) return pm ? "text-gray-300/80 [text-shadow:1px_1px_rgba(255,255,255,0.5)]" : "text-gray-600";
+  if (r.includes("GOLD")) return pm ? "text-yellow-300/90 [text-shadow:1px_1px_rgba(255,255,255,0.5)]" : "text-yellow-600 [text-shadow:1px_1px_rgba(0,0,0,1)]";
+  if (r.includes("PLATINUM")) return pm ? "text-teal-200/90 [text-shadow:1px_1px_rgba(255,255,255,0.5)]" : "text-teal-300";
+  if (r.includes("DIAMOND")) return pm ? "text-sky-200/90 [text-shadow:1px_1px_rgba(255,255,255,0.5)]" : "text-sky-300";
+  if (r.includes("ASCENDENT")) return pm ? "text-fuchsia-500 [text-shadow:1px_1px_rgba(255,255,255,0.5)]" : "text-fuchsia-600";
+
+  return pm ? "text-white/90 [text-shadow:1px_1px_rgba(255,255,255,0.5)]" : "text-white";
+};
 
   useEffect(() => {
     const controls = animate(count, dataProfile?.userMoney, {
@@ -60,14 +64,15 @@ export default function RankingViewProgress({ IconBadgeRank, NameRank, LargeRang
                     </div> :
                     <>
                         <div className={`flex  ${pureMode?"flex gap-x-4 justify-between ":"flex-row-reverse justify-between gap-x-5 w-full"} items-center     `}>
-                            <span className='flex transform cursor-pointer    [transform-style:preserve-3d] hover:animate-rotateYBadge'>
+
+                            <span className={`flex transform cursor-pointer    [transform-style:preserve-3d] hover:animate-rotateYBadge ${pureMode?"md:hidden flex lg:flex":''}`}>
 
                                 <img src={icon} alt="" className={`${IconBadgeRank?.includes("-I") ? "w-[25px]" : "w-[40px]"} `} />
                             </span>
                             <div className={`flex flex-col text-sm  ${pureMode?"text-white":"text-black"}`}>
 
-                                <p className={`font-semibold ${pureMode?"bg-black  p-1 pr-0 rounded-full border-2 border-calygam-purple-tone-3/40":""}`}>
-                                    Rank <span className={getRankColor(dataProfile.userRank)+` ${pureMode?"  [text-shadow:2px_1px_0_black] bg-white/15 rounded-r-full p-1":""}`}>
+                                <p className={`font-semibold ${pureMode?"":""}`}>
+                                    Rank <span className={getRankColor(dataProfile.userRank)+` ${pureMode?"    rounded-r-full p-1":""}`}>
                                         {dataProfile.userRank}
                                     </span>
                                 </p>

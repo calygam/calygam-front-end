@@ -11,7 +11,7 @@ export default function UserRecourseTrail() {
     
   return (
      flagsQtd!=null?
-    <div className='flex gap-2   justify-between w-full '>
+    <div className='flex gap-2    md:flex-wrap-reverse md:justify-center justify-between lg:flex-nowrap w-full '>
        
 
       <RecourseBase haveIcon={coinSimbol} infoQtd={dataProfile.userMoney} />
