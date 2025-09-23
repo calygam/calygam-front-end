@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook';
 import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook';
-import { useLocation } from 'react-router-dom';
+import { data, useLocation } from 'react-router-dom';
 
 //component
 import SendActivityArea from '../../components/SendActivityArea/SendActivityArea.jsx'
@@ -10,16 +10,34 @@ import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook.js'
 import { useMessageReducer } from '../../utils/FormsReducers/MessageReducerUtil/useMessageReducer.js';
 import { useMessageCall } from '../../utils/FormsReducers/MessageReducerUtil/useMessageCall.js';
 import { useMessageContext } from '../../hooks/useMessageContext.js';
+import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile.js';
+import { UseLoading } from '../../hooks/UseLoading/UseLoading.js';
+import DeliveredActivitiesUsers from '../../components/DeliveredActivitiesUsers/DeliveredActivitiesUsers.jsx'
 
 export default function CalygamActivityDetail() {
   const { targetTrail, searchtrailsById } = UseReadAllTrailsHook();
+  
   const [viewSubmissions, setViewSubmissions] = useState(false)
  const {msgState,setMessageBody,setMessageData,setDataMsg} = useMessageContext()
   const { targetActivity } = UseDataActivitiesPerTrailIdHook()
+  const {dataProfile} = UseDataProfile()
+  const {loading} = UseLoading()
   useMessageCall(setMessageData)
 
+    
 
   return (
+     dataProfile?.userId==null||targetTrail?.user==null?<p className='font-poppins text-black font-bold'>Aguarde...</p>:
+    dataProfile?.userId==targetTrail?.user?
+    <div className=' flex flex-col lg:w-[600px]   md:w-[300px] w-full  font-poppins  '>
+    <DeliveredActivitiesUsers/>
+      <div className='flex flex-col h-full w-full '>
+          <BoxCommentsLayout msgState={msgState} setMessageBody={setMessageBody} setMessageData={setMessageData}/>
+          <CommentCard/>
+          
+          
+        </div>
+    </div>:
     <div className=' flex lg:w-[600px]   md:w-[300px] w-full  font-poppins  '>
       <div className='flex gap-x-2 flex-wrap items-center'>
         <h4 className='font-bold'>{targetTrail.trailName ? targetTrail.trailName : "Carregando... "}:</h4>

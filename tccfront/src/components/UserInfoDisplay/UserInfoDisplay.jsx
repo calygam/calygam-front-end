@@ -13,13 +13,17 @@ import { UseProgressHook } from '../../hooks/UseProgressHook/UseProgressHook'
 import { UseDataActivitiesPerTrailIdHook } from '../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook'
 import useAuth from '../../hooks/UseJwtChecked/UseJwtChecked'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import perfilPageIcon from '../../assets/img/perfilPageIcon.png'
 import loadingImages from '../../assets/img/loading-images.svg'
+import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook'
+import ViewDetailsPerfil from '../modals/ViewDetailsPerfilComps/ViewDetailsPerfilModal'
 
 export default function UserInfoDisplay({ setIsEnabled, isEnabled }) {
   const { dataProfile } = UseDataProfile()
   const { targetTrail, searchtrailsById, targetTrailId } = UseReadAllTrailsHook()
   const [isImageLoading, setIsImageLoading] = useState(true);
+  const {openModal,modalIsOpen,contentModal} = UseModalHook()
 
 
 
@@ -28,9 +32,13 @@ export default function UserInfoDisplay({ setIsEnabled, isEnabled }) {
 
   return (
     <motion.div className='p-4 px-6 bg-calygam-purple-tone-2 flex flex-wrap items-center justify-between w-full m-0 md:ml-20 md:w-[80%] lg:m-0 gap-2 rounded-3xl'
+
       initial={{ y: -50 }}
       animate={{ y: 0 }}
       transition={{ type: 'tween', duration: 1.4, ease: 'easeInOut' }}>
+                  <AnimatePresence>
+                {modalIsOpen && contentModal.includes("ViewYourDataProfile") && <ViewDetailsPerfil />}
+            </AnimatePresence>
       <div className='flex w-full  md:hidden'>
         <button className='flex outline-none self-start  items-center gap-x-1 justify-center' onClick={() => setIsEnabled(!isEnabled)}>
           <span className='flex w-[2px] h-[2px] rounded-full bg-white'></span>
@@ -40,12 +48,15 @@ export default function UserInfoDisplay({ setIsEnabled, isEnabled }) {
       </div>
       <div className='flex flex-wrap gap-4 items-center justify-center'>
 
-        {isImageLoading && dataProfile.userImage != "" &&
-          <span className=' flex bg-gradient-to-tr inset-0 justify-center items-center from-black via-gray-700 to-gray-700  rounded-full animate-spin'>
+        {isImageLoading && 
+          <button className=' outline-none flex bg-gradient-to-tr inset-0 justify-center items-center from-black via-gray-700 to-gray-700  rounded-full animate-spin' onClick={() => openModal("ViewYourDataProfile")}>
             <img src={loadingImages} alt="" className='w-[60px]  h-[60px]' />
-          </span>
+          </button>
         }
-        <img src={dataProfile.userImage} alt="imagem de perfil" className={`w-[50px] h-[50px] rounded-full object-cover ${isImageLoading ? "hidden" : ""}`} onLoad={() => setIsImageLoading(false)} />
+        {dataProfile.userImage !=""?
+        
+        <img src={dataProfile.userImage} alt="imagem de perfil" className={`w-[50px] h-[50px] rounded-full object-cover ${isImageLoading ? "hidden" : ""}`} onLoad={() => setIsImageLoading(false)} onClick={() => openModal("ViewYourDataProfile")} />
+        :<img src={perfilPageIcon} alt="imagem de perfil" className={`w-[50px] h-[50px] rounded-full object-cover ${isImageLoading ? "hidden" : ""}`} onLoad={() => setIsImageLoading(false)} onClick={() => openModal("ViewYourDataProfile")}/>}
         <div className='flex flex-col gap-2'>
 
           <p className='text-white font-bold text-xs uppercase'>Olá, {dataProfile.userName}! - {targetTrail.trailName}</p>

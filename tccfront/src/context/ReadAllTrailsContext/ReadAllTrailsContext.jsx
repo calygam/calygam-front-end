@@ -8,138 +8,141 @@ const ReadAllTrailsContext = createContext()
 
 export function ReadAllTrailsProvider({ children }) {
 
-   
+
     const [trails, setTrails] = useState([])
-        const storedTrailId = parseInt(localStorage.getItem("TrailId"));
+    const storedTrailId = parseInt(localStorage.getItem("TrailId"));
     const [targetTrailId, setTargetTrailId] = useState(storedTrailId > 0 ? storedTrailId : 0)
     const [modelIsOpen, setModelIsOpen] = useState(false)
     const navigation = useNavigate()
     const [readAllTrails, setReadAllTrails] = useState(false)
-    const [targetTrail,setTargetTrail] = useState({})
-    const { loading, setLoading, setLoadingText } = UseLoading()
+    const [targetTrail, setTargetTrail] = useState({})
+    const { loading, setLoading, setLoadingText, setLoadingPrevail } = UseLoading()
 
     const location = useLocation()
 
     const token = localStorage.getItem("token");
-    const [trailsWithThisUser,setTrailsWithThisUser] = useState([])
-      
-    
- const searchtrails = async () => {
-            if (!token) return;
-            try {
-                setLoading(true)
-                const isHomePage = ["/home","/Biblioteca"].includes(location.pathname)?
-                    `/trail/read/all-trails?haveProgress=NOT_HAVE_PROGRESS` : "/trail/read/by/teacher"
-                const response = await api.get(isHomePage)
-                setTrails(response.data)
-                
+    const [trailsWithThisUser, setTrailsWithThisUser] = useState([])
 
-            } catch (e) {
-                console.log(e)
-            }
-            finally {
-                setLoadingText("Carregando trilhas disponiveis...")
-                setLoading(false)
-            }
+
+    const searchtrails = async () => {
+        if (!token) return;
+        try {
+            setLoading(true)
+            const isHomePage = ["/home", "/Biblioteca"].includes(location.pathname) ?
+                `/trail/read/all-trails?haveProgress=NOT_HAVE_PROGRESS` : "/trail/read/by/teacher"
+            const response = await api.get(isHomePage)
+            setTrails(response.data)
+
+
+        } catch (e) {
+            console.log(e)
         }
-
-
-        const searchtrailsOfThisUser = async () => {
-            if (!token) return;
-            try {
-                setLoading(true)
-                const isHomePage = ["/home","/Biblioteca"].includes(location.pathname)?
-                    `/trail/read/all-trails?haveProgress=HAVE_PROGRESS` : "/trail/read/by/teacher"
-                const response = await api.get(isHomePage)
-                    if(response.data.length>0){
-                    setTrailsWithThisUser(response.data)
-                    }
-                
-
-            } catch (e) {
-                console.log(e)
-            }
-            finally {
-                setLoadingText("Carregando trilhas onde você está...")
-                setLoading(false)
-            }
+        finally {
+            setLoadingText("Carregando trilhas disponiveis...")
+            setLoading(false)
         }
-        useEffect(() => {
-            const token = localStorage.getItem("token")
-        if(!token)return
-        searchtrails()
-    }, [location.pathname,token])
-      useEffect(() => {
+    }
+
+
+    const searchtrailsOfThisUser = async () => {
+        if (!token) return;
+        try {
+            setLoading(true)
+            const isHomePage = ["/home", "/Biblioteca"].includes(location.pathname) ?
+                `/trail/read/all-trails?haveProgress=HAVE_PROGRESS` : "/trail/read/by/teacher"
+            const response = await api.get(isHomePage)
+            if (response.data.length > 0) {
+                setTrailsWithThisUser(response.data)
+            }
+
+
+        } catch (e) {
+            console.log(e)
+        }
+        finally {
+            setLoadingText("Carregando trilhas onde você está...")
+            setLoading(false)
+        }
+    }
+    useEffect(() => {
         const token = localStorage.getItem("token")
-        if(!token)return
+        if (!token) return
+        searchtrails()
+    }, [location.pathname, token])
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (!token) return
         searchtrailsOfThisUser()
-    }, [location.pathname,token])
-
-    
-        const searchtrailsById = async () => {
-
-        
-            if (!token) return;
-            if(!targetTrailId)return;
-            try {
-
-                const isHomePage = targetTrailId&&
-                    `/trail/read/${targetTrailId}`
+    }, [location.pathname, token])
 
 
-
-                const response = await api.get(isHomePage)
-
-                setTargetTrail(response.data)
+    const searchtrailsById = async () => {
 
 
-            } catch (e) {
-                console.log("Deu alguma coisa errada! :/")
-            }
-            finally {
-
-
-                setLoadingText("Carregando Trilha especifica")
+        if (!token) return;
+        if (!targetTrailId) return;
+        try {
+            setLoadingPrevail(true)
+            setLoading(true)
+            setLoadingText("Carregando Trilha especifica")
+            const isHomePage = targetTrailId &&
+                `/trail/read/${targetTrailId}`
 
 
 
+            const response = await api.get(isHomePage)
+
+            setTargetTrail(response.data)
 
 
-
-
-            }
+        } catch (e) {
+            console.log("Deu alguma coisa errada! :/")
         }
-        useEffect(() => {
-        if(modelIsOpen || ["/Atividade","/Trilha"].includes(location.pathname)){
-        searchtrailsById()
+        finally {
+            
+            setLoadingPrevail(false)
+            setLoading(false)
+            setLoadingText("")
+
+
+
+
+
+
+
         }
-    }, [token,modelIsOpen,location.pathname])
+    }
+    useEffect(() => {
+        if (modelIsOpen || ["/Atividade", "/Trilha"].includes(location.pathname)) {
+            searchtrailsById()
+        }
+    }, [token, modelIsOpen, location.pathname])
 
-    
 
-    
+
+
 
     //ash of
 
-        useEffect(() => {
+    useEffect(() => {
         if (localStorage.getItem("token")) {
             if (targetTrailId > 0) {
                 localStorage.setItem("TrailId", targetTrailId)
-             
-            } 
-            
+
+            }
+
         } else {
             localStorage.removeItem("TrailId")
 
         }
     }, [targetTrailId])
 
-    useEffect(()=>{
-        if(!localStorage.getItem("token"))return
-        if(targetTrailId>0){
-             searchtrailsById()
+    useEffect(() => {
+        if (!localStorage.getItem("token")) return
+        if (targetTrailId > 0) {
+            searchtrailsById()
         }
-    },[targetTrailId])
+    }, [targetTrailId])
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -155,7 +158,8 @@ export function ReadAllTrailsProvider({ children }) {
 
     return (
         <ReadAllTrailsContext.Provider value={{
-             trails, loading, targetTrailId, setTargetTrailId, modelIsOpen,trailsWithThisUser, setModelIsOpen,targetTrail,searchtrails,searchtrailsOfThisUser,searchtrailsById }}>
+            trails, loading, targetTrailId, setTargetTrailId, modelIsOpen, trailsWithThisUser, setModelIsOpen, targetTrail, searchtrails, searchtrailsOfThisUser, searchtrailsById
+        }}>
 
             {children}
         </ReadAllTrailsContext.Provider>

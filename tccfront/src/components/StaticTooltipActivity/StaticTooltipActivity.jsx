@@ -28,7 +28,7 @@ export default function StaticTooltipActivity({ comumInfo, tooltipInfo }) {
     setIndexAtv(atvIndex+1)
     
    
-  },[comumInfo])
+  },[comumInfo,tooltipInfo])
 
 
   return (
@@ -63,7 +63,7 @@ export default function StaticTooltipActivity({ comumInfo, tooltipInfo }) {
         <div className='flex flex-col p-2 items-center w-full'>
           {tooltipInfo.rewardPackageMoney &&
             <>
-              <h2 className='uppercase font-semibold'>Recompensas - Atividade {indexAtv}</h2>
+              <h2 className='uppercase font-semibold text-nowrap'>Recompensas - Atividade {indexAtv}</h2>
               <div className='flex flex-col text-yellow-500 '>
                 <div className='flex items-center gap-x-1'>
                   <img src={calyCoin} alt="moedas calygam" className='w-[25px]' />

@@ -17,6 +17,7 @@ export function ReadProgressByUserProvider({ children }) {
 
   const  submissionInitialState ={
     submissions:[],
+    submissionOfStudents:[],
     progressId:0,
   }
   const submitReducer =(submissionState,SubmissionAction)=>{
@@ -25,6 +26,8 @@ export function ReadProgressByUserProvider({ children }) {
         return {...submissionState, submissions: SubmissionAction.payload}
       case "SET_PROGRESS_ID":
         return {...submissionState, progressId: SubmissionAction.payload}
+      case "SET_SUBMISSIONS_STUDENTS":
+        return {...submissionState ,submissionOfStudents: SubmissionAction.payload}
       default:
         return submissionState
   
@@ -80,13 +83,35 @@ export function ReadProgressByUserProvider({ children }) {
     }
   },[token, setLoading, setLoadingText])
 
+
+  const ListenerOfDowloadableArchivesOfStudents=useCallback(
+     async(progressId)=>{
+    if(!token)return
+    try{
+      
+      setLoading(true)
+      setLoadingText("buscando Alunos que entregaram...")
+    const response = await api.get(`/submission/delivered/${progressId}`)
+    console.log(response.data)
+    submissionDispatch({type:"SET_SUBMISSIONS_STUDENTS", payload:response.data})
+
+    }catch(e){
+      console.log("Algo deu errado ao buscar a entrega :(")
+    }
+    finally{
+      setLoading(false)
+      setLoadingText("")
+    }
+  },[token, setLoading, setLoadingText])
+
   const  submissionCrate = useMemo(
     ()=>({
       submissionBaggage,
       submissionDispatch,
       ListenerOfDowloadableArchivesSubmited, 
+      ListenerOfDowloadableArchivesOfStudents,
     }),
-      [submissionBaggage,ListenerOfDowloadableArchivesSubmited]
+      [submissionBaggage,ListenerOfDowloadableArchivesSubmited,ListenerOfDowloadableArchivesOfStudents]
   )
   
 
