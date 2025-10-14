@@ -49,9 +49,9 @@ export default function DetailMakeActivityPage() {
 
           <CalygamActivityDetail />
 
-          <div className={`flex flex-col gap-y-3   ${isImageLoading?"justify-center":""} items-center w-[350px] `}>
+          <div className={`flex flex-col gap-y-3    items-center w-[350px] `}>
             {targetTrail?.trailPassword ?
-              <p className='p-2 rounded-full text-white text-center text-2xl border-4 border-yellow-800/55 font-bold w-full  bg-zinc-700'>{targetTrail.trailPassword}</p>
+              <p className='p-2 rounded-full text-white text-center truncate text-2xl border-4 border-yellow-800/55 font-bold w-full  bg-zinc-700'>{targetTrail.trailPassword.length>9?"Descartar": targetTrail.trailPassword.length}</p>
               : isImageLoading &&
               <span className='absolute flex bg-gradient-to-tr -z-10   rounded-full '>
                 <p className='bg-zinc-700 text-white font-semibold text-2xl'>Carregando...</p>
