@@ -29,6 +29,7 @@ export default function LibraryOfPathsPage() {
   trailName:targetTrail.trailName,
   trailImage:targetTrail.trailImage
  }
+  // await api.post(`progress/join/${id}${password?.length>1?`?trailPassword=${password}`:""}`)
   const { setToken } = useAuth();
   useEffect(()=>{
     setModelIsOpen(modalIsOpen)

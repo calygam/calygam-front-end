@@ -20,12 +20,15 @@ import CalygamTableManagemet from '../../components/CalygamTableManagemet/Calyga
 import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js'
 import { AnimatePresence, motion } from 'framer-motion'
 import { getRoutesByRole } from '../../utils/navRoutesUtil.js'
+import { generateRandomSecureCode } from '../../utils/generateRandomSecureCode.js'
+import { UseLoading } from '../../hooks/UseLoading/UseLoading.js'
 
 export default function MakeNewTrailPage() {
   const { setToken } = useAuth();
   const {trails,targetTrailId,setTargetTrailId} = UseReadAllTrailsHook()
    const { dataProfile } = UseDataProfile()
    const{modalIsOpen,openModal,contentModal}=UseModalHook()
+
      
    
        const targetTrail = trails.find((oneTrail)=>oneTrail.trailId === targetTrailId)
@@ -69,7 +72,9 @@ export default function MakeNewTrailPage() {
       <div className='w-[90%] '>
         <div className='w-full flex md:justify-between flex-wrap  md:items-center  text-start'>
           <h1 className='font-semibold self-start  text-start'>Gerenciar Trilhas de Aprendizagem</h1>
-          <button type='button' className='bg-calygam-blue-semi-strong text-xs h-[35px] self-end md:self-auto  flex items-center justify-center  text-white py-4 px-6 rounded-md border-b-4 border-b-blue-800 outline-none hover:border-0' onClick={()=>openModal("CreateAnewTrail")}>Criar Trilha</button>
+          <button type='button' className='bg-calygam-blue-semi-strong text-xs h-[35px] self-end md:self-auto  flex items-center justify-center  text-white py-4 px-6 rounded-md border-b-4 border-b-blue-800 outline-none hover:border-0' onClick={()=>
+            {
+              openModal("CreateAnewTrail")}}>Criar Trilha</button>
         </div>
    
         {trails&&

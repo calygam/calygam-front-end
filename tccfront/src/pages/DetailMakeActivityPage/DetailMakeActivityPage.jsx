@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 //componentes
 import CalygamHeader from '../../components/CalygamHeader/CalygamHeader.jsx'
 import CalygamActivityDetail from '../../components/CalygamActivityDetail/CalygamActivityDetail.jsx'
@@ -15,15 +15,18 @@ import sendFeedBack from '../../assets/img/send-feedback-hat.svg'
 import { Link } from 'react-router-dom';
 import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js';
 import { getRoutesByRole } from '../../utils/navRoutesUtil.js';
+import loadingImages from '../../assets/img/loading-images.svg'
 import DeleteModal from '../../components/modals/DeleteModal/DeleteModal.jsx';
+import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook.js';
 
 
 
 export default function DetailMakeActivityPage() {
   const { setToken } = useAuth();
   const { dataProfile } = UseDataProfile()
-  const {contentModal,modalIsOpen} = UseModalHook()
-  
+  const { contentModal, modalIsOpen } = UseModalHook()
+  const { targetTrail } = UseReadAllTrailsHook()
+   const [isImageLoading, setIsImageLoading] = useState(true);
   const navRoutes = [
     ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
     { navRoute: "/Coordenacao", navNameRoute: "Equipe", routeIcon: homeIcon },
@@ -45,18 +48,25 @@ export default function DetailMakeActivityPage() {
         <div className='  w-full flex flex-wrap gap-x-4 gap-y-6 md:gap-y-0 md:justify-between justify-center '>
 
           <CalygamActivityDetail />
-        
-          <div className='flex flex-col gap-y-3  items-center w-[250px] '>
-            <div className='border p-2 border-calygam-purple-semi-strong w-full backdrop-blur-2xl rounded-md'>
-              <p className='text-xs font-bold'>Feedback</p>
-            </div>
-            <div className='border p-4 flex  gap-x-2 border-calygam-purple-semi-strong w-full bg-green-500/5 backdrop-blur-2xl rounded-md'>
-              <img src={sendFeedBack} alt="" className='w-[40px] '/>
-              <div className='flex flex-col space-y-1'>
-                <p className='text-xs'>Nota</p>
-                <p className='text-calygam-purple-semi-strong text-xs'>Nenhuma nota</p>
-              </div>
-            </div>
+
+          <div className={`flex flex-col gap-y-3   ${isImageLoading?"justify-center":""} items-center w-[350px] `}>
+            {targetTrail?.trailPassword ?
+              <p className='p-2 rounded-full text-white text-center text-2xl border-4 border-yellow-800/55 font-bold w-full  bg-zinc-700'>{targetTrail.trailPassword}</p>
+              : isImageLoading &&
+              <span className='absolute flex bg-gradient-to-tr -z-10   rounded-full '>
+                <p className='bg-zinc-700 text-white font-semibold text-2xl'>Carregando...</p>
+              </span>
+            }
+            {!targetTrail?.trailPassword &&
+            <img src={targetTrail.trailImage} alt="" className='
+                                                                    w-[260px]
+                                                                    h-[260px]
+                                                                     border-4 border-x-purple-900
+                                                                     border-y-purple-600
+                                                                    bg-cover 
+                                                                   
+                                                      
+                                                                    rounded-md' onLoad={()=>setIsImageLoading(!isImageLoading)} />}
           </div>
         </div>
       </div>

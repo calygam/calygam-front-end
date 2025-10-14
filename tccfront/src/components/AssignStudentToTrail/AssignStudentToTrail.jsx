@@ -22,6 +22,7 @@ export default function AssignStudentToTrail({ setModelIsOpen, trailData }) {
   const { searchtrails } = UseReadAllTrailsHook()
  const [hasAnimated, setHasAnimated] = useState(false)
  const {closeModal}= UseModalHook() 
+   const { targetTrail} = UseReadAllTrailsHook();
 
 
 
@@ -57,18 +58,19 @@ export default function AssignStudentToTrail({ setModelIsOpen, trailData }) {
         initial={hasAnimated ? false : { scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: 'spring', stiffness: 150, mass: 1 }}
-        className='lg:w-[500px] md:w-[325px] w-[250px] rounded-md divide-y divide-gray-200 bg-white min-h-[150px] pb-4 '
+        className='lg:w-[500px] md:w-[325px] w-[250px] rounded-md divide-y divide-gray-800 bg-calygam-black-strong min-h-[150px] pb-4 '
       >
         <div className='w-full flex justify-between p-4 items-center'>
           <div className='flex items-center justify-center gap-x-1'>
             
-            <p className='text-black md:text-base text-xs font-medium'>Participar de {trailData.trailName}</p>
+            <p className='text-white md:text-base text-xs font-medium'>Participar de {trailData.trailName}</p>
           </div>
           <button className='flex outline-none justify-center items-center' onClick={() => closeModal("", "")}>
             <img src={closeX} alt="fechar" className='md:w-[20px] w-[15px] ' />
           </button>
 
         </div>
+        {targetTrail.trailPassword.length>1?
         <form className='w-full flex flex-col px-4 gap-y-2 my-1 py-2 pb-4'>
          
 
@@ -85,14 +87,14 @@ export default function AssignStudentToTrail({ setModelIsOpen, trailData }) {
                 <img src={eyeIsOpen ? eyeOpen : eyeClose} alt="" className='w-[25px] outline-none h-[25px] object-cover rounded-r-lg' />
               </button>
             </div>
-            <p className={`text-xs font-semibold ${passError ? "text-red-500" : "text-green-500"} max-w-[200px] my-2`}>{passError ? `${passError && passError.length > 1 ? "*" : ""}${passError}` : "° Senha Segura."}</p>
+            <p className={`text-xs font-semibold ${passwordValue.length<8 ? "text-red-500" : "text-green-500"} max-w-[200px] my-2`}>{passwordValue.length<8?"*Pelo menos 8 caracteres":"° Senha Segura."}</p>
           </div>
-        </form>
+        </form>:null}
         
         <div className='flex justify-around w-full flex-wrap gap-y-2 md:flex-nowrap gap-x-4 p-4 pb-0 items-center'>
 
-          {passError ?<button type='button' disabled={true} className='outline-none bg-gradient-to-tr h-[35px]  hover:bg-gradient-to-br cursor-not-allowed  from-black/30 text-white/30 via-gray-500/30 to-gray-700/30 rounded-md p-2' >Fazer Parte</button> :
-           <button type='submit' className='outline-none bg-gradient-to-tr h-[35px]  hover:bg-gradient-to-tl cursor-pointer  from-black via-gray-500 to-gray-700  rounded-md p-2' onClick={() => HandleEnterInTrail(trailData.trailId, passwordValue,loadingData,searchtrails,navigate,setModelIsOpen)}>Fazer Parte</button>}
+          {targetTrail.trailPassword?.length>0 && passwordValue.length<8?<button type='button' disabled={true} className='outline-none bg-gradient-to-tr h-[35px]  hover:bg-gradient-to-br cursor-not-allowed  from-calygam-purple-tone-2/30 text-white/45 via-calygam-purple-tone-2/30 to-calygam-purple-tone-2/30 rounded-md p-2' >Fazer Parte</button>:
+           <button type='submit' className='outline-none bg-gradient-to-tr h-[35px]  hover:bg-gradient-to-tl cursor-pointer  from-calygam-purple-tone-2 via-calygam-purple-tone-2 to-calygam-purple-tone-2 text-white  rounded-2xl py-2 px-4 ' onClick={() => HandleEnterInTrail(trailData.trailId, passwordValue,loadingData,searchtrails,navigate,setModelIsOpen)}>Fazer Parte</button>}
         </div>
 
 

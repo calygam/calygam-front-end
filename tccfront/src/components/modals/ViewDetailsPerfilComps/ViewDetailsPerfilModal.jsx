@@ -10,6 +10,7 @@ import { useProfileReducer } from '../../../utils/ContextReducers/DataProfileRed
 import eyeOpen from '../../../assets/img/eye-pass-open.png'
 import eyeClose from '../../../assets/img/eye-pass-close.png'
 import loadingImages from '../../../assets/img/loading-images.svg'
+import perfilPageIcon from '../../../assets/img/perfilPageIcon.png'
 import api from '../../../api/api'
 import { RegexEmail } from '../../../utils/RegexEmail/RegexEmail'
 import { RegexPassword } from '../../../utils/RegexPassword/RegexPassword'
@@ -130,20 +131,20 @@ export default function ViewDetailsPerfil() {
                             <label htmlFor='input-image-perfil' className=''>
                                 <p className='text-xs'>Selecione uma imagem</p>
                             </label>
-                            {profile.userImage != "" || dataProfile.userImage != "" ?
+                            {  dataProfile.userImage != "" ?
                                 <label htmlFor='input-image-perfil' className='relative cursor-pointer rounded-full overflow-hidden  w-fit flex'>
                                     <span className='absolute flex bg-gradient-to-tr w-fit inset-0 justify-center items-center from-black via-gray-700 to-gray-700  rounded-full animate-spin'>
                                         {isImageLoading && dataProfile.userImage != "" &&
                                             <img src={loadingImages} alt="" className='w-[150px]  h-[150px] ' />
                                         }
                                     </span>
-                                    <img src={profile.userImagePreview != "" ? profile.userImagePreview : dataProfile?.userImage} alt="" className='w-[150px]  hover:scale-110 transition-all   z-10 h-[150px] flex rounded-full' onLoad={() => setIsImageLoading(false)} />
+                                    <img src={profile.userImagePreview != "" && profile.userImagePreview != null ? profile.userImagePreview : perfilPageIcon} alt="" className='w-[150px]  hover:scale-110 transition-all   z-10 h-[150px] flex rounded-full' onLoad={() => setIsImageLoading(false)} />
                                 </label>
                                 :
-                                <label htmlFor='input-image-perfil' className='relative flex justify-center border border-dashed border-purple-200 min-h-[100px] min-w-[100px] items-center bg-black/35 rounded-full w-fit'>
-                                    {dataProfile.userImagePreview &&
-                                        <img src={dataProfile.userImagePreview} alt="" className='w-[150px] absolute z-10 h-[150px] rounded-full' />
-                                    }
+                                <label htmlFor='input-image-perfil' className='relative flex w-[150px] h-[150px] justify-center border border-dashed border-purple-200   items-center bg-black/35 rounded-full '>
+                               
+                                        <img src={profile.userImagePreview != "" && profile.userImagePreview != null ? profile.userImagePreview : perfilPageIcon} alt="" className='w-full h-full absolute z-10 flex  rounded-full' />
+                                    
 
 
                                 </label>}

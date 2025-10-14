@@ -5,13 +5,13 @@ import { RegexPassword } from "../RegexPassword/RegexPassword.js";
 export const handleInputModify = (e, step, setForm, form, setImagePreview, setFormErrors) => {
 
   const { name, value, files } = e.target;
-const MAX_IMAGE_KB = 30;
-const MAX_IMAGE_BYTES = MAX_IMAGE_KB * 1024; 
+const MAX_IMAGE_MB = 1;
+const MAX_IMAGE_BYTES = MAX_IMAGE_MB * 1024 * 1024;
   if (name === "trailImage") {
 
     if (files?.length) {
       if (files[0].size >MAX_IMAGE_BYTES){
-     setFormErrors(prev => ({ ...prev, trailImage: "Arquivo Deve ser Menor que 2MB" }));
+     setFormErrors(prev => ({ ...prev, trailImage: "Arquivo Deve ser Menor que 1MB" }));
         return
       }
         setForm(prev => ({ ...prev, trailImage: files[0] }));

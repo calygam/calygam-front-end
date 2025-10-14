@@ -28,9 +28,10 @@ export function ReadAllTrailsProvider({ children }) {
         if (!token) return;
         try {
             setLoading(true)
-            const isHomePage = ["/home", "/Biblioteca"].includes(location.pathname) ?
+            const isHomePage = ["/home", "/Trilhas"].includes(location.pathname) ?
                 `/trail/read/all-trails?haveProgress=NOT_HAVE_PROGRESS` : "/trail/read/by/teacher"
             const response = await api.get(isHomePage)
+            console.log(response.data)
             setTrails(response.data)
 
 
@@ -48,9 +49,10 @@ export function ReadAllTrailsProvider({ children }) {
         if (!token) return;
         try {
             setLoading(true)
-            const isHomePage = ["/home", "/Biblioteca"].includes(location.pathname) ?
+            const isHomePage = ["/home", "/Trilhas"].includes(location.pathname) ?
                 `/trail/read/all-trails?haveProgress=HAVE_PROGRESS` : "/trail/read/by/teacher"
             const response = await api.get(isHomePage)
+            console.log(response.data)
             if (response.data.length > 0) {
                 setTrailsWithThisUser(response.data)
             }

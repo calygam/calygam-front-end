@@ -44,7 +44,7 @@ export default function CardTreatStock({ pet }) {
             initial={{ y: -80, x: -80 }}
             animate={{ y: 0, x: 0 }}
             transition={{ type: 'spring', stiffness: 450 + pet.petId, mass: pet.petId }}
-            className='w-[160px] relative bg-gradient-to-tr my-2 font-poppins p-1 py-2 gap-y-2 flex flex-col border group border-black  rounded-md from-orange-500 via-purple-600 to-yellow-500'
+            className='w-[160px] relative bg-gradient-to-tr my-2 font-poppins p-1 py-2 gap-y-2 flex flex-col border-8 border-calygam-purple-semi-strong group   rounded-3xl from-gray-500 via-gray-600 to-gray-500'
         >
             {dataProfile.userXp < pet.emporiumXpRequired &&
                 <EmporiumRankIsRequired pet={pet} />
@@ -101,7 +101,7 @@ export default function CardTreatStock({ pet }) {
                 }
 
             </div>
-            {purchase.itemCapture == null && <button className='py-2 px-4 bg-gradient-to-tr outline-none from-blue-200 via-blue-400 to-blue-500 text-black font-semibold flex justify-center border-b-4 h-[35px] hover:border-none hover:translate-y-1 transition-all ease-in-out border-blue-700/25 rounded-lg items-center' onClick={handleOpenModalPurchasing}>Detalhes</button>
+            {purchase.itemCapture == null && <button className='py-2 px-4  outline-none bg-calygam-purple-semi-strong text-white font-semibold flex justify-center border-b-4 h-[35px] hover:border-none hover:translate-y-1 transition-all ease-in-out border-purple-800/65 rounded-2xl items-center' onClick={handleOpenModalPurchasing}>Detalhes</button>
 
             }
 

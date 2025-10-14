@@ -10,7 +10,7 @@
     { navRoute: "/Trail/Criar", navNameRoute: "Oficina", routeIcon: homeIcon },
 
     { navRoute: "/home", navNameRoute: "Home", routeIcon: homeIcon },
-    { navRoute: "/Biblioteca", navNameRoute: "Biblioteca", routeIcon: homeIcon },
+    { navRoute: "/Trilhas", navNameRoute: "Trilhas", routeIcon: homeIcon },
     ["ADMIN"].includes(dataProfile.userRole) &&
     { navRoute: "/Pet/Create", navNameRoute: "Pets", routeIcon: homeIcon }, 
     { navRoute: "/Emporium/Stock", navNameRoute: "empório", routeIcon: homeIcon }

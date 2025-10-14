@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TranslateStatusUserUtil } from '../../utils/TranslateStatusUserUtil/TranslateStatusUserUtil'
 import { ColorStatusUser } from '../../utils/ColorStatusUser/ColorStatusUser.js'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
@@ -10,17 +10,19 @@ import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js';
 import { TranslateTrailStatusUtil } from '../../utils/TranslateTrailStatusUtil/TranslateTrailStatusUtil.js';
 import { ColorStatusTrail } from '../../utils/ColorStatusTrail/ColorStatusTrail.js';
 import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook.js';
+import loadingImages from '../../assets/img/loading-images.svg'
+import perfilPageIcon from '../../assets/img/perfilPageIcon.png'
 import { data } from 'react-router-dom';
 
 export default function RowOfTable({ oneRow }) {
   const { dataProfile, loading, dataTeachers, searchDataTeachers, targetTeacher, setTargetTeacher } = UseDataProfile()
-    const { trails, targetTrailId, setTargetTrailId } = UseReadAllTrailsHook();
+  const { trails, targetTrailId, setTargetTrailId } = UseReadAllTrailsHook();
+ const [isImageLoading, setIsImageLoading] = useState(true);
+  useEffect(() => {
+    console.log("LOGANDO ------ DEBUG")
+    console.log(dataTeachers)
+  }, [dataProfile])
 
-    useEffect(()=>{
-      console.log("LOGANDO ------ DEBUG")
-      console.log(dataTeachers)
-    },[dataProfile])
-   
 
 
 
@@ -33,11 +35,11 @@ export default function RowOfTable({ oneRow }) {
 
   }
 
-  const handleEditTrail = (trailId)=>{
-  setTargetTrailId(trailId)
-  openModal("CreateAnewTrail")
+  const handleEditTrail = (trailId) => {
+    setTargetTrailId(trailId)
+    openModal("CreateAnewTrail")
 
-}
+  }
 
   useEffect(() => {
     console.log(oneRow?.userImage)
@@ -81,7 +83,7 @@ export default function RowOfTable({ oneRow }) {
         mass: 1 + (oneRow?.userId * 2),
 
       }}>
-      {oneRow?.trailId&&!oneRow.trailStatus?.includes("BUILDING") && <div className={`w-full h-full -left-0 bg-black/25 absolute`}></div>}
+      {oneRow?.trailId && !oneRow.trailStatus?.includes("BUILDING") && <div className={`w-full h-full -left-0 bg-black/25 absolute`}></div>}
 
       {!oneRow?.trailId &&
         <div className="flex items-center   w-full px-4  gap-x-2" role="cell">
@@ -127,9 +129,19 @@ export default function RowOfTable({ oneRow }) {
           {oneRow.userEmail}
         </div>}
       {oneRow?.trailId && <div className="flex items-center   w-full px-4   gap-x-2" role="cell">
-        <div className=''>
-          <img src={`${dataProfile?.userImage}`} alt="Foto do professor" className='w-[50px] h-[50px] object-cover rounded-full' />
-        </div>
+
+        {dataProfile.userImage ?
+          <button type='button' className='relative outline-none flex cursor-pointer' onClick={() => openModal("ViewYourDataProfile")}>
+            {isImageLoading && dataProfile.userImage != "" &&
+              <span className='absolute flex bg-gradient-to-tr inset-0 justify-center items-center from-black via-gray-700 to-gray-700  rounded-full animate-spin'>
+                <img src={loadingImages} alt="" className='w-fit  h-[45px]' />
+              </span>
+            }
+            <img src={dataProfile.userImage} alt="Foto de Perfil" className=' object-cover w-[45px] z-10 h-[45px] rounded-full' onLoad={() => setIsImageLoading(false)} />
+
+          </button> : <button type='button' className='flex rounded-full outline-none group cursor-pointer overflow-hidden transition-all hover:rotate-6  hover:rounded-tl-md hover:rounded-br-md  bg-black/25 p-1 justify-center items-center' onClick={() => openModal("ViewYourDataProfile")}>
+            <img src={perfilPageIcon} alt="ir para perfil" className='w-[25px] group-hover:-rotate-45 transition-all h-[25px]' />
+          </button>}
         <div>
           <p className="font-medium  text-xs text-gray-900 ">{hiddenTextLimitter(dataProfile?.userName, 15)}</p>
 
@@ -144,7 +156,7 @@ export default function RowOfTable({ oneRow }) {
 
         </div>
       }
-            {oneRow?.trailId &&
+      {oneRow?.trailId &&
 
         <div className="flex items-center  w-full px-4   " role="cell">
           <button type='button' className="text-gray-500 outline-none hover:text-blue-600" aria-label={`Editar usuário ${oneRow.userName}`} title="Editar" onClick={() => handleEditTrail(oneRow.trailId)}>
