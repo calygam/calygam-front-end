@@ -63,6 +63,7 @@ module.exports =  {
         'calygam-gray-light':'#61758A',
         //black
         'calygam-black-semi-strong':'#2F2E41',
+        'calygam-black-strong':'#0D141C',
         //purple
         'calygam-purple-semi-light':'#5D5578',
         'calygam-purple-semi-bold':'#2A1C4A',
@@ -81,7 +82,10 @@ module.exports =  {
         'calygam-blue-semi-bold':"#000437",
         'calygam-blue-semi-strong':"#4C48CE",
         'calygam-blue-semi-light':"#4285F4",
-        'calygam-blue-semi-bold':"#413B99"
+        'calygam-blue-semi-bold':"#413B99",
+
+        //zinc
+        
          
       },
       backgroundImage:{

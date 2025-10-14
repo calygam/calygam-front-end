@@ -55,7 +55,7 @@ function TccFront() {
             <Route path="/Calygam/Admin/Reward/Create" element={<CalygamRewardPackagePage/>}/>
             <Route path="/Pet/Create" element={<PetManagementPage/>}/>
             <Route path="/Emporium/Stock" element={<CalygamEmporiumPage/>}/>
-            <Route path="/Biblioteca" element={<LibraryOfPathsPage/>}/>
+            <Route path="/Trilhas" element={<LibraryOfPathsPage/>}/>
       
           </Routes>
           </CalygamProviders>

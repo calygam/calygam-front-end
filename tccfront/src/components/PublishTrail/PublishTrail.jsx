@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HandleEnterInTrail } from '../../utils/HandleEnterInTrail/HandleEnterInTrail'
 import { HandleEnterInTrailTeacher } from '../../utils/HandleEnterInTrail/HandleEnterInTrailTeacher'
 import eyeOpen from '../../assets/img/eye-pass-open.png'
 import eyeClose from '../../assets/img/eye-pass-close.png'
 import { RegexPassword } from '../../utils/RegexPassword/RegexPassword'
 import { UseLoading } from '../../hooks/UseLoading/UseLoading'
-export default function PublishTrail({ setIsPublish, isPublish, trailName, setTrailCode, trailCode, handleUpdate, trailId,}) {
+import { UseReadAllTrailsHook } from '../../hooks/UseReadAltrailsHook/UseReadAllTrailsHook'
+export default function PublishTrail({ setIsPublish, isPublish, trailName,trailPassword, setTrailCode, trailCode, handleUpdate, trailId,}) {
   const {setLoading,setLoadingText} = UseLoading()
+  const {searchtrails,targetTrail} = UseReadAllTrailsHook()
 
   const [hasAnimated, setHasAnimated] = useState(false)
   const [eyeIsOpen, setEyeIsOpen] = useState(false)
@@ -17,7 +19,7 @@ export default function PublishTrail({ setIsPublish, isPublish, trailName, setTr
     let targetPassValid = passValidate
     setPassError(() => RegexPassword(targetPassValid))
     if (targetPassValid.length > 20) return
-    setPasswordValue(targetPassValid)
+    setPasswordValue(trailPassword)
 
   }
 
@@ -34,8 +36,10 @@ export default function PublishTrail({ setIsPublish, isPublish, trailName, setTr
   const handleMapperProgressTeacer = async(e) => {
     try{
       setLoading(true)
+      console.log(targetTrail)
       setLoadingText("Preparando o ambiente... ,  aguarde um momento")
-    await HandleEnterInTrailTeacher(trailId, passwordValue)
+    await HandleEnterInTrailTeacher(trailId, trailPassword)
+    
     await handleUpdate(e)
     }catch(e){
     console.log("algo deu errado" + e)
@@ -43,9 +47,12 @@ export default function PublishTrail({ setIsPublish, isPublish, trailName, setTr
     finally{
       setLoading(false)
       setLoadingText("")
-      searchTrails()
+      searchtrails()
     }
   }
+  useEffect(()=>{
+    setPasswordValue(trailPassword)
+  },[])
   return (
     <motion.div className={`w-full  font-poppins   fixed inset-0 z-30 ${isPublish ? "overflow-hidden" : "overflow-y-auto"} bg-calygam-purple-semi-bold/50 pb-2 custom-scrollbar backdrop-blur-md flex justify-center  items-start`}
       key={"batata"}
@@ -84,23 +91,11 @@ export default function PublishTrail({ setIsPublish, isPublish, trailName, setTr
               onChange={(e) => codeHandleChange(e)}
               className='text-xs mt-2 px-2 py-1 border-b-2 border-purple-500 bg-transparent text-gray-800 focus:outline-none'
             />
-            <div className='flex flex-col '>
-              <label htmlFor='passwordTrail' className='text-sm my-1'>Informe uma Senha</label>
-              <div className='w-full border-2 border-gray-500 pr-2 bg-white rounded-xl overflow-hidden flex'>
-
-
-                <input type={eyeIsOpen ? "text" : "password"} id='passwordTrail' autoComplete='off' name='passwordTrail' className='w-full outline-none text-black pl-1 px-1  text-base rounded-lg' placeholder={"Digite uma Senha"} value={passwordValue} onChange={(e) => handlePasswordValue(e.target.value)} />
-
-                <button type='button' className='bg-white outline-none rounded-r-lg' onClick={() => setEyeIsOpen(!eyeIsOpen)}>
-                  <img src={eyeIsOpen ? eyeOpen : eyeClose} alt="" className='w-[25px] outline-none h-[25px] object-cover rounded-r-lg' />
-                </button>
-              </div>
-              <p className={`text-xs font-semibold ${passError ? "text-red-500" : "text-green-500"} max-w-[200px] my-2`}>{passError ? `${passError && passError.length > 1 ? "*" : ""}${passError}` : "° Senha Segura."}</p>
-            </div>
+        
           </div>
 
           <div className='flex justify-center mt-4'>
-            {trailCode.trim() === "calygam up trail" && !passError ? (
+            {trailCode.trim() === "calygam up trail"  ? (
               <button
                 type='button'
                 onClick={(e) => handleMapperProgressTeacer(e)}

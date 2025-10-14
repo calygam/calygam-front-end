@@ -99,7 +99,7 @@ export default function CalygamTableManagemet({ rowOfTable }) {
                     
                 }
 
-                {rowOfTable?.length > 0 &&
+                {rowOfTable?.length > 5 &&
                     <div className="flex gap-x-1 border-2 shadow-black/50 border-gray-400/50 rounded-lg ">
                         <button
                             type="button"
