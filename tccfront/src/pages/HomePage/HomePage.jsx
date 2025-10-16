@@ -21,16 +21,23 @@ import InitialSupportCalygam from '../../components/InitialSupportCalygam/Initia
 import { UseModalHook } from '../../hooks/UseModalHook/UseModalHook.js'
 import ShowInventoryModal from '../../components/modals/ShowInventoryModal/ShowInventoryModal.jsx'
 import { AnimatePresence } from 'framer-motion'
+//presentations
+import LinuxPresentation from '../../assets/img/linux-presentation.png'
+import AdobeIlustratorPresentation from '../../assets/img/adobe-ilustrator-presentation.png'
+import codeExemplePresentation from '../../assets/img/code-exemplo-presentation.png'
 
 export default function HomePage() {
 
 
   const location = useLocation();
   const navigate = useNavigate()
+
+
   const { dataProfile } = UseDataProfile()
   const { searchtrailsOfThisUser, trailsWithThisUser } = UseReadAllTrailsHook()
-  const {modalIsOpen,contentModal} = UseModalHook()
+  const { modalIsOpen, contentModal } = UseModalHook()
   const { loading } = UseLoading()
+  const recentlyInteractIds = JSON.parse(localStorage.getItem("trailsRecentlyAcess")) || [];
 
   //DESCOMENTAR ESSA LINHA PARA VOLTAR O LOGIN
   const { setToken } = useAuth();
@@ -59,9 +66,9 @@ export default function HomePage() {
 
   return (
     <div className='w-full font-poppins  transition-all delay-100 duration-200 ease-in-out'>
-        {modalIsOpen && ["showInventory","SkinsOfPet"].includes(contentModal)&&
+      {modalIsOpen && ["showInventory", "SkinsOfPet"].includes(contentModal) &&
         <AnimatePresence>
-        <ShowInventoryModal/>
+          <ShowInventoryModal />
         </AnimatePresence>}
 
       <header>
@@ -70,18 +77,34 @@ export default function HomePage() {
 
       </header>
       <main className='w-full space-y-14'>
+        {recentlyInteractIds.length > 0 ?
+          <div className='flex flex-col mt-6 items-center font-poppins w-full space-y-2 mx-auto '>
+            <p className='font-medium'>Caminhos</p>
+            <p className='lg:text-3xl md:text-xl text-lg font-semibold'>Acessados Recentemente</p>
+            {loading ? <p>Recuperando seus Passos...</p> : <YourTrailsManager withRecentlyTrails={true} />}
 
-        <div className='flex flex-col mt-6 items-center font-poppins w-full space-y-2 mx-auto '>
-          <p className='font-medium'>Caminhos</p>
-          <p className='lg:text-3xl md:text-xl text-lg font-semibold'>Acessados Recentemente</p>
-          {loading ? <p>Recuperando seus Passos...</p> : <YourTrailsManager withRecentlyTrails={true} />}
+            <Link to={"/Biblioteca"} className='py-2 px-4 rounded-xl bg-gradient-to-tr font-medium w-fit flex items-center text-sm  text-black text-center gap-x-2'>Ver Mais <span className='text-lg'>{">"}</span>  </Link>
+          </div> : <section className='flex flex-col mt-6 items-center gap-2 font-poppins w-full space-y-2 mx-auto '>
+            <p className='font-medium'>Caminhos</p>
+            <div className='flex-col items-center text-center gap-y-3'>
+              <p className='lg:text-3xl md:text-xl text-lg font-semibold text-wrap'>Explore seus Caminhos de </p>
+              <p className='lg:text-3xl md:text-xl text-lg font-semibold text-wrap'>Aprendizagem</p>
+            </div>
+            <div className='flex-col items-center text-center gap-y-3'>
+              <p className='text-sm text-wrap'>Descubra os caminhos de aprendizagem que você está seguindo. Acompanhe seu progresso e</p>
+              <p className='text-sm text-wrap'>avance em sua jornada educacional.</p>
+            </div>
+            <div className='flex gap-8 flex-wrap py-12 justify-center items-center'>
+              <div className='w-[300px]'><img src={LinuxPresentation} alt="" /></div>
+              <div className='w-[300px]' > <img src={AdobeIlustratorPresentation}/></div>
+              <div className='w-[300px]'> <img src={codeExemplePresentation}/></div>
+            </div>
 
-          <Link to={"/Biblioteca"} className='py-2 px-4 rounded-xl bg-gradient-to-tr font-medium w-fit flex items-center text-sm  text-black text-center gap-x-2'>Ver Mais <span className='text-lg'>{">"}</span>  </Link>
-        </div>
-      
-        <PetSectionManager/>
+          </section>}
+
+        <PetSectionManager />
       </main>
-      <section  className='my-6 mb-12'>
+      <section className='my-6 mb-12'>
         <InitialSupportCalygam />
       </section>
       <footer>
