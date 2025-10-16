@@ -64,6 +64,7 @@ module.exports =  {
         //black
         'calygam-black-semi-strong':'#2F2E41',
         'calygam-black-strong':'#0D141C',
+        'calygam-black-medium-string':'#021713',
         //purple
         'calygam-purple-semi-light':'#5D5578',
         'calygam-purple-semi-bold':'#2A1C4A',
@@ -83,7 +84,7 @@ module.exports =  {
         'calygam-blue-semi-strong':"#4C48CE",
         'calygam-blue-semi-light':"#4285F4",
         'calygam-blue-semi-bold':"#413B99",
-
+        
         //zinc
         
          
