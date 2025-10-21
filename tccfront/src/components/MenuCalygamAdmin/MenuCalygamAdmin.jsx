@@ -75,7 +75,7 @@ export default function MenuCalygamAdmin({ trailSettings, isEnabled, setIsEnable
             {isEnabled &&
 
                 <div className={`flex ${trailSettings ? "md:hidden fixed -z-10 " : "lg:hidden fixed -z-10"}  w-full h-full    bg-black/50 `}></div>}
-            <menu className={`w-full   flex flex-col items-end  ${["/Trilha", "/Atividade"].includes(location.pathname) ? ` ${inverse?"bg-transparent":"bg-gray-900 "} ` : ``}   overflow-y-auto custom-scrollbar  pt-0 h-full `}>
+            <menu className={`w-full   flex flex-col items-end   ${inverse?"bg-transparent":"bg-gray-900 "} overflow-y-auto custom-scrollbar  pt-0 h-full `}>
                 <div className={`w-full ${trailSettings ? "md:hidden" : "lg:hidden"} flex justify-end pr-5 text-black  font-black text-xl`}>
                     <button className='text-white font-bold' onClick={() => setIsEnabled(!isEnabled)}> {isEnabled ? "X" : "/"}</button></div>
                 <div className={`w-full flex justify-center items-center p-4 px-8  ${trailSettings ? "border-none" : "border-b"} border-gray-400/50 lg:py-7 w-[150px]  p-5  `}>
