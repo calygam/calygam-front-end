@@ -57,7 +57,7 @@ export default function CalygamActivityDetail() {
         </div>
         <div className='flex flex-col w-full'>
           <p className='text-lg text-calygam-purple-semi-strong'>{viewSubmissions?"Sua Entrega":"Entregar"}</p>
-          <div className='flex  rounded-xl flex-wrap bg-green-200/30 my-2 p-2 w-full'>
+          <div className='flex  rounded-xl flex-wrap  my-2 p-2 w-full'>
      
           
             <SendActivityArea viewSubmissions={viewSubmissions} setViewSubmissions={setViewSubmissions} />

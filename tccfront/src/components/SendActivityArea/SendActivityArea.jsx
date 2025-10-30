@@ -115,7 +115,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
           ) : (
             <div className='w-full h-full flex flex-col p-2 justify-start text-center rounded-2xl absolute bg-calygam-purple-tone-3 overflow-y-auto custom-scrollbar max-h-full'>
               {viewSubmissions &&
-                <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
+                <span className='bg-purple-800 border-b-4 py-2 px-4  rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
                   <p>Entregues</p>
                 </span>
               }
@@ -125,12 +125,10 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
 
                   className=''
                 >
-                  <motion.div
+                  <div
 
                     className='w-full rounded-md bg-purple-600  px-4 py-2 border-b-4 border-purple-700 flex justify-between items-center mb-2'
-                    initial={hasAnimated ? false : { scale: 0.9 }}
-                    animate={{ scale: 1.00 }}
-                    transition={{ type: 'spring', stiffness: 200, mass: 2 }}
+
                   >
                     <div className='flex items-center gap-x-2'>
                       <span className='rounded-md p-2 hidden md:block border-l border-gray-600  bg-gray-500'>
@@ -148,21 +146,19 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                         setSObtainFile(file);
                       }}  > <img src={closeX} alt="Deletar arquivo" className='w-[25px]' /></button>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               ))}
               {!(viewSubmissions) &&
-                <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
+                <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 mb-6 font-semibold border-b-purple-700 text-center text-white font-jersey'>
                   <p>Área de Entrega</p>
                 </span>
               }
               {!(viewSubmissions) && selectedFiles?.map((file, index) => (
-                <motion.div
+                <div
                   key={index}
                   className='w-full rounded-md bg-purple-600 p-1   border-black flex justify-between items-center mb-2'
-                  initial={hasAnimated ? false : { scale: 0.9 }}
-                  animate={{ scale: 1.00 }}
-                  transition={{ type: 'spring', stiffness: 200, mass: 2 }}
+              
                 >
                   <div className='flex items-center gap-x-1'>
                     <span className='rounded-md p-2 border border-gray-800 bg-gray-500'>
@@ -177,7 +173,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                   >
                     <img src={closeX} alt='Remover arquivo' className='w-[20px]' />
                   </button>
-                </motion.div>
+                </div>
               ))}
               {!(viewSubmissions) &&
                 <label htmlFor="file-do-input-submit" className='w-full h-[35px] rounded-md px-6 py-4 items-center cursor-pointer  text-white/85  justify-between bg-white/15 border flex border-white/75'>
