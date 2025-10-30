@@ -26,7 +26,7 @@ export default function DetailMakeActivityPage() {
   const { dataProfile } = UseDataProfile()
   const { contentModal, modalIsOpen } = UseModalHook()
   const { targetTrail } = UseReadAllTrailsHook()
-   const [isImageLoading, setIsImageLoading] = useState(true);
+  const [isImageLoading, setIsImageLoading] = useState(true);
   const navRoutes = [
     ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
     { navRoute: "/Coordenacao", navNameRoute: "Equipe", routeIcon: homeIcon },
@@ -45,7 +45,7 @@ export default function DetailMakeActivityPage() {
           <img src={backToTrail} alt="voltar para trilha" className='w-[15px] group-hover:-translate-x-[4px] transition-all ease-linear h-[15px] opacity-75' />
           <p className='text-xs font-semibold group-hover:scale-110 transition-all ease-linear'>Trilha</p>
         </Link>
-        <div className='  w-full flex flex-wrap gap-x-4 gap-y-6 md:gap-y-0 md:justify-between justify-center '>
+        <div className='  w-full flex flex-wrap gap-x-4 gap-y-6 md:gap-y-0   '>
 
           <CalygamActivityDetail />
 

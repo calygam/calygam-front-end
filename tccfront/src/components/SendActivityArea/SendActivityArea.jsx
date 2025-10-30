@@ -13,11 +13,13 @@ import SubmitActivityForTeacherModal from '../../components/modals/SubmitActivit
 import closeX from '../../assets/img/close-enter-to-trail.svg'
 import { ExplorerProcessFilesUtil } from '../../utils/HandleChangeDragDropUtil/ExplorerProcessFilesUtil.js';
 import { HandleDeleteSubmit } from '../../utils/HandleDeleteSubmit/HandleDeleteSubmit.js';
+import LinkActivityArea from '../LinkActivityArea/LinkActivityArea.jsx';
+import AddNewLinkModal from '../modals/AddNewLinkModal/AddNewLinkModal.jsx';
 export default function SendActivityArea({ viewSubmissions, setViewSubmissions }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const { dataProfile, searchDataProfile } = UseDataProfile()
   const [hasAnimated, setHasAnimated] = useState(false);
-
+  const [arrayLinks,setArrayLinks] = useState([])
   const [isDragging, setIsDragging] = useState(false);
   const { modalIsOpen, openModal, contentModal } = UseModalHook()
   const [isDeleting, setIsDeleting] = useState(false)
@@ -75,13 +77,17 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
   }, [modalIsOpen])
 
   return (
-    <div className='flex flex-col w-full items-end' >
+    <div className='flex flex-col w-full items-end min-h-[300px] ' >
+         {
+        modalIsOpen && "addLinkToSubmit" === contentModal?
+        <AddNewLinkModal setStringLinkSetter={setArrayLinks} stringLinkGetter={arrayLinks}  />:null
+      }
       {
         modalIsOpen && ["submitActivityModal"].includes(contentModal) &&
         <SubmitActivityForTeacherModal sending={sending} selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} trailId={trailId} targetActivityId={targetActivityId} setSending={setSending} deletingMode={deletingMode} progressId={progressId} />
       }
 
-      <div className='border border-dashed  w-auto group  font-poppins  rounded-xl overflow-hidden relative justify-center flex   bg-black/50 border-calygam-purple-semi-strong'
+      <div className='  group w-full h-[300px] font-poppins  rounded-xl overflow-hidden relative justify-center flex    bg-calygam-purple-tone-3'
         onDragOver={(e) => {
           e.preventDefault();
           setIsDragging(true)
@@ -105,17 +111,17 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
 
 
             <>
-              <label htmlFor="file-do-input-submit" className='text-calygam-purple-semi-strong cursor-pointer lg:block hidden py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-calygam-purple-semi-strong font-semibold rounded-lg'>
+              <label htmlFor="file-do-input-submit" className='text-white cursor-pointer lg:block hidden py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-white font-semibold rounded-lg'>
                 Clique para selecionar arquivos
               </label>
-              <label htmlFor="file-do-input-submit" className='text-calygam-purple-semi-strong cursor-pointer lg:hidden block py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-calygam-purple-semi-strong font-semibold rounded-lg'>
+              <label htmlFor="file-do-input-submit" className='text-white cursor-pointer lg:hidden block py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-calygam-purple-semi-strong font-semibold rounded-lg'>
                 Toque para selecionar arquivos
               </label>
             </>
           ) : (
-            <div className='w-full h-full flex flex-col p-2 justify-start text-center rounded-2xl absolute backdrop-blur-sm overflow-y-auto custom-scrollbar max-h-40'>
+            <div className='w-full h-full flex flex-col p-2 justify-start text-center rounded-2xl absolute bg-calygam-purple-tone-3 overflow-y-auto custom-scrollbar max-h-full'>
               {viewSubmissions &&
-                <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
+                <span className='bg-purple-800 border-b-4 py-2 px-4  rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
                   <p>Entregues</p>
                 </span>
               }
@@ -125,12 +131,10 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
 
                   className=''
                 >
-                  <motion.div
+                  <div
 
                     className='w-full rounded-md bg-purple-600  px-4 py-2 border-b-4 border-purple-700 flex justify-between items-center mb-2'
-                    initial={hasAnimated ? false : { scale: 0.9 }}
-                    animate={{ scale: 1.00 }}
-                    transition={{ type: 'spring', stiffness: 200, mass: 2 }}
+
                   >
                     <div className='flex items-center gap-x-2'>
                       <span className='rounded-md p-2 hidden md:block border-l border-gray-600  bg-gray-500'>
@@ -148,21 +152,19 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                         setSObtainFile(file);
                       }}  > <img src={closeX} alt="Deletar arquivo" className='w-[25px]' /></button>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               ))}
               {!(viewSubmissions) &&
-                <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
+                <span className='bg-purple-800 border-b-4 py-2 px-4  rounded-xl shadow-md shadow-purple-600/50 mb-6 font-semibold border-b-purple-700 text-center text-white font-jersey'>
                   <p>Área de Entrega</p>
                 </span>
               }
               {!(viewSubmissions) && selectedFiles?.map((file, index) => (
-                <motion.div
+                <div
                   key={index}
-                  className='w-full rounded-md bg-purple-600 p-1 border border-dashed border-black flex justify-between items-center mb-2'
-                  initial={hasAnimated ? false : { scale: 0.9 }}
-                  animate={{ scale: 1.00 }}
-                  transition={{ type: 'spring', stiffness: 200, mass: 2 }}
+                  className='w-full rounded-md bg-purple-600 p-1   border-black flex justify-between items-center mb-2'
+              
                 >
                   <div className='flex items-center gap-x-1'>
                     <span className='rounded-md p-2 border border-gray-800 bg-gray-500'>
@@ -177,7 +179,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                   >
                     <img src={closeX} alt='Remover arquivo' className='w-[20px]' />
                   </button>
-                </motion.div>
+                </div>
               ))}
               {!(viewSubmissions) &&
                 <label htmlFor="file-do-input-submit" className='w-full h-[35px] rounded-md px-6 py-4 items-center cursor-pointer  text-white/85  justify-between bg-white/15 border flex border-white/75'>
@@ -189,7 +191,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
             </div>
           )}
         </div>
-        <div className='w-full rounded-2xl flex justify-center items-center cursor-pointer'>
+        <div className='w-full rounded-2xl flex  justify-center items-center cursor-pointer'>
           <input
             type="file"
             id='file-do-input-submit'
@@ -198,14 +200,10 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
             multiple
             className="hidden"
           />
-          <img
-            src={sendActivityArchive}
-            alt="Enviar arquivo"
-            className='w-full duration-500 rounded-2xl'
-          />
+         
         </div>
       </div>
-
+      <LinkActivityArea ArrayLinks={arrayLinks}/>
 
       <div className='flex flex-wrap gap-x-4 gap-y-4  my-2 '>
         {submissionBaggage?.submissions?.length>0&&
@@ -216,6 +214,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
           : < button className='outline-none py-2  px-4 border-0 border-b-4 hover:border-b-0 h-[35px]  border-gray-600/50 font-medium   rounded-md text-xs text-white/75 cursor-not-allowed bg-calygam-purple-semi-strong/50' disabled={true} type='button'>Preparar</button>
         }
       </div>
+            
     </div >
   );
 }
