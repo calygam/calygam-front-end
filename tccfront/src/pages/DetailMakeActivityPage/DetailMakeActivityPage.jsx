@@ -26,7 +26,7 @@ export default function DetailMakeActivityPage() {
   const { dataProfile } = UseDataProfile()
   const { contentModal, modalIsOpen } = UseModalHook()
   const { targetTrail } = UseReadAllTrailsHook()
-   const [isImageLoading, setIsImageLoading] = useState(true);
+  const [isImageLoading, setIsImageLoading] = useState(true);
   const navRoutes = [
     ["ADMIN", "COORDENADOR"].includes(dataProfile.userRole) &&
     { navRoute: "/Coordenacao", navNameRoute: "Equipe", routeIcon: homeIcon },
@@ -45,29 +45,11 @@ export default function DetailMakeActivityPage() {
           <img src={backToTrail} alt="voltar para trilha" className='w-[15px] group-hover:-translate-x-[4px] transition-all ease-linear h-[15px] opacity-75' />
           <p className='text-xs font-semibold group-hover:scale-110 transition-all ease-linear'>Trilha</p>
         </Link>
-        <div className='  w-full flex flex-wrap gap-x-4 gap-y-6 md:gap-y-0 md:justify-between justify-center '>
+        <div className='  w-full flex flex-wrap gap-x-4 gap-y-6 md:gap-y-0   '>
 
           <CalygamActivityDetail />
 
-          <div className={`flex flex-col gap-y-3    items-center w-[350px] `}>
-            {targetTrail?.trailPassword ?
-              <p className='p-2 rounded-full text-white text-center truncate text-2xl border-4 border-yellow-800/55 font-bold w-full  bg-zinc-700'>{targetTrail.trailPassword.length>9?"Descartar": targetTrail.trailPassword.length}</p>
-              : isImageLoading &&
-              <span className='absolute flex bg-gradient-to-tr -z-10   rounded-full '>
-                <p className='bg-zinc-700 text-white font-semibold text-2xl'>Carregando...</p>
-              </span>
-            }
-            {!targetTrail?.trailPassword &&
-            <img src={targetTrail.trailImage} alt="" className='
-                                                                    w-[260px]
-                                                                    h-[260px]
-                                                                     border-4 border-x-purple-900
-                                                                     border-y-purple-600
-                                                                    bg-cover 
-                                                                   
-                                                      
-                                                                    rounded-md' onLoad={()=>setIsImageLoading(!isImageLoading)} />}
-          </div>
+          
         </div>
       </div>
 

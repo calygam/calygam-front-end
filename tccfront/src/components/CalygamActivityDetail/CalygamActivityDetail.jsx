@@ -29,16 +29,26 @@ export default function CalygamActivityDetail() {
   return (
      dataProfile?.userId==null||targetTrail?.user==null?<p className='font-poppins text-black font-bold'>Aguarde...</p>:
     dataProfile?.userId==targetTrail?.user?
-    <div className=' flex flex-col lg:w-[600px]   md:w-[300px] w-full  font-poppins  '>
+    <>
+    <div className=' flex  w-full  font-poppins  '>
+      <div className='flex gap-x-2 flex-wrap items-center'>
+        <h4 className='font-bold'>{targetTrail.trailName ? targetTrail.trailName : "Carregando... "}:</h4>
+        <h2 className='font-semibold text-black/75'>{targetActivity?.activityName}</h2>
+        <div className='w-full my-4'>
+          <p>{targetActivity?.activityDescription}</p>
+        </div>
+        </div>
+        </div>
+    <div className=' flex flex-col  w-full   font-poppins  '>
     <DeliveredActivitiesUsers/>
-      <div className='flex flex-col h-full w-full '>
+      <div className='flex flex-col h-full w-full  '>
           <BoxCommentsLayout msgState={msgState} setMessageBody={setMessageBody} setMessageData={setMessageData}/>
           <CommentCard/>
           
           
         </div>
-    </div>:
-    <div className=' flex lg:w-[600px]   md:w-[300px] w-full  font-poppins  '>
+    </div></>:
+    <div className=' flex  w-full  font-poppins  '>
       <div className='flex gap-x-2 flex-wrap items-center'>
         <h4 className='font-bold'>{targetTrail.trailName ? targetTrail.trailName : "Carregando... "}:</h4>
         <h2 className='font-semibold text-black/75'>{targetActivity?.activityName}</h2>
@@ -47,13 +57,11 @@ export default function CalygamActivityDetail() {
         </div>
         <div className='flex flex-col w-full'>
           <p className='text-lg text-calygam-purple-semi-strong'>{viewSubmissions?"Sua Entrega":"Entregar"}</p>
-          <div className='flex justify-between rounded-xl flex-wrap bg-green-200/30 my-2 p-2 w-full'>
-            <div className='flex '>
-              <p className=''>Coloque os arquivos aqui {">"}</p>
-            </div>
-            <div>
+          <div className='flex  rounded-xl flex-wrap bg-green-200/30 my-2 p-2 w-full'>
+     
+          
             <SendActivityArea viewSubmissions={viewSubmissions} setViewSubmissions={setViewSubmissions} />
-          </div>
+         
           </div>
         </div>
         <div className='flex flex-col h-full w-full '>

@@ -40,8 +40,8 @@ if (name === "trailPassword") {
   if (name === "trailVacancy") {
     const onlyNums = value.replace(/\D/g, "") || "0";
     const numInt = parseInt(onlyNums)
-    if (numInt > 45) return
-    if (onlyNums.length > 2) return
+    if (numInt > 999) return
+    if (onlyNums.length > 3) return
     const formatted = FormatCoins(onlyNums);
     setForm(prev => ({ ...prev, trailVacancy: formatted }));
     return;
@@ -65,13 +65,13 @@ if (name === "trailPassword") {
   }
 
   if (name === "trailVacancy") {
-    if (value.length > 2) return;
+    if (value.length > 3) return;
     setForm(prev => ({ ...prev, trailVacancy: value }));
     return;
   }
 
   if (name === "trailName") {
-    if (value.length > 20) return;
+    if (value.length > 30) return;
     
      setFormErrors(prev => ({ ...prev, trailName: value.length>0?"batatonananana":"" }));
      

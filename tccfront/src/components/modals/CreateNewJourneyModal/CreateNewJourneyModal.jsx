@@ -98,7 +98,7 @@ export default function CreateNewJourneyModal() {
     const abc = form?.trailName &&
       form?.trailDescription &&
       form?.trailVacancy > 0 &&
-      form?.trailVacancy < 60
+      form?.trailVacancy < 1000
     if (!targetTrailId) {
       return abc;
     } else {
@@ -106,7 +106,7 @@ export default function CreateNewJourneyModal() {
         form?.trailName &&
         form?.trailDescription &&
         form?.trailVacancy > 0 &&
-        form?.trailVacancy < 60
+        form?.trailVacancy < 1000
       );
     }
   }, [form, formErrors]);

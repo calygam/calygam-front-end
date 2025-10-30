@@ -361,7 +361,7 @@ export default function CreateAndShowTrailManagement() {
                 Limpar
               </button>
 
-              {targetTrailId? form.trailName !== '' && form.trailDescription !== '' && form.trailVacancy > 0 && form.trailVacancy < 60 ? (
+              {targetTrailId? form.trailName !== '' && form.trailDescription !== '' && form.trailVacancy > 0 && form.trailVacancy < 1000 ? (
                 <button type="button" onClick={() => goToNextForm(step, setStep, form, setForm)} className="px-6 h-[40px] bg-red-300 text-white rounded-lg border-b-4 border-gray-500/45 hover:border-b-0">
                   Próximo
                 </button>
@@ -369,7 +369,7 @@ export default function CreateAndShowTrailManagement() {
                 <button disabled type="button" className="px-6 h-[40px] bg-black/15 cursor-not-allowed text-white/75 rounded-lg border-b-4 border-black/15">
                   Próximo
                 </button>
-              ): form.trailName !== '' && form.trailDescription !== '' && form.trailVacancy > 0 && form.trailVacancy < 60 && formErrors.trailPassword === "" ? (
+              ): form.trailName !== '' && form.trailDescription !== '' && form.trailVacancy > 0 && form.trailVacancy < 1000 && formErrors.trailPassword === "" ? (
                 <button type="button" onClick={() => goToNextForm(step, setStep, form, setForm)} className="px-6 h-[40px] bg-red-300 text-white rounded-lg border-b-4 border-gray-500/45 hover:border-b-0">
                   Próximo
                 </button>

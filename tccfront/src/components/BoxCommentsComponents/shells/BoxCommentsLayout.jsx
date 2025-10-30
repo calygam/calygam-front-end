@@ -18,7 +18,7 @@ export default function BoxCommentsLayout({msgState,setMessageBody,setMessageDat
   
   return (
     <div className='flex flex-col  w-full'>
-      <div className='w-[75%] flex gap-y-2 flex-col'>
+      <div className='w-[50%] flex gap-y-2 flex-col'>
         <CommentTextArea setMessageBody={setMessageBody} targetValue={msgState.bodyMsg.messageActivityDescription} modeArea={"messageActivityDescription"}/>
         <div className='self-end'>
           {msgState.bodyMsg.messageActivityDescription.length>0?

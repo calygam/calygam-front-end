@@ -26,7 +26,7 @@ export default function UserSubmittedArchives({usr}) {
                                 <img src={usr.userArchiveUrl} alt="Foto de Perfil" className={`w-[35px] h-[35px] object-cover rounded-full ${isImageLoading ? "hidden" : "block"}`} onLoad={() => setIsImageLoading(false)} /> : null}
         <p className='text-sm text-white font-semibold line-clamp-2'>{usr.userName.split("").map((teste,index)=>{
           let testev2 =""
-          if(index<7){
+          if(index<16){
             testev2 +=teste
           } 
           return testev2})}</p>
@@ -38,8 +38,8 @@ export default function UserSubmittedArchives({usr}) {
           <div key={index} className='rounded-md p-2 text-wrap w-full flex gap-1 bg-green-500'>
             <span className='rounded-md p-1 bg-gray-500 text-white font-semibold'>{sub.submissionOriginalName.split('.')[1]}</span>
             {sub.submissionOriginalName.length>10?
-                        <Link to={sub.submissionArchiveUrl} className='rounded-md p-1 text-purple-950  font-semibold text-wrap'>{sub.submissionOriginalName.split('.')[0].slice(0,10) +"..."}</Link>
-                        :                        <Link to={sub.submissionArchiveUrl} className='rounded-md p-1 text-purple-950  font-semibold text-wrap'>{sub.submissionOriginalName.split('.')[0].slice(0,10)}</Link>}
+                        <Link to={sub.submissionArchiveUrl} className='rounded-md p-1 text-purple-950  font-semibold text-wrap'>{sub.submissionOriginalName.split('.')[0].slice(0,14) +"..."}</Link>
+                        :                        <Link to={sub.submissionArchiveUrl} className='rounded-md p-1 text-purple-950  font-semibold text-wrap'>{sub.submissionOriginalName.split('.')[0].slice(0,14)}</Link>}
           </div>
         ))}
       </div>

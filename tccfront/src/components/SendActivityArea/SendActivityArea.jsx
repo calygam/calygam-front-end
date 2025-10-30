@@ -75,13 +75,13 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
   }, [modalIsOpen])
 
   return (
-    <div className='flex flex-col w-full items-end' >
+    <div className='flex flex-col w-full items-end h-[300px] ' >
       {
         modalIsOpen && ["submitActivityModal"].includes(contentModal) &&
         <SubmitActivityForTeacherModal sending={sending} selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} trailId={trailId} targetActivityId={targetActivityId} setSending={setSending} deletingMode={deletingMode} progressId={progressId} />
       }
 
-      <div className='border border-dashed  w-auto group  font-poppins  rounded-xl overflow-hidden relative justify-center flex   bg-black/50 border-calygam-purple-semi-strong'
+      <div className='  group w-full h-[300px] font-poppins  rounded-xl overflow-hidden relative justify-center flex    bg-calygam-purple-tone-3'
         onDragOver={(e) => {
           e.preventDefault();
           setIsDragging(true)
@@ -113,7 +113,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
               </label>
             </>
           ) : (
-            <div className='w-full h-full flex flex-col p-2 justify-start text-center rounded-2xl absolute backdrop-blur-sm overflow-y-auto custom-scrollbar max-h-40'>
+            <div className='w-full h-full flex flex-col p-2 justify-start text-center rounded-2xl absolute bg-calygam-purple-tone-3 overflow-y-auto custom-scrollbar max-h-full'>
               {viewSubmissions &&
                 <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 my-2 font-semibold border-b-purple-700 text-center text-white font-jersey'>
                   <p>Entregues</p>
@@ -159,7 +159,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
               {!(viewSubmissions) && selectedFiles?.map((file, index) => (
                 <motion.div
                   key={index}
-                  className='w-full rounded-md bg-purple-600 p-1 border border-dashed border-black flex justify-between items-center mb-2'
+                  className='w-full rounded-md bg-purple-600 p-1   border-black flex justify-between items-center mb-2'
                   initial={hasAnimated ? false : { scale: 0.9 }}
                   animate={{ scale: 1.00 }}
                   transition={{ type: 'spring', stiffness: 200, mass: 2 }}
@@ -189,7 +189,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
             </div>
           )}
         </div>
-        <div className='w-full rounded-2xl flex justify-center items-center cursor-pointer'>
+        <div className='w-full rounded-2xl flex  justify-center items-center cursor-pointer'>
           <input
             type="file"
             id='file-do-input-submit'
@@ -198,11 +198,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
             multiple
             className="hidden"
           />
-          <img
-            src={sendActivityArchive}
-            alt="Enviar arquivo"
-            className='w-full duration-500 rounded-2xl'
-          />
+         
         </div>
       </div>
 

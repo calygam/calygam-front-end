@@ -16,7 +16,7 @@ export default function DeliveredActivitiesUsers() {
         console.log(submissionBaggage)
     }, [progressId])
     return (
-        <div className='grid lg:grid-cols-3 gap-4 my-4  md:grid-cols-2 grid-cols-1'>
+        <div className='grid lg:grid-cols-4 gap-4 my-4  md:grid-cols-2 grid-cols-1'>
 
             {submissionBaggage?.submissionOfStudents.map((usr,index) => (
                 <div className='flex flex-col' key={index}>
