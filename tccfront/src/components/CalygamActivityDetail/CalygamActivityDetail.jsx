@@ -12,6 +12,7 @@ import { useMessageCall } from '../../utils/FormsReducers/MessageReducerUtil/use
 import { useMessageContext } from '../../hooks/useMessageContext.js';
 import { UseDataProfile } from '../../hooks/UseDataProfile/UseDataProfile.js';
 import { UseLoading } from '../../hooks/UseLoading/UseLoading.js';
+import LinkActivityArea from '../../components/LinkActivityArea/LinkActivityArea.jsx' 
 import DeliveredActivitiesUsers from '../../components/DeliveredActivitiesUsers/DeliveredActivitiesUsers.jsx'
 
 export default function CalygamActivityDetail() {
@@ -31,9 +32,12 @@ export default function CalygamActivityDetail() {
     dataProfile?.userId==targetTrail?.user?
     <>
     <div className=' flex  w-full  font-poppins  '>
-      <div className='flex gap-x-2 flex-wrap items-center'>
+      <div className='flex  gap-x-2 flex-wrap items-center'>
         <h4 className='font-bold'>{targetTrail.trailName ? targetTrail.trailName : "Carregando... "}:</h4>
-        <h2 className='font-semibold text-black/75'>{targetActivity?.activityName}</h2>
+
+        <h2 className='font-semibold text-black/75'>{targetActivity?.activityName} - </h2>
+                {targetTrail.trailPassword?
+        <h4 className='font-bold'>Código: {targetTrail.trailPassword}</h4>:null}
         <div className='w-full my-4'>
           <p>{targetActivity?.activityDescription}</p>
         </div>
@@ -61,7 +65,7 @@ export default function CalygamActivityDetail() {
      
           
             <SendActivityArea viewSubmissions={viewSubmissions} setViewSubmissions={setViewSubmissions} />
-         
+      
           </div>
         </div>
         <div className='flex flex-col h-full w-full '>

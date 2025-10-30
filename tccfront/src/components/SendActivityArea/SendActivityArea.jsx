@@ -13,11 +13,13 @@ import SubmitActivityForTeacherModal from '../../components/modals/SubmitActivit
 import closeX from '../../assets/img/close-enter-to-trail.svg'
 import { ExplorerProcessFilesUtil } from '../../utils/HandleChangeDragDropUtil/ExplorerProcessFilesUtil.js';
 import { HandleDeleteSubmit } from '../../utils/HandleDeleteSubmit/HandleDeleteSubmit.js';
+import LinkActivityArea from '../LinkActivityArea/LinkActivityArea.jsx';
+import AddNewLinkModal from '../modals/AddNewLinkModal/AddNewLinkModal.jsx';
 export default function SendActivityArea({ viewSubmissions, setViewSubmissions }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const { dataProfile, searchDataProfile } = UseDataProfile()
   const [hasAnimated, setHasAnimated] = useState(false);
-
+  const [arrayLinks,setArrayLinks] = useState([])
   const [isDragging, setIsDragging] = useState(false);
   const { modalIsOpen, openModal, contentModal } = UseModalHook()
   const [isDeleting, setIsDeleting] = useState(false)
@@ -75,7 +77,11 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
   }, [modalIsOpen])
 
   return (
-    <div className='flex flex-col w-full items-end h-[300px] ' >
+    <div className='flex flex-col w-full items-end min-h-[300px] ' >
+         {
+        modalIsOpen && "addLinkToSubmit" === contentModal?
+        <AddNewLinkModal setStringLinkSetter={setArrayLinks} stringLinkGetter={arrayLinks}  />:null
+      }
       {
         modalIsOpen && ["submitActivityModal"].includes(contentModal) &&
         <SubmitActivityForTeacherModal sending={sending} selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} trailId={trailId} targetActivityId={targetActivityId} setSending={setSending} deletingMode={deletingMode} progressId={progressId} />
@@ -105,10 +111,10 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
 
 
             <>
-              <label htmlFor="file-do-input-submit" className='text-calygam-purple-semi-strong cursor-pointer lg:block hidden py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-calygam-purple-semi-strong font-semibold rounded-lg'>
+              <label htmlFor="file-do-input-submit" className='text-white cursor-pointer lg:block hidden py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-white font-semibold rounded-lg'>
                 Clique para selecionar arquivos
               </label>
-              <label htmlFor="file-do-input-submit" className='text-calygam-purple-semi-strong cursor-pointer lg:hidden block py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-calygam-purple-semi-strong font-semibold rounded-lg'>
+              <label htmlFor="file-do-input-submit" className='text-white cursor-pointer lg:hidden block py-4 px-0 border border-dashed transition-all ease-linear duration-[900ms] border-calygam-purple-semi-strong font-semibold rounded-lg'>
                 Toque para selecionar arquivos
               </label>
             </>
@@ -150,7 +156,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                 </div>
               ))}
               {!(viewSubmissions) &&
-                <span className='bg-purple-800 border-b-4 py-2 px-4 text-shadow[] rounded-xl shadow-md shadow-purple-600/50 mb-6 font-semibold border-b-purple-700 text-center text-white font-jersey'>
+                <span className='bg-purple-800 border-b-4 py-2 px-4  rounded-xl shadow-md shadow-purple-600/50 mb-6 font-semibold border-b-purple-700 text-center text-white font-jersey'>
                   <p>Área de Entrega</p>
                 </span>
               }
@@ -197,7 +203,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
          
         </div>
       </div>
-
+      <LinkActivityArea ArrayLinks={arrayLinks}/>
 
       <div className='flex flex-wrap gap-x-4 gap-y-4  my-2 '>
         {submissionBaggage?.submissions?.length>0&&
@@ -208,6 +214,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
           : < button className='outline-none py-2  px-4 border-0 border-b-4 hover:border-b-0 h-[35px]  border-gray-600/50 font-medium   rounded-md text-xs text-white/75 cursor-not-allowed bg-calygam-purple-semi-strong/50' disabled={true} type='button'>Preparar</button>
         }
       </div>
+            
     </div >
   );
 }

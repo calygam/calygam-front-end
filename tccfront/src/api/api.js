@@ -4,8 +4,6 @@ const api =axios.create({
      baseURL:'https://calygamb-dmdzafhbf4aaf6bp.brazilsouth-01.azurewebsites.net/'
     //baseURL:'http://localhost:8080/'
 })
-
-//aaaaa
 api.interceptors.request.use(
     (config)=>{
         const token = localStorage.getItem('token')
