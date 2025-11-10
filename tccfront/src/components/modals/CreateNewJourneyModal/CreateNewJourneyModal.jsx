@@ -277,12 +277,16 @@ export default function CreateNewJourneyModal() {
   };
 
   useEffect(() => {
+    if(withPassword){
     generateRandomSecureCode(setLoading, setLoadingText)
       .then(password => setRandomPassword(password))
-      .catch(console.error)
+      a.catch(console.error)
+    }else{
+      setRandomPassword("")
+    }
 
 
-  }, [])
+  }, [withPassword])
 
   if (isPublish) {
     return (<PublishTrail setIsPublish={setIsPublish} trailPassword={targetTrail.trailPassword} isPublish={isPublish} trailName={targetTrail.trailName} setTrailCode={setCodeTarget} trailCode={codeTarget} handleUpdate={submitForm} trailId={targetTrail.trailId} searchTrails={searchtrails} />)
