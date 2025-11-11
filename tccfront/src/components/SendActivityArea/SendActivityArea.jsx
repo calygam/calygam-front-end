@@ -203,7 +203,8 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
          
         </div>
       </div>
-      <LinkActivityArea ArrayLinks={arrayLinks}/>
+    
+      {/* <LinkActivityArea ArrayLinks={arrayLinks}/> */}
 
       <div className='flex flex-wrap gap-x-4 gap-y-4  my-2 '>
         {submissionBaggage?.submissions?.length>0&&
