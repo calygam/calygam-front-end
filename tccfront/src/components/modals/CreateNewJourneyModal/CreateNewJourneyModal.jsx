@@ -280,7 +280,7 @@ export default function CreateNewJourneyModal() {
     if(withPassword){
     generateRandomSecureCode(setLoading, setLoadingText)
       .then(password => setRandomPassword(password))
-      a.catch(console.error)
+      .catch(console.error)
     }else{
       setRandomPassword("")
     }
