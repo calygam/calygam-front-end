@@ -57,16 +57,7 @@ export default function DetailMakeActivityPage() {
                 <p className='bg-zinc-700 text-white font-semibold text-2xl'>Carregando...</p>
               </span>
             }
-            {!targetTrail?.trailPassword &&
-            <img src={targetTrail.trailImage} alt="" className='
-                                                                    w-[260px]
-                                                                    h-[260px]
-                                                                     border-4 border-x-purple-900
-                                                                     border-y-purple-600
-                                                                    bg-cover 
-                                                                   
-                                                      
-                                                                    rounded-md' onLoad={()=>setIsImageLoading(!isImageLoading)} />}
+          
           </div>
         </div>
       </div>
