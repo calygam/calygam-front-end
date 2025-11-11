@@ -49,7 +49,7 @@ export default function DetailMakeActivityPage() {
 
           <CalygamActivityDetail />
 
-          <div className={`flex flex-col gap-y-3    items-center w-[350px] `}>
+          {/* <div className={`flex flex-col gap-y-3    items-center w-[350px] `}>
             {targetTrail?.trailPassword ?
               <p className='p-2 rounded-full text-white text-center truncate text-2xl border-4 border-yellow-800/55 font-bold w-full  bg-zinc-700'>{targetTrail.trailPassword.length>9?"Descartar": targetTrail.trailPassword}</p>
               : isImageLoading &&
@@ -58,7 +58,7 @@ export default function DetailMakeActivityPage() {
               </span>
             }
           
-          </div>
+          </div> */}
         </div>
       </div>
 
