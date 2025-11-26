@@ -17,6 +17,7 @@ export default function CalygamTableManagemet({ rowOfTable }) {
 
     const count = useMotionValue(3)
     const rounded = useTransform(count, (value) => Math.round(value))
+    const questTrailId = location.pathname.includes("/Trail/Criar")
 
     useEffect(() => {
         const unsubscribe = rounded.on("change", (latest) => {
@@ -53,7 +54,7 @@ export default function CalygamTableManagemet({ rowOfTable }) {
                 <button className="text-gray-500 hover:text-gray-700"></button>
             </div>
  {rowOfTable?.length > 0 ? (
-            <div className="overflow-x-auto  custom-scrollbar divide-gray-300 border-gray-200 shadow-md" role="table" aria-label="Lista de membros do time">
+            <div className={`overflow-x-auto  custom-scrollbar divide-gray-300 border-gray-200 shadow-md ${rowOfTable?.length > 5?"overflow-y-auto max-h-[400px]":""} `} role="table" aria-label="Lista de membros do time">
                 <div className='w-[800px] min-w-max md:w-full'>
                 <div className={`flex w-full  border-b border-gray-400/50 pb-4 text-xs gap-2 p-3 text-gray-600 bg-gray-200/50`} role="row">
                     <div className={`font-semibold w-full px-4 ${rowOfTable[0]?.activities?.length>0?"min-w-[300px]":""}`} role="cell">{rowOfTable[0]?.activities?.length>0?"Nome Da Trilha":"Nome"}</div>
@@ -99,8 +100,8 @@ export default function CalygamTableManagemet({ rowOfTable }) {
                     
                 }
 
-                {rowOfTable?.length > 5 &&
-                    <div className="flex gap-x-1 border-2 shadow-black/50 border-gray-400/50 rounded-lg ">
+                {rowOfTable?.length > 5 && !questTrailId&&
+                    <div className="flex gap-x-1 border-2 shadow-black/50 border-gray-400/50 rounded-lg">
                         <button
                             type="button"
                             disabled={EnableButton}

@@ -14,7 +14,7 @@ import { UseProgressHook } from '../../../hooks/UseProgressHook/UseProgressHook'
 import { UseDataActivitiesPerTrailIdHook } from '../../../hooks/UseDataActivitiesPerTrailIdHook/UseDataActivitiesPerTrailIdHook'
 import { HandleDeleteSubmit } from '../../../utils/HandleDeleteSubmit/HandleDeleteSubmit'
 
-export default function SubmitActivityForTeacherModal({progressId,sending,setSending,selectedFiles,setSelectedFiles,trailId,targetActivityId,deletingMode}) {
+export default function SubmitActivityForTeacherModal({progressId,sending,setSending,selectedFiles,setSelectedFiles,trailId,targetActivityId,deletingMode,links,SetArrayLinks}) {
  const [hasAnimated, setHasAnimated] = useState(false)
 const { dataProfile, searchDataProfile } = UseDataProfile()
   const { submissionBaggage, ListenerOfDowloadableArchivesSubmited } = UseProgressHook()
@@ -38,7 +38,7 @@ const navigation = useNavigate()
     setLoading(true)
     setLoadingText("Concluindo entrega...")
     e.preventDefault();
-    if (selectedFiles.length === 0) {
+    if (selectedFiles.length === 0 && links.length===0) {
 
       return;
     }
@@ -46,7 +46,11 @@ const navigation = useNavigate()
     const formData = new FormData();
     selectedFiles.forEach(file => {
       formData.append("activityFiles", file);
+     
     });
+    links.forEach(link=>{
+      formData.append("activityLinks",link)
+    })
 
     try {
       const response = await api.put(
@@ -66,6 +70,7 @@ const navigation = useNavigate()
             }
       console.log(response.data);
       setSelectedFiles([]);
+      SetArrayLinks([])
       searchDataProfile()
       
       ListenerOfDowloadableArchivesSubmited(progressId)
@@ -73,6 +78,9 @@ const navigation = useNavigate()
 
     }   catch (e) {
   const errorMsg = e?.response?.data;
+  console.log(e)
+  console.log(e?.response)
+  console.log(errorMsg)
   closeModal("", errorMsg);
 }
     finally {

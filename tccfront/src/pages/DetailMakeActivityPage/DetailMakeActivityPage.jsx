@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 //componentes
 import CalygamHeader from '../../components/CalygamHeader/CalygamHeader.jsx'
 import CalygamActivityDetail from '../../components/CalygamActivityDetail/CalygamActivityDetail.jsx'
@@ -35,6 +35,7 @@ export default function DetailMakeActivityPage() {
     { navRoute: "/", navNameRoute: "Trilhas", routeIcon: homeIcon }
 
   ]
+
   return (
     <div className='w-full flex flex-col font-poppins '>
 
@@ -48,26 +49,6 @@ export default function DetailMakeActivityPage() {
         <div className='  w-full flex flex-wrap gap-x-4 gap-y-6 md:gap-y-0   '>
 
           <CalygamActivityDetail />
-
-          <div className={`flex flex-col gap-y-3    items-center w-[350px] `}>
-            {targetTrail?.trailPassword ?
-              <p className='p-2 rounded-full text-white text-center truncate text-2xl border-4 border-yellow-800/55 font-bold w-full  bg-zinc-700'>{targetTrail.trailPassword.length>9?"Descartar": targetTrail.trailPassword}</p>
-              : isImageLoading &&
-              <span className='absolute flex bg-gradient-to-tr -z-10   rounded-full '>
-                <p className='bg-zinc-700 text-white font-semibold text-2xl'>Carregando...</p>
-              </span>
-            }
-            {!targetTrail?.trailPassword &&
-            <img src={targetTrail.trailImage} alt="" className='
-                                                                    w-[260px]
-                                                                    h-[260px]
-                                                                     border-4 border-x-purple-900
-                                                                     border-y-purple-600
-                                                                    bg-cover 
-                                                                   
-                                                      
-                                                                    rounded-md' onLoad={()=>setIsImageLoading(!isImageLoading)} />}
-          </div>
         </div>
       </div>
 
