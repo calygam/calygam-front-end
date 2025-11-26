@@ -355,7 +355,7 @@ export default function CreateNewJourneyModal() {
                             name="trailPassword"
                             id="passwordTrail"
                             placeholder="senha"
-                            value={withPassword?randomPassword:null}
+                            value={withPassword?randomPassword:""}
                             disabled={true}
 
                             // onChange={e => handleInputModify(e, step, setForm, form, setImagePreview, setFormErrors)}

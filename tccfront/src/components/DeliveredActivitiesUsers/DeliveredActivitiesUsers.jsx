@@ -20,7 +20,9 @@ export default function DeliveredActivitiesUsers() {
 
             {submissionBaggage?.submissionOfStudents.map((usr,index) => (
                 <div className='flex flex-col' key={index}>
+                    {usr&&
                 <UserSubmittedArchives usr={usr} />
+                    }
                 </div>
             ))}
 

@@ -31,8 +31,12 @@ export default function CalygamActivityDetail() {
      dataProfile?.userId==null||targetTrail?.user==null?<p className='font-poppins text-black font-bold'>Aguarde...</p>:
     dataProfile?.userId==targetTrail?.user?
     <>
-    <div className=' flex  w-full  font-poppins  '>
+    <div className=' flex flex-col  w-full  font-poppins  '>
+                      {targetTrail.trailPassword?
+        <h4 className=' w-fit my-2 bg-gray-400 rounded-full p-1 border-2 border-gray-900'>Senha da trilha | <span className='text-black font-bold'> {targetTrail.trailPassword} </span></h4>:<p className=' w-fit my-2 bg-gray-400 rounded-full p-1 border-2 border-gray-900'>Sem senha</p>}
+
       <div className='flex  gap-x-2 flex-wrap items-center'>
+        
         <h4 className='font-bold'>{targetTrail.trailName ? targetTrail.trailName : "Carregando... "}:</h4>
 
         <h2 className='font-semibold text-black/75'>{targetActivity?.activityName}  </h2>

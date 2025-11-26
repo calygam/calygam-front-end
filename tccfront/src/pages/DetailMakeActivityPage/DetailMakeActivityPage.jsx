@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 //componentes
 import CalygamHeader from '../../components/CalygamHeader/CalygamHeader.jsx'
 import CalygamActivityDetail from '../../components/CalygamActivityDetail/CalygamActivityDetail.jsx'
@@ -35,6 +35,7 @@ export default function DetailMakeActivityPage() {
     { navRoute: "/", navNameRoute: "Trilhas", routeIcon: homeIcon }
 
   ]
+
   return (
     <div className='w-full flex flex-col font-poppins '>
 

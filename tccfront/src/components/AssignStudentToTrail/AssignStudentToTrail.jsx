@@ -75,7 +75,7 @@ export default function AssignStudentToTrail({ setModelIsOpen, trailData }) {
          
 
           <div className='flex flex-col '>
-            <label htmlFor='passwordTrail' className='text-sm my-1'>Informe uma Senha</label>
+            <label htmlFor='passwordTrail' className='text-sm my-1 text-white'>Informe a senha:</label>
             <div className='w-full border-2 border-gray-500 pr-2 bg-white rounded-xl overflow-hidden flex'>
               <div className='bg-black rounded-l-lg'>
                 <img src={trailData.trailImage} alt="" className='w-[50px] h-[50px] object-cover ' />
@@ -87,7 +87,7 @@ export default function AssignStudentToTrail({ setModelIsOpen, trailData }) {
                 <img src={eyeIsOpen ? eyeOpen : eyeClose} alt="" className='w-[25px] outline-none h-[25px] object-cover rounded-r-lg' />
               </button>
             </div>
-            <p className={`text-xs font-semibold ${passwordValue?.length<8 ? "text-red-500" : "text-green-500"} max-w-[200px] my-2`}>{passwordValue?.length<8?"*Pelo menos 8 caracteres":"° Senha Segura."}</p>
+            {/* <p className={`text-xs font-semibold ${passwordValue?.length<8 ? "text-red-500" : "text-green-500"} max-w-[200px] my-2`}>{passwordValue?.length<8?"*Pelo menos 8 caracteres":"° Senha Segura."}</p> */}
           </div>
         </form>:null}
         

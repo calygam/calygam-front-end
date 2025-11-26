@@ -59,6 +59,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
     }
     ExplorerProcessFilesUtil(event.target.files, setSelectedFiles)
   };
+  
 
 
 
@@ -75,6 +76,9 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
       setIsDeleting(false)
     }
   }, [modalIsOpen])
+  useEffect(()=>{
+    console.log(submissionBaggage?.submissions)
+  },[submissionBaggage?.submissions])
 
   return (
     <div className='flex flex-col w-full items-end min-h-[300px] ' >
@@ -84,7 +88,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
       }
       {
         modalIsOpen && ["submitActivityModal"].includes(contentModal) &&
-        <SubmitActivityForTeacherModal sending={sending} selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} trailId={trailId} targetActivityId={targetActivityId} setSending={setSending} deletingMode={deletingMode} progressId={progressId} />
+        <SubmitActivityForTeacherModal sending={sending} selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} trailId={trailId} targetActivityId={targetActivityId} setSending={setSending} deletingMode={deletingMode} progressId={progressId} links={arrayLinks} SetArrayLinks={setArrayLinks}/>
       }
 
       <div className='  group w-full h-[300px] font-poppins  rounded-xl overflow-hidden relative justify-center flex    bg-calygam-purple-tone-3'
@@ -126,6 +130,7 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                 </span>
               }
               {submissionBaggage?.submissions.length > 0 && viewSubmissions && submissionBaggage.submissions.map((file, index) => (
+                file.activityOriginalFileName != null && (
                 <div
                   key={index}
 
@@ -138,9 +143,9 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                   >
                     <div className='flex items-center gap-x-2'>
                       <span className='rounded-md p-2 hidden md:block border-l border-gray-600  bg-gray-500'>
-                        <p className='text-white '>.{file.activitySubmitedFile.split('.').pop()}</p>
+                        <p className='text-white '>.{file?.activitySubmitedFile.split('.').pop()}</p>
                       </span>
-                      <p className=' md:max-w-[70px] max-w-[80px]   md:block text-white truncate'>{file.activityOriginalFileName.split('.').slice(0, -1).join('.')}</p>
+                      <p className=' md:max-w-[70px] max-w-[80px]   md:block text-white truncate'>{file?.activityOriginalFileName.split('.').slice(0, -1).join('.')}</p>
 
                     </div>
                     <div className=' items-center flex gap-x-2'>
@@ -154,13 +159,13 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                     </div>
                   </div>
                 </div>
-              ))}
+              )))}
               {!(viewSubmissions) &&
                 <span className='bg-purple-800 border-b-4 py-2 px-4  rounded-xl shadow-md shadow-purple-600/50 mb-6 font-semibold border-b-purple-700 text-center text-white font-jersey'>
                   <p>Área de Entrega</p>
                 </span>
               }
-              {!(viewSubmissions) && selectedFiles?.map((file, index) => (
+              { selectedFiles?.map((file, index) => (
                 <div
                   key={index}
                   className='w-full rounded-md bg-purple-600 p-1   border-black flex justify-between items-center mb-2'
@@ -168,9 +173,9 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                 >
                   <div className='flex items-center gap-x-1'>
                     <span className='rounded-md p-2 border border-gray-800 bg-gray-500'>
-                      <p className='text-white'>.{file.name.split('.').pop()}</p>
+                      <p className='text-white'>.{file?.name.split('.').pop()}</p>
                     </span>
-                    <p className='max-w-[120px] text-white truncate'>{file.name.split('.').slice(0, -1).join('.')}</p>
+                    <p className='max-w-[120px] text-white truncate'>{file?.name.split('.').slice(0, -1).join('.')}</p>
 
                   </div>
                   <button
@@ -181,13 +186,13 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
                   </button>
                 </div>
               ))}
-              {!(viewSubmissions) &&
+              
                 <label htmlFor="file-do-input-submit" className='w-full h-[35px] rounded-md px-6 py-4 items-center cursor-pointer  text-white/85  justify-between bg-white/15 border flex border-white/75'>
                   <p>+</p>
                   <p>Adicionar</p>
 
                 </label>
-              }
+              
             </div>
           )}
         </div>
@@ -203,14 +208,13 @@ export default function SendActivityArea({ viewSubmissions, setViewSubmissions }
          
         </div>
       </div>
-    
-      {/* <LinkActivityArea ArrayLinks={arrayLinks}/> */}
+      <LinkActivityArea ArrayLinks={arrayLinks} setArrayLinks={setArrayLinks} yourLinks={submissionBaggage} viewSubmissions={viewSubmissions}/>
 
       <div className='flex flex-wrap gap-x-4 gap-y-4  my-2 '>
         {submissionBaggage?.submissions?.length>0&&
           <button type='button' className='bg-green-800 outline-none py-2 px-4 h-[35px] rounded-md border-b-4 p-0 border-green-900 text-xs  font-medium hover:border-none text-white' onClick={() => setViewSubmissions(!viewSubmissions)}>Modo Feito</button>
         }
-        {selectedFiles.length > 0 ?
+        {selectedFiles.length > 0 || arrayLinks.length>0 ?
           < button className='outline-none py-2 px-4  border-0 border-b-4 hover:border-b-0 h-[35px]  border-purple-950  font-medium rounded-md text-xs text-white bg-calygam-purple-semi-strong' disabled={sending} type='button' onClick={() => openModal("submitActivityModal")}>Preparar</button>
           : < button className='outline-none py-2  px-4 border-0 border-b-4 hover:border-b-0 h-[35px]  border-gray-600/50 font-medium   rounded-md text-xs text-white/75 cursor-not-allowed bg-calygam-purple-semi-strong/50' disabled={true} type='button'>Preparar</button>
         }
