@@ -39,9 +39,8 @@ export default function CalygamActivityDetail() {
         
         <h4 className='font-bold'>{targetTrail.trailName ? targetTrail.trailName : "Carregando... "}:</h4>
 
-        <h2 className='font-semibold text-black/75'>{targetActivity?.activityName}  </h2>
-                {targetTrail.trailPassword?
-        <h4 className='font-bold'>Código: {targetTrail.trailPassword}</h4>:null}
+        <h2 className='font-semibold text-black/75'>{targetActivity?.activityName}</h2>
+
         <div className='w-full my-4'>
           <p>{targetActivity?.activityDescription}</p>
         </div>
