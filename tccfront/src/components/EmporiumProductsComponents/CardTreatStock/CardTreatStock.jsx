@@ -41,9 +41,9 @@ export default function CardTreatStock({ pet }) {
     return (
         <motion.div
             key={filters.orderByMinMax}
-            initial={{ y: -80, x: -80 }}
-            animate={{ y: 0, x: 0 }}
-            transition={{ type: 'spring', stiffness: 450 + pet.petId, mass: pet.petId }}
+            initial={{ scale:0.60 }}
+            animate={{ scale:1.00 }}
+            transition={{ type: 'spring', stiffness: 300, mass:1 }}
             className='w-[160px] relative bg-gradient-to-tr my-2 font-poppins p-1 py-2 gap-y-2 flex flex-col border-8 border-calygam-purple-semi-strong group   rounded-3xl from-gray-500 via-gray-600 to-gray-500'
         >
             {dataProfile.userXp < pet.emporiumXpRequired &&

@@ -100,7 +100,7 @@ export default function RegisterPage() {
           <div className='grid md:grid-cols-2 grid-cols-1 gap-x-12 w-full place-items-center md:place-items-stretch   overflow-hidden  '
           >
             <div
-              className='md:bg-white/20 h-full flex flex-col font-poppins items-center text-start   md:backdrop-blur-lg'
+              className='md:bg-white/20 h-fit md:min-h-[100dvh] gap-6 flex flex-col font-poppins items-center text-start   md:backdrop-blur-lg'
 
             >
               <motion.img
@@ -109,9 +109,9 @@ export default function RegisterPage() {
                 transition={{ duration: 1, ease: 'easeOut' }}
                 src={discussionPurple}
                 alt=""
-                className='lg:w-[600px]  lg:h-[600px] md:w-[400px] w-[300px] h-[300px] md:h-[400px]'
+                className='lg:w-[600px]  lg:h-[600px] hidden md:block md:w-[400px] w-[300px] h-[300px] md:h-[400px]'
               />
-              <div className='relative lg:text-2xl lg:-mt-32 md:text-base md:-mt-24 '>
+              <div className='hidden md:block relative lg:text-2xl lg:-mt-32 md:text-base md:-mt-24 '>
                 <p className=' text-calygam-purple-medium-light     font-semibold'>Entre na sua jornada de aprendizado</p>
                 <p className=' text-calygam-purple-medium-light     font-semibold'>e desbloqueie conquistas a cada</p>
                 <p className=' text-calygam-purple-medium-light   font-semibold'>passo!</p>

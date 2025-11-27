@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import FooterAssesment from '../../components/FooterAssessment/FooterAssesment.jsx'
 
@@ -31,6 +31,7 @@ export default function HomePage() {
 
   const location = useLocation();
   const navigate = useNavigate()
+    const nextSectionRef = useRef(null);
 
 
   const { dataProfile } = UseDataProfile()
@@ -41,6 +42,17 @@ export default function HomePage() {
 
   //DESCOMENTAR ESSA LINHA PARA VOLTAR O LOGIN
   const { setToken } = useAuth();
+
+    const scrollToNextSection = () => {
+    const el = nextSectionRef.current;
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+
+      window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+
+    }
+  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -71,19 +83,26 @@ export default function HomePage() {
           <ShowInventoryModal />
         </AnimatePresence>}
 
-      <header>
+      <header className='relative'>
         <FlorestGradientBackground dataProfile={dataProfile} />
-
-
+              
+   <button
+        onClick={scrollToNextSection}
+        className="absolute p-4 w-fit h-fit opacity-75 border-2 border-white hover:opacity-100 outline-none rounded-full bg-white/45   inset-0 left-[90%] top-[50%] z-[188] cursor-pointer animate-bounce text-white flex text-4xl select-none"
+      >
+        ↓
+      </button>
       </header>
+   
       <main className='w-full space-y-14'>
+        
         {recentlyInteractIds.length > 0 ?
-          <div className='flex flex-col mt-6 items-center font-poppins w-full space-y-2 mx-auto '>
+          <div className='flex flex-col mt-6 items-center font-poppins w-full space-y-2 mx-auto ' ref={nextSectionRef}>
             <p className='font-medium'>Caminhos</p>
             <p className='lg:text-3xl md:text-xl text-lg font-semibold'>Acessados Recentemente</p>
             {loading ? <p>Recuperando seus Passos...</p> : <YourTrailsManager withRecentlyTrails={true} />}
 
-            <Link to={"/Biblioteca"} className='py-2 px-4 rounded-xl bg-gradient-to-tr font-medium w-fit flex items-center text-sm  text-black text-center gap-x-2'>Ver Mais <span className='text-lg'>{">"}</span>  </Link>
+            <Link to={"/Trilhas"} className='py-2 px-4 rounded-xl bg-gradient-to-tr font-medium w-fit flex items-center text-sm  text-black text-center gap-x-2'>Ver Mais <span className='text-lg'>{">"}</span>  </Link>
           </div> : <section className='flex flex-col mt-6 items-center gap-2 font-poppins w-full space-y-2 mx-auto '>
             <p className='font-medium'>Caminhos</p>
             <div className='flex-col items-center text-center gap-y-3'>
@@ -99,7 +118,7 @@ export default function HomePage() {
               <div className='w-[300px]' > <img src={AdobeIlustratorPresentation}/></div>
               <div className='w-[300px]'> <img src={codeExemplePresentation}/></div>
             </div>
-
+            <Link to={"/Trilhas"} className='py-2 px-4 rounded-xl bg-gradient-to-tr font-medium w-fit flex items-center text-sm  text-black text-center gap-x-2'>Ver Mais <span className='text-lg'>{">"}</span>  </Link>
           </section>}
 
         <PetSectionManager />

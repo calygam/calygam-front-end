@@ -77,7 +77,7 @@ console.log(pet)
             >
                 <div className='w-full flex justify-between p-4 items-center'>
                     <div className='flex items-center justify-center gap-x-1'>
-                        <img src={groupMembers} alt="membros" className='md:w-[25px] w-[15px]' />
+                   
                         <p className='text-black md:text-base text-xs font-medium'>{pet?.petId ? `Adiquirir - ${pet.petName}` : "batata"}</p>
                     </div>
                     <button className='flex outline-none justify-center items-center' onClick={() => {
@@ -94,25 +94,11 @@ console.log(pet)
                     <CardTreatStock pet={pet} />
                 </div>
                 <div className='flex justify-around w-full flex-wrap gap-y-2 md:flex-nowrap gap-x-4 p-4 pb-0 items-center'>
-                    <button className='py-2 px-4 bg-gradient-to-tr outline-none from-gray-200 via-gray-400 to-gray-500 text-black  flex justify-center border-b-4 h-[35px] hover:border-none hover:translate-y-1 transition-all ease-in-out border-gray-700/25 rounded-lg items-center' onClick={() => {
-                        setPurchase('itemCapture', null)
-                        closeModal("", "")
-                        setPurchase("confirmQuestion", 0)
-                    }}>Cancelar</button>
-                    {purchase.confirmQuestion == 0 ?
-                        <button className='py-2 px-4 bg-gradient-to-tr outline-none from-green-200 via-green-400 to-green-500 text-black  flex justify-center border-b-4 h-[35px] hover:border-none hover:translate-y-1 transition-all ease-in-out border-green-700/25 rounded-lg items-center' onClick={() => {
+                 
+                  
+                        <button className='py-2 px-4 bg-gradient-to-tr outline-none bg-black text-white  flex justify-center border-b-4 h-[35px] hover:border-none hover:translate-y-1 transition-all ease-in-out border-green-700/25 rounded-lg items-center' onClick={() => {
                             setPurchase("confirmQuestion", 1)
                         }}>Comprar</button>
-                        : <motion.button className='py-2 px-4 bg-gradient-to-tr outline-none font-semibold from-green-400 via-green-600 to-green-800 text-black  flex justify-center border-b-4 h-[35px] hover:border-none hover:translate-y-1 transition-all ease-in-out border-green-700/25 rounded-lg items-center' onClick={() => {
-                            handleFinishPurchase()
-                            setPurchase("confirmQuestion", 0)
-
-                        }}
-                        initial={{rotateY:90,rotateX:100,scale:1.15}}
-                        animate={{rotateX:0,rotateY:0,scale:1.00}}
-                        transition={{type:'spring',stiffness:200}}
-                        
-                        >Confirma?</motion.button>}
                 </div>
 
 

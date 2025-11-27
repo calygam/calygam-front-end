@@ -10,7 +10,7 @@ export default function StockOfTreats() {
         console.log("treats ------------------")
     },[stock])
   return (
-    <div className='w-full grid lg:grid-cols-6 justify-center place-items-center gap-8 md:grid-cols-4 grid-cols-1'>
+    <div className='w-fit grid lg:grid-cols-6 justify-center place-items-center gap-8 md:grid-cols-4 grid-cols-1'>
         {stock.treats.pets?.filter((targetPet=> targetPet.petName.toUpperCase().includes(filters.serchingProducts.toUpperCase()))).map((pet)=>(
             <CardTreatStock key={pet.petId} pet={pet}/>
         ))}

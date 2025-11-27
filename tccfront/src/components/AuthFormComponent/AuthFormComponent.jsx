@@ -73,7 +73,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
 
 
     return (
-        <motion.div className={`font-poppins flex flex-col items-center py-4  bg-white/40 rounded-2xl  w-[80%] my-10  `}
+        <motion.div className={`font-poppins flex flex-col items-center py-4 h-fit  bg-white/40 rounded-2xl  w-[80%] my-10  `}
         initial={{translateX:"130vw"}}
       animate={{translateX:"0vw"} }
       transition={{type:"tween",duration:1.5,ease:"easeInOut"}}>
@@ -99,7 +99,7 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
 
                     <motion.button
                         type="button"
-                        className="my-1 lg:w-8/12 w-full flex items-center bg-calygam-white-matte gap-x-2 md:px-8 px-4 rounded-lg outline-none py-3"
+                        className="my-1 lg:w-[55%]  w-full flex justify-center gap-4 items-center bg-calygam-white-matte gap-x-2 md:p-4 px-4 rounded-lg outline-none py-3"
                         onClick={goToGoogle}
                         variants={buttonVariants}
                         whileHover="hover"
@@ -124,14 +124,10 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
 
 
                 </div>
-                <div className='flex flex-col w-full items-center   space-y-2'>
+       
+                <form className='flex flex-col my-2 gap-y-6  w-full items-center h-full' onSubmit={handleSendFormAuth}>
 
-                    <p>OU</p>
-                    <span className='w-[100px] md:w-[150px] lg:w-[200px] h-[2px] bg-white' ></span>
-                </div>
-                <form className='flex flex-col my-6 space-y-3  w-full items-center h-full' onSubmit={handleSendFormAuth}>
-
-                    <div className='flex flex-col h-full w-full space-y-4'>
+                    <div className='flex flex-col h-full w-full gap-y-8'>
                         {nameRequired ?
                             <div className='flex flex-col gap-y-1  '>
                                 <label htmlFor="register-user-name" className={`font-light ${!newUser?"text-black":"text-white"} text-sm`}>Seu Usuário:</label>

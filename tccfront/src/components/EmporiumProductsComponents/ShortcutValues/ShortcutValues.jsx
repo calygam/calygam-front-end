@@ -25,7 +25,6 @@ export default function ShortcutValues() {
   return (
     <div className='w-full flex  flex-wrap items-center justify-between gap-y-2 '>
       <div className='hidden md:flex flex-wrap gap-2 transition-all '>
-        <ButtonOrderBy orderByText={"Popularidade"} orderByRole="POPULAR" />
         <ButtonOrderBy orderByText={"Preço: baixo para alto"} orderByRole="ASC"/>
         <ButtonOrderBy orderByText={"Preço: Alto para baixo"} orderByRole="DESC" />
       </div>
@@ -37,11 +36,7 @@ export default function ShortcutValues() {
         </div>
         <p>Coins</p>
       </div>
-      <div className='flex'>
-        <button className='p-1 flex rounded-md bg-calygam-gray-light/15'>
-        <img src={favoriteItemsIcon} alt="" className='w-[15px]' />
-        </button>
-      </div>
+      
 
     </div>
   )

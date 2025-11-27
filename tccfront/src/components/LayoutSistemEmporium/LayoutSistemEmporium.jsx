@@ -6,7 +6,7 @@ import StockLayoutManagement from '../../components/EmporiumProductsComponents/S
 
 export default function LayoutSistemEmporium() {
   return (
-    <div className='flex grid-cols-1  w-[85%] mx-auto'>
+    <div className='flex   w-[85%] mx-auto'>
         {/* <div className='w-full  '>
             <BarFilterCategory/>
         </div> */}
