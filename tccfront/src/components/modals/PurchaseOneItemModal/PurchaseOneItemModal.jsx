@@ -98,6 +98,7 @@ console.log(pet)
                   
                         <button className='py-2 px-4 bg-gradient-to-tr outline-none bg-black text-white  flex justify-center border-b-4 h-[35px] hover:border-none hover:translate-y-1 transition-all ease-in-out border-green-700/25 rounded-lg items-center' onClick={() => {
                             setPurchase("confirmQuestion", 1)
+                handleFinishPurchase()
                         }}>Comprar</button>
                 </div>
 
