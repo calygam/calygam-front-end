@@ -65,8 +65,8 @@ export default function AuthFormComponent({ actionName, nameRequired, cpfRequire
     }, [userEmail])
 
     useEffect(() => {
-        userPassword != '' ?
-            setValidPassword(RegexPassword(userPassword)) : setValidPassword("false")
+        userPassword.length>2 ?
+            setValidPassword("") : setValidPassword("false")
     }, [userPassword])
 
 

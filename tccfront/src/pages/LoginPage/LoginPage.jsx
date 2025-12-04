@@ -83,7 +83,7 @@ export default function LoginPage() {
       <div className='grid md:grid-cols-2 grid-cols-1 gap-x-12 w-full place-items-center md:place-items-stretch   overflow-hidden  '
       >
         <div
-          className='md:bg-white/20  h-fit md:min-h-[100dvh] flex flex-col gap-6 font-poppins items-center text-start   md:backdrop-blur-lg'
+          className='md:bg-white/20  h-full md:min-h-[100dvh] flex flex-col gap-6 font-poppins items-center text-start   md:backdrop-blur-lg'
 
         >
           <motion.img

@@ -86,12 +86,12 @@ export default function HomePage() {
       <header className='relative'>
         <FlorestGradientBackground dataProfile={dataProfile} />
               
-   <button
+   {/* <button
         onClick={scrollToNextSection}
         className="absolute p-4 w-fit h-fit opacity-75 border-2 border-white hover:opacity-100 outline-none rounded-full bg-white/45   inset-0 left-[90%] top-[50%] z-[188] cursor-pointer animate-bounce text-white flex text-4xl select-none"
       >
         ↓
-      </button>
+      </button> */}
       </header>
    
       <main className='w-full space-y-14'>
